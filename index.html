@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1b273d">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <meta name="description" data-snapshot-meta="forecast" content="Browse the __SNAPSHOT_DATE__ Moelections House, Senate, and Governor forecasts, race probabilities, margins, and historical results.">
+  <title>Moelections — 2026 Race Forecasts</title>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="Moelections home"><img id="brand-logo" alt="Moelections ballot box logo"></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="./index.html" aria-current="page">Forecasts</a>
+      <a href="./states.html">States</a>
+      <a href="./daily-changes.html">Forecast archive</a>
+      <a href="./performance.html">History</a>
+      <a href="./site-guide.html">Guide</a>
+      <a href="./methodology.html">About the data</a>
+      <a href="./gallery.html">Artwork</a>
+    </nav>
+  </header>
+  <main id="main" class="page-shell">
+    <div id="load-error" class="notice notice-error" role="alert" hidden>Forecast data could not be loaded. Please refresh or check the static data files.</div>
+    <section class="hero-panel">
+      <div class="hero-copy">
+        <div class="hero-heading">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> 2026 MIDTERM FORECAST · SNAPSHOT <time id="hero-date" data-snapshot-date datetime="__SNAPSHOT_ISO_DATE__">__SNAPSHOT_DATE__</time></p>
+        <h1>Polls, probabilities, and<br> <em>poor life decisions</em></h1>
+        </div>
+        <div class="hero-details">
+        <p class="hero-motto">The future is <em>moe!</em></p>
+        <p class="hero-tagline">That Time I Got Reincarnated as an Election Forecaster, but Everyone Is Wrong and I'm in Too Deep</p>
+        <p class="hero-description">One static snapshot of House, Senate, and Governor race margins and win chances, preserved as published.</p>
+        <a class="button button-light" href="#race-forecasts">Explore the race list <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="hero-art-wrap">
+        <img id="hero-art" class="hero-art" alt="Anime characters in a patriotic election illustration">
+      </figure>
+    </section>
+
+    <section class="generic-panel generic-panel-featured panel" aria-labelledby="generic-title">
+      <img id="generic-panic-art" class="generic-backdrop-art" alt="" aria-hidden="true" loading="lazy">
+      <div class="generic-intro"><p class="eyebrow">NATIONAL VOTE CONTEXT</p><h2 id="generic-title">The House generic ballot</h2><p id="generic-description" class="section-intro">Compare the multi-source polling average with the separate published forecast.</p></div>
+      <div id="generic-content" class="generic-content" aria-live="polite"></div>
+    </section>
+
+    <section class="overview-section" aria-labelledby="outlook-title">
+      <div class="section-title-row"><div><p class="eyebrow">THE BIG PICTURE</p><h2 id="outlook-title">Chamber outlooks</h2></div><p class="section-intro">Expected wins use the published race probabilities. They are not hard seat calls.</p></div>
+      <div id="outlook-grid" class="outlook-grid" aria-live="polite"></div>
+      <div id="joint-control-outlook" class="joint-control-outlook" aria-live="polite"></div>
+      <p id="outlook-note" class="fine-print"></p>
+    </section>
+
+    <section class="feature-grid" aria-label="Explore forecasts">
+      <article class="feature-card feature-closest"><div class="feature-copy"><p class="eyebrow">DOWN TO THE WIRE</p><h2>Closest races</h2><p>Ranked by the current Democratic win probability, closest to 50–50.</p><a href="#race-forecasts" class="text-link">See the close calls <span aria-hidden="true">↘</span></a></div><div id="closest-preview" class="mini-race-list" aria-live="polite"></div><figure class="feature-artwell"><img id="panic-art" alt="Anime characters in a close-election scene" loading="lazy"></figure></article>
+      <article class="feature-card feature-changes"><div class="feature-copy"><p class="eyebrow">PAST ELECTIONS</p><h2>Explore forecast history</h2><p>Compare annual results, race coverage, and accuracy across the 2018–2024 election cycles.</p><a href="./performance.html" class="text-link">Open election history <span aria-hidden="true">↗</span></a></div><figure class="feature-artwell"><img id="history-art" alt="Anime characters reviewing election history" loading="lazy"></figure></article>
+      <article class="feature-card feature-states"><div class="feature-copy"><p class="eyebrow">GO STATE BY STATE</p><h2>Explore states</h2><p>Search by state or race, filter by office, and jump to each state’s closest forecast.</p><a href="./states.html" class="text-link">Browse the states <span aria-hidden="true">↗</span></a></div><figure class="feature-artwell"><img id="travel-art" alt="Anime characters exploring a state-by-state forecast" loading="lazy"></figure></article>
+    </section>
+
+    <section class="forecast-section" id="race-forecasts" aria-labelledby="race-title">
+      <div class="section-title-row"><div><p id="forecast-race-count" class="eyebrow">Loading forecast coverage…</p><h2 id="race-title">Find your race</h2><p class="section-intro">Choose an office to update the rating summary and map, then search for an individual race.</p></div><label class="search-box"><span class="sr-only">Search race list</span><span aria-hidden="true">⌕</span><input id="race-search" type="search" placeholder="Search state or race" autocomplete="off"></label></div>
+      <div class="control-row">
+        <label>Office <select id="office-select"><option value="House" selected>House</option><option value="Senate">Senate</option><option value="Governor">Governor</option><option value="All">All offices</option></select></label>
+        <label>Sort <select id="race-sort"><option value="competitive">Closest first</option><option value="state">Race name A–Z</option></select></label>
+        <button id="reset-view" class="button button-quiet" type="button">Reset view</button>
+        <p id="coverage-note" role="status" class="control-status"></p>
+      </div>
+      <section class="rating-panel" aria-labelledby="rating-title">
+        <div class="rating-head"><div><p id="rating-eyebrow" class="eyebrow">HOUSE RATING SNAPSHOT</p><h3 id="rating-title">Rating counts</h3></div></div>
+        <div id="rating-summary" class="rating-summary" aria-live="polite"></div>
+        <div id="rating-bar" class="rating-bar" role="img" aria-label="House rating counts"></div>
+        <div id="rating-legend" class="rating-legend"></div>
+        <p id="rating-note" class="fine-print">Display-only ratings; probabilities and published expected-seat totals are unchanged.</p>
+      </section>
+      <section class="map-section panel" aria-labelledby="map-title">
+        <div class="section-title-row"><div><p class="eyebrow">SELECT A STATE</p><h2 id="map-title">House win chances by state</h2></div><button id="clear-state" class="button button-quiet" type="button" hidden>Clear selection</button></div>
+        <label class="map-flip-toggle"><input id="show-map-flips" type="checkbox"><span>Show projected flips</span></label>
+        <p id="map-caption" class="section-intro">Tile color shows the average Democratic win chance across each state's listed House districts. This is not a statewide election probability.</p>
+        <div class="map-layout"><div id="tile-map" class="tile-map" role="group" aria-label="House race map; select a state to filter race forecasts"></div><div class="map-legend"><span><i class="legend-dot legend-rep"></i>Republican favored</span><span><i class="legend-dot legend-even"></i>Near even</span><span><i class="legend-dot legend-dem"></i>Democratic favored</span><small>Colors represent race win probabilities, not vote margins.</small></div></div>
+      </section>
+      <div class="table-heading"><h3 id="table-title">All covered races</h3><span id="record-count" class="record-count" role="status"></span></div>
+      <div id="empty-state" class="empty-state" hidden>No races match your search. Clear filters to see all covered rows.</div>
+      <div class="table-scroll"><table class="race-table"><thead><tr><th scope="col">Race</th><th scope="col">D–R margin</th><th scope="col">Prior error</th><th scope="col">D win chance</th><th scope="col">R win chance</th><th scope="col">Rating</th></tr></thead><tbody id="race-table-body"></tbody></table></div>
+      <p class="fine-print">A positive margin favors Democrats; values are percentage points. Candidate names are listed on each race page from a separate linked reference and do not change the party-level forecast.</p>
+    </section>
+
+    <section class="closing-note"><div><p class="eyebrow">A NOTE ON THE DATA</p><h2>Published numbers, with their edges showing.</h2><p>We preserve the supplied margins and probabilities. Where the underlying snapshot leaves a question unanswered, the site says so.</p><a class="text-link" href="./methodology.html">Read data notes and definitions <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="site-footer"><a href="./index.html">Moelections</a><span>Static forecast snapshot · <time id="footer-date" data-snapshot-date datetime="__SNAPSHOT_ISO_DATE__">__SNAPSHOT_DATE__</time></span><nav aria-label="Footer links"><a href="./site-guide.html">Guide</a><a href="./states.html">States</a><a href="./methodology.html">About the data</a><a href="./performance.html">History</a><a href="./gallery.html">Artwork</a></nav></footer>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

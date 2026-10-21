@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-10-18",
+  "office": "U.S. House generic ballot",
+  "method": "Unweighted arithmetic mean of each listed poll's published Democratic percentage minus its Republican percentage. One poll per polling organization; no sample-size weighting.",
+  "population_note": "All included toplines use the pollster's likely-voter screen. Definitions differ by source; Fox's result is among respondents certain to vote. Published percentages are rounded to whole points, so the average is descriptive rather than more precise than the underlying polls.",
+  "polls": [
+    {
+      "poll_id": "cbs-news-yougov-2026-09-30",
+      "source": "CBS News / YouGov",
+      "field_start": "2026-09-30",
+      "field_end": "2026-10-02",
+      "population": "Likely voters, including leaners",
+      "dem_pct": 54,
+      "rep_pct": 45,
+      "sample_note": "Weighted N 1,572 likely voters",
+      "source_url": "https://assets1.cbsnewsstatic.com/hub/cms/prod_cms_alt/file/2026/10/04/0957ee32-a848-4872-b659-14303d3d3734/cbsnews_20261004_sun.pdf"
+    },
+    {
+      "poll_id": "harvard-caps-harrisx-2026-09-26",
+      "source": "Harvard CAPS / HarrisX",
+      "field_start": "2026-09-26",
+      "field_end": "2026-09-28",
+      "population": "Likely midterm voters (reported subgroup)",
+      "dem_pct": 51,
+      "rep_pct": 49,
+      "sample_note": "Survey of 2,200 registered voters; likely-voter subgroup count not listed",
+      "source_url": "https://harvardharrispoll.com/assets/uploads/2026/09/HHP_Sep2026_KeyResults.pdf"
+    },
+    {
+      "poll_id": "fox-news-2026-10-09",
+      "source": "Fox News Poll",
+      "field_start": "2026-10-09",
+      "field_end": "2026-10-12",
+      "population": "Certain to vote (10s subgroup)",
+      "dem_pct": 52,
+      "rep_pct": 46,
+      "sample_note": "Subgroup of 1,202 registered voters; subgroup count not listed",
+      "source_url": "https://static.foxnews.com/foxnews.com/content/uploads/2026/10/fox_october-9-12-2026_complete_national_topline_october-14-release.pdf"
+    },
+    {
+      "poll_id": "abc-washington-post-ipsos-2026-10-09",
+      "source": "ABC News / Washington Post / Ipsos",
+      "field_start": "2026-10-09",
+      "field_end": "2026-10-13",
+      "population": "Likely voters (publisher-defined model)",
+      "dem_pct": 52,
+      "rep_pct": 44,
+      "sample_note": "Likely-voter subgroup count not listed; poll included 2,032 registered voters among 2,545 adults",
+      "source_url": "https://abcnews.com/Politics/democrats-lead-republicans-house-vote-choice-trumps-approval/story?id=137322849"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1b273d"><link rel="icon" type="image/png" href="./favicon.png"><meta name="description" content="Explore the states and 2026 election forecast races covered by Moelections."><title>Explore states — Moelections</title></head>
+<body data-page="states">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="./index.html" aria-label="Moelections home"><img id="brand-logo" alt="Moelections ballot box logo"></a><nav class="main-nav" aria-label="Main navigation"><a href="./index.html">Forecasts</a><a class="active" href="./states.html" aria-current="page">States</a><a href="./daily-changes.html">Forecast archive</a><a href="./performance.html">History</a><a href="./site-guide.html">Guide</a><a href="./methodology.html">About the data</a><a href="./gallery.html">Artwork</a></nav></header>
+  <main id="main" class="page-shell">
+    <section class="page-heading"><p class="eyebrow">STATE-BY-STATE</p><h1>Explore states</h1><p>Find a state or race, narrow the list by office, and open a state’s closest race or full filtered forecast list. Average Democratic win chance summarizes the selected races; it is not a statewide vote forecast.</p></section>
+    <figure class="state-page-art"><div class="state-art-copy"><p class="eyebrow">TAKE IT STATE BY STATE</p><p>Start with the closest published race, then browse every covered forecast from that state.</p></div><img id="states-art" alt="Anime characters exploring a state-by-state forecast"></figure>
+    <div class="control-row state-controls">
+      <label class="search-box"><span class="sr-only">Search states and races</span><span aria-hidden="true">⌕</span><input id="state-search" type="search" placeholder="Search a state or race" autocomplete="off"></label>
+      <label>Office <select id="state-office"><option value="All">All offices</option><option value="House">House</option><option value="Senate">Senate</option><option value="Governor">Governor</option></select></label>
+      <label>Sort <select id="state-sort"><option value="name">State name A–Z</option><option value="races">Most races</option><option value="competitive">Closest race</option></select></label>
+      <button id="state-reset" class="button button-quiet" type="button">Reset filters</button>
+      <p id="state-count" class="control-status" role="status"></p>
+    </div>
+    <div id="state-empty" class="empty-state" hidden>No states match these filters. Clear the search or choose another office.</div>
+    <div id="state-grid" class="state-grid" aria-live="polite"></div>
+  </main>
+  <footer class="site-footer"><a href="./index.html">Moelections</a><span>State coverage from the <time id="state-footer-date" data-snapshot-date datetime="__SNAPSHOT_ISO_DATE__">__SNAPSHOT_DATE__</time> snapshot</span><nav aria-label="Footer links"><a href="./site-guide.html">Guide</a><a href="./methodology.html">About the data</a><a href="./daily-changes.html">Forecast archive</a><a href="./gallery.html">Artwork</a></nav></footer>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

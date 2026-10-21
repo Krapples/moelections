@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "images": [
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "02_decision_desk_panic.png",
+      "image": "artwork/01_Lucky_Star/02_decision_desk_panic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "03_happy.png",
+      "image": "artwork/01_Lucky_Star/03_happy.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "04_crying.png",
+      "image": "artwork/01_Lucky_Star/04_crying.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "05_shock.png",
+      "image": "artwork/01_Lucky_Star/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "06_patriotic.png",
+      "image": "artwork/01_Lucky_Star/06_patriotic.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "01_election_mischief.png",
+      "image": "artwork/01_Lucky_Star/01_election_mischief.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "07_konata_hatted_patriotic_group.png",
+      "image": "artwork/01_Lucky_Star/07_konata_hatted_patriotic_group.webp",
+      "width": 1536,
+      "height": 500
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "08_konata_hat_parade_original.png",
+      "image": "artwork/01_Lucky_Star/08_konata_hat_parade_original.webp",
+      "width": 954,
+      "height": 484
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "02_decision_desk_panic.png",
+      "image": "artwork/02_Gabriel_DropOut/02_decision_desk_panic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "03_happy.png",
+      "image": "artwork/02_Gabriel_DropOut/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "04_crying.png",
+      "image": "artwork/02_Gabriel_DropOut/04_crying.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "05_shock.png",
+      "image": "artwork/02_Gabriel_DropOut/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "06_patriotic.png",
+      "image": "artwork/02_Gabriel_DropOut/06_patriotic.webp",
+      "width": 1915,
+      "height": 821
+    },
+    {
+      "series_key": "02_Gabriel_DropOut",
+      "series": "Gabriel DropOut",
+      "filename": "01_election_mischief.png",
+      "image": "artwork/02_Gabriel_DropOut/01_election_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "01_sos_ballot_box_mischief.png",
+      "image": "artwork/03_Haruhi_Suzumiya/01_sos_ballot_box_mischief.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "02_decision_desk_panic.png",
+      "image": "artwork/03_Haruhi_Suzumiya/02_decision_desk_panic.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "03_happy_celebration.png",
+      "image": "artwork/03_Haruhi_Suzumiya/03_happy_celebration.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "05_shocked_by_poll_swing.png",
+      "image": "artwork/03_Haruhi_Suzumiya/05_shocked_by_poll_swing.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "06_patriotic_sos_brigade.png",
+      "image": "artwork/03_Haruhi_Suzumiya/06_patriotic_sos_brigade.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "01_decision_desk_cabin.png",
+      "image": "artwork/04_Yuru_Camp/01_decision_desk_cabin.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "02_ballot_mischief.png",
+      "image": "artwork/04_Yuru_Camp/02_ballot_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "03_happy.png",
+      "image": "artwork/04_Yuru_Camp/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "04_crying.png",
+      "image": "artwork/04_Yuru_Camp/04_crying.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "05_shock.png",
+      "image": "artwork/04_Yuru_Camp/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "06_patriotic.png",
+      "image": "artwork/04_Yuru_Camp/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "04_Yuru_Camp",
+      "series": "Yuru Camp",
+      "filename": "07_bonus_quiet_radio_campfire.png",
+      "image": "artwork/04_Yuru_Camp/07_bonus_quiet_radio_campfire.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "01_election_mischief.png",
+      "image": "artwork/05_Humanity_Has_Declined/01_election_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "02_decision_desk_panic.png",
+      "image": "artwork/05_Humanity_Has_Declined/02_decision_desk_panic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "03_happy.png",
+      "image": "artwork/05_Humanity_Has_Declined/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "04_crying_revised.png",
+      "image": "artwork/05_Humanity_Has_Declined/04_crying_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "05_shock.png",
+      "image": "artwork/05_Humanity_Has_Declined/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "05_Humanity_Has_Declined",
+      "series": "Humanity Has Declined",
+      "filename": "06_patriotic.png",
+      "image": "artwork/05_Humanity_Has_Declined/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "01_election_mischief.png",
+      "image": "artwork/06_Girls_Last_Tour/01_election_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "02_decision_desk.png",
+      "image": "artwork/06_Girls_Last_Tour/02_decision_desk.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "03_happy.png",
+      "image": "artwork/06_Girls_Last_Tour/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "04_crying_revised.png",
+      "image": "artwork/06_Girls_Last_Tour/04_crying_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "05_shock_revised.png",
+      "image": "artwork/06_Girls_Last_Tour/05_shock_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "06_patriotic.png",
+      "image": "artwork/06_Girls_Last_Tour/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "01_gunslinging.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/01_gunslinging.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "02_diner_stop.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/02_diner_stop.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "03_desert_ride.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/03_desert_ride.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "04_winter_roadside.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/04_winter_roadside.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "05_washington_overlook.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/05_washington_overlook.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "06_coastal_highway.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/06_coastal_highway.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "01_mimic_ballot_mischief.png",
+      "image": "artwork/08_Frieren/01_mimic_ballot_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "02_decision_desk.png",
+      "image": "artwork/08_Frieren/02_decision_desk.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "03_happy.png",
+      "image": "artwork/08_Frieren/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "04_crying.png",
+      "image": "artwork/08_Frieren/04_crying.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "05_shock.png",
+      "image": "artwork/08_Frieren/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "06_patriotic.png",
+      "image": "artwork/08_Frieren/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "01_grail_election_mischief_revised.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/01_grail_election_mischief_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "02_decision_desk_revised.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/02_decision_desk_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "03_happy.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "04_crying_revised.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/04_crying_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "05_shock_revised.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/05_shock_revised.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "06_patriotic.png",
+      "image": "artwork/09_Fate_Carnival_Phantasm/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "01_election_mischief.png",
+      "image": "artwork/10_Konosuba/01_election_mischief.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "02_decision_desk.png",
+      "image": "artwork/10_Konosuba/02_decision_desk.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "03_happy.png",
+      "image": "artwork/10_Konosuba/03_happy.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "04_crying.png",
+      "image": "artwork/10_Konosuba/04_crying.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "05_shock.png",
+      "image": "artwork/10_Konosuba/05_shock.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "06_patriotic.png",
+      "image": "artwork/10_Konosuba/06_patriotic.webp",
+      "width": 1916,
+      "height": 821
+    },
+    {
+      "series_key": "11_Vocaloid_SynthV",
+      "series": "Vocaloid SynthV",
+      "filename": "01_original_patriotic_group.png",
+      "image": "artwork/11_Vocaloid_SynthV/01_original_patriotic_group.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "11_Vocaloid_SynthV",
+      "series": "Vocaloid SynthV",
+      "filename": "02_forecast_team.png",
+      "image": "artwork/11_Vocaloid_SynthV/02_forecast_team.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "11_Vocaloid_SynthV",
+      "series": "Vocaloid SynthV",
+      "filename": "03_wide_homepage_banner.png",
+      "image": "artwork/11_Vocaloid_SynthV/03_wide_homepage_banner.webp",
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "series_key": "11_Vocaloid_SynthV",
+      "series": "Vocaloid SynthV",
+      "filename": "03_wide_homepage_banner_optimized.webp",
+      "image": "artwork/11_Vocaloid_SynthV/03_wide_homepage_banner_optimized.webp",
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "series_key": "12_Political_Chibi",
+      "series": "Political Chibi",
+      "filename": "01_patriotic_chibi_portrait.png",
+      "image": "artwork/12_Bonus_Art/Political_Chibi/01_patriotic_chibi_portrait.webp",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "series_key": "12_Political_Chibi",
+      "series": "Political Chibi",
+      "filename": "02_task_force_podium.png",
+      "image": "artwork/12_Bonus_Art/Political_Chibi/02_task_force_podium.webp",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "series_key": "12_Political_Chibi",
+      "series": "Political Chibi",
+      "filename": "03_chibi_diplomat.png",
+      "image": "artwork/12_Bonus_Art/Political_Chibi/03_chibi_diplomat.webp",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "series_key": "12_Political_Chibi",
+      "series": "Political Chibi",
+      "filename": "04_capitol_steps.png",
+      "image": "artwork/12_Bonus_Art/Political_Chibi/04_capitol_steps.webp",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "series_key": "03_Haruhi_Suzumiya",
+      "series": "Haruhi Suzumiya",
+      "filename": "01_haruhi_early_election_desk.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/01_haruhi_early_election_desk.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "08_Frieren",
+      "series": "Frieren",
+      "filename": "02_frieren_early_model_revisions.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/02_frieren_early_model_revisions.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "09_Fate_Carnival_Phantasm",
+      "series": "Fate Carnival Phantasm",
+      "filename": "03_fate_diner.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/03_fate_diner.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "10_Konosuba",
+      "series": "Konosuba",
+      "filename": "04_konosuba_polling_chaos.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/04_konosuba_polling_chaos.webp",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "series_key": "06_Girls_Last_Tour",
+      "series": "Girls Last Tour",
+      "filename": "05_girls_last_tour.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/05_girls_last_tour.webp",
+      "width": 975,
+      "height": 595
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "06_kino_early_art.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/06_kino_early_art.webp",
+      "width": 912,
+      "height": 595
+    },
+    {
+      "series_key": "01_Lucky_Star",
+      "series": "Lucky Star",
+      "filename": "07_lucky_star_early_art.png",
+      "image": "artwork/12_Bonus_Art/Early_Illustrations/07_lucky_star_early_art.webp",
+      "width": 1040,
+      "height": 595
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "02_roadside_decision_desk.png",
+      "image": "artwork/07_Kinos_Journey/02_Election_Forecast_Extras/02_roadside_decision_desk.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "04_crying_after_forecast.png",
+      "image": "artwork/07_Kinos_Journey/02_Election_Forecast_Extras/04_crying_after_forecast.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "05_shocked_by_senate_update.png",
+      "image": "artwork/07_Kinos_Journey/02_Election_Forecast_Extras/05_shocked_by_senate_update.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "06_patriotic_washington_overlook.png",
+      "image": "artwork/07_Kinos_Journey/02_Election_Forecast_Extras/06_patriotic_washington_overlook.webp",
+      "width": 2100,
+      "height": 900
+    },
+    {
+      "series_key": "12_Political_Chibi",
+      "series": "Political Chibi",
+      "filename": "trump-kawaii.png",
+      "image": "artwork/12_Political_Art/trump-kawaii.webp",
+      "width": 1254,
+      "height": 1254,
+      "alt": "Kawaii illustration of Donald Trump in a navy suit and red tie, with the White House, American flags, and hearts in the background."
+    },
+    {
+      "series_key": "07_Kinos_Journey",
+      "series": "Kino’s Journey",
+      "filename": "07_golden_hour_roadside_reverie.png",
+      "image": "artwork/07_Kinos_Journey/01_Travels_Across_America/07_golden_hour_roadside_reverie.webp",
+      "width": 1912,
+      "height": 823,
+      "alt": "Kino sits beside a motorcycle and dog at a golden-hour overlook."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "01_Holo_MAGA_Hat_Make_America_Great_Again.png",
+      "image": "artwork/13_Spice_and_Wolf/01_holo_maga_hat.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf banner featuring Holo wearing a red Make America Great Again hat."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "02_Twilight_Market.png",
+      "image": "artwork/13_Spice_and_Wolf/02_twilight_market.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf election banner set at a twilight market."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "03_Election_War_Room.png",
+      "image": "artwork/13_Spice_and_Wolf/03_election_war_room.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf election war room banner."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "04_Tavern_Celebration.png",
+      "image": "artwork/13_Spice_and_Wolf/04_tavern_celebration.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf banner showing a tavern celebration."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "05_Rainy_Election_Night.png",
+      "image": "artwork/13_Spice_and_Wolf/05_rainy_election_night.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf election banner on a rainy night."
+    },
+    {
+      "series_key": "13_Spice_and_Wolf",
+      "series": "Spice and Wolf",
+      "filename": "06_Sunset_Bulletin.png",
+      "image": "artwork/13_Spice_and_Wolf/06_sunset_bulletin.webp",
+      "width": 1916,
+      "height": 821,
+      "alt": "Spice and Wolf election bulletin banner at sunset."
+    },
+    {
+      "series_key": "14_All_Characters",
+      "series": "All Characters",
+      "filename": "01_all_characters_flower_festival.png",
+      "image": "artwork/14_All_Characters/01_flower_festival.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "Anime characters from several series gathered at a flower-filled festival."
+    },
+    {
+      "series_key": "14_All_Characters",
+      "series": "All Characters",
+      "filename": "02_all_characters_polling_place.png",
+      "image": "artwork/14_All_Characters/02_polling_place.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "Anime characters from several series heading toward a polling place."
+    }
+  ]
+}

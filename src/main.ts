@@ -601,7 +601,16 @@ function renderRaceList(data: CurrentData): void {
     const favoriteClass = dem > rep ? "dem" : dem < rep ? "rep" : "neutral";
     const raceRating = race.forecast_rating || rating(dem, race.office);
     const ratingClass = raceRating.toLowerCase().replace(/[^a-z0-9]+/g, "");
-    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span></td><td class=\"prior-cell\">" + priorErrorCell(race, data.prior_error_history) + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + flipBadge(race, data) + "</td></tr>";
+    const marginDirection = Math.sign(Number(race.dem_margin_pp));
+    const chanceDirection = Math.sign(Number(dem) - 0.5);
+    const hasDirectionDifference = marginDirection !== 0 && chanceDirection !== 0 && marginDirection !== chanceDirection;
+    const directionNote = hasDirectionDifference
+      ? "The margin (" + marginLabel(race.dem_margin_pp) + ") favors " + (marginDirection > 0 ? "Democrats" : "Republicans") + "; the win chance favors " + (chanceDirection > 0 ? "Democrats" : "Republicans") + ". The rating follows the win chance."
+      : "";
+    const directionMarker = directionNote
+      ? "<button class=\"forecast-direction-marker\" type=\"button\" title=\"" + escapeHtml(directionNote) + "\" aria-label=\"" + escapeHtml(directionNote) + "\">*</button>"
+      : "";
+    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span>" + directionMarker + "</td><td class=\"prior-cell\">" + priorErrorCell(race, data.prior_error_history) + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + " " + favoriteClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + flipBadge(race, data) + "</td></tr>";
   }).join("");
   const count = element("record-count");
   const title = element("table-title");
@@ -655,7 +664,6 @@ function renderForecastControls(data: CurrentData): void {
     selectedState = selectedState === button.dataset.state ? "" : (button.dataset.state || "");
     if (office) office.value = mapOffice;
     renderRaceList(data);
-    element("race-forecasts")?.scrollIntoView({ behavior:"smooth", block:"start" });
   });
   element("clear-state")?.addEventListener("click", () => { selectedState = ""; renderRaceList(data); });
   renderRaceList(data);
@@ -723,7 +731,7 @@ async function renderStatesArtwork(): Promise<void> {
 async function renderRaceDetail(data: CurrentData): Promise<void> {
   const holder = element("race-detail");
   if (!holder) return;
-  const raceId = new URLSearchParams(window.location.search).get("id");
+  const raceId = document.body.dataset.raceId || new URLSearchParams(window.location.search).get("id");
   const race = data.races.find(row => row.race_id === raceId);
   if (!race) {
     holder.innerHTML = "<section class=\"notice notice-error\"><h1>Race not found</h1><p>No published row matches the supplied race ID. <a href=\"./index.html#race-forecasts\">Return to all forecasts</a>.</p></section>";
@@ -1092,112 +1100,106 @@ async function renderGenericBallotHistory(): Promise<void> {
   }
 }
 
+function renderArchiveSeatCards(snapshot: SavedForecastSnapshot | CurrentData, currentData: CurrentData): string {
+  const counts = Object.fromEntries(OFFICE_ORDER.map(office => [office, snapshot.races.filter(race => race.office === office).length])) as Record<Office, number>;
+  const senateFixedDem = Number(currentData.summary.senate_seat_distribution?.fixed_dem_caucus_seats);
+  const senateFixedRep = Number(currentData.summary.senate_seat_distribution?.fixed_rep_seats);
+  const senateBaselineIsUsable = Number.isFinite(senateFixedDem) && Number.isFinite(senateFixedRep) && senateFixedDem >= 0 && senateFixedRep >= 0;
+  const offices: Array<{ office: Office; label: string; total: number; coverage: string; majority: number | null }> = [
+    {office:"House", label:"House", total:counts.House, coverage:counts.House === 435 ? "All 435 districts" : counts.House + " forecast districts", majority:218},
+    {office:"Senate", label:"Senate", total:counts.Senate + (senateBaselineIsUsable ? senateFixedDem + senateFixedRep : 0), coverage:senateBaselineIsUsable ? counts.Senate + " forecast races · " + (senateFixedDem + senateFixedRep) + " fixed seats" : counts.Senate + " forecast races", majority:senateBaselineIsUsable ? 51 : null},
+    {office:"Governor", label:"Governor", total:counts.Governor, coverage:counts.Governor + " races on the ballot · not all 50 states", majority:null}
+  ];
+  return offices.map(entry => {
+    const races = snapshot.races.filter(race => race.office === entry.office);
+    const raceDem = races.reduce((sum, race) => sum + Number(race.dem_probability || 0), 0);
+    const raceRep = races.reduce((sum, race) => sum + Number(race.rep_probability || 0), 0);
+    const fixedDem = entry.office === "Senate" && senateBaselineIsUsable ? senateFixedDem : 0;
+    const fixedRep = entry.office === "Senate" && senateBaselineIsUsable ? senateFixedRep : 0;
+    const expectedDem = raceDem + fixedDem;
+    const expectedRep = raceRep + fixedRep;
+    const totalExpected = expectedDem + expectedRep;
+    const denominator = totalExpected > 0 ? totalExpected : Math.max(entry.total, 1);
+    const demShare = Math.max(0, Math.min(100, expectedDem / denominator * 100));
+    const repShare = Math.max(0, Math.min(100, expectedRep / denominator * 100));
+    const competitive = races.filter(race => Number(race.dem_probability) >= 0.35 && Number(race.dem_probability) <= 0.65).length;
+    const net = expectedDem - expectedRep;
+    const netLabel = Math.abs(net) < 0.05 ? "Expected seats even" : (net > 0 ? "Democrats" : "Republicans") + " lead by " + Math.abs(net).toFixed(1);
+    const majorityMarker = entry.majority && entry.total ? "<span class=\"archive-majority-marker\" style=\"left:" + Math.min(100, entry.majority / entry.total * 100).toFixed(2) + "%\" aria-hidden=\"true\"></span>" : "";
+    const majorityLabel = entry.majority ? "<p class=\"archive-majority-note\">" + entry.majority + " seats for a majority</p>" : "";
+    const isCurrent = snapshot.snapshot_date === currentData.snapshot_date;
+    let rangeNote = "<p class=\"archive-range-note\">Seat range not available for this saved release.</p>";
+    if (isCurrent) {
+      try {
+        const range = officeSeatRanges(currentData, entry.office);
+        rangeNote = "<p class=\"archive-range-note\">Central 50%: " + range.central50[0] + "–" + range.central50[1] + " Democratic " + (entry.office === "Governor" ? "wins" : "seats") + " · Central 90%: " + range.central90[0] + "–" + range.central90[1] + "</p>";
+      } catch { /* A missing distribution does not hide the expected seat totals. */ }
+    }
+    const accessibleBar = escapeHtml(entry.label + ": expected Democratic " + expectedDem.toFixed(1) + ", Republican " + expectedRep.toFixed(1) + (entry.majority ? "; majority at " + entry.majority : ""));
+    return "<article class=\"archive-seat-card archive-seat-" + entry.office.toLowerCase() + "\"><div class=\"archive-seat-card-head\"><div><p class=\"eyebrow\">" + escapeHtml(entry.coverage.toUpperCase()) + "</p><h3>" + escapeHtml(entry.label) + "</h3></div><span class=\"archive-net-pill\">" + escapeHtml(netLabel) + "</span></div><div class=\"archive-party-counts\"><div><span class=\"archive-party-label archive-dem-label\"><i aria-hidden=\"true\"></i>Democratic</span><strong>" + expectedDem.toFixed(1) + "</strong></div><div><span class=\"archive-party-label archive-rep-label\"><i aria-hidden=\"true\"></i>Republican</span><strong>" + expectedRep.toFixed(1) + "</strong></div></div><div class=\"archive-seat-bar\" role=\"img\" aria-label=\"" + accessibleBar + "\"><span class=\"archive-seat-bar-dem\" style=\"width:" + demShare.toFixed(2) + "%\"></span><span class=\"archive-seat-bar-rep\" style=\"width:" + repShare.toFixed(2) + "%\"></span>" + majorityMarker + "</div>" + majorityLabel + rangeNote + "<div class=\"archive-seat-footer\"><span><strong>" + competitive + "</strong> competitive races</span><small>35–65% chance for either party</small></div></article>";
+  }).join("");
+}
+
 async function renderSnapshotArchive(data: CurrentData): Promise<void> {
   const holder = element("changes-content");
   if (!holder) return;
   try {
-    const response = await fetch(assetUrl("data/snapshots/index.json"), { cache:"no-store" });
-    if (!response.ok) throw new Error("The local snapshot index could not be loaded.");
+    const response = await fetch(assetUrl("data/snapshots/index.json"), {cache:"no-store"});
+    if (!response.ok) throw new Error("The saved forecast index could not be loaded.");
     const index = await response.json() as SnapshotIndex;
     const entries = index.schema_version === data.schema_version && index.series_id === data.series_id
       ? index.snapshots.filter(entry => entry.series_id === data.series_id && entry.schema_version === data.schema_version && entry.snapshot_date < data.snapshot_date).sort((a, b) => b.snapshot_date.localeCompare(a.snapshot_date))
       : [];
-    const currentCard = "<li class=\"archive-item archive-current\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(data.snapshot_date) + "\">" + escapeHtml(dateLabel(data.snapshot_date)) + "</time><h2>Current forecast</h2><p>" + data.races.length.toLocaleString() + " listed race forecasts</p></div><span class=\"archive-status current-status\">Current</span><button class=\"archive-open-button\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-controls=\"archive-detail\">View predictions</button></li>";
-    const archivedCards = entries.map(entry => {
-      const raceCount = Number(entry.race_count || 0);
-      const countLabel = raceCount ? raceCount.toLocaleString() + " saved race forecasts" : "Saved race forecasts";
-      const description = entry.archive_note || "Preserved as a reference; this release is not used to calculate forecast movement.";
+    const archivedOptions = entries.map(entry => {
       const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
-      const action = pathIsLocalSnapshot
-        ? "<button class=\"archive-open-button\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(entry.path) + "\" aria-controls=\"archive-detail\">View predictions</button>"
-        : "<span class=\"archive-status\">File unavailable</span>";
-      return "<li class=\"archive-item\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(entry.snapshot_date) + "\">" + escapeHtml(dateLabel(entry.snapshot_date)) + "</time><h2>Saved forecast</h2><p>" + escapeHtml(countLabel) + " · " + escapeHtml(description) + "</p></div><span class=\"archive-status\">Reference only</span>" + action + "</li>";
+      return "<button class=\"archive-release-choice\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(pathIsLocalSnapshot ? entry.path : "") + "\" aria-pressed=\"false\"" + (pathIsLocalSnapshot ? "" : " disabled") + "><span>" + escapeHtml(dateLabel(entry.snapshot_date)) + "</span><small>Reference release</small></button>";
     }).join("");
-    const empty = entries.length ? "" : "<p class=\"archive-empty\">No earlier dated snapshots are listed for this forecast series.</p>";
-    holder.innerHTML = "<section class=\"content-panel archive-card\"><div class=\"section-title-row\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " DATED RELEASES</p><h2>Saved forecast dates</h2></div><a class=\"text-link\" href=\"./performance.html\">Explore election history ↗</a></div><p class=\"archive-intro\">Open a release to browse its saved Democratic–Republican margin estimates and win chances. These are historical records, not a claim that two releases are directly comparable.</p>" + empty + "<ol class=\"snapshot-timeline\">" + currentCard + archivedCards + "</ol></section><section class=\"content-panel archive-detail\" id=\"archive-detail\" hidden></section>";
-
-    const detail = element<HTMLDivElement>("archive-detail");
-    let lastOpenedButton: HTMLButtonElement | null = null;
-    const openSnapshot = async (snapshot: SavedForecastSnapshot | CurrentData, snapshotDate: string, archiveNote: string, opener: HTMLButtonElement) => {
-      if (!detail) return;
-      lastOpenedButton = opener;
-      detail.hidden = false;
-      detail.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(dateLabel(snapshotDate)) + " SNAPSHOT</p><h2>Race predictions</h2><p class=\"archive-intro\">" + escapeHtml(archiveNote) + "</p><p class=\"archive-loading\">Loading saved race predictions…</p>";
-      const officeOptions = OFFICE_ORDER.map(office => "<option value=\"" + escapeHtml(office) + "\">" + escapeHtml(office) + "</option>").join("");
-      detail.innerHTML = "<div class=\"section-title-row archive-detail-heading\"><div><p class=\"eyebrow\">" + escapeHtml(dateLabel(snapshotDate)) + " SNAPSHOT</p><h2>Race predictions</h2></div><button class=\"archive-close-button\" type=\"button\">Close</button></div><p class=\"archive-intro\">" + escapeHtml(archiveNote) + "</p><div class=\"archive-toolbar\"><label for=\"archive-office\">Office<select id=\"archive-office\"><option value=\"all\">All offices</option>" + officeOptions + "</select></label><label for=\"archive-search\">Find a race<input id=\"archive-search\" type=\"search\" autocomplete=\"off\" placeholder=\"State or district\"></label><p class=\"archive-row-count\" id=\"archive-row-count\" aria-live=\"polite\"></p></div><div class=\"archive-table-wrap\"><table class=\"archive-forecast-table\"><caption class=\"visually-hidden\">Race forecasts saved on " + escapeHtml(dateLabel(snapshotDate)) + "</caption><thead><tr><th scope=\"col\">Race</th><th scope=\"col\">D–R margin</th><th scope=\"col\">D win chance</th><th scope=\"col\">R win chance</th></tr></thead><tbody id=\"archive-race-rows\"></tbody></table></div><nav class=\"archive-pager\" aria-label=\"Forecast archive pages\"><button type=\"button\" id=\"archive-previous\">Previous</button><span id=\"archive-page-label\"></span><button type=\"button\" id=\"archive-next\">Next</button></nav>";
-
-      const officeSelect = element<HTMLSelectElement>("archive-office");
-      const searchInput = element<HTMLInputElement>("archive-search");
-      const rowCount = element<HTMLParagraphElement>("archive-row-count");
-      const tableRows = element<HTMLTableSectionElement>("archive-race-rows");
-      const previous = element<HTMLButtonElement>("archive-previous");
-      const next = element<HTMLButtonElement>("archive-next");
-      const pageLabel = element<HTMLSpanElement>("archive-page-label");
-      const pageSize = 50;
-      let archivePage = 0;
-      const races = [...snapshot.races].sort((a, b) => OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office) || a.state.localeCompare(b.state) || String(a.district).localeCompare(String(b.district)));
-      const updateRows = () => {
-        if (!officeSelect || !searchInput || !rowCount || !tableRows || !previous || !next || !pageLabel) return;
-        const query = searchInput.value.trim().toLowerCase();
-        const filtered = races.filter(race => (officeSelect.value === "all" || race.office === officeSelect.value) && (!query || raceName(race).toLowerCase().includes(query) || race.state.toLowerCase().includes(query) || String(race.district).toLowerCase().includes(query)));
-        const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
-        archivePage = Math.min(archivePage, pageCount - 1);
-        const start = archivePage * pageSize;
-        const visible = filtered.slice(start, start + pageSize);
-        tableRows.innerHTML = visible.length
-          ? visible.map(race => "<tr><th scope=\"row\">" + escapeHtml(raceName(race)) + "</th><td>" + escapeHtml(formatMarginPp(Number(race.dem_margin_pp))) + "</td><td>" + pct(Number(race.dem_probability)) + "</td><td>" + pct(Number(race.rep_probability)) + "</td></tr>").join("")
-          : "<tr><td class=\"archive-no-results\" colspan=\"4\">No races match this filter.</td></tr>";
-        rowCount.textContent = filtered.length ? "Showing " + (start + 1).toLocaleString() + "–" + Math.min(start + pageSize, filtered.length).toLocaleString() + " of " + filtered.length.toLocaleString() + " races" : "No matching races";
-        pageLabel.textContent = "Page " + (archivePage + 1).toLocaleString() + " of " + pageCount.toLocaleString();
-        previous.disabled = archivePage === 0;
-        next.disabled = archivePage >= pageCount - 1;
-      };
-      officeSelect?.addEventListener("change", () => { archivePage = 0; updateRows(); });
-      searchInput?.addEventListener("input", () => { archivePage = 0; updateRows(); });
-      previous?.addEventListener("click", () => { archivePage = Math.max(0, archivePage - 1); updateRows(); });
-      next?.addEventListener("click", () => { archivePage += 1; updateRows(); });
-      detail.querySelector<HTMLButtonElement>(".archive-close-button")?.addEventListener("click", () => {
-        detail.hidden = true;
-        lastOpenedButton?.focus();
-      });
-      updateRows();
-      detail.scrollIntoView({ behavior:"smooth", block:"start" });
-    };
-
+    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see the party seat estimates and competitive-race count recorded for that date.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section>";
+    const overview = element("archive-seat-overview");
+    const note = element<HTMLParagraphElement>("archive-release-note");
+    const choices = [...holder.querySelectorAll<HTMLButtonElement>("button[data-snapshot-path]")];
+    const cache = new Map<string, SavedForecastSnapshot>();
     holder.addEventListener("click", async event => {
       const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-snapshot-path]");
-      if (!button) return;
+      if (!button || !overview) return;
+      const path = button.dataset.snapshotPath || "";
+      const snapshotId = button.dataset.snapshotId || "";
+      if (!path) return;
+      choices.forEach(choice => {
+        const selected = choice === button;
+        choice.classList.toggle("is-selected", selected);
+        choice.setAttribute("aria-pressed", String(selected));
+      });
       button.disabled = true;
+      overview.innerHTML = "<p class=\"archive-loading\">Loading saved seat outlook…</p>";
       try {
-        const snapshotPath = button.dataset.snapshotPath || "";
-        const snapshotId = button.dataset.snapshotId || "";
-        let snapshot: SavedForecastSnapshot | CurrentData;
-        let note = "Current published forecast.";
-        if (snapshotPath === "current") {
-          snapshot = data;
-        } else {
-          if (!snapshotPath.startsWith("data/snapshots/") || snapshotPath.split("/").includes("..")) throw new Error("The saved forecast path is invalid.");
-          const snapshotResponse = await fetch(assetUrl(snapshotPath), { cache:"force-cache" });
-          if (!snapshotResponse.ok) throw new Error("This saved forecast could not be loaded.");
-          snapshot = await snapshotResponse.json() as SavedForecastSnapshot;
-          if (snapshot.schema_version !== data.schema_version || snapshot.series_id !== data.series_id || snapshot.snapshot_id !== snapshotId || !Array.isArray(snapshot.races)) throw new Error("This saved forecast does not match the current archive series.");
-          note = snapshot.archive_note || entries.find(entry => entry.snapshot_id === snapshotId)?.archive_note || "Preserved as a reference; this release is not used to calculate forecast movement.";
+        let snapshot: SavedForecastSnapshot | CurrentData = data;
+        let releaseNote = "Current published forecast.";
+        if (path !== "current") {
+          if (!path.startsWith("data/snapshots/") || path.split("/").includes("..")) throw new Error("This saved release path is not available.");
+          snapshot = cache.get(snapshotId) as SavedForecastSnapshot;
+          if (!snapshot) {
+            const snapshotResponse = await fetch(assetUrl(path), {cache:"force-cache"});
+            if (!snapshotResponse.ok) throw new Error("This saved release could not be loaded.");
+            snapshot = await snapshotResponse.json() as SavedForecastSnapshot;
+            if (snapshot.schema_version !== data.schema_version || snapshot.series_id !== data.series_id || snapshot.snapshot_id !== snapshotId || !Array.isArray(snapshot.races)) throw new Error("This saved release does not match the current forecast series.");
+            cache.set(snapshotId, snapshot);
+          }
+          releaseNote = snapshot.archive_note || entries.find(entry => entry.snapshot_id === snapshotId)?.archive_note || "Reference release; source inputs are not fully comparable with the current forecast.";
         }
-        await openSnapshot(snapshot, snapshot.snapshot_date, note, button);
+        if (note) note.textContent = releaseNote;
+        overview.innerHTML = renderArchiveSeatCards(snapshot, data);
       } catch (error) {
-        if (detail) {
-          detail.hidden = false;
-          detail.textContent = error instanceof Error ? error.message : "This saved forecast could not be opened.";
-        }
+        if (note) note.textContent = error instanceof Error ? error.message : "This saved release could not be loaded.";
+        overview.innerHTML = "<p class=\"chart-empty\">Seat outlook unavailable for this release.</p>";
       } finally {
         button.disabled = false;
       }
     });
   } catch (error) {
-    holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The local snapshot index could not be read.") + "</p></section>";
+    holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved forecast index could not be read.") + "</p></section>";
   }
 }
-
 async function renderGallery(): Promise<void> {
   const target = element("gallery-content");
   const seriesHolder = element("gallery-series");

@@ -138,6 +138,37 @@ function safeHttpLink(value: string | null | undefined): string | null {
   }
 }
 
+function parsePollDate(value: string | null | undefined): { year: number; month: number; day: number } | null {
+  const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const parsed = new Date(Date.UTC(year, month - 1, day));
+  if (parsed.getUTCFullYear() !== year || parsed.getUTCMonth() !== month - 1 || parsed.getUTCDate() !== day) return null;
+  return { year, month, day };
+}
+
+function pollDateText(value: { year: number; month: number; day: number }): string {
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" })
+    .format(new Date(Date.UTC(value.year, value.month - 1, value.day)));
+}
+
+function pollDateRange(startValue: string, endValue: string): string {
+  const start = parsePollDate(startValue);
+  const end = parsePollDate(endValue);
+  if (!start) return String(startValue || "").replace(/T00:00:00(?:\.000)?(?:Z)?$/, "")
+    + (endValue && endValue !== startValue ? "–" + String(endValue).replace(/T00:00:00(?:\.000)?(?:Z)?$/, "") : "");
+  if (!end || (start.year === end.year && start.month === end.month && start.day === end.day)) {
+    return pollDateText(start) + ", " + start.year;
+  }
+  if (start.year === end.year && start.month === end.month) {
+    return pollDateText(start).replace(/\s+\d+$/, "") + " " + start.day + "–" + end.day + ", " + start.year;
+  }
+  if (start.year === end.year) return pollDateText(start) + "–" + pollDateText(end) + ", " + start.year;
+  return pollDateText(start) + ", " + start.year + "–" + pollDateText(end) + ", " + end.year;
+}
+
 function pollDetails(polls: RaceRetrospective["current_polling"]["polls"], label: string, final30Count = 0): string {
   if (!polls.length) return "<span class=\"muted\">No archived polls</span>";
   const rows = polls.map(poll => {
@@ -148,7 +179,8 @@ function pollDetails(polls: RaceRetrospective["current_polling"]["polls"], label
     const flags = [poll.final_30_days ? "final 30 days" : "", poll.average_eligible ? "" : "race match unclear"].filter(Boolean).map(flag => "<small class=\"poll-tag\">" + escapeHtml(flag) + "</small>").join("");
     const sample = poll.sample_size ? " · n=" + escapeHtml(poll.sample_size) : "";
     const population = poll.population ? " · " + escapeHtml(poll.population) : "";
-    return "<div class=\"poll-list-row\"><span class=\"poll-list-name\">" + pollster + "<small>" + escapeHtml(poll.field_start || "") + (poll.field_end && poll.field_end !== poll.field_start ? "–" + escapeHtml(poll.field_end) : "") + sample + population + "</small><small>" + escapeHtml(poll.source) + (poll.match_status !== "race" && poll.match_status !== "district" ? " · " + escapeHtml(poll.match_status) : "") + "</small></span><span class=\"poll-list-margin " + marginTone(Number(poll.margin_pp)) + "\">" + marginValue(poll.margin_pp) + flags + "</span></div>";
+    const dates = pollDateRange(poll.field_start, poll.field_end);
+    return "<div class=\"poll-list-row\"><span class=\"poll-list-name\">" + pollster + "<small>" + escapeHtml(dates) + sample + population + "</small><small>" + escapeHtml(poll.source) + (poll.match_status !== "race" && poll.match_status !== "district" ? " · " + escapeHtml(poll.match_status) : "") + "</small></span><span class=\"poll-list-margin " + marginTone(Number(poll.margin_pp)) + "\">" + marginValue(poll.margin_pp) + flags + "</span></div>";
   }).join("");
   const windowNote = final30Count ? " · " + final30Count + " in final 30 days" : "";
   return "<details class=\"poll-archive\"><summary>" + escapeHtml(label) + " · " + polls.length.toLocaleString() + " polls" + windowNote + "</summary><div class=\"poll-archive-list\">" + rows + "</div></details>";
@@ -227,7 +259,9 @@ export function compareSnapshots(current: CurrentData, previous: CurrentData): S
 }
 
 export function raceUrl(raceId: string): string {
-  return "./race.html?id=" + encodeURIComponent(raceId);
+  return import.meta.env.DEV
+    ? "./race.html?id=" + encodeURIComponent(raceId)
+    : "./race-" + encodeURIComponent(raceId) + ".html";
 }
 
 export function getSummarySentence(current: CurrentData): string {

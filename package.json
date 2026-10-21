@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "check": "tsc --noEmit",
-    "build": "npm run check && vite build && node scripts/verify-build.mjs",
+    "build": "npm run check && vite build && node scripts/generate-race-share-pages.mjs && node scripts/verify-build.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {

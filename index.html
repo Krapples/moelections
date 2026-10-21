@@ -7,6 +7,22 @@
   <link rel="icon" type="image/png" href="./favicon.png">
   <meta name="description" data-snapshot-meta="forecast" content="Browse the __SNAPSHOT_DATE__ Moelections House, Senate, and Governor forecasts, race probabilities, margins, and historical results.">
   <title>Moelections — 2026 Race Forecasts</title>
+  <link rel="canonical" href="https://krapples.github.io/moelections/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Moelections">
+  <meta property="og:title" content="Moelections — 2026 Race Forecasts">
+  <meta property="og:description" content="Explore 2026 House, Senate, and Governor forecasts, with race probabilities, margins, and election history.">
+  <meta property="og:url" content="https://krapples.github.io/moelections/">
+  <meta property="og:image" content="https://krapples.github.io/moelections/social-mascot-only.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="1254">
+  <meta property="og:image:alt" content="The Moelections ballot-box mascot with a checked ballot and gold star ornament on its right side.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Moelections — 2026 Race Forecasts">
+  <meta name="twitter:description" content="Explore 2026 House, Senate, and Governor forecasts, with race probabilities, margins, and election history.">
+  <meta name="twitter:image" content="https://krapples.github.io/moelections/social-mascot-only.png">
+  <meta name="twitter:image:alt" content="The Moelections ballot-box mascot with a checked ballot and gold star ornament on its right side.">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -86,11 +102,13 @@
       <div id="empty-state" class="empty-state" hidden>No races match your search. Clear filters to see all covered rows.</div>
       <div class="table-scroll"><table class="race-table"><thead><tr><th scope="col">Race</th><th scope="col">D–R margin</th><th scope="col">Prior error</th><th scope="col">D win chance</th><th scope="col">R win chance</th><th scope="col">Rating</th></tr></thead><tbody id="race-table-body"></tbody></table></div>
       <p class="fine-print">A positive margin favors Democrats; values are percentage points. Candidate names are listed on each race page from a separate linked reference and do not change the party-level forecast.</p>
+      <p class="fine-print forecast-interpretation-note">The D–R margin is a point estimate; win chances estimate each party’s chance of winning. In close races, they can favor different parties. Rating labels follow the win chance.</p>
     </section>
 
     <section class="closing-note"><div><p class="eyebrow">A NOTE ON THE DATA</p><h2>Published numbers, with their edges showing.</h2><p>We preserve the supplied margins and probabilities. Where the underlying snapshot leaves a question unanswered, the site says so.</p><a class="text-link" href="./methodology.html">Read data notes and definitions <span aria-hidden="true">↗</span></a></div></section>
   </main>
   <footer class="site-footer"><a href="./index.html">Moelections</a><span>Static forecast snapshot · <time id="footer-date" data-snapshot-date datetime="__SNAPSHOT_ISO_DATE__">__SNAPSHOT_DATE__</time></span><nav aria-label="Footer links"><a href="./site-guide.html">Guide</a><a href="./states.html">States</a><a href="./methodology.html">About the data</a><a href="./performance.html">History</a><a href="./gallery.html">Artwork</a></nav></footer>
+  <script type="module" src="./src/analytics.ts"></script>
   <script type="module" src="./src/main.ts"></script>
 </body>
 </html>

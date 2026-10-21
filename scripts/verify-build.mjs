@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import { inflateSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
-const required = [...pages, "favicon.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
+const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
   const target = path.resolve(output, relative);
   if (!target.startsWith(output + path.sep) && target !== output) throw new Error("Build path escapes output directory: " + relative);
@@ -259,6 +260,96 @@ for (const row of current.races) {
   const repProbability = Number(row.rep_probability);
   if (!Number.isFinite(margin) || !Number.isFinite(probability) || !Number.isFinite(repProbability) || probability < 0 || probability > 1 || Math.abs(probability + repProbability - 1) > 1e-10) {
     throw new Error("Published race values are invalid or internally inconsistent for " + row.race_id + ".");
+  }
+}
+const publicSiteRoot = "https://krapples.github.io/moelections/";
+const raceSharePages = current.races.map(row => "race-" + row.race_id + ".html");
+const generatedRacePages = fs.readdirSync(output).filter(name => /^race-[a-z0-9-]+\.html$/.test(name));
+const generatedRaceImages = fs.existsSync(path.join(output, "social")) ? fs.readdirSync(path.join(output, "social")).filter(name => /^race-[a-z0-9-]+\.png$/.test(name)) : [];
+if (raceSharePages.length !== current.races.length || new Set(raceSharePages).size !== raceSharePages.length || generatedRacePages.length !== raceSharePages.length || generatedRaceImages.length !== raceSharePages.length) {
+  throw new Error("Race-specific share pages and cards must be generated exactly once for every published race.");
+}
+const metaContent = (html, name, attribute = "name") => html.match(new RegExp("<meta\\s+" + attribute + "=\"" + name + "\"\\s+content=\"([^\"]*)\"\\s*>", "i"))?.[1] || "";
+const homepage = fs.readFileSync(path.join(output, "index.html"), "utf8");
+const homepageImage = "https://krapples.github.io/moelections/social-mascot-only.png";
+const homepageImageAlt = "The Moelections ballot-box mascot with a checked ballot and gold star ornament on its right side.";
+const homepageDescription = metaContent(homepage, "og:description", "property");
+if (metaContent(homepage, "twitter:card") !== "summary" || metaContent(homepage, "og:image", "property") !== homepageImage || metaContent(homepage, "twitter:image") !== homepageImage || metaContent(homepage, "og:image:type", "property") !== "image/png" || metaContent(homepage, "og:image:width", "property") !== "1254" || metaContent(homepage, "og:image:height", "property") !== "1254" || metaContent(homepage, "og:image:alt", "property") !== homepageImageAlt || metaContent(homepage, "twitter:image:alt") !== homepageImageAlt || !homepageDescription || homepageDescription !== metaContent(homepage, "twitter:description")) {
+  throw new Error("The homepage social preview must use the mascot image and matching descriptive metadata.");
+}
+const homepageImageBytes = fs.readFileSync(path.join(output, "social-mascot-only.png"));
+if (homepageImageBytes.readUInt32BE(16) !== 1254 || homepageImageBytes.readUInt32BE(20) !== 1254 || !homepageImageBytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) {
+  throw new Error("The homepage mascot preview image must be a valid 1254x1254 PNG.");
+}
+const shareTitles = new Set();
+for (const race of current.races) {
+  const page = "race-" + race.race_id + ".html";
+  const image = "social/race-" + race.race_id + ".png";
+  assertFile(page);
+  assertFile(image);
+  const html = fs.readFileSync(path.join(output, page), "utf8");
+  const margin = Number(race.dem_margin_pp);
+  const marginLabel = Math.abs(margin) < 0.05 ? "EVEN" : (margin > 0 ? "D+" : "R+") + Math.abs(margin).toFixed(1);
+  const dem = (Number(race.dem_probability) * 100).toFixed(1) + "%";
+  const rep = (Number(race.rep_probability) * 100).toFixed(1) + "%";
+  const snapshotDateLabel = new Intl.DateTimeFormat("en-US", {year:"numeric", month:"long", day:"numeric", timeZone:"UTC"}).format(new Date(snapshotDate + "T00:00:00Z"));
+  const canonicalUrl = publicSiteRoot + page;
+  const imageUrl = publicSiteRoot + image;
+  const title = metaContent(html, "og:title", "property");
+  const description = metaContent(html, "og:description", "property");
+  const imageAlt = metaContent(html, "og:image:alt", "property");
+  if (!title || !title.includes("Moelections 2026 Forecast") || shareTitles.has(title)) throw new Error("Race share titles must be present and race-specific: " + race.race_id + ".");
+  shareTitles.add(title);
+  if (metaContent(html, "twitter:title") !== title || metaContent(html, "description") !== description || metaContent(html, "twitter:description") !== description) {
+    throw new Error("Race share titles and descriptions must match across social and browser metadata for " + race.race_id + ".");
+  }
+  if (!description.includes("D-R margin " + marginLabel + " pp") || !description.includes("Democratic win chance " + dem) || !description.includes("Republican win chance " + rep) || !description.includes(snapshotDateLabel)) {
+    throw new Error("Race share description is missing its public margin, win probabilities, or snapshot date for " + race.race_id + ".");
+  }
+  if (metaContent(html, "og:url", "property") !== canonicalUrl || !html.includes("<link rel=\"canonical\" href=\"" + canonicalUrl + "\">")) {
+    throw new Error("Race share page canonical URL does not identify its static race route: " + race.race_id + ".");
+  }
+  if (metaContent(html, "og:image", "property") !== imageUrl || metaContent(html, "twitter:image") !== imageUrl || metaContent(html, "og:image:type", "property") !== "image/png" || metaContent(html, "og:image:width", "property") !== "1200" || metaContent(html, "og:image:height", "property") !== "630" || metaContent(html, "twitter:card") !== "summary_large_image") {
+    throw new Error("Race share image metadata is incomplete or incompatible for " + race.race_id + ".");
+  }
+  if (!imageAlt.includes(marginLabel) || !imageAlt.includes(dem) || !imageAlt.includes(rep) || !imageAlt.includes(snapshotDateLabel) || !metaContent(html, "twitter:image:alt").includes(imageAlt)) {
+    throw new Error("Race share image alt text must describe the card's forecast values and date for " + race.race_id + ".");
+  }
+  if (metaContent(html, "moelections:race-id") !== race.race_id || metaContent(html, "moelections:dem-margin-pp") !== String(margin) || metaContent(html, "moelections:dem-win-probability") !== dem || metaContent(html, "moelections:rep-win-probability") !== rep || metaContent(html, "moelections:snapshot-date") !== snapshotDate) {
+    throw new Error("Race share page initial HTML does not preserve its public forecast values for " + race.race_id + ".");
+  }
+  if (!html.includes("<body data-page=\"race\" data-race-id=\"" + race.race_id + "\">")) throw new Error("Static race route does not select its own race on page load: " + race.race_id + ".");
+  const imageBytes = fs.readFileSync(path.join(output, image));
+  if (imageBytes.length > 5 * 1024 * 1024 || !imageBytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) {
+    throw new Error("Race share card is not a portable PNG or exceeds 5 MB: " + race.race_id + ".");
+  }
+  const idatChunks = [];
+  let position = 8;
+  let validHeader = false;
+  let foundEnd = false;
+  while (position + 12 <= imageBytes.length) {
+    const chunkLength = imageBytes.readUInt32BE(position);
+    const chunkEnd = position + 12 + chunkLength;
+    if (chunkEnd > imageBytes.length) throw new Error("Race share PNG has a truncated chunk: " + race.race_id + ".");
+    const chunkName = imageBytes.toString("ascii", position + 4, position + 8);
+    const chunkData = imageBytes.subarray(position + 8, position + 8 + chunkLength);
+    if (chunkName === "IHDR") validHeader = chunkLength === 13 && chunkData.readUInt32BE(0) === 1200 && chunkData.readUInt32BE(4) === 630 && chunkData[8] === 8 && chunkData[9] === 6;
+    if (chunkName === "IDAT") idatChunks.push(chunkData);
+    if (chunkName === "IEND") { foundEnd = true; break; }
+    position = chunkEnd;
+  }
+  if (!validHeader || !foundEnd || !idatChunks.length || inflateSync(Buffer.concat(idatChunks)).length !== 630 * (1200 * 4 + 1)) {
+    throw new Error("Race share card is not a decodable 1200x630 PNG: " + race.race_id + ".");
+  }
+  for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    const target = localTarget(page, match[1]);
+    if (target && !fs.existsSync(path.join(output, ...target.split("/")))) throw new Error(page + " points to missing local file " + match[1]);
+  }
+  for (const anchor of html.matchAll(/<a\b[^>]*>/gi)) {
+    if (/\bdownload(?:\s|=|>)/i.test(anchor[0]) || /href=["'][^"']+\.csv(?:[?#][^"']*)?["']/i.test(anchor[0])) throw new Error(page + " presents a downloadable CSV link.");
+  }
+  if (html.includes("__SNAPSHOT_") || !html.includes("datetime=\"" + snapshotDate + "\">" + snapshotDateLabel + "</time>")) {
+    throw new Error(page + " does not show the current snapshot date in its initial HTML.");
   }
 }
 const hasDirectionConflict = (margin, probability) => probability === 0.5

@@ -1,6 +1,37 @@
 {
   "schema_version": 1,
   "series_id": "moelections-2026-midterm-races-v1",
-  "snapshots": [],
-  "schema_note": "This release contains only the current forecast snapshot. No comparable earlier forecast is included; historical election results are shown separately."
+  "snapshots": [
+    {
+      "snapshot_id": "2026-10-20",
+      "snapshot_date": "2026-10-20",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-20.json",
+      "status": "needs_lineage_review",
+      "archive_note": "House inputs were available through October 16; Senate and Governor forecasts were prepared on October 20. Kept as a reference because release inputs differ.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
+      "snapshot_id": "2026-10-18",
+      "snapshot_date": "2026-10-18",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-18.json",
+      "status": "superseded",
+      "archive_note": "Earlier forecast retained as a reference. The original source dates were not preserved, so this snapshot is not compared with later releases.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    }
+  ],
+  "schema_note": "Saved race predictions can be inspected by date. Source lineage is not verified as comparable across all releases, so the archive does not calculate cross-release changes or a day-by-day replay."
 }

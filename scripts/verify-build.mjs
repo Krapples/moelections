@@ -6,7 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
-const required = [...pages, "favicon.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/race-retrospectives.json", "data/snapshots/index.json", "artwork/manifest.json", "artwork/brand/logo.webp"];
+const required = [...pages, "favicon.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
   const target = path.resolve(output, relative);
   if (!target.startsWith(output + path.sep) && target !== output) throw new Error("Build path escapes output directory: " + relative);
@@ -28,11 +28,49 @@ function localTarget(page, raw) {
 
 for (const page of pages) {
   const html = fs.readFileSync(path.join(output, page), "utf8");
+  for (const anchor of html.matchAll(/<a\b[^>]*>/gi)) {
+    if (/\bdownload(?:\s|=|>)/i.test(anchor[0]) || /\bhref=["'][^"']+\.csv(?:[?#][^"']*)?["']/i.test(anchor[0])) {
+      throw new Error(page + " presents a downloadable CSV link.");
+    }
+  }
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
     const target = localTarget(page, match[1]);
     if (target && fs.existsSync(path.join(output, ...target.split("/"))) === false) throw new Error(page + " points to missing local file " + match[1]);
   }
 }
+
+function inspectPublicData(value, file) {
+  if (Array.isArray(value)) {
+    for (const item of value) inspectPublicData(item, file);
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) {
+      const privateMetadataKey = /model|feature|training|run_id|source_path|source_hash|sha256|provenance|audit|forecast_stream|source_forecast|source_snapshot|paired_prediction_stream|experiment|config/i.test(key);
+      const unclassifiedPredictionParameter = /^(?!dem_|rep_|forecast_|poll_|actual_|predicted_|signed_)[a-z0-9]+_(?:probability|margin_pp|aligned_margin_pp|shared_offset_pp|bandwidth(?:_pp|_multiplier)?|residual_training_.+)$/i.test(key);
+      if (privateMetadataKey || unclassifiedPredictionParameter) {
+        throw new Error("Public data contains an internal metadata field in " + file + ": " + key);
+      }
+      inspectPublicData(item, file);
+    }
+    return;
+  }
+  if (typeof value === "string" && (/[A-Z]:\\|\/Users\/|\b[a-f0-9]{64}\b/i.test(value))) {
+    throw new Error("Public data contains a local path or internal fingerprint in " + file + ".");
+  }
+}
+
+function verifyPublicJson(directory) {
+  for (const entry of fs.readdirSync(directory, {withFileTypes:true})) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      verifyPublicJson(target);
+    } else if (entry.isFile() && entry.name.endsWith(".json")) {
+      inspectPublicData(JSON.parse(fs.readFileSync(target, "utf8")), path.relative(output, target));
+    }
+  }
+}
+verifyPublicJson(path.join(output, "data"));
 
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
 const governorDistribution = current.summary?.governor_seat_distribution;
@@ -45,6 +83,10 @@ const rawRepCalls = governorCalls.length - rawDemCalls;
 if (governorCalls.length !== 36 || governorDistribution.raw_margin_dem_favored_races !== rawDemCalls || governorDistribution.raw_margin_rep_favored_races !== rawRepCalls || current.summary?.seat_outlooks?.Governor?.dem_favored_races !== rawDemCalls || current.summary?.seat_outlooks?.Governor?.rep_favored_races !== rawRepCalls || !governorDistribution.interpretation?.includes("not a party-control probability")) {
   throw new Error("The built Governor hard-call totals must match margin signs, and its seat range must be described as a race-count range rather than a control probability.");
 }
+const governorPmfLines = fs.readFileSync(path.join(output, "data/governor-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
+if (governorPmfLines.length !== 38) throw new Error("The Governor seat distribution must contain one header and 37 win-count rows.");
+const governorPmfMass = governorPmfLines.slice(1).reduce((sum, line) => sum + Number(line.split(",")[2]), 0);
+if (!Number.isFinite(governorPmfMass) || Math.abs(governorPmfMass - 1) > 1e-10) throw new Error("The Governor seat distribution probabilities do not sum to one.");
 const candidateData = JSON.parse(fs.readFileSync(path.join(output, "data/candidates.json"), "utf8"));
 if (candidateData.schema_version !== 1 || candidateData.license?.spdx !== "CC-BY-SA-4.0" || !candidateData.attribution || !Array.isArray(candidateData.races)) {
   throw new Error("Built candidate data is missing its schema, attribution, license, or race entries.");
@@ -83,6 +125,27 @@ for (const office of ["House", "Senate", "Governor"]) {
   }
   const pooled = officeRows.find(row => row.cycle === "Pooled");
   if (Number(pooled?.races) !== expectedPooledRaces[office]) throw new Error("The public pooled scorecard has unexpected race coverage for " + office + ".");
+}
+const sourceAuditPath = path.join(root, "dist/audit/race-retrospective-source-audit.json");
+if (fs.existsSync(sourceAuditPath)) {
+  const sourceAudit = JSON.parse(fs.readFileSync(sourceAuditPath, "utf8"));
+  for (const office of ["House", "Senate", "Governor"]) {
+    const allCutoffRows = sourceAudit.training_cutoff_audit?.[office];
+    const cutoffRows = Array.isArray(allCutoffRows) ? allCutoffRows.filter(row => validationYearSet.has(Number(row.evaluation_year))) : null;
+    if (!cutoffRows || JSON.stringify(cutoffRows.map(row => Number(row.evaluation_year)).sort((a, b) => a - b)) !== JSON.stringify(validationYears)) {
+      throw new Error("The local source audit must retain prior-cycle checks for all four validation elections in " + office + ".");
+    }
+    for (const row of cutoffRows) {
+      const year = Number(row.evaluation_year);
+      const probabilityCutoffs = [...(row.probability_training_latest_cycles || []), ...(row.rating_calibration_training_latest_cycles || [])].map(Number);
+      const sourceCutoffs = Object.values(row.training_by_rank_source || {});
+      if (row.prior_only_cutoff_passed !== true || !sourceCutoffs.length || sourceCutoffs.some(source => !Number.isInteger(Number(source.training_latest_cycle)) || Number(source.training_latest_cycle) >= year || source.training_cutoff_exception) || probabilityCutoffs.some(value => !Number.isInteger(value) || value >= year)) {
+        throw new Error("The local source audit contains missing or same-cycle training in " + office + " " + year + ".");
+      }
+    }
+  }
+} else {
+  console.warn("Skipping local source-audit provenance checks: " + path.relative(root, sourceAuditPath) + " is absent. This audit is not included in the static site build.");
 }
 for (const [office, seriesMap] of [["House", priorHistory.districts || {}], ["Senate/Governor", priorHistory.state_office_forecasts || {}]]) {
   for (const [raceKey, series] of Object.entries(seriesMap)) {
@@ -150,6 +213,20 @@ if (!Array.isArray(genericPolls.polls) || genericPolls.polls.length < 2 || new S
 if (!genericPolls.polls.every(poll => Number.isFinite(poll.dem_pct) && Number.isFinite(poll.rep_pct) && /^https:\/\//.test(poll.source_url))) {
   throw new Error("The built generic-ballot polling data contains an invalid topline or source URL.");
 }
+const genericHistory = JSON.parse(fs.readFileSync(path.join(output, "data/generic-ballot-history.json"), "utf8"));
+const expectedGenericCycles = [2018, 2020, 2022, 2024];
+if (genericHistory.schema_version !== 1 || !genericHistory.target?.includes("U.S. House popular vote") || !/^https:\/\//.test(genericHistory.poll_average_source_url) || !genericHistory.poll_average_method?.includes("seven days") || !genericHistory.timing_note?.includes("do not verify") || !genericHistory.validation_note?.includes("not an untouched test") || !Array.isArray(genericHistory.rows) || genericHistory.rows.length !== expectedGenericCycles.length || genericHistory.rows.some((row, index) => row.cycle !== expectedGenericCycles[index])) {
+  throw new Error("The generic-ballot history must include the attributed 2018–2024 validation series and its timing limitations.");
+}
+for (const row of genericHistory.rows) {
+  const firstOfNovember = new Date(Date.UTC(row.cycle, 10, 1));
+  while (firstOfNovember.getUTCDay() !== 1) firstOfNovember.setUTCDate(firstOfNovember.getUTCDate() + 1);
+  firstOfNovember.setUTCDate(firstOfNovember.getUTCDate() + 1 - 7);
+  const expectedSnapshot = firstOfNovember.toISOString().slice(0, 10);
+  if (row.snapshot_date !== expectedSnapshot || ![row.forecast_margin_pp, row.poll_average_margin_pp, row.actual_house_margin_pp].every(Number.isFinite) || Math.sign(row.actual_house_margin_pp) === 0) {
+    throw new Error("Generic-ballot comparison values or seven-day snapshot dates are invalid for " + row.cycle + ".");
+  }
+}
 const snapshotDate = current.snapshot_date;
 if (typeof snapshotDate !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(snapshotDate)) throw new Error("Built current data is missing a valid snapshot date.");
 const snapshotLabel = new Intl.DateTimeFormat("en-US", { year:"numeric", month:"long", day:"numeric", timeZone:"UTC" }).format(new Date(snapshotDate + "T00:00:00Z"));
@@ -180,10 +257,27 @@ for (const row of current.races) {
   const margin = Number(row.dem_margin_pp);
   const probability = Number(row.dem_probability);
   const repProbability = Number(row.rep_probability);
-  const aligned = probability === 0.5 ? margin === 0 : probability > 0.5 ? margin > 0 : margin < 0;
-  if (!Number.isFinite(margin) || !Number.isFinite(probability) || !Number.isFinite(repProbability) || probability < 0 || probability > 1 || Math.abs(probability + repProbability - 1) > 1e-10 || !aligned) {
+  if (!Number.isFinite(margin) || !Number.isFinite(probability) || !Number.isFinite(repProbability) || probability < 0 || probability > 1 || Math.abs(probability + repProbability - 1) > 1e-10) {
     throw new Error("Published race values are invalid or internally inconsistent for " + row.race_id + ".");
   }
+}
+const hasDirectionConflict = (margin, probability) => probability === 0.5
+  ? margin !== 0
+  : probability > 0.5 ? margin <= 0 : margin >= 0;
+const currentHouseDirectionConflicts = current.races
+  .filter(row => row.office === "House" && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability)))
+  .map(row => String(row.state).toUpperCase() + "-" + String(Number.parseInt(String(row.district || "0"), 10) || 0).padStart(2, "0"))
+  .sort();
+const activeSourceAuditPath = path.join(root, "dist/audit/active_forecast_source_audit.json");
+const sourceAudit = fs.existsSync(activeSourceAuditPath) ? JSON.parse(fs.readFileSync(activeSourceAuditPath, "utf8")) : null;
+const auditedHouseDirectionConflicts = sourceAudit?.rcp_refresh?.current_house_probability_margin_direction_conflicts;
+const selectedHouseDirectionConflicts = sourceAudit?.forecasts?.House?.probability_margin_direction_conflicts;
+const sameIds = value => Array.isArray(value) && JSON.stringify([...value].map(String).sort()) === JSON.stringify(currentHouseDirectionConflicts);
+if (current.races.some(row => row.office !== "House" && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability))) || (sourceAudit && (!sameIds(auditedHouseDirectionConflicts) || !sameIds(selectedHouseDirectionConflicts)))) {
+  throw new Error("Published House margin/probability direction exceptions must match the current forecast and its source audit.");
+}
+if (!sourceAudit && currentHouseDirectionConflicts.length) {
+  console.warn("Skipping optional internal direction-conflict provenance check: " + path.relative(root, activeSourceAuditPath) + " is absent.");
 }
 const artwork = JSON.parse(fs.readFileSync(path.join(output, "artwork/manifest.json"), "utf8"));
 for (const image of artwork.images) assertFile(image.image);
@@ -200,8 +294,16 @@ const mainScript = [...indexHtml.matchAll(/<script[^>]+src="([^"]+)"/g)].map(mat
 if (!mainScript) throw new Error("The built homepage does not reference a JavaScript bundle.");
 const bundle = fs.readFileSync(path.join(output, ...mainScript.split("/")), "utf8");
 if (!bundle.includes(JSON.stringify(basePath))) throw new Error("The built JavaScript bundle does not contain the configured BASE_PATH " + basePath + ".");
-if (!bundle.includes("generic-ballot-polls.json") || !bundle.includes("SOURCE POLLING AVERAGE")) {
-  throw new Error("The built homepage does not load and label its multi-source polling average.");
+if (/\bdownload(?:\s|=|>)/i.test(bundle) || /href\s*[:=]\s*["'][^"']+\.csv(?:[?#][^"']*)?["']/i.test(bundle)) {
+  throw new Error("The built JavaScript presents a downloadable CSV link.");
+}
+const cachedPollSummary = current.summary?.generic_ballot;
+const cachedPollForecast = current.summary?.generic_ballot_forecast;
+if (!Number.isFinite(cachedPollSummary?.long_window?.margin_pp) || !Number.isFinite(cachedPollSummary?.long_window?.poll_count) || !Number.isFinite(cachedPollForecast?.margin_pp)) {
+  throw new Error("The current snapshot must include cached generic-ballot polling and forecast numbers.");
+}
+if (!bundle.includes("-DAY POLLING AVERAGE") || bundle.includes("Loading verified poll sources") || bundle.includes("generic-ballot-polls.json") || !bundle.includes("generic-ballot-history.json") || !bundle.includes("Retrospective forecast")) {
+  throw new Error("The built site must show cached generic-ballot numbers without waiting for poll-source loading, while retaining its historical comparison.");
 }
 for (const page of pages) if (!fs.statSync(path.join(output, page)).size) throw new Error("Empty page: " + page);
-process.stdout.write("Verified " + pages.length + " physical HTML pages, local links, all " + artwork.images.length + " artwork files, snapshot archive index, configured runtime base, validation-aligned race histories and polls, static JSON, " + candidateData.races.length + " candidate listings, and all " + current.races.length + " internally consistent race forecasts in " + output + ".\n");
+process.stdout.write("Verified " + pages.length + " physical HTML pages, local links, all " + artwork.images.length + " artwork files, snapshot paths, configured runtime base, validation-aligned race histories and polls, the four-cycle national generic-ballot comparison, static JSON, " + candidateData.races.length + " candidate listings, and all " + current.races.length + " race forecasts with valid probability sums and House direction parity checks where local provenance was available in " + output + ".\n");

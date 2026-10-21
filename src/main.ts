@@ -1,6 +1,6 @@
 import "./styles.css";
-import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadGenericBallotPolls, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotPolls, HistoricalMetric, Office, RaceRetrospectives, SnapshotIndex } from "./types";
+import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, SavedForecastSnapshot, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -381,55 +381,50 @@ function renderClosestPreview(data: CurrentData): void {
   }).join("");
 }
 
-function genericBallotPollCard(poll: GenericBallotPolls["polls"][number]): string {
-  const margin = poll.dem_pct - poll.rep_pct;
-  const fieldDates = dateLabel(poll.field_start) + "–" + dateLabel(poll.field_end);
-  return `
-    <article class="poll-source-card">
-      <div class="poll-source-head">
-        <a class="poll-source-name" href="${escapeHtml(poll.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(poll.source)} <span aria-hidden="true">↗</span></a>
-        <strong>${marginLabel(margin)}</strong>
-      </div>
-      <span class="poll-source-result">Dem ${Number(poll.dem_pct).toFixed(0)}% · Rep ${Number(poll.rep_pct).toFixed(0)}%</span>
-      <small>${fieldDates} · ${escapeHtml(poll.population)}</small>
-    </article>`;
-}
-
-async function renderGenericBallot(data: CurrentData): Promise<void> {
+function renderGenericBallot(data: CurrentData): void {
   const holder = element("generic-content");
   const description = element("generic-description");
   if (!holder) return;
-  holder.innerHTML = "<p class=\"generic-loading\" role=\"status\">Loading verified poll sources…</p>";
-  let pollData: GenericBallotPolls;
-  try {
-    pollData = await loadGenericBallotPolls();
-  } catch (error) {
-    holder.innerHTML = "<p class=\"generic-loading generic-loading-error\" role=\"status\">The poll-by-poll average is unavailable: " + escapeHtml(error instanceof Error ? error.message : "static polling data could not be read") + " Forecast results remain available.</p>";
-    return;
-  }
-  const polls = pollData.polls;
-  const averageMargin = polls.reduce((total, poll) => total + poll.dem_pct - poll.rep_pct, 0) / polls.length;
   const generic = data.summary.generic_ballot;
   const forecast = data.summary.generic_ballot_forecast;
+  const longWindow = generic.long_window;
+  const shortWindow = generic.short_window;
+  const averageMargin = Number(longWindow?.margin_pp ?? generic.margin_pp);
+  const pollCount = Number(longWindow?.poll_count ?? 0);
+  const shortMargin = Number(shortWindow?.margin_pp);
+  const shortCount = Number(shortWindow?.poll_count ?? 0);
+  if (!Number.isFinite(averageMargin) || !Number.isFinite(forecast?.margin_pp)) {
+    holder.innerHTML = "<p class=\"generic-loading generic-loading-error\" role=\"status\">Cached polling or forecast numbers are unavailable. Forecast results remain available.</p>";
+    return;
+  }
   const marginGap = forecast.margin_pp - averageMargin;
   const gapSign = marginGap > 0 ? "+" : marginGap < 0 ? "−" : "";
   const gapMagnitude = Math.abs(marginGap).toFixed(1);
   const gapDescription = Math.abs(marginGap) < 1e-10
     ? "The forecast and polling average show the same margin."
     : "The forecast is " + gapMagnitude + " percentage points " + (marginGap > 0 ? "more Democratic" : "less Democratic") + " than the polling average.";
-  if (description) description.textContent = "Compare the multi-source polling average with the separate published forecast.";
-  const pollCards = polls.map(genericBallotPollCard).join("");
+  const shortWindowMarkup = Number.isFinite(shortMargin)
+    ? " · " + (shortWindow?.window_days ?? 7) + "-day " + escapeHtml(marginLabel(shortMargin)) + " (" + shortCount.toLocaleString() + " polls)"
+    : "";
+  const unknownPublicDateCount = Number(generic.unknown_first_public_date_polls_used ?? 0);
+  const timingNote = generic.first_public_timing_verified
+    ? "Publication dates were verified for all included polls."
+    : unknownPublicDateCount > 0
+      ? "The publication date is unverified for " + unknownPublicDateCount.toLocaleString() + " records, so we cannot confirm that every poll was public by then."
+      : "Publication timing was not verified for every included poll.";
+  const snapshotDate = dateLabel(generic.input_snapshot_date);
+  if (description) description.textContent = "Cached poll averages and the separate published forecast.";
   holder.innerHTML = `
     <div class="generic-column generic-poll-average">
-      <span class="eyebrow">${polls.length}-SOURCE POLLING AVERAGE</span>
+      <span class="eyebrow">${longWindow?.window_days ?? 30}-DAY POLLING AVERAGE</span>
       <strong>${marginLabel(averageMargin)}</strong>
-      <small>Unweighted mean of published D−R margins · as of ${dateLabel(pollData.snapshot_date)}</small>
-      <span>${escapeHtml(pollData.office)} · ${polls.length} distinct polls</span>
+      <small>Cached aggregate as of ${dateLabel(generic.input_snapshot_date)}</small>
+      <span>${pollCount.toLocaleString()} poll records${shortWindowMarkup}</span>
     </div>
-    <div class="generic-column generic-model">
+    <div class="generic-column generic-forecast-estimate">
       <span class="eyebrow">FORECAST ESTIMATE</span>
       <strong>${marginLabel(forecast.margin_pp)}</strong>
-      <small>Estimate based on data through ${dateLabel(forecast.input_snapshot_date)}</small>
+      <small>Cached estimate based on data through ${dateLabel(forecast.input_snapshot_date)}</small>
       <span>${escapeHtml(forecast.target)}</span>
     </div>
     <article class="generic-gap">
@@ -438,15 +433,10 @@ async function renderGenericBallot(data: CurrentData): Promise<void> {
       <small>${gapDescription}</small>
     </article>
     <details class="generic-poll-details">
-      <summary><span>Poll sources and notes</span><span class="generic-poll-count">${polls.length} polls</span></summary>
+      <summary><span>About these polling numbers</span><span class="generic-poll-count">${pollCount.toLocaleString()} poll records</span></summary>
       <div class="generic-poll-details-body">
-        <div class="generic-poll-sources" aria-label="Polls included in the polling average">${pollCards}</div>
         <p class="generic-context">
-          ${escapeHtml(pollData.method)} ${escapeHtml(pollData.population_note)}
-          PollingForecast's separate aggregate in the published source data is ${marginLabel(generic.margin_pp)}
-          (${escapeHtml(generic.source_label)}, ${dateLabel(generic.input_snapshot_date)}); it is not counted again
-          in the poll-by-poll average above.
-          <a href="${escapeHtml(generic.source_url)}" target="_blank" rel="noopener noreferrer">Aggregate source ↗</a>
+          Polls with fieldwork ending by ${escapeHtml(snapshotDate)} are included. ${escapeHtml(timingNote)} Margins show Democratic minus Republican two-party support. These values come from the saved snapshot.
         </p>
       </div>
     </details>`;
@@ -792,14 +782,14 @@ function raceDetailStatsMarkup(race: ForecastRace, data: CurrentData, retrospect
   const currentPolls = retrospectives?.races[race.race_id]?.current_polling;
   const pollMean = currentPolls?.poll_average_margin_pp ?? null;
   const pollSourceDate = currentPolls?.source_as_of ? " · source through " + dateLabel(currentPolls.source_as_of) : "";
-  const modelPollGap = pollMean === null ? null : race.dem_margin_pp - pollMean;
+  const forecastPollGap = pollMean === null ? null : race.dem_margin_pp - pollMean;
   const errorClass = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "neutral" : signedError > 0 ? "dem" : "rep";
   const errorText = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "Mean error near zero" : "Mean error " + marginLabel(signedError);
-  const gapClass = modelPollGap === null || Math.abs(modelPollGap) <= 0.05 ? "neutral" : modelPollGap > 0 ? "dem" : "rep";
+  const gapClass = forecastPollGap === null || Math.abs(forecastPollGap) <= 0.05 ? "neutral" : forecastPollGap > 0 ? "dem" : "rep";
   const pollDetails = currentPolls
     ? pollMean === null
       ? "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · no usable average" + escapeHtml(pollSourceDate) + "</small><small>Forecast-to-poll gap unavailable</small>"
-      : "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast − poll mean: <b class=\"" + gapClass + "\">" + marginLabel(modelPollGap as number) + "</b></small>"
+      : "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast − poll mean: <b class=\"" + gapClass + "\">" + marginLabel(forecastPollGap as number) + "</b></small>"
     : "<small>Poll summary unavailable</small>";
   const priorDetails = Number.isFinite(mae) && cycles > 0
     ? "<strong>" + mae.toFixed(1) + " pp MAE</strong><small class=\"" + errorClass + "\">" + escapeHtml(errorText) + "</small><small>" + cycles + " elections · " + rows.toLocaleString() + (isPeerAverage ? " peer rows" : " race rows") + "</small>"
@@ -850,6 +840,7 @@ const HISTORY_CHART_METRICS: Record<HistoryMetricKey, { label:string; note:strin
 };
 
 const HISTORY_COLORS: Record<Office, string> = { House:"#326eb8", Senate:"#b24f4f", Governor:"#bd8c30" };
+const GENERIC_HISTORY_COLORS = { forecast:"#326eb8", polling:"#bd8c30", actual:"#5d6a7c" };
 
 function historyMetricValue(row: HistoricalMetric, metric: HistoryMetricKey): number {
   return metric === "seat_count" ? Number(row.predicted_dem_seat_calls) : Number(row[metric]);
@@ -1000,6 +991,105 @@ function renderPerformance(data: CurrentData): void {
   officeSelect?.addEventListener("change", render);
   metricSelect?.addEventListener("change", render);
   render();
+  void renderGenericBallotHistory();
+}
+
+function formatMarginPp(value: number): string {
+  const prefix = value > 0 ? "+" : value < 0 ? "−" : "";
+  return prefix + Math.abs(value).toFixed(2) + " pp";
+}
+
+function genericBallotHistoryChartMarkup(rows: GenericBallotHistoryRow[]): string {
+  if (!rows.length) return "<p class=\"chart-empty\">No generic-ballot history is available.</p>";
+  const width = 860;
+  const height = 360;
+  const left = 78;
+  const right = 28;
+  const top = 24;
+  const bottom = 48;
+  const plotWidth = width - left - right;
+  const plotHeight = height - top - bottom;
+  const years = rows.map(row => row.cycle);
+  const values = rows.flatMap(row => [row.forecast_margin_pp, row.poll_average_margin_pp, row.actual_house_margin_pp]);
+  const observedMin = Math.min(0, ...values);
+  const observedMax = Math.max(0, ...values);
+  const rawStep = Math.max(1, (observedMax - observedMin) / 4);
+  const stepPower = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const normalizedStep = rawStep / stepPower;
+  const step = (normalizedStep <= 1 ? 1 : normalizedStep <= 2 ? 2 : normalizedStep <= 5 ? 5 : 10) * stepPower;
+  const min = Math.floor((observedMin - step * 0.2) / step) * step;
+  const max = Math.ceil((observedMax + step * 0.2) / step) * step;
+  const ticks = Array.from({length:Math.round((max - min) / step) + 1}, (_, index) => min + index * step);
+  const xAt = (index:number):number => years.length === 1 ? left + plotWidth / 2 : left + index * plotWidth / (years.length - 1);
+  const yAt = (value:number):number => top + (max - value) / (max - min) * plotHeight;
+  const guides = ticks.map(value => {
+    const y = yAt(value);
+    const label = value > 0 ? "+" + value : String(value);
+    const lineClass = value === 0 ? "generic-history-zero-line" : "history-grid-line";
+    return "<g><line x1=\"" + left + "\" y1=\"" + y.toFixed(1) + "\" x2=\"" + (width - right) + "\" y2=\"" + y.toFixed(1) + "\" class=\"" + lineClass + "\"/><text x=\"" + (left - 12) + "\" y=\"" + (y + 4).toFixed(1) + "\" text-anchor=\"end\" class=\"history-axis-label\">" + label + "</text></g>";
+  }).join("");
+  const xLabels = rows.map((row, index) => "<text x=\"" + xAt(index).toFixed(1) + "\" y=\"" + (height - 14) + "\" text-anchor=\"middle\" class=\"history-axis-label history-year-label\">" + row.cycle + "</text>").join("");
+  const series = [
+    {key:"poll_average_margin_pp" as const, label:"Polling average", color:GENERIC_HISTORY_COLORS.polling, marker:"poll"},
+    {key:"actual_house_margin_pp" as const, label:"Actual House result", color:GENERIC_HISTORY_COLORS.actual, marker:"actual"},
+    {key:"forecast_margin_pp" as const, label:"Retrospective forecast", color:GENERIC_HISTORY_COLORS.forecast, marker:"forecast"}
+  ].map(item => {
+    const points = rows.map((row, index) => ({row, x:xAt(index), y:yAt(row[item.key])}));
+    const lineClass = item.marker === "actual" ? "generic-history-actual-line" : "";
+    const line = "<polyline points=\"" + points.map(point => point.x.toFixed(1) + "," + point.y.toFixed(1)).join(" ") + "\" fill=\"none\" stroke=\"" + item.color + "\" stroke-width=\"" + (item.marker === "actual" ? "2.5" : "3") + "\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"" + lineClass + "\"/>";
+    const markers = points.map(point => {
+      const title = item.label + " · " + point.row.cycle + ": " + formatMarginPp(point.row[item.key]);
+      const shape = item.marker === "poll"
+        ? "<path d=\"M " + point.x.toFixed(1) + " " + (point.y - 6).toFixed(1) + " l 6 6 -6 6 -6 -6 Z\" class=\"generic-history-poll-marker\"/>"
+        : item.marker === "actual"
+          ? "<rect x=\"" + (point.x - 4).toFixed(1) + "\" y=\"" + (point.y - 4).toFixed(1) + "\" width=\"8\" height=\"8\" class=\"generic-history-actual-marker\"/>"
+          : "<circle cx=\"" + point.x.toFixed(1) + "\" cy=\"" + point.y.toFixed(1) + "\" r=\"5.5\" fill=\"" + item.color + "\" stroke=\"#fffefa\" stroke-width=\"2\"/>";
+      return "<g><title>" + escapeHtml(title) + "</title>" + shape + "</g>";
+    }).join("");
+    return line + markers;
+  }).join("");
+  return "<svg class=\"history-chart-svg\" role=\"img\" aria-labelledby=\"generic-history-svg-title generic-history-svg-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"generic-history-svg-title\">Generic-ballot forecast, polling average, and actual House margin</title><desc id=\"generic-history-svg-description\">" + years.join(", ") + " national election cycles. Each point is a Democratic-minus-Republican House popular-vote margin in percentage points.</desc>" + guides + xLabels + series + "</svg>";
+}
+
+async function renderGenericBallotHistory(): Promise<void> {
+  const chart = element("generic-history-chart");
+  if (!chart) return;
+  const summaryText = element("generic-history-summary-text");
+  const summary = element("generic-history-summary");
+  const legend = element("generic-history-legend");
+  const table = element("generic-history-table");
+  const methodNote = element("generic-history-method-note");
+  try {
+    const response = await fetch(assetUrl("data/generic-ballot-history.json"), {cache:"force-cache"});
+    if (!response.ok) throw new Error("The generic-ballot history file could not be loaded.");
+    const history = await response.json() as GenericBallotHistory;
+    const expectedCycles = [2018, 2020, 2022, 2024];
+    if (history.schema_version !== 1 || history.rows.length !== expectedCycles.length || history.rows.some((row, index) => row.cycle !== expectedCycles[index])) {
+      throw new Error("The generic-ballot history file has an unexpected cycle series.");
+    }
+    const rows = history.rows;
+    const meanAbsoluteError = (key:"forecast_margin_pp" | "poll_average_margin_pp"):number => rows.reduce((sum, row) => sum + Math.abs(row[key] - row.actual_house_margin_pp), 0) / rows.length;
+    const directionCount = (key:"forecast_margin_pp" | "poll_average_margin_pp"):number => rows.filter(row => Math.sign(row[key]) === Math.sign(row.actual_house_margin_pp)).length;
+    const forecastMae = meanAbsoluteError("forecast_margin_pp");
+    const pollingMae = meanAbsoluteError("poll_average_margin_pp");
+    if (summaryText) summaryText.textContent = "Across the same four cycles, forecast MAE was " + forecastMae.toFixed(2) + " pp and polling-average MAE was " + pollingMae.toFixed(2) + " pp. Correct national winner direction: forecast " + directionCount("forecast_margin_pp") + "/4; polling average " + directionCount("poll_average_margin_pp") + "/4.";
+    if (summary) summary.innerHTML = "<article class=\"history-card\"><span class=\"eyebrow\">SAME FOUR ELECTIONS</span><div class=\"history-primary-stat\"><span>Forecast MAE</span><strong>" + forecastMae.toFixed(2) + " pp</strong></div><div class=\"history-card-pair\"><span>Polling-average MAE<b>" + pollingMae.toFixed(2) + " pp</b></span><span>Cycles<b>" + rows.length + "</b></span></div></article><article class=\"history-card\"><span class=\"eyebrow\">DIRECTION CALLS</span><div class=\"history-primary-stat\"><span>Forecast</span><strong>" + directionCount("forecast_margin_pp") + "/4</strong></div><div class=\"history-card-pair\"><span>Polling average<b>" + directionCount("poll_average_margin_pp") + "/4</b></span><span>Target<b>House D−R margin</b></span></div></article>";
+    if (legend) legend.innerHTML = "<span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.forecast + "\" aria-hidden=\"true\"></i>Retrospective forecast</span><span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.polling + "\" aria-hidden=\"true\"></i>Polling average</span><span><i class=\"history-legend-actual\" style=\"--series-color:" + GENERIC_HISTORY_COLORS.actual + "\" aria-hidden=\"true\"></i>Actual House result</span>";
+    chart.innerHTML = genericBallotHistoryChartMarkup(rows);
+    if (table) table.innerHTML = rows.map(row => {
+      const forecastError = Math.abs(row.forecast_margin_pp - row.actual_house_margin_pp);
+      const pollingError = Math.abs(row.poll_average_margin_pp - row.actual_house_margin_pp);
+      return "<tr><th scope=\"row\">" + row.cycle + "</th><td>" + escapeHtml(dateLabel(row.snapshot_date)) + "</td><td>" + formatMarginPp(row.forecast_margin_pp) + "</td><td>" + formatMarginPp(row.poll_average_margin_pp) + "</td><td>" + formatMarginPp(row.actual_house_margin_pp) + "</td><td>" + forecastError.toFixed(2) + " pp</td><td>" + pollingError.toFixed(2) + " pp</td></tr>";
+    }).join("");
+    if (methodNote) {
+      const sourceUrl = /^https:\/\/projects\.fivethirtyeight\.com\/polls\/generic-ballot\/?$/.test(history.poll_average_source_url) ? history.poll_average_source_url : "";
+      const sourceLink = sourceUrl ? "<a href=\"" + escapeHtml(sourceUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">FiveThirtyEight</a>" : escapeHtml(history.poll_average_source_label);
+      methodNote.innerHTML = "Polling averages use archived records from " + sourceLink + ". Publication timing is unverified for some records, so these are historical comparisons rather than a day-by-day replay. " + escapeHtml(history.validation_note);
+    }
+  } catch {
+    if (summaryText) summaryText.textContent = "The generic-ballot history comparison is unavailable right now.";
+    chart.innerHTML = "<p class=\"chart-empty\">Generic-ballot history could not be loaded.</p>";
+  }
 }
 
 async function renderSnapshotArchive(data: CurrentData): Promise<void> {
@@ -1012,15 +1102,97 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
     const entries = index.schema_version === data.schema_version && index.series_id === data.series_id
       ? index.snapshots.filter(entry => entry.series_id === data.series_id && entry.schema_version === data.schema_version && entry.snapshot_date < data.snapshot_date).sort((a, b) => b.snapshot_date.localeCompare(a.snapshot_date))
       : [];
-    const currentCard = "<li class=\"archive-item archive-current\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(data.snapshot_date) + "\">" + escapeHtml(dateLabel(data.snapshot_date)) + "</time><h2>Current forecast</h2><p>" + data.races.length.toLocaleString() + " listed race forecasts</p></div><span class=\"archive-status current-status\">Current</span></li>";
+    const currentCard = "<li class=\"archive-item archive-current\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(data.snapshot_date) + "\">" + escapeHtml(dateLabel(data.snapshot_date)) + "</time><h2>Current forecast</h2><p>" + data.races.length.toLocaleString() + " listed race forecasts</p></div><span class=\"archive-status current-status\">Current</span><button class=\"archive-open-button\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-controls=\"archive-detail\">View predictions</button></li>";
     const archivedCards = entries.map(entry => {
-      const reviewed = entry.status === "superseded";
-      const status = reviewed ? "Earlier version" : entry.status === "compatible" ? "Same-version archive" : "Saved reference";
-      const description = reviewed ? "Saved for reference; excluded from change statistics." : entry.status === "compatible" ? "Archived in the local forecast series." : "Not used to calculate forecast changes.";
-      return "<li class=\"archive-item\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(entry.snapshot_date) + "\">" + escapeHtml(dateLabel(entry.snapshot_date)) + "</time><h2>Saved forecast</h2><p>" + escapeHtml(description) + "</p></div><span class=\"archive-status\">" + escapeHtml(status) + "</span></li>";
+      const raceCount = Number(entry.race_count || 0);
+      const countLabel = raceCount ? raceCount.toLocaleString() + " saved race forecasts" : "Saved race forecasts";
+      const description = entry.archive_note || "Preserved as a reference; this release is not used to calculate forecast movement.";
+      const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
+      const action = pathIsLocalSnapshot
+        ? "<button class=\"archive-open-button\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(entry.path) + "\" aria-controls=\"archive-detail\">View predictions</button>"
+        : "<span class=\"archive-status\">File unavailable</span>";
+      return "<li class=\"archive-item\"><span class=\"archive-marker\" aria-hidden=\"true\"></span><div><time datetime=\"" + escapeHtml(entry.snapshot_date) + "\">" + escapeHtml(dateLabel(entry.snapshot_date)) + "</time><h2>Saved forecast</h2><p>" + escapeHtml(countLabel) + " · " + escapeHtml(description) + "</p></div><span class=\"archive-status\">Reference only</span>" + action + "</li>";
     }).join("");
     const empty = entries.length ? "" : "<p class=\"archive-empty\">No earlier dated snapshots are listed for this forecast series.</p>";
-    holder.innerHTML = "<section class=\"content-panel archive-card\"><div class=\"section-title-row\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " DATED RELEASES</p><h2>Saved forecast dates</h2></div><a class=\"text-link\" href=\"./performance.html\">Explore election history ↗</a></div>" + empty + "<ol class=\"snapshot-timeline\">" + currentCard + archivedCards + "</ol></section>";
+    holder.innerHTML = "<section class=\"content-panel archive-card\"><div class=\"section-title-row\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " DATED RELEASES</p><h2>Saved forecast dates</h2></div><a class=\"text-link\" href=\"./performance.html\">Explore election history ↗</a></div><p class=\"archive-intro\">Open a release to browse its saved Democratic–Republican margin estimates and win chances. These are historical records, not a claim that two releases are directly comparable.</p>" + empty + "<ol class=\"snapshot-timeline\">" + currentCard + archivedCards + "</ol></section><section class=\"content-panel archive-detail\" id=\"archive-detail\" hidden></section>";
+
+    const detail = element<HTMLDivElement>("archive-detail");
+    let lastOpenedButton: HTMLButtonElement | null = null;
+    const openSnapshot = async (snapshot: SavedForecastSnapshot | CurrentData, snapshotDate: string, archiveNote: string, opener: HTMLButtonElement) => {
+      if (!detail) return;
+      lastOpenedButton = opener;
+      detail.hidden = false;
+      detail.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(dateLabel(snapshotDate)) + " SNAPSHOT</p><h2>Race predictions</h2><p class=\"archive-intro\">" + escapeHtml(archiveNote) + "</p><p class=\"archive-loading\">Loading saved race predictions…</p>";
+      const officeOptions = OFFICE_ORDER.map(office => "<option value=\"" + escapeHtml(office) + "\">" + escapeHtml(office) + "</option>").join("");
+      detail.innerHTML = "<div class=\"section-title-row archive-detail-heading\"><div><p class=\"eyebrow\">" + escapeHtml(dateLabel(snapshotDate)) + " SNAPSHOT</p><h2>Race predictions</h2></div><button class=\"archive-close-button\" type=\"button\">Close</button></div><p class=\"archive-intro\">" + escapeHtml(archiveNote) + "</p><div class=\"archive-toolbar\"><label for=\"archive-office\">Office<select id=\"archive-office\"><option value=\"all\">All offices</option>" + officeOptions + "</select></label><label for=\"archive-search\">Find a race<input id=\"archive-search\" type=\"search\" autocomplete=\"off\" placeholder=\"State or district\"></label><p class=\"archive-row-count\" id=\"archive-row-count\" aria-live=\"polite\"></p></div><div class=\"archive-table-wrap\"><table class=\"archive-forecast-table\"><caption class=\"visually-hidden\">Race forecasts saved on " + escapeHtml(dateLabel(snapshotDate)) + "</caption><thead><tr><th scope=\"col\">Race</th><th scope=\"col\">D–R margin</th><th scope=\"col\">D win chance</th><th scope=\"col\">R win chance</th></tr></thead><tbody id=\"archive-race-rows\"></tbody></table></div><nav class=\"archive-pager\" aria-label=\"Forecast archive pages\"><button type=\"button\" id=\"archive-previous\">Previous</button><span id=\"archive-page-label\"></span><button type=\"button\" id=\"archive-next\">Next</button></nav>";
+
+      const officeSelect = element<HTMLSelectElement>("archive-office");
+      const searchInput = element<HTMLInputElement>("archive-search");
+      const rowCount = element<HTMLParagraphElement>("archive-row-count");
+      const tableRows = element<HTMLTableSectionElement>("archive-race-rows");
+      const previous = element<HTMLButtonElement>("archive-previous");
+      const next = element<HTMLButtonElement>("archive-next");
+      const pageLabel = element<HTMLSpanElement>("archive-page-label");
+      const pageSize = 50;
+      let archivePage = 0;
+      const races = [...snapshot.races].sort((a, b) => OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office) || a.state.localeCompare(b.state) || String(a.district).localeCompare(String(b.district)));
+      const updateRows = () => {
+        if (!officeSelect || !searchInput || !rowCount || !tableRows || !previous || !next || !pageLabel) return;
+        const query = searchInput.value.trim().toLowerCase();
+        const filtered = races.filter(race => (officeSelect.value === "all" || race.office === officeSelect.value) && (!query || raceName(race).toLowerCase().includes(query) || race.state.toLowerCase().includes(query) || String(race.district).toLowerCase().includes(query)));
+        const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+        archivePage = Math.min(archivePage, pageCount - 1);
+        const start = archivePage * pageSize;
+        const visible = filtered.slice(start, start + pageSize);
+        tableRows.innerHTML = visible.length
+          ? visible.map(race => "<tr><th scope=\"row\">" + escapeHtml(raceName(race)) + "</th><td>" + escapeHtml(formatMarginPp(Number(race.dem_margin_pp))) + "</td><td>" + pct(Number(race.dem_probability)) + "</td><td>" + pct(Number(race.rep_probability)) + "</td></tr>").join("")
+          : "<tr><td class=\"archive-no-results\" colspan=\"4\">No races match this filter.</td></tr>";
+        rowCount.textContent = filtered.length ? "Showing " + (start + 1).toLocaleString() + "–" + Math.min(start + pageSize, filtered.length).toLocaleString() + " of " + filtered.length.toLocaleString() + " races" : "No matching races";
+        pageLabel.textContent = "Page " + (archivePage + 1).toLocaleString() + " of " + pageCount.toLocaleString();
+        previous.disabled = archivePage === 0;
+        next.disabled = archivePage >= pageCount - 1;
+      };
+      officeSelect?.addEventListener("change", () => { archivePage = 0; updateRows(); });
+      searchInput?.addEventListener("input", () => { archivePage = 0; updateRows(); });
+      previous?.addEventListener("click", () => { archivePage = Math.max(0, archivePage - 1); updateRows(); });
+      next?.addEventListener("click", () => { archivePage += 1; updateRows(); });
+      detail.querySelector<HTMLButtonElement>(".archive-close-button")?.addEventListener("click", () => {
+        detail.hidden = true;
+        lastOpenedButton?.focus();
+      });
+      updateRows();
+      detail.scrollIntoView({ behavior:"smooth", block:"start" });
+    };
+
+    holder.addEventListener("click", async event => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-snapshot-path]");
+      if (!button) return;
+      button.disabled = true;
+      try {
+        const snapshotPath = button.dataset.snapshotPath || "";
+        const snapshotId = button.dataset.snapshotId || "";
+        let snapshot: SavedForecastSnapshot | CurrentData;
+        let note = "Current published forecast.";
+        if (snapshotPath === "current") {
+          snapshot = data;
+        } else {
+          if (!snapshotPath.startsWith("data/snapshots/") || snapshotPath.split("/").includes("..")) throw new Error("The saved forecast path is invalid.");
+          const snapshotResponse = await fetch(assetUrl(snapshotPath), { cache:"force-cache" });
+          if (!snapshotResponse.ok) throw new Error("This saved forecast could not be loaded.");
+          snapshot = await snapshotResponse.json() as SavedForecastSnapshot;
+          if (snapshot.schema_version !== data.schema_version || snapshot.series_id !== data.series_id || snapshot.snapshot_id !== snapshotId || !Array.isArray(snapshot.races)) throw new Error("This saved forecast does not match the current archive series.");
+          note = snapshot.archive_note || entries.find(entry => entry.snapshot_id === snapshotId)?.archive_note || "Preserved as a reference; this release is not used to calculate forecast movement.";
+        }
+        await openSnapshot(snapshot, snapshot.snapshot_date, note, button);
+      } catch (error) {
+        if (detail) {
+          detail.hidden = false;
+          detail.textContent = error instanceof Error ? error.message : "This saved forecast could not be opened.";
+        }
+      } finally {
+        button.disabled = false;
+      }
+    });
   } catch (error) {
     holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The local snapshot index could not be read.") + "</p></section>";
   }

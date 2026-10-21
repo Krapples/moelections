@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "target": "National Democratic-minus-Republican margin in the two-party U.S. House popular vote, in percentage points.",
+  "poll_average_source_label": "FiveThirtyEight national generic-ballot poll records",
+  "poll_average_source_url": "https://projects.fivethirtyeight.com/polls/generic-ballot/",
+  "poll_average_method": "Nonpartisan U.S. national generic-ballot polls ending in the seven days through the snapshot; poll margins are weighted by square-root sample size (sample sizes clipped to 100–5,000) and a 14-day recency half-life.",
+  "timing_note": "The historical poll file filters on archived availability or creation timestamps no later than the snapshot, plus fieldwork end dates. Archive timestamps do not verify when each poll result was first published.",
+  "validation_note": "Forecasts are retrospective validation predictions generated using only earlier election cycles. The four-cycle panel was reviewed during development and is not an untouched test; the forecasting approach may change as it is refined.",
+  "rows": [
+    {
+      "cycle": 2018,
+      "snapshot_date": "2018-10-30",
+      "forecast_margin_pp": 9.721876548599782,
+      "poll_average_margin_pp": 8.439603738251613,
+      "actual_house_margin_pp": 8.681826386683769
+    },
+    {
+      "cycle": 2020,
+      "snapshot_date": "2020-10-27",
+      "forecast_margin_pp": 3.571709731448005,
+      "poll_average_margin_pp": 7.47798254367358,
+      "actual_house_margin_pp": 3.034113157481916
+    },
+    {
+      "cycle": 2022,
+      "snapshot_date": "2022-11-01",
+      "forecast_margin_pp": -1.129476066440257,
+      "poll_average_margin_pp": -0.2308648594649694,
+      "actual_house_margin_pp": -2.891862105315619
+    },
+    {
+      "cycle": 2024,
+      "snapshot_date": "2024-10-29",
+      "forecast_margin_pp": -3.383176060224708,
+      "poll_average_margin_pp": -0.7899740457618504,
+      "actual_house_margin_pp": -2.709196008853112
+    }
+  ]
+}

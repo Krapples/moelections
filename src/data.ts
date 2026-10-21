@@ -1,4 +1,4 @@
-import type { CurrentData, ForecastRace, GenericBallotPolls, Office, PriorErrorHistory, RaceChange, RaceRetrospective, RaceRetrospectives, SnapshotComparison } from "./types";
+import type { CurrentData, ForecastRace, Office, PriorErrorHistory, RaceChange, RaceRetrospective, RaceRetrospectives, SnapshotComparison } from "./types";
 
 export const OFFICE_ORDER: Office[] = ["House", "Senate", "Governor"];
 const RETROSPECTIVE_VALIDATION_YEARS = new Set([2018, 2020, 2022, 2024]);
@@ -24,26 +24,6 @@ export async function loadCurrent(): Promise<CurrentData> {
   const data = await response.json() as CurrentData;
   if (!Array.isArray(data.races) || data.races.length === 0 || !data.summary?.seat_outlooks || !data.historical_performance?.metrics) {
     throw new Error("The current forecast JSON is missing required dashboard data.");
-  }
-  return data;
-}
-
-export async function loadGenericBallotPolls(): Promise<GenericBallotPolls> {
-  const response = await fetch(assetUrl("data/generic-ballot-polls.json"), { cache: "no-store" });
-  if (!response.ok) throw new Error("The multi-source polling data could not be loaded (" + response.status + ").");
-  const data = await response.json() as GenericBallotPolls;
-  if (data.schema_version !== 1 || !Array.isArray(data.polls) || data.polls.length < 2) {
-    throw new Error("The multi-source polling file needs at least two verified poll records.");
-  }
-  const pollIds = new Set<string>();
-  const pollSources = new Set<string>();
-  for (const poll of data.polls) {
-    const sourceKey = String(poll.source || "").trim().toLocaleLowerCase("en-US");
-    if (!poll.poll_id || pollIds.has(poll.poll_id) || !sourceKey || pollSources.has(sourceKey) || !Number.isFinite(poll.dem_pct) || !Number.isFinite(poll.rep_pct) || poll.dem_pct < 0 || poll.dem_pct > 100 || poll.rep_pct < 0 || poll.rep_pct > 100 || !/^\d{4}-\d{2}-\d{2}$/.test(poll.field_start) || !/^\d{4}-\d{2}-\d{2}$/.test(poll.field_end) || !/^https:\/\//.test(poll.source_url)) {
-      throw new Error("The multi-source polling file contains an incomplete or duplicate poll record.");
-    }
-    pollIds.add(poll.poll_id);
-    pollSources.add(sourceKey);
   }
   return data;
 }

@@ -68,11 +68,24 @@ export interface ForecastSummary {
       source_url: string;
       status: string;
     };
+    short_window?: {
+      margin_pp: number;
+      poll_count: number;
+      window_days: number;
+    };
+    long_window?: {
+      margin_pp: number;
+      poll_count: number;
+      window_days: number;
+    };
+    margin_definition?: string;
+    timing_rule?: string;
+    unknown_first_public_date_polls_used?: number;
+    first_public_timing_verified?: boolean;
   };
   generic_ballot_forecast: {
     margin_pp: number;
     input_snapshot_date: string;
-    model_selected_date?: string;
     target: string;
   };
   seat_outlooks: Record<Office, SeatOutlook>;
@@ -99,25 +112,6 @@ export interface ForecastSummary {
   seat_range_note?: string;
 }
 
-export interface GenericBallotPolls {
-  schema_version: number;
-  snapshot_date: string;
-  office: string;
-  method: string;
-  population_note: string;
-  polls: Array<{
-    poll_id: string;
-    source: string;
-    field_start: string;
-    field_end: string;
-    population: string;
-    dem_pct: number;
-    rep_pct: number;
-    sample_note: string;
-    source_url: string;
-  }>;
-}
-
 export interface HistoricalMetric {
   office: Office;
   cycle: number | "Pooled";
@@ -139,6 +133,25 @@ export interface HistoricalPerformance {
   cycles: number[];
   validation_explanation: string;
   metrics: HistoricalMetric[];
+}
+
+export interface GenericBallotHistoryRow {
+  cycle: number;
+  snapshot_date: string;
+  forecast_margin_pp: number;
+  poll_average_margin_pp: number;
+  actual_house_margin_pp: number;
+}
+
+export interface GenericBallotHistory {
+  schema_version: number;
+  target: string;
+  poll_average_source_label: string;
+  poll_average_source_url: string;
+  poll_average_method: string;
+  timing_note: string;
+  validation_note: string;
+  rows: GenericBallotHistoryRow[];
 }
 
 export interface PriorErrorRecord {
@@ -244,17 +257,6 @@ export interface CurrentData {
   series_id: string;
   snapshot_id: string;
   snapshot_date: string;
-  source_snapshot: Record<string, string>;
-  provenance: {
-    race_file: string;
-    summary_file: string;
-    historical_file: string;
-    prior_error_file: string;
-    /** Whether names were embedded in the original forecast source file; the dashboard has a separate candidate reference. */
-    candidate_data_available: false;
-    per_race_external_sources_available: false;
-    senate_coverage_note: string;
-  };
   races: ForecastRace[];
   summary: ForecastSummary;
   historical_performance: HistoricalPerformance;
@@ -271,8 +273,20 @@ export interface SnapshotIndex {
     schema_version: number;
     path: string;
     status: string;
+    archive_note?: string;
+    race_count?: number;
+    office_counts?: Partial<Record<Office, number>>;
   }>;
   schema_note?: string;
+}
+
+export interface SavedForecastSnapshot {
+  schema_version: number;
+  series_id: string;
+  snapshot_id: string;
+  snapshot_date: string;
+  archive_note?: string;
+  races: ForecastRace[];
 }
 
 export interface ArtworkManifest {

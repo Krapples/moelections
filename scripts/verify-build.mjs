@@ -6,8 +6,9 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
+const internalModelIdentifier = /\b(?:trial\s*\d+|ten[- ]expert\s+MoE|optuna|random forest|lightgbm|house-gap ridge|kde)\b/i;
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
-const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
+const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/house-seat-distribution-2026.csv", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
   const target = path.resolve(output, relative);
   if (!target.startsWith(output + path.sep) && target !== output) throw new Error("Build path escapes output directory: " + relative);
@@ -29,6 +30,7 @@ function localTarget(page, raw) {
 
 for (const page of pages) {
   const html = fs.readFileSync(path.join(output, page), "utf8");
+  if (internalModelIdentifier.test(html)) throw new Error(page + " exposes an internal model identifier.");
   for (const anchor of html.matchAll(/<a\b[^>]*>/gi)) {
     if (/\bdownload(?:\s|=|>)/i.test(anchor[0]) || /\bhref=["'][^"']+\.csv(?:[?#][^"']*)?["']/i.test(anchor[0])) {
       throw new Error(page + " presents a downloadable CSV link.");
@@ -56,6 +58,9 @@ function inspectPublicData(value, file) {
     }
     return;
   }
+  if (typeof value === "string" && internalModelIdentifier.test(value)) {
+    throw new Error("Public data contains an internal model identifier in " + file + ".");
+  }
   if (typeof value === "string" && (/[A-Z]:\\|\/Users\/|\b[a-f0-9]{64}\b/i.test(value))) {
     throw new Error("Public data contains a local path or internal fingerprint in " + file + ".");
   }
@@ -74,6 +79,30 @@ function verifyPublicJson(directory) {
 verifyPublicJson(path.join(output, "data"));
 
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
+const houseOutlook = current.summary?.seat_outlooks?.House;
+const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
+if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("435 district win probabilities") || !houseOutlook.method?.includes("independent-race Poisson-binomial") || /trial ?14|ten-expert|random forest/i.test(houseOutlook.method)) {
+  throw new Error("The House seat outlook must describe its public probability calculation without internal model identifiers.");
+}
+let housePmfMass = 0;
+let houseExpectedSeats = 0;
+let previousHouseCumulative = 0;
+for (let index = 1; index < housePmfLines.length; index += 1) {
+  const columns = housePmfLines[index].split(",");
+  const demSeats = Number(columns[0]);
+  const repSeats = Number(columns[1]);
+  const probability = Number(columns[2]);
+  const cumulative = Number(columns[3]);
+  if (columns.length !== 4 || demSeats !== index - 1 || repSeats !== 435 - demSeats || !Number.isFinite(probability) || probability < 0 || !Number.isFinite(cumulative) || cumulative + 1e-14 < previousHouseCumulative) {
+    throw new Error("The House seat distribution contains an invalid row.");
+  }
+  housePmfMass += probability;
+  houseExpectedSeats += demSeats * probability;
+  previousHouseCumulative = cumulative;
+}
+if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOutlook.expected_dem_seats) > 1e-6 || Math.abs(previousHouseCumulative - 1) > 1e-10) {
+  throw new Error("House seat PMF, cumulative probability, and expected seat total are inconsistent.");
+}
 const priorReleaseIndex = JSON.parse(fs.readFileSync(path.join(output, "data/snapshots/index.json"), "utf8"));
 const latestPriorSnapshot = priorReleaseIndex.snapshots?.[0];
 if (!latestPriorSnapshot || latestPriorSnapshot.snapshot_date >= current.snapshot_date || !latestPriorSnapshot.path?.startsWith("data/snapshots/") || !fs.existsSync(path.join(output, ...latestPriorSnapshot.path.split("/")))) {
@@ -293,6 +322,7 @@ for (const race of current.races) {
   assertFile(page);
   assertFile(image);
   const html = fs.readFileSync(path.join(output, page), "utf8");
+  if (internalModelIdentifier.test(html)) throw new Error(page + " exposes an internal model identifier.");
   const margin = Number(race.dem_margin_pp);
   const marginLabel = Math.abs(margin) < 0.05 ? "EVEN" : (margin > 0 ? "D+" : "R+") + Math.abs(margin).toFixed(1);
   const dem = (Number(race.dem_probability) * 100).toFixed(1) + "%";

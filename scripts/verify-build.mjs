@@ -7,7 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
-const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
+const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/house-seat-distribution-2026.csv", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
   const target = path.resolve(output, relative);
   if (!target.startsWith(output + path.sep) && target !== output) throw new Error("Build path escapes output directory: " + relative);
@@ -74,6 +74,30 @@ function verifyPublicJson(directory) {
 verifyPublicJson(path.join(output, "data"));
 
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
+const houseOutlook = current.summary?.seat_outlooks?.House;
+const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
+if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("Trial 14") || !houseOutlook.method?.includes("ten-expert MoE")) {
+  throw new Error("The House seat outlook must publish the 435-district Trial 14 distribution and document the separate MoE race forecast.");
+}
+let housePmfMass = 0;
+let houseExpectedSeats = 0;
+let previousHouseCumulative = 0;
+for (let index = 1; index < housePmfLines.length; index += 1) {
+  const columns = housePmfLines[index].split(",");
+  const demSeats = Number(columns[0]);
+  const repSeats = Number(columns[1]);
+  const probability = Number(columns[2]);
+  const cumulative = Number(columns[3]);
+  if (columns.length !== 4 || demSeats !== index - 1 || repSeats !== 435 - demSeats || !Number.isFinite(probability) || probability < 0 || !Number.isFinite(cumulative) || cumulative + 1e-14 < previousHouseCumulative) {
+    throw new Error("The House seat distribution contains an invalid row.");
+  }
+  housePmfMass += probability;
+  houseExpectedSeats += demSeats * probability;
+  previousHouseCumulative = cumulative;
+}
+if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOutlook.expected_dem_seats) > 1e-6 || Math.abs(previousHouseCumulative - 1) > 1e-10) {
+  throw new Error("House seat PMF, cumulative probability, and expected seat total are inconsistent.");
+}
 const governorDistribution = current.summary?.governor_seat_distribution;
 if (!governorDistribution || governorDistribution.race_count !== 36 || !Array.isArray(governorDistribution.central_50_range) || !Array.isArray(governorDistribution.central_90_range) || !governorDistribution.interpretation?.includes("independent")) {
   throw new Error("The built Governor outlook is missing its 36-race distribution and interpretation.");

@@ -5103,22 +5103,22 @@
       "House": {
         "snapshot_date": "2026-10-21",
         "total_seats": 435,
-        "expected_dem_seats": 208.03855542922895,
-        "expected_rep_seats": 226.96144457077105,
-        "rounded_dem_seats": 208,
-        "rounded_rep_seats": 227,
+        "expected_dem_seats": 210.0828450971876,
+        "expected_rep_seats": 224.9171549028124,
+        "rounded_dem_seats": 210,
+        "rounded_rep_seats": 225,
         "dem_favored_districts": 206,
         "rep_favored_districts": 229,
         "core_range": [
-          206,
-          210
+          205,
+          215
         ],
         "outer_range": [
-          203,
-          214
+          197,
+          223
         ],
         "pmf_file": "./data/house-seat-distribution-2026.csv",
-        "method": "Poisson-binomial distribution from 435 independent district win probabilities."
+        "method": "House seat-total outlook from the Trial 14 Random Forest classifier, trained on election outcomes through 2024. Expected seats and ranges use its 435 district win probabilities in an independent-race Poisson-binomial distribution. House district margins, published district win probabilities, and favored-district counts remain from the ten-expert MoE."
       },
       "Senate": {
         "snapshot_date": "2026-10-21",

@@ -1,6 +1,6 @@
 import "./styles.css";
 import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalCategoryMetric, HistoricalMetric, Office, RaceRetrospectives, SavedForecastSnapshot, SnapshotIndex } from "./types";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, SavedForecastSnapshot, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -400,7 +400,7 @@ function renderOutlooks(data: CurrentData): void {
       ? "<small>" + Number(row.dem_favored_districts).toLocaleString() + " D-favored · " + Number(row.rep_favored_districts).toLocaleString() + " R-favored</small>"
       : entry.office === "Senate" ? "<small>" + senateRaceCount.toLocaleString() + " forecast races · " + senateFixedSeats.toLocaleString() + " fixed seats</small>" : "<small>Raw-margin calls: " + Number(row.dem_favored_races).toLocaleString() + " D-favored · " + Number(row.rep_favored_races).toLocaleString() + " R-favored</small>";
     const houseModelNote = entry.office === "House"
-      ? "<small>Seat target: Trial 14 Random Forest · aligned race forecasts: weighted α=.75 MoE</small>"
+      ? "<small>Seat total: Trial 14 Random Forest · district forecasts: ten-expert MoE</small>"
       : "";
     const control = entry.office === "House" || entry.office === "Senate" ? renderControlOdds(data, entry.office) : "";
     return "<article class=\"outlook-card outlook-" + entry.office.toLowerCase() + "\"><p class=\"eyebrow\">" + entry.label.toUpperCase() + " · " + entry.scope.toUpperCase() + "</p><div class=\"expected-total\"><strong>" + primaryValue.toLocaleString() + "</strong><span>" + primaryLabel + "</span></div>" + expectedPair + note + houseModelNote + range + control + "<span class=\"outlook-date\">Updated " + dateLabel(row.snapshot_date) + "</span></article>";
@@ -408,7 +408,7 @@ function renderOutlooks(data: CurrentData): void {
   renderBothChamberOdds(data);
   const senate = outlooks.Senate;
   const note = element("outlook-note");
-  if (note) note.innerHTML = "House district forecasts use the selected weighted α=.75 MoE stream, calibrated to Trial 14's expected-seat target. Its aligned race probabilities produce the published House seat expectation and range. Seat ranges assume races are independent, and the both-chamber outlook treats House and Senate outcomes as independent. These are illustrative ranges, not direct probabilities of party control. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
+  if (note) note.innerHTML = "The House seat total uses the Trial 14 seat model; its district margins and win chances remain from the ten-expert MoE. Seat ranges assume races are independent, and the both-chamber outlook treats House and Senate outcomes as independent. These are illustrative ranges, not direct probabilities of party control. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
 }
 
 function renderClosestPreview(data: CurrentData): void {
@@ -999,26 +999,7 @@ function historyChartMarkup(rows: HistoricalMetric[], metric: HistoryMetricKey):
 
 function renderHistoryRow(row: HistoricalMetric): string {
   const fullHouse = row.full_house_actual_dem_seats_context === undefined || row.full_house_actual_dem_seats_context === null ? "—" : Number(row.full_house_actual_dem_seats_context).toLocaleString();
-  const rmse = Number.isFinite(Number(row.margin_rmse_pp)) ? Number(row.margin_rmse_pp).toFixed(2) + " pp" : "—";
-  const bias = Number.isFinite(Number(row.margin_bias_pp)) ? formatMarginPp(Number(row.margin_bias_pp)) : "—";
-  return "<tr><th scope=\"row\">" + escapeHtml(row.office) + "</th><td>" + escapeHtml(row.cycle) + "</td><td>" + Number(row.races).toLocaleString() + "</td><td>" + Number(row.margin_mae_pp).toFixed(2) + " pp</td><td>" + rmse + "</td><td>" + bias + "</td><td>" + pct(row.accuracy) + "</td><td>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</td><td>" + signedCount(row.signed_seat_error) + "</td><td>" + Number(row.false_dem_calls).toLocaleString() + " / " + Number(row.false_rep_calls).toLocaleString() + "</td><td>" + fullHouse + "</td><td>" + Number(row.brier_score).toFixed(3) + "</td><td>" + Number(row.log_loss).toFixed(3) + "</td></tr>";
-}
-
-function renderHouseCategoryRow(row: HistoricalCategoryMetric): string {
-  const numberCell = (value: number | null | undefined, digits = 2, suffix = " pp"): string =>
-    value === null || value === undefined || !Number.isFinite(Number(value)) ? "—" : Number(value).toFixed(digits) + suffix;
-  const countCell = (value: number | null | undefined): string =>
-    value === null || value === undefined || !Number.isFinite(Number(value)) ? "—" : Number(value).toLocaleString();
-  const bias = row.bias_pp_prediction_minus_actual;
-  const biasText = bias === null || bias === undefined || !Number.isFinite(Number(bias)) ? "—" : formatMarginPp(Number(bias));
-  const currentMae = numberCell(row.mae_pp);
-  const pairedMae = row.prior_mae_pp === null || row.prior_mae_pp === undefined ? currentMae : currentMae + " / " + numberCell(row.prior_mae_pp);
-  const maeChange = row.mae_change_pp === null || row.mae_change_pp === undefined ? "—" : formatMarginPp(Number(row.mae_change_pp));
-  const currentAccuracy = row.winner_accuracy_pct === null || row.winner_accuracy_pct === undefined ? "—" : Number(row.winner_accuracy_pct).toFixed(2) + "%";
-  const priorAccuracy = row.prior_winner_accuracy_pct === null || row.prior_winner_accuracy_pct === undefined ? "—" : Number(row.prior_winner_accuracy_pct).toFixed(2) + "%";
-  const pairedAccuracy = currentAccuracy === "—" || priorAccuracy === "—" ? currentAccuracy : currentAccuracy + " / " + priorAccuracy;
-  const accuracyChange = row.winner_accuracy_change_pp === null || row.winner_accuracy_change_pp === undefined ? "—" : formatMarginPp(Number(row.winner_accuracy_change_pp));
-  return "<tr><th scope=\"row\">" + escapeHtml(row.category) + "</th><td>" + countCell(row.races) + "</td><td>" + pairedMae + "</td><td>" + maeChange + "</td><td>" + numberCell(row.rmse_pp) + "</td><td>" + biasText + "</td><td>" + pairedAccuracy + "</td><td>" + accuracyChange + "</td><td>" + countCell(row.false_dem_calls) + " / " + countCell(row.false_rep_calls) + "</td><td>" + countCell(row.actual_dem_wins_covered) + " / " + countCell(row.predicted_dem_wins_covered) + "</td><td>" + numberCell(row.brier_score, 3, "") + "</td><td>" + numberCell(row.log_loss, 3, "") + "</td></tr>";
+  return "<tr><th scope=\"row\">" + escapeHtml(row.office) + "</th><td>" + escapeHtml(row.cycle) + "</td><td>" + Number(row.races).toLocaleString() + "</td><td>" + Number(row.margin_mae_pp).toFixed(2) + " pp</td><td>" + pct(row.accuracy) + "</td><td>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</td><td>" + signedCount(row.signed_seat_error) + "</td><td>" + Number(row.false_dem_calls).toLocaleString() + " / " + Number(row.false_rep_calls).toLocaleString() + "</td><td>" + fullHouse + "</td><td>" + Number(row.brier_score).toFixed(3) + "</td><td>" + Number(row.log_loss).toFixed(3) + "</td></tr>";
 }
 
 function renderPerformance(data: CurrentData): void {
@@ -1029,18 +1010,8 @@ function renderPerformance(data: CurrentData): void {
   if (validationExplanation) validationExplanation.textContent = history.validation_explanation;
   const officeSelect = element<HTMLSelectElement>("history-office");
   const metricSelect = element<HTMLSelectElement>("history-metric");
-  const categoryRows = history.house_category_validation || [];
-  const categorySection = element("house-category-history");
-  const categoryNote = element("house-category-note");
-  if (categoryNote) categoryNote.textContent = history.house_category_note || "House categories use the site's fixed validation labels.";
-  const categoryBody = element("house-category-table");
-  if (categoryBody) {
-    const order = ["Overall", "Toss-up", "Lean", "Likely", "Safe", "Toss-up+Lean", "Macro (equal-category)"];
-    categoryBody.innerHTML = [...categoryRows].sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category)).map(renderHouseCategoryRow).join("");
-  }
   const render = (): void => {
     const office = officeSelect?.value || "All";
-    if (categorySection) categorySection.hidden = office !== "All" && office !== "House";
     const metric = (metricSelect?.value || "margin_mae_pp") as HistoryMetricKey;
     const filtered = history.metrics.filter(row => office === "All" || row.office === office);
     const annual = filtered.filter(row => row.cycle !== "Pooled").sort((a, b) => Number(a.cycle) - Number(b.cycle) || OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office));
@@ -1183,9 +1154,8 @@ function renderArchiveSeatCards(snapshot: SavedForecastSnapshot | CurrentData, c
     const raceRep = races.reduce((sum, race) => sum + Number(race.rep_probability || 0), 0);
     const fixedDem = entry.office === "Senate" && senateBaselineIsUsable ? senateFixedDem : 0;
     const fixedRep = entry.office === "Senate" && senateBaselineIsUsable ? senateFixedRep : 0;
-    const savedOutlook = snapshot.summary?.seat_outlooks?.[entry.office];
-    const expectedDem = Number.isFinite(Number(savedOutlook?.expected_dem_seats)) ? Number(savedOutlook?.expected_dem_seats) : raceDem + fixedDem;
-    const expectedRep = Number.isFinite(Number(savedOutlook?.expected_rep_seats)) ? Number(savedOutlook?.expected_rep_seats) : raceRep + fixedRep;
+    const expectedDem = raceDem + fixedDem;
+    const expectedRep = raceRep + fixedRep;
     const totalExpected = expectedDem + expectedRep;
     const denominator = totalExpected > 0 ? totalExpected : Math.max(entry.total, 1);
     const demShare = Math.max(0, Math.min(100, expectedDem / denominator * 100));
@@ -1202,8 +1172,6 @@ function renderArchiveSeatCards(snapshot: SavedForecastSnapshot | CurrentData, c
         const range = officeSeatRanges(currentData, entry.office);
         rangeNote = "<p class=\"archive-range-note\">Central 50%: " + range.central50[0] + "–" + range.central50[1] + " Democratic " + (entry.office === "Governor" ? "wins" : "seats") + " · Central 90%: " + range.central90[0] + "–" + range.central90[1] + "</p>";
       } catch { /* A missing distribution does not hide the expected seat totals. */ }
-    } else if (Array.isArray(savedOutlook?.core_range) && Array.isArray(savedOutlook?.outer_range)) {
-      rangeNote = "<p class=\"archive-range-note\">Saved central 50%: " + savedOutlook.core_range[0] + "–" + savedOutlook.core_range[1] + " Democratic " + (entry.office === "Governor" ? "wins" : "seats") + " · central 90%: " + savedOutlook.outer_range[0] + "–" + savedOutlook.outer_range[1] + "</p>";
     }
     const accessibleBar = escapeHtml(entry.label + ": expected Democratic " + expectedDem.toFixed(1) + ", Republican " + expectedRep.toFixed(1) + (entry.majority ? "; majority at " + entry.majority : ""));
     return "<article class=\"archive-seat-card archive-seat-" + entry.office.toLowerCase() + "\"><div class=\"archive-seat-card-head\"><div><p class=\"eyebrow\">" + escapeHtml(entry.coverage.toUpperCase()) + "</p><h3>" + escapeHtml(entry.label) + "</h3></div><span class=\"archive-net-pill\">" + escapeHtml(netLabel) + "</span></div><div class=\"archive-party-counts\"><div><span class=\"archive-party-label archive-dem-label\"><i aria-hidden=\"true\"></i>Democratic</span><strong>" + expectedDem.toFixed(1) + "</strong></div><div><span class=\"archive-party-label archive-rep-label\"><i aria-hidden=\"true\"></i>Republican</span><strong>" + expectedRep.toFixed(1) + "</strong></div></div><div class=\"archive-seat-bar\" role=\"img\" aria-label=\"" + accessibleBar + "\"><span class=\"archive-seat-bar-dem\" style=\"width:" + demShare.toFixed(2) + "%\"></span><span class=\"archive-seat-bar-rep\" style=\"width:" + repShare.toFixed(2) + "%\"></span>" + majorityMarker + "</div>" + majorityLabel + rangeNote + "<div class=\"archive-seat-footer\"><span><strong>" + competitive + "</strong> competitive races</span><small>35–65% chance for either party</small></div></article>";
@@ -1379,7 +1347,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
       return "<button class=\"archive-release-choice\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(pathIsLocalSnapshot ? entry.path : "") + "\" aria-pressed=\"false\"" + (pathIsLocalSnapshot ? "" : " disabled") + "><span>" + escapeHtml(dateLabel(entry.snapshot_date)) + "</span><small>Reference release</small></button>";
     }).join("");
-    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Current House expected seats are the sum of its aligned district win chances. Saved releases retain their published seat totals when available, including forecasts that used a separate seat-total model. Senate totals use the same 65 fixed seats for each release. Saved ranges appear when recorded; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
+    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
     const overview = element("archive-seat-overview");
     const note = element<HTMLParagraphElement>("archive-release-note");
     const changes = element("archive-race-changes");

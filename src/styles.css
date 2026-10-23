@@ -844,6 +844,14 @@ tbody th[scope="row"] { font-weight: 600; }
 :root[data-theme="light"] .archive-impact-badge.is-major { color: #795522; background: #fbf0d7; }
 :root[data-theme="light"] .archive-impact-badge.is-flipped { color: #7c3b35; background: #f8e9e6; }
 
+@media (min-width: 921px) and (max-width: 1000px) {
+  .site-header { flex-wrap: wrap; justify-content: center; gap: .2rem 1rem; padding-top: .7rem; padding-bottom: .7rem; }
+  .site-header .brand { order: 1; }
+  .site-header .theme-toggle { order: 2; margin-left: auto; }
+  .site-header .main-nav { order: 3; width: 100%; }
+  .main-nav { flex-wrap: wrap; justify-content: center; }
+  .main-nav a { padding: .45rem .62rem; font-size: .8rem; white-space: nowrap; }
+}
 @media (max-width: 920px) {
   .site-header { flex-wrap: wrap; justify-content: center; gap: .2rem 1rem; padding-top: .7rem; padding-bottom: .7rem; }
   .site-header .brand { order: 1; }

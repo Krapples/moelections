@@ -82,6 +82,7 @@ if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.inclu
 let housePmfMass = 0;
 let houseExpectedSeats = 0;
 let previousHouseCumulative = 0;
+const housePmfProbabilities = [];
 for (let index = 1; index < housePmfLines.length; index += 1) {
   const columns = housePmfLines[index].split(",");
   const demSeats = Number(columns[0]);
@@ -93,6 +94,7 @@ for (let index = 1; index < housePmfLines.length; index += 1) {
   }
   housePmfMass += probability;
   houseExpectedSeats += demSeats * probability;
+  housePmfProbabilities.push(probability);
   previousHouseCumulative = cumulative;
 }
 if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOutlook.expected_dem_seats) > 1e-6 || Math.abs(previousHouseCumulative - 1) > 1e-10) {
@@ -102,6 +104,18 @@ const houseRaces = current.races.filter(race => race.office === "House");
 const houseRaceExpectedSeats = houseRaces.reduce((sum, race) => sum + Number(race.dem_probability), 0);
 if (houseRaces.length !== 435 || Math.abs(houseRaceExpectedSeats - houseOutlook.expected_dem_seats) > 1e-8) {
   throw new Error("House race probabilities are not aligned to the published expected-seat target.");
+}
+const houseQuantile = quantile => {
+  let cumulative = 0;
+  for (let seats = 0; seats < housePmfProbabilities.length; seats += 1) {
+    cumulative += housePmfProbabilities[seats];
+    if (cumulative + 1e-14 >= quantile) return seats;
+  }
+  return housePmfProbabilities.length - 1;
+};
+const expectedHouseRanges = {core_range:[houseQuantile(0.25), houseQuantile(0.75)], outer_range:[houseQuantile(0.05), houseQuantile(0.95)]};
+if (JSON.stringify(houseOutlook.core_range) !== JSON.stringify(expectedHouseRanges.core_range) || JSON.stringify(houseOutlook.outer_range) !== JSON.stringify(expectedHouseRanges.outer_range)) {
+  throw new Error("Published House seat ranges do not match the central 50% and 90% quantiles of the House PMF.");
 }
 const houseCategoryRows = current.historical_performance?.house_category_validation;
 const requiredHouseCategories = ["Overall", "Toss-up", "Lean", "Likely", "Safe"];
@@ -145,6 +159,12 @@ for (const race of current.races) {
   }
 }
 const priorHistory = current.prior_error_history || {};
+const priorMetadata = priorHistory.metadata || {};
+const currentStreamNote = priorMetadata.current_stream_note || "";
+const priorSourceNote = priorMetadata.source_note || "";
+if (priorMetadata.generated_on !== current.snapshot_date || !currentStreamNote.includes(current.snapshot_date) || !currentStreamNote.includes("Trial 14") || !currentStreamNote.includes("alpha=0.75") || !priorSourceNote.includes("Trial 14") || !priorSourceNote.includes("alpha=0.75") || /10\/20 snapshot|207\.435|margin stack retrained/.test(currentStreamNote + " " + priorSourceNote)) {
+  throw new Error("Prior-error history date and stream notes must describe the current Trial 14-aligned alpha=0.75 House forecast.");
+}
 const validationYears = [2018, 2020, 2022, 2024];
 const validationYearSet = new Set(validationYears);
 const historical = current.historical_performance || {};

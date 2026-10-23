@@ -1200,6 +1200,19 @@ function archiveWinner(race: ForecastRace): "Democratic" | "Republican" | "Tie" 
   return dem > rep ? "Democratic" : "Republican";
 }
 
+function archiveCategoryLabel(race: ForecastRace): string {
+  const winner = archiveWinner(race);
+  return rating(race.dem_probability, race.office) + " " + (winner === "Democratic" ? "D" : winner === "Republican" ? "R" : "Even");
+}
+
+function archiveCategoryPill(race: ForecastRace): string {
+  const winner = archiveWinner(race);
+  const lean = winner === "Democratic" ? "dem" : winner === "Republican" ? "rep" : "neutral";
+  const label = archiveCategoryLabel(race);
+  const accessibleLabel = winner === "Tie" ? label : (winner === "Democratic" ? "Democratic" : "Republican") + " " + rating(race.dem_probability, race.office);
+  return `<span class="archive-category-pill ${lean}" aria-label="${escapeHtml(accessibleLabel)}">${escapeHtml(label)}</span>`;
+}
+
 function archiveDeltaLabel(value: number | null): string {
   if (value === null || !Number.isFinite(value)) return "—";
   const sign = value > 0 ? "+" : value < 0 ? "−" : "";
@@ -1295,17 +1308,22 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
     const currentRace = newerById.get(raceId);
     const reference = currentRace || previous;
     if (!reference) return "";
-    const previousRating = previous ? rating(previous.dem_probability, previous.office) : "—";
-    const currentRating = currentRace ? rating(currentRace.dem_probability, currentRace.office) : "—";
     const callFlipped = Boolean(previous && currentRace && archiveWinner(previous) !== archiveWinner(currentRace));
-    const categoryChanged = Boolean(previous && currentRace && previousRating !== currentRating);
+    const previousCategory = previous ? archiveCategoryLabel(previous) : "";
+    const currentCategory = currentRace ? archiveCategoryLabel(currentRace) : "";
+    const categoryChanged = Boolean(previous && currentRace && previousCategory !== currentCategory);
     const marginDelta = previous && currentRace ? Number(currentRace.dem_margin_pp) - Number(previous.dem_margin_pp) : null;
     const probabilityDelta = previous && currentRace ? (Number(currentRace.dem_probability) - Number(previous.dem_probability)) * 100 : null;
     const numericLarge = marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 5 || Math.abs(probabilityDelta) >= 5);
     const status = !previous ? "Added" : !currentRace ? "Removed" : "Matched";
     const categoryLabel = previous && currentRace
-      ? previousRating === currentRating ? previousRating + " · same" : previousRating + " → " + currentRating
+      ? previousCategory === currentCategory ? previousCategory + " · same" : previousCategory + " → " + currentCategory
       : status;
+    const categoryMarkup = previous && currentRace
+      ? categoryChanged
+        ? `<span class="archive-category-sequence">${archiveCategoryPill(previous)}<span class="archive-category-arrow" aria-hidden="true">→</span>${archiveCategoryPill(currentRace)}</span>`
+        : `<span class="archive-category-sequence">${archiveCategoryPill(currentRace)}<span class="archive-category-same">same</span></span>`
+      : `<span class="archive-category-sequence"><span class="archive-category-pill neutral">${escapeHtml(status)}</span></span>`;
     const impactLabel = callFlipped ? "Winner flipped" : numericLarge ? "Large shift" : categoryChanged ? "Category changed" : status !== "Matched" ? status : marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 0.01 || Math.abs(probabilityDelta) >= 0.01) ? "Smaller shift" : "No material change";
     const impactTier = callFlipped ? 4 : numericLarge ? 3 : categoryChanged ? 2 : status !== "Matched" ? 1 : 0;
     const impactScore = impactTier * 100000 + Math.round(Math.max(Math.abs(marginDelta || 0), Math.abs(probabilityDelta || 0)) * 100);
@@ -1323,14 +1341,14 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
       <td>${previous ? escapeHtml(priorCall) : "—"}</td>
       <td>${currentRace ? escapeHtml(newCall) : "—"}</td>
       <td><span class="archive-change-badge${changeClass}">${previous && currentRace ? callFlipped ? "Flipped" : "No" : status}</span></td>
-      <td><span class="archive-category-change${categoryChanged ? " is-changed" : ""}">${escapeHtml(categoryLabel)}</span></td>
+      <td>${categoryMarkup}</td>
       <td class="archive-delta${deltaClass(marginDelta)}">${archiveDeltaLabel(marginDelta)}</td>
       <td class="archive-delta${deltaClass(probabilityDelta)}">${archiveDeltaLabel(probabilityDelta)}</td>
     </tr>`;
   });
   const matched = raceIds.filter(id => olderById.has(id) && newerById.has(id));
   const flipped = matched.filter(id => archiveWinner(olderById.get(id)!) !== archiveWinner(newerById.get(id)!)).length;
-  const categoryChanged = matched.filter(id => rating(olderById.get(id)!.dem_probability, olderById.get(id)!.office) !== rating(newerById.get(id)!.dem_probability, newerById.get(id)!.office)).length;
+  const categoryChanged = matched.filter(id => archiveCategoryLabel(olderById.get(id)!) !== archiveCategoryLabel(newerById.get(id)!)).length;
   const largeShifts = matched.filter(id => {
     const oldRace = olderById.get(id)!;
     const newRace = newerById.get(id)!;

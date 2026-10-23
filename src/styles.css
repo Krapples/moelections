@@ -552,8 +552,13 @@ tbody th[scope="row"] { font-weight: 600; }
 .archive-change-table tbody th a:hover { color: #245c97; }
 .archive-change-table tr[hidden] { display: none; }
 .archive-change-badge { display: inline-block; padding: .2rem .42rem; color: #667184; background: #f1f0eb; border-radius: 999px; font-size: .65rem; font-weight: 700; white-space: nowrap; }
-.archive-change-badge.is-changed, .archive-category-change.is-changed { color: #7c3b35; background: #f8e9e6; }
-.archive-category-change { color: #576479; white-space: nowrap; }
+.archive-change-badge.is-changed { color: #7c3b35; background: #f8e9e6; }
+.archive-category-sequence { display: inline-flex; align-items: center; gap: .3rem; white-space: nowrap; }
+.archive-category-pill { display: inline-block; padding: .18rem .42rem; border: 1px solid transparent; border-radius: 999px; font: 650 .63rem "DM Mono", monospace; }
+.archive-category-pill.dem { color: #315f88; background: #e8f0f6; border-color: #c5d7e6; }
+.archive-category-pill.rep { color: #9a4843; background: #f7eae7; border-color: #e7c8c2; }
+.archive-category-pill.neutral { color: #667184; background: #f1f0eb; border-color: #e2dfd6; }
+.archive-category-arrow, .archive-category-same { color: #687387; font-size: .64rem; }
 .archive-delta { font-family: "DM Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .archive-delta-positive { color: #27624b; }
 .archive-delta-negative { color: #9a4e48; }
@@ -759,9 +764,12 @@ tbody th[scope="row"] { font-weight: 600; }
 :root[data-theme="dark"] .archive-change-table tbody tr:hover { background: #202c40; }
 :root[data-theme="dark"] .archive-change-table tbody tr[data-call-flipped="true"] { background: #30232d; }
 :root[data-theme="dark"] .archive-change-table tbody tr[data-call-flipped="true"]:hover { background: #3a2934; }
-:root[data-theme="dark"] .archive-change-badge.is-changed,
-:root[data-theme="dark"] .archive-category-change.is-changed { color: #ffd2cf; background: #5a3038; }
-:root[data-theme="dark"] .archive-category-change { color: #d4dceb; }
+:root[data-theme="dark"] .archive-change-badge.is-changed { color: #ffd2cf; background: #5a3038; }
+:root[data-theme="dark"] .archive-category-pill.dem { color: #a9c9df; background: #294057; border-color: #3f607d; }
+:root[data-theme="dark"] .archive-category-pill.rep { color: #f0aaa0; background: #4b343b; border-color: #704952; }
+:root[data-theme="dark"] .archive-category-pill.neutral { color: #d4dceb; background: #253247; border-color: #3b4a61; }
+:root[data-theme="dark"] .archive-category-arrow,
+:root[data-theme="dark"] .archive-category-same { color: #b3bfd2; }
 :root[data-theme="dark"] .archive-delta-positive { color: #8bd3ad; }
 :root[data-theme="dark"] .archive-delta-negative { color: #ff9b91; }
 :root[data-theme="dark"] .archive-party-counts strong,

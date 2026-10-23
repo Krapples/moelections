@@ -172,6 +172,13 @@ function poissonBinomialPmf(probabilities: number[]): number[] {
 function officeSeatPmf(data: CurrentData, office: Office): number[] {
   const cached = seatPmfCache.get(data)?.[office];
   if (cached) return cached;
+  if (office === "House" && data.house_seat_distribution_pmf?.length === 436) {
+    const pmf = data.house_seat_distribution_pmf;
+    const byOffice = seatPmfCache.get(data) || {};
+    byOffice[office] = pmf;
+    seatPmfCache.set(data, byOffice);
+    return pmf;
+  }
   const probabilities = data.races.filter(race => race.office === office).map(race => {
     const probability = Number(race.dem_probability);
     return Number.isFinite(probability) ? Math.max(0, Math.min(1, probability)) : 0.5;
@@ -364,13 +371,16 @@ function renderOutlooks(data: CurrentData): void {
     const note = entry.office === "House"
       ? "<small>" + Number(row.dem_favored_districts).toLocaleString() + " D-favored · " + Number(row.rep_favored_districts).toLocaleString() + " R-favored</small>"
       : entry.office === "Senate" ? "<small>" + senateRaceCount.toLocaleString() + " forecast races · " + senateFixedSeats.toLocaleString() + " fixed seats</small>" : "<small>Raw-margin calls: " + Number(row.dem_favored_races).toLocaleString() + " D-favored · " + Number(row.rep_favored_races).toLocaleString() + " R-favored</small>";
+    const houseModelNote = entry.office === "House"
+      ? "<small>Seat total: Trial 14 Random Forest · district forecasts: ten-expert MoE</small>"
+      : "";
     const control = entry.office === "House" || entry.office === "Senate" ? renderControlOdds(data, entry.office) : "";
-    return "<article class=\"outlook-card outlook-" + entry.office.toLowerCase() + "\"><p class=\"eyebrow\">" + entry.label.toUpperCase() + " · " + entry.scope.toUpperCase() + "</p><div class=\"expected-total\"><strong>" + primaryValue.toLocaleString() + "</strong><span>" + primaryLabel + "</span></div>" + expectedPair + note + range + control + "<span class=\"outlook-date\">Updated " + dateLabel(row.snapshot_date) + "</span></article>";
+    return "<article class=\"outlook-card outlook-" + entry.office.toLowerCase() + "\"><p class=\"eyebrow\">" + entry.label.toUpperCase() + " · " + entry.scope.toUpperCase() + "</p><div class=\"expected-total\"><strong>" + primaryValue.toLocaleString() + "</strong><span>" + primaryLabel + "</span></div>" + expectedPair + note + houseModelNote + range + control + "<span class=\"outlook-date\">Updated " + dateLabel(row.snapshot_date) + "</span></article>";
   }).join("");
   renderBothChamberOdds(data);
   const senate = outlooks.Senate;
   const note = element("outlook-note");
-  if (note) note.innerHTML = "Seat ranges assume races are independent; the both-chamber outlook also treats House and Senate outcomes as independent. These are illustrative ranges, not direct probabilities of party control. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
+  if (note) note.innerHTML = "The House seat total uses the Trial 14 seat model; its district margins and win chances remain from the ten-expert MoE. Seat ranges assume races are independent, and the both-chamber outlook treats House and Senate outcomes as independent. These are illustrative ranges, not direct probabilities of party control. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
 }
 
 function renderClosestPreview(data: CurrentData): void {

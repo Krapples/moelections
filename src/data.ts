@@ -25,6 +25,25 @@ export async function loadCurrent(): Promise<CurrentData> {
   if (!Array.isArray(data.races) || data.races.length === 0 || !data.summary?.seat_outlooks || !data.historical_performance?.metrics) {
     throw new Error("The current forecast JSON is missing required dashboard data.");
   }
+  const housePmfFile = String(data.summary.seat_outlooks.House.pmf_file || "./data/house-seat-distribution-2026.csv").replace(/^\.\//, "");
+  const housePmfResponse = await fetch(assetUrl(housePmfFile), { cache: "no-store" });
+  if (!housePmfResponse.ok) throw new Error("House seat distribution could not be loaded (" + housePmfResponse.status + ").");
+  const housePmfLines = (await housePmfResponse.text()).trim().split(/\r?\n/).slice(1);
+  const housePmf = housePmfLines.map((line, index) => {
+    const columns = line.split(",");
+    const demSeats = Number(columns[0]);
+    const probability = Number(columns[2]);
+    if (columns.length !== 4 || demSeats !== index || !Number.isFinite(probability) || probability < 0 || probability > 1) {
+      throw new Error("House seat distribution contains an invalid row.");
+    }
+    return probability;
+  });
+  const housePmfMass = housePmf.reduce((sum, probability) => sum + probability, 0);
+  const houseExpected = housePmf.reduce((sum, probability, seats) => sum + seats * probability, 0);
+  if (housePmf.length !== 436 || Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpected - data.summary.seat_outlooks.House.expected_dem_seats) > 1e-6) {
+    throw new Error("House seat distribution does not match the published expected-seat forecast.");
+  }
+  data.house_seat_distribution_pmf = housePmf;
   return data;
 }
 

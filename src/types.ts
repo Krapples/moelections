@@ -50,6 +50,7 @@ export interface SeatOutlook {
   expected_label?: string;
   coverage_note?: string;
   method?: string;
+  pmf_file?: string;
   scope_label?: string;
 }
 
@@ -259,6 +260,8 @@ export interface CurrentData {
   snapshot_date: string;
   races: ForecastRace[];
   summary: ForecastSummary;
+  /** Loaded from the dedicated House seat PMF file; district-level House forecasts remain in races. */
+  house_seat_distribution_pmf?: number[];
   historical_performance: HistoricalPerformance;
   prior_error_history: PriorErrorHistory;
 }

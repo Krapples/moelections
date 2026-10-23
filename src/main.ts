@@ -17,6 +17,34 @@ function element<T extends HTMLElement>(id: string): T | null {
   return document.getElementById(id) as T | null;
 }
 
+function initThemeToggle(): void {
+  const root = document.documentElement;
+  let theme = "dark";
+  try {
+    theme = localStorage.getItem("moelections-theme") === "light" ? "light" : "dark";
+  } catch { /* Dark remains the default when storage is unavailable. */ }
+  root.dataset.theme = theme;
+  const header = document.querySelector<HTMLElement>(".site-header");
+  if (!header || header.querySelector(".theme-toggle")) return;
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "theme-toggle";
+  const update = () => {
+    const dark = root.dataset.theme !== "light";
+    toggle.textContent = dark ? "☀ Light mode" : "☾ Dark mode";
+    toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    toggle.setAttribute("aria-pressed", String(dark));
+    document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute("content", dark ? "#101827" : "#1b273d");
+  };
+  toggle.addEventListener("click", () => {
+    root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+    try { localStorage.setItem("moelections-theme", root.dataset.theme); } catch { /* The current page still switches themes. */ }
+    update();
+  });
+  header.append(toggle);
+  update();
+}
+
 function setImage(id: string, path: string, alt?: string): void {
   const image = element<HTMLImageElement>(id);
   if (!image) return;
@@ -1195,8 +1223,62 @@ function archiveDeltaLabel(value: number | null): string {
   return sign + Math.abs(value).toFixed(2) + " pp";
 }
 
+type ArchiveSortKey = "impact" | "office" | "race" | "priorCall" | "newCall" | "flip" | "category" | "margin" | "probability";
+
+function archiveSortValue(row: HTMLTableRowElement, key: ArchiveSortKey): string | number | null {
+  if (key === "impact") return Number(row.dataset.impactScore);
+  if (key === "office") return row.dataset.office || "";
+  if (key === "race") return row.dataset.raceName || "";
+  if (key === "priorCall") return row.dataset.priorCall || "";
+  if (key === "newCall") return row.dataset.newCall || "";
+  if (key === "flip") return row.dataset.callFlipped === "true" ? 1 : 0;
+  if (key === "category") return row.dataset.categoryLabel || "";
+  const raw = key === "margin" ? row.dataset.marginDelta : row.dataset.probabilityDelta;
+  return raw === undefined || raw === "" || !Number.isFinite(Number(raw)) ? null : Number(raw);
+}
+
+function sortArchiveRaceRows(holder: HTMLElement, key: ArchiveSortKey, direction?: "asc" | "desc"): void {
+  const table = holder.querySelector<HTMLTableElement>(".archive-change-table");
+  const body = table?.tBodies[0];
+  if (!table || !body) return;
+  const currentKey = holder.dataset.sortKey as ArchiveSortKey | undefined;
+  const currentDirection = holder.dataset.sortDirection === "asc" ? "asc" : "desc";
+  let nextDirection = direction;
+  if (!nextDirection) {
+    nextDirection = currentKey === key
+      ? currentDirection === "desc" ? "asc" : "desc"
+      : ["impact", "flip", "margin", "probability"].includes(key) ? "desc" : "asc";
+  }
+  holder.dataset.sortKey = key;
+  holder.dataset.sortDirection = nextDirection;
+  const rows = [...body.querySelectorAll<HTMLTableRowElement>("tr[data-archive-race-row]")];
+  rows.sort((a, b) => {
+    const left = archiveSortValue(a, key);
+    const right = archiveSortValue(b, key);
+    if (left === null || right === null) return left === right ? 0 : left === null ? 1 : -1;
+    const comparison = typeof left === "number" && typeof right === "number" ? left - right : String(left).localeCompare(String(right));
+    return nextDirection === "asc" ? comparison : -comparison;
+  });
+  rows.forEach(row => body.append(row));
+  table.querySelectorAll<HTMLTableCellElement>("thead th[data-sort-key]").forEach(cell => {
+    const active = cell.dataset.sortKey === key;
+    cell.setAttribute("aria-sort", active ? nextDirection === "asc" ? "ascending" : "descending" : "none");
+    const indicator = cell.querySelector<HTMLElement>(".archive-sort-indicator");
+    if (indicator) indicator.textContent = active ? nextDirection === "asc" ? "↑" : "↓" : "↕";
+  });
+  const status = holder.querySelector<HTMLElement>("#archive-change-sort-status");
+  const label: Record<ArchiveSortKey, string> = { impact:"change impact", office:"office", race:"race name", priorCall:"prior call", newCall:"new call", flip:"call flip", category:"category", margin:"margin change", probability:"win chance change" };
+  const ordering = key === "flip"
+    ? nextDirection === "desc" ? ", flipped first." : ", unchanged first."
+    : ["impact", "margin", "probability"].includes(key)
+      ? nextDirection === "desc" ? ", largest first." : ", smallest first."
+      : nextDirection === "desc" ? ", Z–A." : ", A–Z.";
+  if (status) status.textContent = "Sorted by " + label[key] + ordering;
+}
+
 function filterArchiveRaceRows(holder: HTMLElement): void {
   const filter = holder.querySelector<HTMLSelectElement>("#archive-change-filter");
+  const officeFilter = holder.querySelector<HTMLSelectElement>("#archive-office-filter");
   const rows = [...holder.querySelectorAll<HTMLTableRowElement>("tr[data-archive-race-row]")];
   const visibleCount = holder.querySelector<HTMLElement>("#archive-change-visible-count");
   if (!filter) return;
@@ -1204,12 +1286,16 @@ function filterArchiveRaceRows(holder: HTMLElement): void {
   rows.forEach(row => {
     const flipped = row.dataset.callFlipped === "true";
     const categoryChanged = row.dataset.categoryChanged === "true";
-    const show = filter.value === "all"
-      || (filter.value === "call" && flipped)
+    const numericLarge = row.dataset.numericLarge === "true";
+    const officeMatches = !officeFilter || officeFilter.value === "all" || row.dataset.office?.toLowerCase() === officeFilter.value;
+    const changeMatches = filter.value === "all"
+      || (filter.value === "flips" && flipped)
+      || (filter.value === "large" && (flipped || categoryChanged || numericLarge))
+      || (filter.value === "numeric" && numericLarge)
       || (filter.value === "category" && categoryChanged)
       || (filter.value === "either" && (flipped || categoryChanged));
-    row.hidden = !show;
-    if (show) visible += 1;
+    row.hidden = !(officeMatches && changeMatches);
+    if (!row.hidden) visible += 1;
   });
   if (visibleCount) visibleCount.textContent = "Showing " + visible.toLocaleString() + " of " + rows.length.toLocaleString() + " races";
 }
@@ -1232,16 +1318,39 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
     const categoryChanged = Boolean(previous && currentRace && previousRating !== currentRating);
     const marginDelta = previous && currentRace ? Number(currentRace.dem_margin_pp) - Number(previous.dem_margin_pp) : null;
     const probabilityDelta = previous && currentRace ? (Number(currentRace.dem_probability) - Number(previous.dem_probability)) * 100 : null;
+    const numericLarge = marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 5 || Math.abs(probabilityDelta) >= 5);
     const status = !previous ? "Added" : !currentRace ? "Removed" : "Matched";
     const categoryLabel = previous && currentRace
       ? previousRating === currentRating ? previousRating + " · same" : previousRating + " → " + currentRating
       : status;
+    const impactLabel = callFlipped ? "Winner flipped" : numericLarge ? "Large shift" : categoryChanged ? "Category changed" : status !== "Matched" ? status : marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 0.01 || Math.abs(probabilityDelta) >= 0.01) ? "Smaller shift" : "No material change";
+    const impactTier = callFlipped ? 4 : numericLarge ? 3 : categoryChanged ? 2 : status !== "Matched" ? 1 : 0;
+    const impactScore = impactTier * 100000 + Math.round(Math.max(Math.abs(marginDelta || 0), Math.abs(probabilityDelta || 0)) * 100);
     const deltaClass = (value: number | null) => value === null || !Number.isFinite(value) ? "" : value > 0 ? " archive-delta-positive" : value < 0 ? " archive-delta-negative" : "";
-    return "<tr data-archive-race-row data-call-flipped=\"" + callFlipped + "\" data-category-changed=\"" + categoryChanged + "\"><td>" + escapeHtml(reference.office) + "</td><th scope=\"row\"><a href=\"" + escapeHtml(raceUrl(reference.race_id)) + "\">" + escapeHtml(raceName(reference)) + "</a></th><td>" + (previous ? escapeHtml(archiveWinner(previous)) : "—") + "</td><td>" + (currentRace ? escapeHtml(archiveWinner(currentRace)) : "—") + "</td><td><span class=\"archive-change-badge" + (callFlipped ? " is-changed" : "") + "\">" + (previous && currentRace ? callFlipped ? "Flipped" : "No" : status) + "</span></td><td><span class=\"archive-category-change" + (categoryChanged ? " is-changed" : "") + "\">" + escapeHtml(categoryLabel) + "</span></td><td class=\"archive-delta" + deltaClass(marginDelta) + "\">" + archiveDeltaLabel(marginDelta) + "</td><td class=\"archive-delta" + deltaClass(probabilityDelta) + "\">" + archiveDeltaLabel(probabilityDelta) + "</td></tr>";
+    const priorCall = previous ? archiveWinner(previous) : "";
+    const newCall = currentRace ? archiveWinner(currentRace) : "";
+    const raceLabel = raceName(reference);
+    const impactClass = callFlipped ? " is-flipped" : numericLarge || categoryChanged ? " is-major" : "";
+    return `<tr data-archive-race-row data-office="${escapeHtml(reference.office)}" data-race-name="${escapeHtml(raceLabel)}" data-prior-call="${escapeHtml(priorCall)}" data-new-call="${escapeHtml(newCall)}" data-call-flipped="${callFlipped}" data-category-changed="${categoryChanged}" data-numeric-large="${numericLarge}" data-category-label="${escapeHtml(categoryLabel)}" data-impact-score="${impactScore}" data-margin-delta="${marginDelta === null ? "" : marginDelta}" data-probability-delta="${probabilityDelta === null ? "" : probabilityDelta}">
+      <td><span class="archive-impact-badge${impactClass}">${escapeHtml(impactLabel)}</span></td>
+      <td>${escapeHtml(reference.office)}</td>
+      <th scope="row"><a href="${escapeHtml(raceUrl(reference.race_id))}">${escapeHtml(raceLabel)}</a></th>
+      <td>${previous ? escapeHtml(priorCall) : "—"}</td>
+      <td>${currentRace ? escapeHtml(newCall) : "—"}</td>
+      <td><span class="archive-change-badge${callFlipped ? " is-changed" : ""}">${previous && currentRace ? callFlipped ? "Flipped" : "No" : status}</span></td>
+      <td><span class="archive-category-change${categoryChanged ? " is-changed" : ""}">${escapeHtml(categoryLabel)}</span></td>
+      <td class="archive-delta${deltaClass(marginDelta)}">${archiveDeltaLabel(marginDelta)}</td>
+      <td class="archive-delta${deltaClass(probabilityDelta)}">${archiveDeltaLabel(probabilityDelta)}</td>
+    </tr>`;
   });
   const matched = raceIds.filter(id => olderById.has(id) && newerById.has(id));
   const flipped = matched.filter(id => archiveWinner(olderById.get(id)!) !== archiveWinner(newerById.get(id)!)).length;
   const categoryChanged = matched.filter(id => rating(olderById.get(id)!.dem_probability, olderById.get(id)!.office) !== rating(newerById.get(id)!.dem_probability, newerById.get(id)!.office)).length;
+  const largeShifts = matched.filter(id => {
+    const oldRace = olderById.get(id)!;
+    const newRace = newerById.get(id)!;
+    return Math.abs(Number(newRace.dem_margin_pp) - Number(oldRace.dem_margin_pp)) >= 5 || Math.abs((Number(newRace.dem_probability) - Number(oldRace.dem_probability)) * 100) >= 5;
+  }).length;
   const added = raceIds.filter(id => !olderById.has(id) && newerById.has(id)).length;
   const removed = raceIds.filter(id => olderById.has(id) && !newerById.has(id)).length;
   const olderDate = dateLabel(older.snapshot_date);
@@ -1251,8 +1360,9 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
     .filter((note): note is string => Boolean(note))
     .map(note => note.replace(/,?\s*so this snapshot is not compared with later releases\.?/i, "."));
   const releaseNoteMarkup = releaseNotes.length ? "<p class=\"archive-change-lineage\">Release notes: " + releaseNotes.map(escapeHtml).join(" · ") + "</p>" : "";
-  const summary = matched.length.toLocaleString() + " matched races · " + flipped.toLocaleString() + " winner calls flipped · " + categoryChanged.toLocaleString() + " changed website category · " + added.toLocaleString() + " added · " + removed.toLocaleString() + " removed";
-  return "<section class=\"content-panel archive-change-panel\"><div class=\"archive-change-heading\"><div><p class=\"eyebrow\">RACE-BY-RACE · " + escapeHtml(olderDate) + " → " + escapeHtml(newerDate) + "</p><h2>What changed since the prior release</h2></div><span class=\"archive-change-summary\">" + escapeHtml(summary) + "</span></div><p class=\"archive-intro\">" + escapeHtml(newerDate) + " is compared with the immediately older saved release, " + escapeHtml(olderDate) + ". Changes are newer minus older; margin and Democratic win-chance deltas are in percentage points. Winner calls use the higher party probability. Category labels use the site definitions: " + escapeHtml(ratingBandDescription("House")) + ".</p><p class=\"archive-change-lineage\">" + lineage + " Differences are descriptive because source dates and inputs may differ; they cannot be attributed to newly added polls alone.</p>" + releaseNoteMarkup + "<div class=\"archive-change-controls\"><label for=\"archive-change-filter\">Show <select id=\"archive-change-filter\"><option value=\"all\">All races</option><option value=\"either\">Winner or category changed</option><option value=\"call\">Winner call flipped</option><option value=\"category\">Category changed</option></select></label><span id=\"archive-change-visible-count\" aria-live=\"polite\"></span></div><div class=\"archive-change-table-wrap\"><table class=\"archive-change-table\"><thead><tr><th scope=\"col\">Office</th><th scope=\"col\">Race</th><th scope=\"col\">Prior call</th><th scope=\"col\">New call</th><th scope=\"col\">Call flipped?</th><th scope=\"col\">Category, prior → new</th><th scope=\"col\">Margin change</th><th scope=\"col\">D win chance change</th></tr></thead><tbody>" + rows.join("") + "</tbody></table></div></section>";
+  const summary = matched.length.toLocaleString() + " matched · " + flipped.toLocaleString() + " winner calls flipped · " + categoryChanged.toLocaleString() + " category changes · " + largeShifts.toLocaleString() + " shifts ≥5 pp · " + added.toLocaleString() + " added · " + removed.toLocaleString() + " removed";
+  const sortHeader = (label: string, key: ArchiveSortKey) => "<th scope=\"col\" data-sort-key=\"" + key + "\" aria-sort=\"" + (key === "impact" ? "descending" : "none") + "\"><button class=\"archive-sort-button\" type=\"button\" data-sort-key=\"" + key + "\" aria-label=\"Sort by " + escapeHtml(label.toLowerCase()) + "\">" + escapeHtml(label) + " <span class=\"archive-sort-indicator\" aria-hidden=\"true\">" + (key === "impact" ? "↓" : "↕") + "</span></button></th>";
+  return "<section class=\"content-panel archive-change-panel\"><div class=\"archive-change-heading\"><div><p class=\"eyebrow\">RACE-BY-RACE · " + escapeHtml(olderDate) + " → " + escapeHtml(newerDate) + "</p><h2>What changed since the prior release</h2></div><span class=\"archive-change-summary\">" + escapeHtml(summary) + "</span></div><p class=\"archive-intro\">" + escapeHtml(newerDate) + " is compared with the immediately older saved release, " + escapeHtml(olderDate) + ". Changes are newer minus older; margin and Democratic win-chance deltas are in percentage points. Winner calls use the higher party probability. Category labels use the site definitions: " + escapeHtml(ratingBandDescription("House")) + ".</p><p class=\"archive-change-sort-status\" id=\"archive-change-sort-status\" aria-live=\"polite\">Rows start with flipped calls, then large shifts and category changes. A large shift is at least 5 pp in margin or Democratic win chance.</p><p class=\"archive-change-lineage\">" + lineage + " Differences are descriptive because source dates and inputs may differ; they cannot be attributed to newly added polls alone.</p>" + releaseNoteMarkup + "<div class=\"archive-change-controls\"><label for=\"archive-office-filter\">Office <select id=\"archive-office-filter\"><option value=\"all\">All offices</option><option value=\"house\">House</option><option value=\"senate\">Senate</option><option value=\"governor\">Governor</option></select></label><label for=\"archive-change-filter\">Show <select id=\"archive-change-filter\"><option value=\"all\">All races</option><option value=\"flips\">Winner calls flipped</option><option value=\"large\">Large changes</option><option value=\"numeric\">Numeric shift ≥5 pp</option><option value=\"category\">Category changed</option><option value=\"either\">Winner or category changed</option></select></label><span id=\"archive-change-visible-count\" aria-live=\"polite\"></span></div><div class=\"archive-change-table-wrap\"><table class=\"archive-change-table\"><thead><tr>" + sortHeader("Change", "impact") + sortHeader("Office", "office") + sortHeader("Race", "race") + sortHeader("Prior call", "priorCall") + sortHeader("New call", "newCall") + sortHeader("Call flipped?", "flip") + sortHeader("Category, prior → new", "category") + sortHeader("Margin change", "margin") + sortHeader("D win chance change", "probability") + "</tr></thead><tbody>" + rows.join("") + "</tbody></table></div></section>";
 }
 
 async function renderSnapshotArchive(data: CurrentData): Promise<void> {
@@ -1318,6 +1428,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
         if (note) note.textContent = releaseNote;
         overview.innerHTML = renderArchiveSeatCards(snapshot, data);
         changes.innerHTML = renderArchiveRaceChanges(snapshot, olderSnapshot);
+        sortArchiveRaceRows(changes, "impact", "desc");
         filterArchiveRaceRows(changes);
       } catch (error) {
         if (sequence !== selectionSequence) return;
@@ -1329,11 +1440,18 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       }
     };
     holder.addEventListener("click", async event => {
-      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-snapshot-path]");
+      const target = event.target as HTMLElement;
+      const sortButton = target.closest<HTMLButtonElement>("button[data-sort-key]");
+      if (sortButton && changes?.contains(sortButton)) {
+        sortArchiveRaceRows(changes, sortButton.dataset.sortKey as ArchiveSortKey);
+        return;
+      }
+      const button = target.closest<HTMLButtonElement>("button[data-snapshot-path]");
       if (button) await showRelease(button);
     });
     holder.addEventListener("change", event => {
-      if ((event.target as HTMLElement).closest("#archive-change-filter") && changes) filterArchiveRaceRows(changes);
+      const target = event.target as HTMLElement;
+      if ((target.closest("#archive-change-filter") || target.closest("#archive-office-filter")) && changes) filterArchiveRaceRows(changes);
     });
     const currentButton = choices.find(choice => choice.dataset.snapshotPath === "current");
     if (currentButton) await showRelease(currentButton);
@@ -1372,6 +1490,7 @@ async function renderGallery(): Promise<void> {
 }
 
 async function start(): Promise<void> {
+  initThemeToggle();
   setBrandAssets();
   if (page === "gallery") {
     await renderGallery();

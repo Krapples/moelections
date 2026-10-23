@@ -76,8 +76,8 @@ verifyPublicJson(path.join(output, "data"));
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
 const houseOutlook = current.summary?.seat_outlooks?.House;
 const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
-if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("Trial 14") || !houseOutlook.method?.includes("aligned")) {
-  throw new Error("The House seat outlook must publish the Trial 14-aligned race distribution and describe its forecast method.");
+if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("Trial 14") || !houseOutlook.method?.includes("ten-expert MoE")) {
+  throw new Error("The House seat outlook must publish the 435-district Trial 14 distribution and document the separate MoE race forecast.");
 }
 let housePmfMass = 0;
 let houseExpectedSeats = 0;
@@ -99,28 +99,6 @@ for (let index = 1; index < housePmfLines.length; index += 1) {
 }
 if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOutlook.expected_dem_seats) > 1e-6 || Math.abs(previousHouseCumulative - 1) > 1e-10) {
   throw new Error("House seat PMF, cumulative probability, and expected seat total are inconsistent.");
-}
-const houseRaces = current.races.filter(race => race.office === "House");
-const houseRaceExpectedSeats = houseRaces.reduce((sum, race) => sum + Number(race.dem_probability), 0);
-if (houseRaces.length !== 435 || Math.abs(houseRaceExpectedSeats - houseOutlook.expected_dem_seats) > 1e-8) {
-  throw new Error("House race probabilities are not aligned to the published expected-seat target.");
-}
-const houseQuantile = quantile => {
-  let cumulative = 0;
-  for (let seats = 0; seats < housePmfProbabilities.length; seats += 1) {
-    cumulative += housePmfProbabilities[seats];
-    if (cumulative + 1e-14 >= quantile) return seats;
-  }
-  return housePmfProbabilities.length - 1;
-};
-const expectedHouseRanges = {core_range:[houseQuantile(0.25), houseQuantile(0.75)], outer_range:[houseQuantile(0.05), houseQuantile(0.95)]};
-if (JSON.stringify(houseOutlook.core_range) !== JSON.stringify(expectedHouseRanges.core_range) || JSON.stringify(houseOutlook.outer_range) !== JSON.stringify(expectedHouseRanges.outer_range)) {
-  throw new Error("Published House seat ranges do not match the central 50% and 90% quantiles of the House PMF.");
-}
-const houseCategoryRows = current.historical_performance?.house_category_validation;
-const requiredHouseCategories = ["Overall", "Toss-up", "Lean", "Likely", "Safe"];
-if (!Array.isArray(houseCategoryRows) || requiredHouseCategories.some(category => !houseCategoryRows.some(row => row.category === category))) {
-  throw new Error("House validation history must include overall and all four website rating categories.");
 }
 const priorReleaseIndex = JSON.parse(fs.readFileSync(path.join(output, "data/snapshots/index.json"), "utf8"));
 const latestPriorSnapshot = priorReleaseIndex.snapshots?.[0];

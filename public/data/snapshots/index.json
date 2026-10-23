@@ -3,21 +3,6 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
-      "snapshot_id": "2026-10-21",
-      "snapshot_date": "2026-10-21",
-      "series_id": "moelections-2026-midterm-races-v1",
-      "schema_version": 1,
-      "path": "data/snapshots/2026-10-21.json",
-      "status": "superseded",
-      "archive_note": "Prior published release before the 2026-10-23 district-probability alignment. Forecast inputs are dated 2026-10-21. Its House seat total used Trial 14 while its district probabilities remained on the prior ten-expert MoE stream.",
-      "race_count": 506,
-      "office_counts": {
-        "House": 435,
-        "Senate": 35,
-        "Governor": 36
-      }
-    },
-    {
       "snapshot_id": "2026-10-20",
       "snapshot_date": "2026-10-20",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -48,5 +33,5 @@
       }
     }
   ],
-  "schema_note": "Saved releases support descriptive seat and race-by-race comparisons. Source dates and inputs may differ; the archive is not a day-by-day point-in-time replay and does not attribute changes to a single new poll."
+  "schema_note": "Saved race predictions can be inspected by date. Source lineage is not verified as comparable across all releases, so the archive does not calculate cross-release changes or a day-by-day replay."
 }

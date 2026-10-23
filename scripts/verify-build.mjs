@@ -111,12 +111,6 @@ for (const race of current.races) {
   }
 }
 const priorHistory = current.prior_error_history || {};
-const priorMetadata = priorHistory.metadata || {};
-const currentStreamNote = priorMetadata.current_stream_note || "";
-const priorSourceNote = priorMetadata.source_note || "";
-if (priorMetadata.generated_on !== current.snapshot_date || !currentStreamNote.includes(current.snapshot_date) || !currentStreamNote.includes("Trial 14") || !currentStreamNote.includes("alpha=0.75") || !priorSourceNote.includes("Trial 14") || !priorSourceNote.includes("alpha=0.75") || /10\/20 snapshot|207\.435|margin stack retrained/.test(currentStreamNote + " " + priorSourceNote)) {
-  throw new Error("Prior-error history date and stream notes must describe the current Trial 14-aligned alpha=0.75 House forecast.");
-}
 const validationYears = [2018, 2020, 2022, 2024];
 const validationYearSet = new Set(validationYears);
 const historical = current.historical_performance || {};

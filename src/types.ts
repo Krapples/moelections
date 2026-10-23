@@ -118,6 +118,8 @@ export interface HistoricalMetric {
   cycle: number | "Pooled";
   races: number;
   margin_mae_pp: number;
+  margin_rmse_pp?: number;
+  margin_bias_pp?: number;
   brier_score: number;
   log_loss: number;
   accuracy: number;
@@ -129,11 +131,51 @@ export interface HistoricalMetric {
   full_house_actual_dem_seats_context?: number | null;
 }
 
+export interface HistoricalCategoryMetric {
+  category: string;
+  races: number | null;
+  mae_pp: number | null;
+  rmse_pp: number | null;
+  bias_pp_prediction_minus_actual: number | null;
+  winner_accuracy_pct: number | null;
+  false_dem_calls: number | null;
+  false_rep_calls: number | null;
+  actual_dem_wins_covered: number | null;
+  predicted_dem_wins_covered: number | null;
+  brier_score: number | null;
+  log_loss: number | null;
+  expected_dem_wins: number | null;
+  prior_mae_pp?: number | null;
+  mae_change_pp?: number | null;
+  prior_winner_accuracy_pct?: number | null;
+  winner_accuracy_change_pp?: number | null;
+}
+
+export interface HistoricalPairedComparison {
+  races: number;
+  previous_margin_mae_pp: number;
+  candidate_margin_mae_pp: number;
+  margin_mae_change_pp: number;
+  previous_winner_accuracy_pct: number;
+  candidate_winner_accuracy_pct: number;
+  winner_accuracy_change_pp: number;
+  previous_margin_rmse_pp: number;
+  candidate_margin_rmse_pp: number;
+  margin_rmse_change_pp: number;
+  previous_bias_pp: number;
+  candidate_bias_pp: number;
+  brier_change: number;
+  log_loss_change: number;
+}
+
 export interface HistoricalPerformance {
   snapshot_date: string;
   cycles: number[];
   validation_explanation: string;
   metrics: HistoricalMetric[];
+  house_category_validation?: HistoricalCategoryMetric[];
+  house_category_note?: string;
+  house_paired_comparison?: HistoricalPairedComparison;
 }
 
 export interface GenericBallotHistoryRow {
@@ -290,6 +332,7 @@ export interface SavedForecastSnapshot {
   snapshot_date: string;
   archive_note?: string;
   races: ForecastRace[];
+  summary?: ForecastSummary;
 }
 
 export interface ArtworkManifest {

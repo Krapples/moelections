@@ -76,8 +76,8 @@ verifyPublicJson(path.join(output, "data"));
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
 const houseOutlook = current.summary?.seat_outlooks?.House;
 const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
-if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("Trial 14") || !houseOutlook.method?.includes("ten-expert MoE")) {
-  throw new Error("The House seat outlook must publish the 435-district Trial 14 distribution and document the separate MoE race forecast.");
+if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("Trial 14") || !houseOutlook.method?.includes("aligned")) {
+  throw new Error("The House seat outlook must publish the Trial 14-aligned race distribution and describe its forecast method.");
 }
 let housePmfMass = 0;
 let houseExpectedSeats = 0;
@@ -97,6 +97,21 @@ for (let index = 1; index < housePmfLines.length; index += 1) {
 }
 if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOutlook.expected_dem_seats) > 1e-6 || Math.abs(previousHouseCumulative - 1) > 1e-10) {
   throw new Error("House seat PMF, cumulative probability, and expected seat total are inconsistent.");
+}
+const houseRaces = current.races.filter(race => race.office === "House");
+const houseRaceExpectedSeats = houseRaces.reduce((sum, race) => sum + Number(race.dem_probability), 0);
+if (houseRaces.length !== 435 || Math.abs(houseRaceExpectedSeats - houseOutlook.expected_dem_seats) > 1e-8) {
+  throw new Error("House race probabilities are not aligned to the published expected-seat target.");
+}
+const houseCategoryRows = current.historical_performance?.house_category_validation;
+const requiredHouseCategories = ["Overall", "Toss-up", "Lean", "Likely", "Safe"];
+if (!Array.isArray(houseCategoryRows) || requiredHouseCategories.some(category => !houseCategoryRows.some(row => row.category === category))) {
+  throw new Error("House validation history must include overall and all four website rating categories.");
+}
+const priorReleaseIndex = JSON.parse(fs.readFileSync(path.join(output, "data/snapshots/index.json"), "utf8"));
+const latestPriorSnapshot = priorReleaseIndex.snapshots?.[0];
+if (!latestPriorSnapshot || latestPriorSnapshot.snapshot_date >= current.snapshot_date || !latestPriorSnapshot.path?.startsWith("data/snapshots/") || !fs.existsSync(path.join(output, ...latestPriorSnapshot.path.split("/")))) {
+  throw new Error("The forecast archive must retain a prior snapshot for comparison with the current release.");
 }
 const governorDistribution = current.summary?.governor_seat_distribution;
 if (!governorDistribution || governorDistribution.race_count !== 36 || !Array.isArray(governorDistribution.central_50_range) || !Array.isArray(governorDistribution.central_90_range) || !governorDistribution.interpretation?.includes("independent")) {

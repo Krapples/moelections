@@ -1140,6 +1140,79 @@ function renderArchiveSeatCards(snapshot: SavedForecastSnapshot | CurrentData, c
   }).join("");
 }
 
+function archiveWinner(race: ForecastRace): "Democratic" | "Republican" | "Tie" {
+  const dem = Number(race.dem_probability);
+  const rep = Number(race.rep_probability);
+  if (Math.abs(dem - rep) < 1e-12) return "Tie";
+  return dem > rep ? "Democratic" : "Republican";
+}
+
+function archiveDeltaLabel(value: number | null): string {
+  if (value === null || !Number.isFinite(value)) return "—";
+  const sign = value > 0 ? "+" : value < 0 ? "−" : "";
+  return sign + Math.abs(value).toFixed(2) + " pp";
+}
+
+function filterArchiveRaceRows(holder: HTMLElement): void {
+  const filter = holder.querySelector<HTMLSelectElement>("#archive-change-filter");
+  const rows = [...holder.querySelectorAll<HTMLTableRowElement>("tr[data-archive-race-row]")];
+  const visibleCount = holder.querySelector<HTMLElement>("#archive-change-visible-count");
+  if (!filter) return;
+  let visible = 0;
+  rows.forEach(row => {
+    const flipped = row.dataset.callFlipped === "true";
+    const categoryChanged = row.dataset.categoryChanged === "true";
+    const show = filter.value === "all"
+      || (filter.value === "call" && flipped)
+      || (filter.value === "category" && categoryChanged)
+      || (filter.value === "either" && (flipped || categoryChanged));
+    row.hidden = !show;
+    if (show) visible += 1;
+  });
+  if (visibleCount) visibleCount.textContent = "Showing " + visible.toLocaleString() + " of " + rows.length.toLocaleString() + " races";
+}
+
+function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, older: SavedForecastSnapshot | CurrentData | undefined): string {
+  if (!older) {
+    return "<section class=\"content-panel archive-change-panel\"><div class=\"archive-change-heading\"><div><p class=\"eyebrow\">RACE-BY-RACE</p><h2>Changes since the prior release</h2></div></div><p class=\"archive-intro\">No earlier saved release is available for comparison.</p></section>";
+  }
+  const newerById = new Map(newer.races.map(race => [race.race_id, race]));
+  const olderById = new Map(older.races.map(race => [race.race_id, race]));
+  const raceIds = [...new Set([...older.races.map(race => race.race_id), ...newer.races.map(race => race.race_id)])];
+  const rows = raceIds.map(raceId => {
+    const previous = olderById.get(raceId);
+    const currentRace = newerById.get(raceId);
+    const reference = currentRace || previous;
+    if (!reference) return "";
+    const previousRating = previous ? rating(previous.dem_probability, previous.office) : "—";
+    const currentRating = currentRace ? rating(currentRace.dem_probability, currentRace.office) : "—";
+    const callFlipped = Boolean(previous && currentRace && archiveWinner(previous) !== archiveWinner(currentRace));
+    const categoryChanged = Boolean(previous && currentRace && previousRating !== currentRating);
+    const marginDelta = previous && currentRace ? Number(currentRace.dem_margin_pp) - Number(previous.dem_margin_pp) : null;
+    const probabilityDelta = previous && currentRace ? (Number(currentRace.dem_probability) - Number(previous.dem_probability)) * 100 : null;
+    const status = !previous ? "Added" : !currentRace ? "Removed" : "Matched";
+    const categoryLabel = previous && currentRace
+      ? previousRating === currentRating ? previousRating + " · same" : previousRating + " → " + currentRating
+      : status;
+    const deltaClass = (value: number | null) => value === null || !Number.isFinite(value) ? "" : value > 0 ? " archive-delta-positive" : value < 0 ? " archive-delta-negative" : "";
+    return "<tr data-archive-race-row data-call-flipped=\"" + callFlipped + "\" data-category-changed=\"" + categoryChanged + "\"><td>" + escapeHtml(reference.office) + "</td><th scope=\"row\"><a href=\"" + escapeHtml(raceUrl(reference.race_id)) + "\">" + escapeHtml(raceName(reference)) + "</a></th><td>" + (previous ? escapeHtml(archiveWinner(previous)) : "—") + "</td><td>" + (currentRace ? escapeHtml(archiveWinner(currentRace)) : "—") + "</td><td><span class=\"archive-change-badge" + (callFlipped ? " is-changed" : "") + "\">" + (previous && currentRace ? callFlipped ? "Flipped" : "No" : status) + "</span></td><td><span class=\"archive-category-change" + (categoryChanged ? " is-changed" : "") + "\">" + escapeHtml(categoryLabel) + "</span></td><td class=\"archive-delta" + deltaClass(marginDelta) + "\">" + archiveDeltaLabel(marginDelta) + "</td><td class=\"archive-delta" + deltaClass(probabilityDelta) + "\">" + archiveDeltaLabel(probabilityDelta) + "</td></tr>";
+  });
+  const matched = raceIds.filter(id => olderById.has(id) && newerById.has(id));
+  const flipped = matched.filter(id => archiveWinner(olderById.get(id)!) !== archiveWinner(newerById.get(id)!)).length;
+  const categoryChanged = matched.filter(id => rating(olderById.get(id)!.dem_probability, olderById.get(id)!.office) !== rating(newerById.get(id)!.dem_probability, newerById.get(id)!.office)).length;
+  const added = raceIds.filter(id => !olderById.has(id) && newerById.has(id)).length;
+  const removed = raceIds.filter(id => olderById.has(id) && !newerById.has(id)).length;
+  const olderDate = dateLabel(older.snapshot_date);
+  const newerDate = dateLabel(newer.snapshot_date);
+  const lineage = "Archived releases can have different source dates and inputs; these are descriptive comparisons, not a day-by-day replay or attribution to newly added polls.";
+  const releaseNotes = ["archive_note" in older ? older.archive_note : undefined, "archive_note" in newer ? newer.archive_note : undefined]
+    .filter((note): note is string => Boolean(note))
+    .map(note => note.replace(/,?\s*so this snapshot is not compared with later releases\.?/i, "."));
+  const releaseNoteMarkup = releaseNotes.length ? "<p class=\"archive-change-lineage\">Release notes: " + releaseNotes.map(escapeHtml).join(" · ") + "</p>" : "";
+  const summary = matched.length.toLocaleString() + " matched races · " + flipped.toLocaleString() + " winner calls flipped · " + categoryChanged.toLocaleString() + " changed website category · " + added.toLocaleString() + " added · " + removed.toLocaleString() + " removed";
+  return "<section class=\"content-panel archive-change-panel\"><div class=\"archive-change-heading\"><div><p class=\"eyebrow\">RACE-BY-RACE · " + escapeHtml(olderDate) + " → " + escapeHtml(newerDate) + "</p><h2>What changed since the prior release</h2></div><span class=\"archive-change-summary\">" + escapeHtml(summary) + "</span></div><p class=\"archive-intro\">" + escapeHtml(newerDate) + " is compared with the immediately older saved release, " + escapeHtml(olderDate) + ". Changes are newer minus older; margin and Democratic win-chance deltas are in percentage points. Winner calls use the higher party probability. Category labels use the site definitions: " + escapeHtml(ratingBandDescription("House")) + ".</p><p class=\"archive-change-lineage\">" + lineage + " Differences are descriptive because source dates and inputs may differ; they cannot be attributed to newly added polls alone.</p>" + releaseNoteMarkup + "<div class=\"archive-change-controls\"><label for=\"archive-change-filter\">Show <select id=\"archive-change-filter\"><option value=\"all\">All races</option><option value=\"either\">Winner or category changed</option><option value=\"call\">Winner call flipped</option><option value=\"category\">Category changed</option></select></label><span id=\"archive-change-visible-count\" aria-live=\"polite\"></span></div><div class=\"archive-change-table-wrap\"><table class=\"archive-change-table\"><thead><tr><th scope=\"col\">Office</th><th scope=\"col\">Race</th><th scope=\"col\">Prior call</th><th scope=\"col\">New call</th><th scope=\"col\">Call flipped?</th><th scope=\"col\">Category, prior → new</th><th scope=\"col\">Margin change</th><th scope=\"col\">D win chance change</th></tr></thead><tbody>" + rows.join("") + "</tbody></table></div></section>";
+}
+
 async function renderSnapshotArchive(data: CurrentData): Promise<void> {
   const holder = element("changes-content");
   if (!holder) return;
@@ -1154,17 +1227,29 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
       return "<button class=\"archive-release-choice\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(pathIsLocalSnapshot ? entry.path : "") + "\" aria-pressed=\"false\"" + (pathIsLocalSnapshot ? "" : " disabled") + "><span>" + escapeHtml(dateLabel(entry.snapshot_date)) + "</span><small>Reference release</small></button>";
     }).join("");
-    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see the party seat estimates and competitive-race count recorded for that date.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section>";
+    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
     const overview = element("archive-seat-overview");
     const note = element<HTMLParagraphElement>("archive-release-note");
+    const changes = element("archive-race-changes");
     const choices = [...holder.querySelectorAll<HTMLButtonElement>("button[data-snapshot-path]")];
-    const cache = new Map<string, SavedForecastSnapshot>();
-    holder.addEventListener("click", async event => {
-      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-snapshot-path]");
-      if (!button || !overview) return;
+    const cache = new Map<string, SavedForecastSnapshot | CurrentData>([[data.snapshot_id, data]]);
+    let selectionSequence = 0;
+    const loadSnapshot = async (entry: SnapshotIndex["snapshots"][number]): Promise<SavedForecastSnapshot | CurrentData> => {
+      const cached = cache.get(entry.snapshot_id);
+      if (cached) return cached;
+      if (!entry.path.startsWith("data/snapshots/") || entry.path.split("/").includes("..")) throw new Error("This saved release path is not available.");
+      const snapshotResponse = await fetch(assetUrl(entry.path), {cache:"force-cache"});
+      if (!snapshotResponse.ok) throw new Error("This saved release could not be loaded.");
+      const snapshot = await snapshotResponse.json() as SavedForecastSnapshot;
+      if (snapshot.schema_version !== data.schema_version || snapshot.series_id !== data.series_id || snapshot.snapshot_id !== entry.snapshot_id || !Array.isArray(snapshot.races)) throw new Error("This saved release does not match the current forecast series.");
+      cache.set(entry.snapshot_id, snapshot);
+      return snapshot;
+    };
+    const showRelease = async (button: HTMLButtonElement): Promise<void> => {
+      const sequence = ++selectionSequence;
       const path = button.dataset.snapshotPath || "";
       const snapshotId = button.dataset.snapshotId || "";
-      if (!path) return;
+      if (!path || !overview || !changes) return;
       choices.forEach(choice => {
         const selected = choice === button;
         choice.classList.toggle("is-selected", selected);
@@ -1172,30 +1257,44 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       });
       button.disabled = true;
       overview.innerHTML = "<p class=\"archive-loading\">Loading saved seat outlook…</p>";
+      changes.innerHTML = "<section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section>";
       try {
         let snapshot: SavedForecastSnapshot | CurrentData = data;
         let releaseNote = "Current published forecast.";
+        let selectedIndex = -1;
         if (path !== "current") {
           if (!path.startsWith("data/snapshots/") || path.split("/").includes("..")) throw new Error("This saved release path is not available.");
-          snapshot = cache.get(snapshotId) as SavedForecastSnapshot;
-          if (!snapshot) {
-            const snapshotResponse = await fetch(assetUrl(path), {cache:"force-cache"});
-            if (!snapshotResponse.ok) throw new Error("This saved release could not be loaded.");
-            snapshot = await snapshotResponse.json() as SavedForecastSnapshot;
-            if (snapshot.schema_version !== data.schema_version || snapshot.series_id !== data.series_id || snapshot.snapshot_id !== snapshotId || !Array.isArray(snapshot.races)) throw new Error("This saved release does not match the current forecast series.");
-            cache.set(snapshotId, snapshot);
-          }
-          releaseNote = snapshot.archive_note || entries.find(entry => entry.snapshot_id === snapshotId)?.archive_note || "Reference release; source inputs are not fully comparable with the current forecast.";
+          const selectedEntry = entries.find(entry => entry.snapshot_id === snapshotId);
+          if (!selectedEntry) throw new Error("This saved release is not listed in the current archive index.");
+          selectedIndex = entries.findIndex(entry => entry.snapshot_id === snapshotId);
+          snapshot = await loadSnapshot(selectedEntry);
+          releaseNote = ("archive_note" in snapshot ? snapshot.archive_note : undefined) || selectedEntry.archive_note || "Reference release; source inputs are not fully comparable with the current forecast.";
         }
+        const olderEntry = path === "current" ? entries[0] : entries[selectedIndex + 1];
+        const olderSnapshot = olderEntry ? await loadSnapshot(olderEntry) : undefined;
+        if (sequence !== selectionSequence) return;
         if (note) note.textContent = releaseNote;
         overview.innerHTML = renderArchiveSeatCards(snapshot, data);
+        changes.innerHTML = renderArchiveRaceChanges(snapshot, olderSnapshot);
+        filterArchiveRaceRows(changes);
       } catch (error) {
+        if (sequence !== selectionSequence) return;
         if (note) note.textContent = error instanceof Error ? error.message : "This saved release could not be loaded.";
         overview.innerHTML = "<p class=\"chart-empty\">Seat outlook unavailable for this release.</p>";
+        changes.innerHTML = "<section class=\"content-panel archive-change-panel\"><h2>Race changes unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved release could not be compared.") + "</p></section>";
       } finally {
         button.disabled = false;
       }
+    };
+    holder.addEventListener("click", async event => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-snapshot-path]");
+      if (button) await showRelease(button);
     });
+    holder.addEventListener("change", event => {
+      if ((event.target as HTMLElement).closest("#archive-change-filter") && changes) filterArchiveRaceRows(changes);
+    });
+    const currentButton = choices.find(choice => choice.dataset.snapshotPath === "current");
+    if (currentButton) await showRelease(currentButton);
   } catch (error) {
     holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved forecast index could not be read.") + "</p></section>";
   }

@@ -1288,14 +1288,16 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
     const priorCall = previous ? archiveWinner(previous) : "";
     const newCall = currentRace ? archiveWinner(currentRace) : "";
     const raceLabel = raceName(reference);
-    const impactClass = callFlipped ? " is-flipped" : numericLarge || categoryChanged ? " is-major" : "";
+    const flipDirectionClass = !callFlipped ? "" : newCall === "Democratic" ? " dem" : newCall === "Republican" ? " rep" : " neutral";
+    const impactClass = callFlipped ? " is-flipped" + flipDirectionClass : numericLarge || categoryChanged ? " is-major" : "";
+    const changeClass = callFlipped ? " is-changed" + flipDirectionClass : "";
     return `<tr data-archive-race-row data-office="${escapeHtml(reference.office)}" data-race-name="${escapeHtml(raceLabel)}" data-prior-call="${escapeHtml(priorCall)}" data-new-call="${escapeHtml(newCall)}" data-call-flipped="${callFlipped}" data-category-changed="${categoryChanged}" data-numeric-large="${numericLarge}" data-category-label="${escapeHtml(categoryLabel)}" data-impact-score="${impactScore}" data-margin-delta="${marginDelta === null ? "" : marginDelta}" data-probability-delta="${probabilityDelta === null ? "" : probabilityDelta}">
       <td><span class="archive-impact-badge${impactClass}">${escapeHtml(impactLabel)}</span></td>
       <td>${escapeHtml(reference.office)}</td>
       <th scope="row"><a href="${escapeHtml(raceUrl(reference.race_id))}">${escapeHtml(raceLabel)}</a></th>
       <td>${previous ? escapeHtml(priorCall) : "—"}</td>
       <td>${currentRace ? escapeHtml(newCall) : "—"}</td>
-      <td><span class="archive-change-badge${callFlipped ? " is-changed" : ""}">${previous && currentRace ? callFlipped ? "Flipped" : "No" : status}</span></td>
+      <td><span class="archive-change-badge${changeClass}">${previous && currentRace ? callFlipped ? "Flipped" : "No" : status}</span></td>
       <td><span class="archive-category-change${categoryChanged ? " is-changed" : ""}">${escapeHtml(categoryLabel)}</span></td>
       <td class="archive-delta${deltaClass(marginDelta)}">${archiveDeltaLabel(marginDelta)}</td>
       <td class="archive-delta${deltaClass(probabilityDelta)}">${archiveDeltaLabel(probabilityDelta)}</td>

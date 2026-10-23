@@ -168,13 +168,14 @@ h1, h2 { letter-spacing: -.035em; }
 .map-heading-tools { display: flex; align-items: end; gap: .65rem; }
 .map-office-control { display: grid; gap: .25rem; color: #616d80; font-size: .74rem; font-weight: 700; }
 .map-office-control select { min-width: 145px; min-height: 40px; padding: .45rem .7rem; color: var(--ink); background: var(--paper); border: 1px solid #d5cfbf; border-radius: .45rem; }
-.map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 210px; align-items: center; gap: 2rem; margin-top: 1rem; }
-.tile-map { display: grid; grid-template-columns: repeat(13, minmax(1.45rem, 1fr)); grid-template-rows: repeat(6, minmax(1.45rem, 3.8rem)); gap: clamp(3px, .5vw, 7px); max-width: 850px; }
-.state-tile { display: flex; min-width: 0; aspect-ratio: 1.18; flex-direction: column; align-items: center; justify-content: center; gap: .08rem; padding: 0; color: #748092; background: #f1eee6; border: 1px solid #e2ded2; border-radius: .34rem; font: 500 clamp(.5rem, .8vw, .72rem) "DM Mono", monospace; transition: transform .12s, box-shadow .12s; }
-.state-tile.available { color: #24334b; background: var(--tile-fill, #eee9dc); border: 1px solid var(--tile-border, #d6cdb9); cursor: pointer; }
-.state-tile.available:hover { z-index: 1; transform: translateY(-2px); box-shadow: 0 4px 10px rgb(28 40 62 / 20%); }
-.state-tile.selected { color: #fff; background: #263b5b; border: 2px solid var(--gold); box-shadow: 0 0 0 2px #fff; }
-.state-tile:disabled { cursor: not-allowed; }
+.map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 210px; align-items: center; gap: 1.5rem; margin-top: 1rem; }
+.tile-map { display: grid; grid-template-columns: repeat(12, minmax(1.45rem, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); align-items: center; gap: clamp(4px, .55vw, 8px); max-width: 850px; aspect-ratio: 1.75; }
+.state-tile { display: flex; min-width: 0; aspect-ratio: 1.17; flex-direction: column; align-items: center; justify-content: center; gap: .12rem; padding: 0; color: #778294; background: linear-gradient(145deg, #f5f2eb, #ece9e1); border: 1px solid #e0ddd4; border-radius: .42rem; box-shadow: 0 1px 3px rgb(36 48 67 / 5%); font: 600 clamp(.5rem, .8vw, .72rem) "DM Mono", monospace; transition: transform .14s ease, box-shadow .14s ease, background-color .14s ease; }
+.state-tile.available { color: #24334b; background: linear-gradient(145deg, var(--tile-fill, #eee9dc), #fffefa); border: 1px solid var(--tile-border, #d6cdb9); box-shadow: 0 2px 5px rgb(36 48 67 / 9%), inset 0 1px 0 rgb(255 255 255 / 76%); cursor: pointer; }
+.state-tile.available:hover { z-index: 1; transform: translateY(-3px) scale(1.045); box-shadow: 0 6px 13px rgb(28 40 62 / 19%), inset 0 1px 0 rgb(255 255 255 / 78%); }
+.state-tile.available:focus-visible { z-index: 2; outline: 3px solid #7aa4c8; outline-offset: 2px; }
+.state-tile.selected { color: #fff; background: #263b5b; border: 2px solid var(--gold); box-shadow: 0 0 0 2px #fff, 0 5px 12px rgb(28 40 62 / 22%); }
+.state-tile:disabled { cursor: not-allowed; opacity: .74; }
 .map-tile-flips { display: flex; align-items: center; justify-content: center; gap: .12rem; }
 .map-flip-chip { display: inline-flex; min-width: .8rem; height: .8rem; align-items: center; justify-content: center; padding: 0 .17rem; border: 1px solid currentColor; border-radius: 999px; font: 700 .48rem/1 "DM Mono", monospace; }
 .map-flip-chip.dem { color: #315f88; background: #e8f0f6; }
@@ -902,7 +903,7 @@ tbody th[scope="row"] { font-weight: 600; }
   .map-heading-tools { width: 100%; align-items: end; }
   .map-office-control { flex: 1; }
   .map-office-control select { width: 100%; min-width: 0; }
-  .tile-map { grid-template-columns: repeat(13, minmax(1.2rem, 1fr)); grid-template-rows: repeat(6, minmax(1.35rem, 2.2rem)); gap: 2px; }
+  .tile-map { grid-template-columns: repeat(12, minmax(1.2rem, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); gap: 2px; }
   .state-tile { border-radius: .2rem; font-size: .52rem; }
   .map-flip-chip { min-width: .68rem; height: .68rem; padding: 0 .12rem; font-size: .42rem; }
   .map-legend { gap: .5rem .8rem; font-size: .69rem; }

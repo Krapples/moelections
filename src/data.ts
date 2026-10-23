@@ -2,12 +2,17 @@ import type { CurrentData, ForecastRace, Office, PriorErrorHistory, RaceChange, 
 
 export const OFFICE_ORDER: Office[] = ["House", "Senate", "Governor"];
 const RETROSPECTIVE_VALIDATION_YEARS = new Set([2018, 2020, 2022, 2024]);
+// Geographic tile layout adapted from https://gist.github.com/rlvaugh/8b3077127c238ade4cfc1bc41ecd72b8,
+// with top-origin rows and Alaska/Hawaii moved to the familiar lower-left insets.
 export const STATE_TILES: Array<[string, number, number]> = [
-  ["WA",0,0],["MT",0,3],["ND",0,5],["MN",0,6],["WI",0,7],["MI",0,8],["VT",0,10],["NH",0,11],["ME",0,12],
-  ["OR",1,0],["ID",1,2],["SD",1,4],["IA",1,5],["IL",1,6],["IN",1,7],["OH",1,8],["NY",1,9],["MA",1,10],
-  ["CA",2,0],["NV",2,1],["WY",2,2],["NE",2,3],["MO",2,4],["KY",2,5],["WV",2,7],["VA",2,8],["NJ",2,9],["CT",2,10],["RI",2,11],["PA",2,12],
-  ["AZ",3,1],["UT",3,2],["CO",3,3],["KS",3,4],["AR",3,5],["TN",3,6],["NC",3,7],["SC",3,8],["DE",3,9],["MD",3,10],
-  ["NM",4,2],["OK",4,3],["LA",4,4],["MS",4,5],["AL",4,6],["GA",4,7],["FL",5,8],["TX",5,3],["AK",4,0],["HI",5,0]
+  ["ME",0,11],
+  ["VT",1,10],["NH",1,11],
+  ["WA",2,1],["ID",2,2],["MT",2,3],["ND",2,4],["MN",2,5],["WI",2,6],["MI",2,7],["NY",2,9],["MA",2,10],["RI",2,11],
+  ["OR",3,1],["UT",3,2],["WY",3,3],["SD",3,4],["IA",3,5],["IL",3,6],["OH",3,7],["PA",3,8],["NJ",3,9],["CT",3,10],
+  ["CA",4,1],["NV",4,2],["CO",4,3],["NE",4,4],["MO",4,5],["IN",4,6],["WV",4,7],["VA",4,8],["MD",4,9],["DE",4,10],
+  ["AZ",5,2],["NM",5,3],["KS",5,4],["AR",5,5],["TN",5,6],["KY",5,7],["SC",5,8],["NC",5,9],
+  ["OK",6,4],["LA",6,5],["MS",6,6],["AL",6,7],["GA",6,8],
+  ["AK",7,0],["HI",7,1],["TX",7,4],["FL",7,9]
 ];
 
 export const STATE_NAMES: Record<string, string> = {

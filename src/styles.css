@@ -517,6 +517,31 @@ tbody th[scope="row"] { font-weight: 600; }
 .archive-release-choice:focus-visible { outline: 3px solid #a7c8e8; outline-offset: 2px; }
 .archive-release-choice:disabled { opacity: .55; cursor: not-allowed; }
 .archive-release-note { min-height: 1.3rem; margin: .25rem 0 .9rem; color: var(--muted); font-size: .78rem; line-height: 1.55; }
+.archive-change-panel { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 1.8rem); }
+.archive-change-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+.archive-change-heading h2 { margin: 0; font-size: clamp(1.25rem, 2.3vw, 1.65rem); }
+.archive-change-heading .eyebrow { margin: 0 0 .28rem; }
+.archive-change-summary { max-width: 620px; padding: .4rem .65rem; color: #43516a; background: #f3f4f6; border: 1px solid #e4e6e8; border-radius: .6rem; font-size: .73rem; font-weight: 700; line-height: 1.5; }
+.archive-change-lineage { margin: .45rem 0; color: #687387; font-size: .73rem; line-height: 1.55; }
+.archive-change-controls { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin: .9rem 0 .55rem; color: #526075; font-size: .75rem; }
+.archive-change-controls label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .45rem; }
+.archive-change-controls select { max-width: 100%; padding: .4rem .55rem; color: var(--ink); background: #fffefa; border: 1px solid #d9d5cb; border-radius: .45rem; font: inherit; }
+.archive-change-table-wrap { max-height: 620px; overflow: auto; border: 1px solid #e8e4dc; border-radius: .65rem; }
+.archive-change-table { width: 100%; min-width: 920px; border-collapse: separate; border-spacing: 0; font-size: .72rem; }
+.archive-change-table th, .archive-change-table td { padding: .58rem .65rem; border-bottom: 1px solid #ece8df; text-align: left; vertical-align: middle; }
+.archive-change-table thead th { position: sticky; top: 0; z-index: 1; color: #58657a; background: #f7f6f1; font-size: .65rem; letter-spacing: .02em; white-space: nowrap; }
+.archive-change-table tbody tr:last-child > * { border-bottom: 0; }
+.archive-change-table tbody tr:hover { background: #faf9f5; }
+.archive-change-table tbody th { color: var(--ink); font-weight: 700; white-space: nowrap; }
+.archive-change-table tbody th a { color: inherit; text-decoration-color: #bbc2ca; text-underline-offset: 2px; }
+.archive-change-table tbody th a:hover { color: #245c97; }
+.archive-change-table tr[hidden] { display: none; }
+.archive-change-badge { display: inline-block; padding: .2rem .42rem; color: #667184; background: #f1f0eb; border-radius: 999px; font-size: .65rem; font-weight: 700; white-space: nowrap; }
+.archive-change-badge.is-changed, .archive-category-change.is-changed { color: #7c3b35; background: #f8e9e6; }
+.archive-category-change { color: #576479; white-space: nowrap; }
+.archive-delta { font-family: "DM Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.archive-delta-positive { color: #27624b; }
+.archive-delta-negative { color: #9a4e48; }
 .archive-seat-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; }
 .archive-seat-card { min-width: 0; padding: .95rem; background: #fffefa; border: 1px solid #e5e0d6; border-radius: .78rem; box-shadow: 0 5px 16px rgb(34 42 61 / 4%); }
 .archive-seat-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .55rem; }
@@ -549,6 +574,7 @@ tbody th[scope="row"] { font-weight: 600; }
   .history-chart-heading { align-items: flex-start; flex-direction: column; gap: .35rem; }
   .history-primary-stat strong { font-size: 1.75rem; }
   .archive-section-heading, .archive-generic-chart-heading { align-items: flex-start; flex-direction: column; gap: .35rem; }
+  .archive-change-heading, .archive-change-controls { align-items: flex-start; flex-direction: column; gap: .5rem; }
   .archive-generic-stat-grid, .archive-seat-overview { grid-template-columns: 1fr; }
   .archive-seat-card { padding: 1rem; }
   .archive-release-picker { grid-template-columns: 1fr; }

@@ -503,8 +503,8 @@ tbody th[scope="row"] { font-weight: 600; }
 .generic-history-poll-marker { fill: #bd8c30; stroke: #fffefa; stroke-width: 2; }
 .generic-history-actual-marker { fill: #fffefa; stroke: #5d6a7c; stroke-width: 2; }
 .generic-history-actual-line { stroke-dasharray: 7 5; }
-.archive-layout { display: grid; gap: 1rem; margin: .9rem 0 1.1rem; }
-.archive-generic-panel, .archive-release-panel { margin: 0; padding: clamp(1.1rem, 3vw, 1.8rem); }
+.archive-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: .9rem 0 1.1rem; }
+.archive-generic-panel, .archive-release-panel { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 1.8rem); }
 .archive-section-heading { align-items: center; margin-bottom: .95rem; }
 .archive-section-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
 .archive-section-heading .eyebrow { margin: 0 0 .28rem; }
@@ -843,6 +843,21 @@ tbody th[scope="row"] { font-weight: 600; }
 :root[data-theme="light"] .archive-impact-badge { color: #46536a; background: #f0f2f5; }
 :root[data-theme="light"] .archive-impact-badge.is-major { color: #795522; background: #fbf0d7; }
 :root[data-theme="light"] .archive-impact-badge.is-flipped { color: #7c3b35; background: #f8e9e6; }
+.archive-change-badge.is-changed.dem,
+.archive-impact-badge.is-flipped.dem { color: #315f88; background: #e8f0f6; }
+.archive-change-badge.is-changed.rep,
+.archive-impact-badge.is-flipped.rep { color: #9a4843; background: #f7eae7; }
+.archive-change-badge.is-changed.neutral,
+.archive-impact-badge.is-flipped.neutral { color: #667184; background: #f1f0eb; }
+:root[data-theme="dark"] .archive-change-badge.is-changed.dem,
+:root[data-theme="dark"] .archive-impact-badge.is-flipped.dem { color: #a9c9df; background: #294057; }
+:root[data-theme="dark"] .archive-change-badge.is-changed.rep,
+:root[data-theme="dark"] .archive-impact-badge.is-flipped.rep { color: #f0aaa0; background: #4b343b; }
+:root[data-theme="dark"] .archive-change-badge.is-changed.neutral,
+:root[data-theme="dark"] .archive-impact-badge.is-flipped.neutral { color: #d4dceb; background: #253247; }
+:root[data-theme="light"] .archive-impact-badge.is-flipped.dem { color: #315f88; background: #e8f0f6; }
+:root[data-theme="light"] .archive-impact-badge.is-flipped.rep { color: #9a4843; background: #f7eae7; }
+:root[data-theme="light"] .archive-impact-badge.is-flipped.neutral { color: #667184; background: #f1f0eb; }
 
 @media (min-width: 921px) and (max-width: 1000px) {
   .site-header { flex-wrap: wrap; justify-content: center; gap: .2rem 1rem; padding-top: .7rem; padding-bottom: .7rem; }

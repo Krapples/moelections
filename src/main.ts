@@ -707,6 +707,13 @@ function renderStates(data: CurrentData): void {
   const sort = element<HTMLSelectElement>("state-sort");
   const status = element("state-count");
   const empty = element("state-empty");
+  const candidateNamesByRace = new Map<string, string[]>();
+  let candidatesReady = false;
+  let candidatesUnavailable = false;
+  const matchingCandidate = (race: ForecastRace, query: string): string | undefined =>
+    candidateNamesByRace.get(race.race_id)?.find(name => name.toLowerCase().includes(query));
+  const raceMatches = (race: ForecastRace, query: string): boolean =>
+    raceName(race).toLowerCase().includes(query) || Boolean(matchingCandidate(race, query));
   const render = () => {
     const query = search?.value.trim().toLowerCase() || "";
     const officeFilter = office?.value || "All";
@@ -715,22 +722,32 @@ function renderStates(data: CurrentData): void {
       name:STATE_NAMES[state] || state,
       allRaces,
       races:officeFilter === "All" ? allRaces : allRaces.filter(race => race.office === officeFilter)
-    })).filter(row => row.races.length > 0 && (!query || row.name.toLowerCase().includes(query) || row.state.toLowerCase().includes(query) || row.races.some(race => raceName(race).toLowerCase().includes(query))));
+    })).filter(row => row.races.length > 0 && (!query || row.name.toLowerCase().includes(query) || row.state.toLowerCase().includes(query) || row.races.some(race => raceMatches(race, query))));
     if (sort?.value === "races") states.sort((a, b) => b.races.length - a.races.length || a.name.localeCompare(b.name));
     else if (sort?.value === "competitive") states.sort((a, b) => byCompetition(a.races.slice().sort(byCompetition)[0], b.races.slice().sort(byCompetition)[0]) || a.name.localeCompare(b.name));
     else states.sort((a, b) => a.name.localeCompare(b.name));
     holder.innerHTML = states.map(({ state, name, allRaces, races }) => {
       const average = races.reduce((sum, race) => sum + race.dem_probability, 0) / races.length;
-      const closest = races.slice().sort(byCompetition)[0];
+      const stateMatchesQuery = query && (name.toLowerCase().includes(query) || state.toLowerCase().includes(query));
+      const match = query && !stateMatchesQuery ? races.slice().sort(byCompetition).find(race => raceMatches(race, query)) : undefined;
+      const closest = match || races.slice().sort(byCompetition)[0];
+      const candidateMatch = match ? matchingCandidate(match, query) : undefined;
+      const closestLabel = candidateMatch
+        ? "Candidate match: " + candidateMatch + " · " + raceName(closest)
+        : match ? "Race match: " + raceName(closest) : "Closest: " + raceName(closest);
       const counts = OFFICE_ORDER.map(item => {
         const count = allRaces.filter(race => race.office === item).length;
         return "<span>" + item + " <b>" + count + "</b></span>";
       }).join("");
       const officeParam = officeFilter === "All" ? "" : "&office=" + encodeURIComponent(officeFilter);
-      return "<article class=\"state-card\"><div class=\"state-card-heading\"><span class=\"state-abbr\">" + state + "</span><h2 class=\"state-name\">" + escapeHtml(name) + "</h2><strong class=\"state-average\">" + pct(average) + "</strong></div><p class=\"state-average-label\">average D win chance · " + escapeHtml(officeFilter === "All" ? "all offices" : officeFilter) + " · " + races.length + (races.length === 1 ? " race" : " races") + "</p><div class=\"state-card-counts\" aria-label=\"All office coverage counts\">" + counts + "</div><a class=\"state-closest\" href=\"" + raceUrl(closest.race_id) + "\">Closest: " + escapeHtml(raceName(closest)) + " · " + pct(closest.dem_probability) + " D</a><a class=\"state-browse\" href=\"./index.html?state=" + encodeURIComponent(state) + officeParam + "#race-forecasts\">Browse " + races.length + (races.length === 1 ? " forecast" : " forecasts") + " <span aria-hidden=\"true\">↗</span></a></article>";
+      return "<article class=\"state-card\"><div class=\"state-card-heading\"><span class=\"state-abbr\">" + state + "</span><h2 class=\"state-name\">" + escapeHtml(name) + "</h2><strong class=\"state-average\">" + pct(average) + "</strong></div><p class=\"state-average-label\">average D win chance · " + escapeHtml(officeFilter === "All" ? "all offices" : officeFilter) + " · " + races.length + (races.length === 1 ? " race" : " races") + "</p><div class=\"state-card-counts\" aria-label=\"All office coverage counts\">" + counts + "</div><a class=\"state-closest\" href=\"" + raceUrl(closest.race_id) + "\">" + escapeHtml(closestLabel) + (candidateMatch ? "" : " · " + pct(closest.dem_probability) + " D") + "</a><a class=\"state-browse\" href=\"./index.html?state=" + encodeURIComponent(state) + officeParam + "#race-forecasts\">Browse " + races.length + (races.length === 1 ? " forecast" : " forecasts") + " <span aria-hidden=\"true\">↗</span></a></article>";
     }).join("");
-    if (status) status.textContent = "Showing " + states.length + (states.length === 1 ? " state" : " states") + " with published " + (officeFilter === "All" ? "race rows" : officeFilter + " rows") + ".";
-    if (empty) empty.hidden = states.length > 0;
+    if (status) status.textContent = "Showing " + states.length + (states.length === 1 ? " state" : " states") + " with published " + (officeFilter === "All" ? "race rows" : officeFilter + " rows") + (query && !candidatesReady && !candidatesUnavailable ? ". Loading candidate names…" : query && candidatesUnavailable ? ". Candidate names are unavailable; state and district search still work." : ".");
+    if (empty) {
+      empty.hidden = states.length > 0 || Boolean(query && !candidatesReady && !candidatesUnavailable);
+      if (query && !candidatesReady && !candidatesUnavailable) empty.textContent = "Searching candidate names…";
+      else empty.textContent = "No states, districts, or candidates match these filters. Clear the search or choose another office.";
+    }
   };
   search?.addEventListener("input", render);
   office?.addEventListener("change", render);
@@ -745,6 +762,14 @@ function renderStates(data: CurrentData): void {
   const footerDate = element("state-footer-date");
   if (footerDate) footerDate.textContent = dateLabel(data.snapshot_date);
   render();
+  void loadCandidateDataset().then(candidates => {
+    for (const race of candidates.races) candidateNamesByRace.set(race.race_id, race.candidates.map(candidate => candidate.name));
+    candidatesReady = true;
+    render();
+  }).catch(() => {
+    candidatesUnavailable = true;
+    render();
+  });
   void renderStatesArtwork();
 }
 

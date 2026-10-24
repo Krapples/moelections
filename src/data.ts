@@ -185,7 +185,10 @@ function pollDetails(polls: RaceRetrospective["current_polling"]["polls"], label
     const sample = poll.sample_size ? " · n=" + escapeHtml(poll.sample_size) : "";
     const population = poll.population ? " · " + escapeHtml(poll.population) : "";
     const dates = pollDateRange(poll.field_start, poll.field_end);
-    return "<div class=\"poll-list-row\"><span class=\"poll-list-name\">" + pollster + "<small>" + escapeHtml(dates) + sample + population + "</small><small>" + escapeHtml(poll.source) + (poll.match_status !== "race" && poll.match_status !== "district" ? " · " + escapeHtml(poll.match_status) : "") + "</small></span><span class=\"poll-list-margin " + marginTone(Number(poll.margin_pp)) + "\">" + marginValue(poll.margin_pp) + flags + "</span></div>";
+    const question = poll.question && poll.question.trim() && !/^main$/i.test(poll.question.trim())
+      ? "<small>Question: " + escapeHtml(poll.question) + "</small>"
+      : "";
+    return "<div class=\"poll-list-row\"><span class=\"poll-list-name\">" + pollster + "<small>" + escapeHtml(dates) + sample + population + "</small>" + question + "<small>" + escapeHtml(poll.source) + (poll.match_status !== "race" && poll.match_status !== "district" ? " · " + escapeHtml(poll.match_status) : "") + "</small></span><span class=\"poll-list-margin " + marginTone(Number(poll.margin_pp)) + "\">" + marginValue(poll.margin_pp) + flags + "</span></div>";
   }).join("");
   const windowNote = final30Count ? " · " + final30Count + " in final 30 days" : "";
   return "<details class=\"poll-archive\"><summary>" + escapeHtml(label) + " · " + polls.length.toLocaleString() + " polls" + windowNote + "</summary><div class=\"poll-archive-list\">" + rows + "</div></details>";

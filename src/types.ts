@@ -135,6 +135,33 @@ export interface HistoricalPerformance {
   metrics: HistoricalMetric[];
 }
 
+export interface RatingAccuracyMetric {
+  races: number;
+  correct_calls: number;
+  accuracy: number | null;
+}
+
+export interface RatingAccuracyCategory extends RatingAccuracyMetric {
+  by_year: Record<string, RatingAccuracyMetric>;
+}
+
+export interface RatingAccuracyScope {
+  overall: RatingAccuracyMetric;
+  by_year: Record<string, RatingAccuracyMetric>;
+  categories: Record<string, RatingAccuracyCategory>;
+}
+
+export interface RatingAccuracy {
+  schema_version: number;
+  snapshot_date: string;
+  validation_years: number[];
+  call_rule: string;
+  rating_definition: string;
+  validation_note: string;
+  results: Record<string, RatingAccuracyScope>;
+  sources: Array<{ path: string; sha256: string }>;
+}
+
 export interface GenericBallotHistoryRow {
   cycle: number;
   snapshot_date: string;
@@ -191,6 +218,7 @@ export interface PriorErrorHistory {
 
 export interface RetrospectivePoll {
   pollster: string;
+  question?: string;
   field_start: string;
   field_end: string;
   margin_pp: number | null;
@@ -286,6 +314,7 @@ export interface SavedForecastSnapshot {
   snapshot_id: string;
   snapshot_date: string;
   archive_note?: string;
+  summary?: Pick<ForecastSummary, "generic_ballot_forecast">;
   races: ForecastRace[];
 }
 

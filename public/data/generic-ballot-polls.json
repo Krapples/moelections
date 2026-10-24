@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_date": "2026-10-18",
+  "snapshot_date": "2026-10-24",
   "office": "U.S. House generic ballot",
   "method": "Unweighted arithmetic mean of each listed poll's published Democratic percentage minus its Republican percentage. One poll per polling organization; no sample-size weighting.",
   "population_note": "All included toplines use the pollster's likely-voter screen. Definitions differ by source; Fox's result is among respondents certain to vote. Published percentages are rounded to whole points, so the average is descriptive rather than more precise than the underlying polls.",
@@ -48,6 +48,20 @@
       "rep_pct": 44,
       "sample_note": "Likely-voter subgroup count not listed; poll included 2,032 registered voters among 2,545 adults",
       "source_url": "https://abcnews.com/Politics/democrats-lead-republicans-house-vote-choice-trumps-approval/story?id=137322849"
+    },
+    {
+      "poll_id": "activote-us-generic-20261021",
+      "source": "ActiVote",
+      "field_start": "2026-10-15",
+      "field_end": "2026-10-21",
+      "release_date": "2026-10-21",
+      "first_public_date": "2026-10-21",
+      "archive_ingestion_date": "2026-10-24",
+      "population": "Likely voters",
+      "dem_pct": 53.7,
+      "rep_pct": 46.3,
+      "sample_note": "n=1,000 likely voters",
+      "source_url": "https://www.activote.net/polls/generic-ballot/"
     }
   ]
 }

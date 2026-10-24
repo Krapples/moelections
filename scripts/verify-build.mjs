@@ -8,7 +8,7 @@ const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
 const internalModelIdentifier = /\b(?:trial\s*\d+|ten[- ]expert\s+MoE|optuna|random forest|lightgbm|house-gap ridge|kde)\b/i;
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
-const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/house-seat-distribution-2026.csv", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
+const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/category-accuracy.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/house-seat-distribution-2026.csv", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
   const target = path.resolve(output, relative);
   if (!target.startsWith(output + path.sep) && target !== output) throw new Error("Build path escapes output directory: " + relative);
@@ -79,6 +79,32 @@ function verifyPublicJson(directory) {
 verifyPublicJson(path.join(output, "data"));
 
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
+const categoryAccuracy = JSON.parse(fs.readFileSync(path.join(output, "data/category-accuracy.json"), "utf8"));
+const accuracyScopes = ["All offices", "House", "Senate", "Governor"];
+const accuracyCategories = ["Toss-up", "Lean", "Likely", "Safe"];
+if (categoryAccuracy.schema_version !== 1 || !Array.isArray(categoryAccuracy.validation_years) || !categoryAccuracy.results) {
+  throw new Error("Historical rating accuracy has an unsupported format.");
+}
+for (const scope of accuracyScopes) {
+  const result = categoryAccuracy.results[scope];
+  if (!result || !Number.isInteger(result.overall?.races) || !Number.isInteger(result.overall?.correct_calls)) {
+    throw new Error("Historical rating accuracy is missing a valid " + scope + " result.");
+  }
+  const categoryRaceCount = accuracyCategories.reduce((sum, category) => sum + Number(result.categories?.[category]?.races || 0), 0);
+  if (categoryRaceCount !== result.overall.races) throw new Error("Historical rating categories do not cover the " + scope + " evaluation cohort.");
+}
+for (const office of ["House", "Senate", "Governor"]) {
+  const pooled = current.historical_performance.metrics.find(row => row.office === office && row.cycle === "Pooled");
+  const ratingStats = categoryAccuracy.results[office].overall;
+  if (!pooled || pooled.races !== ratingStats.races || Math.round(pooled.accuracy * pooled.races) !== ratingStats.correct_calls) {
+    throw new Error("Historical rating accuracy does not match the published " + office + " scorecard.");
+  }
+}
+const allOfficeRaces = ["House", "Senate", "Governor"].reduce((sum, office) => sum + categoryAccuracy.results[office].overall.races, 0);
+const allOfficeCalls = ["House", "Senate", "Governor"].reduce((sum, office) => sum + categoryAccuracy.results[office].overall.correct_calls, 0);
+if (categoryAccuracy.results["All offices"].overall.races !== allOfficeRaces || categoryAccuracy.results["All offices"].overall.correct_calls !== allOfficeCalls) {
+  throw new Error("All-office rating accuracy does not match the individual office cohorts.");
+}
 const houseOutlook = current.summary?.seat_outlooks?.House;
 const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
 if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("435 district win probabilities") || !houseOutlook.method?.includes("independent-race Poisson-binomial") || /trial ?14|ten-expert|random forest/i.test(houseOutlook.method)) {

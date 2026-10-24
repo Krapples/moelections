@@ -1,6 +1,6 @@
 import "./styles.css";
 import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, SavedForecastSnapshot, SnapshotIndex } from "./types";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, RatingAccuracyMetric, SavedForecastSnapshot, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -40,6 +40,7 @@ function initThemeToggle(): void {
     root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
     try { localStorage.setItem("moelections-theme", root.dataset.theme); } catch { /* The current page still switches themes. */ }
     update();
+    if (current && page === "home") renderMap(current);
   });
   header.append(toggle);
   update();
@@ -526,12 +527,22 @@ function renderRatingBar(data: CurrentData): void {
   }
 }
 
-function stateColor(probability: number): { fill:string; border:string } {
+function stateColor(probability: number): { fill:string; border:string; text:string } {
   const strength = Math.max(0, Math.min(1, Math.abs(probability - 0.5) * 2));
+  if (document.documentElement.dataset.theme === "dark") {
+    const hue = probability < 0.5 ? 4 : 211;
+    const saturation = Math.round(17 + 67 * strength);
+    const lightness = Math.round(25 + 17 * strength);
+    return {
+      fill:"hsl(" + hue + " " + saturation + "% " + lightness + "% )",
+      border:"hsl(" + hue + " " + Math.min(92, saturation + 12) + "% " + Math.min(61, lightness + 14) + "% )",
+      text:"#f7f9fc"
+    };
+  }
   const hue = probability < 0.5 ? 3 : 213;
-  const saturation = Math.round(14 + 50 * strength);
-  const lightness = Math.round(96 - 15 * strength);
-  return { fill:"hsl(" + hue + " " + saturation + "% " + lightness + "% )", border:"hsl(" + hue + " " + Math.min(78, saturation + 8) + "% " + Math.max(57, lightness - 9) + "% )" };
+  const saturation = Math.round(25 + 52 * strength);
+  const lightness = Math.round(94 - 14 * strength);
+  return { fill:"hsl(" + hue + " " + saturation + "% " + lightness + "% )", border:"hsl(" + hue + " " + Math.min(86, saturation + 10) + "% " + Math.max(57, lightness - 9) + "% )", text:"#202b40" };
 }
 
 function renderMap(data: CurrentData): void {
@@ -568,6 +579,7 @@ function renderMap(data: CurrentData): void {
       const colors = stateColor(probability);
       button.style.setProperty("--tile-fill", colors.fill);
       button.style.setProperty("--tile-border", colors.border);
+      button.style.setProperty("--tile-text", colors.text);
       titleText = stateName + " · average D win chance " + pct(probability) + " across " + stateStats.races + " listed " + mapOffice + (stateStats.races === 1 ? " race" : " races");
       if (showMapFlips && (stateStats.dFlips || stateStats.rFlips)) {
         const flipParts = [];
@@ -1017,6 +1029,54 @@ function renderHistoryRow(row: HistoricalMetric): string {
   return "<tr><th scope=\"row\">" + escapeHtml(row.office) + "</th><td>" + escapeHtml(row.cycle) + "</td><td>" + Number(row.races).toLocaleString() + "</td><td>" + Number(row.margin_mae_pp).toFixed(2) + " pp</td><td>" + pct(row.accuracy) + "</td><td>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</td><td>" + signedCount(row.signed_seat_error) + "</td><td>" + Number(row.false_dem_calls).toLocaleString() + " / " + Number(row.false_rep_calls).toLocaleString() + "</td><td>" + fullHouse + "</td><td>" + Number(row.brier_score).toFixed(3) + "</td><td>" + Number(row.log_loss).toFixed(3) + "</td></tr>";
 }
 
+function ratingAccuracyCell(metric: RatingAccuracyMetric | undefined): string {
+  if (!metric || !metric.races || metric.accuracy === null) return "<td>—</td>";
+  return "<td>" + pct(metric.accuracy) + " <small>(n=" + Number(metric.races).toLocaleString() + ")</small></td>";
+}
+
+async function renderRatingAccuracy(): Promise<void> {
+  const table = element("rating-accuracy-table");
+  if (!table) return;
+  const summary = element("rating-accuracy-summary");
+  const definition = element("rating-accuracy-definition");
+  const caveat = element("rating-accuracy-caveat");
+  const officeSelect = element<HTMLSelectElement>("rating-accuracy-office");
+  try {
+    const response = await fetch(assetUrl("data/category-accuracy.json"), {cache:"no-store"});
+    if (!response.ok) throw new Error("The historical rating accuracy file could not be loaded.");
+    const report = await response.json() as RatingAccuracy;
+    if (report.schema_version !== 1 || !report.validation_years.length || !report.results["All offices"]) {
+      throw new Error("The historical rating accuracy file has an unsupported format.");
+    }
+    if (definition) definition.textContent = report.rating_definition;
+    if (caveat) caveat.textContent = report.validation_note;
+    const years = report.validation_years.map(String);
+    const render = (): void => {
+      const scope = officeSelect?.value || "All offices";
+      const result = report.results[scope];
+      if (!result) {
+        table.innerHTML = "<tr><td colspan=\"8\">No rating accuracy is available for this office.</td></tr>";
+        if (summary) summary.textContent = "No historical rating accuracy is available.";
+        return;
+      }
+      const rows = ["Toss-up", "Lean", "Likely", "Safe"].map(category => {
+        const metric = result.categories[category];
+        if (!metric) return "";
+        return "<tr><th scope=\"row\">" + escapeHtml(category) + "</th><td>" + Number(metric.races).toLocaleString() + "</td><td>" + Number(metric.correct_calls).toLocaleString() + "</td><td><strong>" + (metric.accuracy === null ? "—" : pct(metric.accuracy)) + "</strong></td>" + years.map(year => ratingAccuracyCell(metric.by_year[year])).join("") + "</tr>";
+      });
+      const overallYearCells = years.map(year => ratingAccuracyCell(result.by_year[year])).join("");
+      rows.push("<tr class=\"rating-accuracy-overall\"><th scope=\"row\">Overall</th><td>" + Number(result.overall.races).toLocaleString() + "</td><td>" + Number(result.overall.correct_calls).toLocaleString() + "</td><td><strong>" + (result.overall.accuracy === null ? "—" : pct(result.overall.accuracy)) + "</strong></td>" + overallYearCells + "</tr>");
+      table.innerHTML = rows.join("");
+      if (summary) summary.textContent = scope + " · " + Number(result.overall.races).toLocaleString() + " historical race forecasts · " + report.validation_years.join(", ") + " · model snapshot " + dateLabel(report.snapshot_date);
+    };
+    officeSelect?.addEventListener("change", render);
+    render();
+  } catch (error) {
+    if (summary) summary.textContent = error instanceof Error ? error.message : "Historical rating accuracy is unavailable.";
+    table.innerHTML = "<tr><td colspan=\"8\">Historical rating accuracy could not be loaded.</td></tr>";
+  }
+}
+
 function renderPerformance(data: CurrentData): void {
   const history = data.historical_performance;
   const date = element("history-date");
@@ -1053,6 +1113,7 @@ function renderPerformance(data: CurrentData): void {
   metricSelect?.addEventListener("change", render);
   render();
   void renderGenericBallotHistory();
+  void renderRatingAccuracy();
 }
 
 function formatMarginPp(value: number): string {
@@ -1191,6 +1252,109 @@ function renderArchiveSeatCards(snapshot: SavedForecastSnapshot | CurrentData, c
     const accessibleBar = escapeHtml(entry.label + ": expected Democratic " + expectedDem.toFixed(1) + ", Republican " + expectedRep.toFixed(1) + (entry.majority ? "; majority at " + entry.majority : ""));
     return "<article class=\"archive-seat-card archive-seat-" + entry.office.toLowerCase() + "\"><div class=\"archive-seat-card-head\"><div><p class=\"eyebrow\">" + escapeHtml(entry.coverage.toUpperCase()) + "</p><h3>" + escapeHtml(entry.label) + "</h3></div><span class=\"archive-net-pill\">" + escapeHtml(netLabel) + "</span></div><div class=\"archive-party-counts\"><div><span class=\"archive-party-label archive-dem-label\"><i aria-hidden=\"true\"></i>Democratic</span><strong>" + expectedDem.toFixed(1) + "</strong></div><div><span class=\"archive-party-label archive-rep-label\"><i aria-hidden=\"true\"></i>Republican</span><strong>" + expectedRep.toFixed(1) + "</strong></div></div><div class=\"archive-seat-bar\" role=\"img\" aria-label=\"" + accessibleBar + "\"><span class=\"archive-seat-bar-dem\" style=\"width:" + demShare.toFixed(2) + "%\"></span><span class=\"archive-seat-bar-rep\" style=\"width:" + repShare.toFixed(2) + "%\"></span>" + majorityMarker + "</div>" + majorityLabel + rangeNote + "<div class=\"archive-seat-footer\"><span><strong>" + competitive + "</strong> competitive races</span><small>35–65% chance for either party</small></div></article>";
   }).join("");
+}
+
+interface ArchiveTrendPoint {
+  snapshot_date: string;
+  generic_ballot_margin_pp: number | null;
+  seats: Record<Office, { dem: number; rep: number; races: number }>;
+}
+
+interface ArchiveTrendSeries {
+  label: string;
+  color: "dem" | "rep" | "generic";
+  value: (point: ArchiveTrendPoint) => number;
+}
+
+function archiveTrendDate(value: string): string {
+  const date = new Date(value + "T00:00:00Z");
+  return Number.isNaN(date.valueOf()) ? value : date.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"2-digit", timeZone:"UTC"});
+}
+
+function archiveTrendChartMarkup(id: string, title: string, unit: string, points: ArchiveTrendPoint[], series: ArchiveTrendSeries[], formatter: (value: number) => string): string {
+  if (!points.length || !series.length) return "<div class=\"archive-trend-chart chart-empty\">No saved forecast values are available.</div>";
+  const width = 780;
+  const height = 320;
+  const left = 72;
+  const right = 24;
+  const top = 24;
+  const bottom = 58;
+  const plotWidth = width - left - right;
+  const plotHeight = height - top - bottom;
+  const values = points.flatMap(point => series.map(item => item.value(point))).filter(Number.isFinite);
+  if (!values.length) return "<div class=\"archive-trend-chart chart-empty\">No saved forecast values are available.</div>";
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const pad = Math.max((rawMax - rawMin) * 0.18, unit === "pp" ? 0.5 : 1);
+  const min = rawMin - pad;
+  const max = rawMax + pad;
+  const xAt = (index: number): number => points.length === 1 ? left + plotWidth / 2 : left + index * plotWidth / (points.length - 1);
+  const yAt = (value: number): number => top + (max - value) / (max - min) * plotHeight;
+  const guides = Array.from({length:5}, (_, index) => {
+    const value = min + (max - min) * index / 4;
+    const y = yAt(value);
+    return "<g><line x1=\"" + left + "\" y1=\"" + y.toFixed(1) + "\" x2=\"" + (width - right) + "\" y2=\"" + y.toFixed(1) + "\" class=\"history-grid-line\"/><text x=\"" + (left - 10) + "\" y=\"" + (y + 4).toFixed(1) + "\" text-anchor=\"end\" class=\"history-axis-label\">" + (unit === "pp" && value > 0 ? "+" : "") + value.toFixed(unit === "pp" ? 1 : 0) + "</text></g>";
+  }).join("");
+  const xLabels = points.map((point, index) => "<text x=\"" + xAt(index).toFixed(1) + "\" y=\"" + (height - 16) + "\" text-anchor=\"middle\" class=\"history-axis-label history-year-label\">" + escapeHtml(archiveTrendDate(point.snapshot_date)) + "</text>").join("");
+  const plotted = series.map(item => {
+    const coordinates = points.map(point => ({point, value:item.value(point)}));
+    const line = coordinates.map((entry, index) => xAt(index).toFixed(1) + "," + yAt(entry.value).toFixed(1)).join(" ");
+    const markers = coordinates.map((entry, index) => {
+      const titleText = item.label + " · " + dateLabel(entry.point.snapshot_date) + ": " + formatter(entry.value);
+      return "<g><title>" + escapeHtml(titleText) + "</title><circle class=\"archive-trend-point-" + item.color + "\" cx=\"" + xAt(index).toFixed(1) + "\" cy=\"" + yAt(entry.value).toFixed(1) + "\" r=\"5.5\"/></g>";
+    }).join("");
+    return "<g><polyline class=\"archive-trend-line-" + item.color + "\" points=\"" + line + "\" fill=\"none\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" + markers + "</g>";
+  }).join("");
+  const legend = series.map(item => "<span><i class=\"archive-trend-legend-" + item.color + "\" aria-hidden=\"true\"></i>" + escapeHtml(item.label) + "</span>").join("");
+  const desc = points.map(point => archiveTrendDate(point.snapshot_date)).join(", ");
+  return "<div class=\"history-chart-legend archive-trend-legend\">" + legend + "</div><div class=\"archive-trend-chart history-chart-scroll\" role=\"region\" aria-label=\"" + escapeHtml(title + " chart") + "\" tabindex=\"0\"><svg class=\"history-chart-svg archive-trend-svg\" role=\"img\" aria-labelledby=\"" + id + "-title " + id + "-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"" + id + "-title\">" + escapeHtml(title) + "</title><desc id=\"" + id + "-description\">" + escapeHtml(title + " across saved releases on " + desc + ". Vertical axis shows " + unit + " and is focused on the observed range.") + "</desc>" + guides + xLabels + plotted + "</svg></div>";
+}
+
+function archiveTrendPanelMarkup(id: string, eyebrow: string, title: string, note: string, points: ArchiveTrendPoint[], series: ArchiveTrendSeries[], unit: string, formatter: (value: number) => string): string {
+  return "<article class=\"content-panel archive-trend-card\"><p class=\"eyebrow\">" + escapeHtml(eyebrow) + "</p><h3>" + escapeHtml(title) + "</h3><p class=\"archive-chart-note\">" + escapeHtml(note) + "</p>" + archiveTrendChartMarkup(id, title, unit, points, series, formatter) + "</article>";
+}
+
+function archiveTrendMarkup(snapshots: Array<SavedForecastSnapshot | CurrentData>, currentData: CurrentData): string {
+  const senateFixedDem = Number(currentData.summary.senate_seat_distribution?.fixed_dem_caucus_seats);
+  const senateFixedRep = Number(currentData.summary.senate_seat_distribution?.fixed_rep_seats);
+  const points = snapshots.map(snapshot => {
+    const genericValue = snapshot.summary?.generic_ballot_forecast?.margin_pp;
+    const seats = Object.fromEntries(OFFICE_ORDER.map(office => {
+      const races = snapshot.races.filter(race => race.office === office);
+      const raceDem = races.reduce((sum, race) => sum + Number(race.dem_probability || 0), 0);
+      const raceRep = races.reduce((sum, race) => sum + Number(race.rep_probability || 0), 0);
+      return [office, {
+        dem: raceDem + (office === "Senate" && Number.isFinite(senateFixedDem) ? senateFixedDem : 0),
+        rep: raceRep + (office === "Senate" && Number.isFinite(senateFixedRep) ? senateFixedRep : 0),
+        races: races.length
+      }];
+    })) as Record<Office, { dem: number; rep: number; races: number }>;
+    return {
+      snapshot_date: snapshot.snapshot_date,
+      generic_ballot_margin_pp: typeof genericValue === "number" && Number.isFinite(genericValue) ? genericValue : null,
+      seats
+    };
+  }).sort((a, b) => a.snapshot_date.localeCompare(b.snapshot_date));
+  const genericPoints = points.filter(point => point.generic_ballot_margin_pp !== null);
+  const genericNote = "Recorded Democratic-minus-Republican national House popular-vote forecast, in percentage points. Saved forecast values exist for " + genericPoints.length + " of " + points.length + " releases; older snapshots without this field are omitted, not estimated.";
+  const seatNote = "Expected seats/wins sum each race’s party win probabilities. The Senate series adds 34 fixed Democratic-caucus seats and 31 fixed Republican seats, matching the seat cards. The vertical axis is focused on the observed range.";
+  const genericPanel = archiveTrendPanelMarkup("archive-generic-trend", "NATIONAL HOUSE POPULAR VOTE", "Generic-ballot forecast", genericNote, genericPoints, [
+    {label:"Forecast margin (D−R)", color:"generic", value:point => Number(point.generic_ballot_margin_pp)}
+  ], "pp", formatMarginPp);
+  const seatPanels = OFFICE_ORDER.map(office => archiveTrendPanelMarkup(
+    "archive-" + office.toLowerCase() + "-trend",
+    office === "House" ? "ALL 435 DISTRICTS" : office === "Senate" ? "35 RACES · 65 FIXED SEATS" : "RACES ON THE BALLOT",
+    office + " expected seats",
+    office === "Governor" ? "Expected Democratic and Republican wins among the " + points.at(-1)?.seats.Governor.races + " governor races on the ballot, not all 50 states. " + seatNote : seatNote,
+    points,
+    [
+      {label:"Expected Democratic", color:"dem", value:point => point.seats[office].dem},
+      {label:"Expected Republican", color:"rep", value:point => point.seats[office].rep}
+    ],
+    "seats",
+    value => value.toFixed(1) + " seats"
+  )).join("");
+  return "<section class=\"content-panel archive-trend-panel\" aria-labelledby=\"archive-trend-title\"><div class=\"archive-section-heading\"><div><p class=\"eyebrow\">RELEASE TO RELEASE</p><h2 id=\"archive-trend-title\">Forecast trends</h2></div></div><p class=\"archive-intro\">These charts use saved forecast releases. They do not reconstruct daily forecasts, and missing fields are never estimated.</p><div class=\"archive-trend-grid\">" + genericPanel + seatPanels + "</div></section>";
 }
 
 function archiveWinner(race: ForecastRace): "Democratic" | "Republican" | "Tie" {
@@ -1382,7 +1546,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
       return "<button class=\"archive-release-choice\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(pathIsLocalSnapshot ? entry.path : "") + "\" aria-pressed=\"false\"" + (pathIsLocalSnapshot ? "" : " disabled") + "><span>" + escapeHtml(dateLabel(entry.snapshot_date)) + "</span><small>Reference release</small></button>";
     }).join("");
-    holder.innerHTML = "<section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
+    holder.innerHTML = "<div id=\"archive-trends\"><section class=\"content-panel archive-trend-panel\"><p class=\"archive-loading\">Loading saved forecast trends…</p></section></div><section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
     const overview = element("archive-seat-overview");
     const note = element<HTMLParagraphElement>("archive-release-note");
     const changes = element("archive-race-changes");
@@ -1400,6 +1564,16 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       cache.set(entry.snapshot_id, snapshot);
       return snapshot;
     };
+    const loadTrends = async (): Promise<void> => {
+      const trendHolder = element("archive-trends");
+      if (!trendHolder) return;
+      const archived = await Promise.all(entries.map(async entry => {
+        try { return await loadSnapshot(entry); } catch { return null; }
+      }));
+      const available = archived.filter((snapshot): snapshot is SavedForecastSnapshot | CurrentData => snapshot !== null);
+      trendHolder.innerHTML = archiveTrendMarkup([data, ...available], data);
+    };
+    void loadTrends();
     const showRelease = async (button: HTMLButtonElement): Promise<void> => {
       const sequence = ++selectionSequence;
       const path = button.dataset.snapshotPath || "";

@@ -5,9 +5,11 @@ export interface ForecastRace {
   office: Office;
   state: string;
   district: string | number;
-  dem_margin_pp: number;
+  dem_margin_pp: number | null;
   dem_probability: number;
   rep_probability: number;
+  accuracy_scoring_eligible?: boolean;
+  accuracy_exclusion_reason?: string;
   /** Optional editorial probability band; current snapshot derives display bands from probability. */
   forecast_rating?: string;
   forecast_as_of?: string;
@@ -334,7 +336,7 @@ export interface ArtworkManifest {
 export interface RaceChange {
   current: ForecastRace;
   previous: ForecastRace;
-  margin_delta_pp: number;
+  margin_delta_pp: number | null;
   dem_probability_delta_pp: number;
   rep_probability_delta_pp: number;
 }

@@ -406,7 +406,7 @@ function renderClosestPreview(data: CurrentData): void {
   const holder = element("closest-preview");
   if (!holder) return;
   holder.innerHTML = data.races.slice().sort(byCompetition).slice(0, 5).map((race, index) => {
-    return "<a class=\"mini-race\" href=\"" + raceUrl(race.race_id) + "\"><span class=\"mini-race-number\">0" + (index + 1) + "</span><span><b>" + escapeHtml(raceName(race)) + "</b><small>" + escapeHtml(race.office) + " · " + marginLabel(race.dem_margin_pp) + " margin</small></span><strong>" + pct(race.dem_probability) + " D</strong></a>";
+    return "<a class=\"mini-race\" href=\"" + raceUrl(race.race_id) + "\"><span class=\"mini-race-number\">0" + (index + 1) + "</span><span><b>" + escapeHtml(raceName(race)) + "</b><small>" + escapeHtml(race.office) + " · " + (race.dem_margin_pp === null ? "Not scored" : marginLabel(race.dem_margin_pp) + " margin") + "</small></span><strong>" + pct(race.dem_probability) + " D</strong></a>";
   }).join("");
 }
 
@@ -641,7 +641,7 @@ function renderRaceList(data: CurrentData): void {
     const favoriteClass = dem > rep ? "dem" : dem < rep ? "rep" : "neutral";
     const raceRating = race.forecast_rating || rating(dem, race.office);
     const ratingClass = raceRating.toLowerCase().replace(/[^a-z0-9]+/g, "");
-    const marginDirection = Math.sign(Number(race.dem_margin_pp));
+    const marginDirection = race.dem_margin_pp === null ? 0 : Math.sign(race.dem_margin_pp);
     const chanceDirection = Math.sign(Number(dem) - 0.5);
     const hasDirectionDifference = marginDirection !== 0 && chanceDirection !== 0 && marginDirection !== chanceDirection;
     const directionNote = hasDirectionDifference
@@ -650,7 +650,10 @@ function renderRaceList(data: CurrentData): void {
     const directionMarker = directionNote
       ? "<button class=\"forecast-direction-marker\" type=\"button\" title=\"" + escapeHtml(directionNote) + "\" aria-label=\"" + escapeHtml(directionNote) + "\">*</button>"
       : "";
-    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span>" + directionMarker + "</td><td class=\"prior-cell\">" + priorErrorCell(race, data.prior_error_history) + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + " " + favoriteClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + flipBadge(race, data) + "</td></tr>";
+    const scoringNote = race.accuracy_scoring_eligible === false
+      ? "<small class=\"accuracy-exclusion-label\" title=\"" + escapeHtml(race.accuracy_exclusion_reason || "Excluded from 2026 accuracy scoring.") + "\">Excluded from 2026 scoring</small>"
+      : "";
+    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span>" + directionMarker + "</td><td class=\"prior-cell\">" + priorErrorCell(race, data.prior_error_history) + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + " " + favoriteClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + scoringNote + flipBadge(race, data) + "</td></tr>";
   }).join("");
   const count = element("record-count");
   const title = element("table-title");
@@ -821,6 +824,9 @@ async function renderRaceDetail(data: CurrentData): Promise<void> {
   const favorite = race.dem_probability === race.rep_probability ? "Even" : race.dem_probability > race.rep_probability ? "Democrats favored" : "Republicans favored";
   const classification = race.forecast_rating || rating(race.dem_probability, race.office);
   const detailStatsMarkup = raceDetailStatsMarkup(race, data, retrospectives, classification);
+  const scoringNote = race.accuracy_scoring_eligible === false
+    ? "<p class=\"accuracy-exclusion-label\">" + escapeHtml(race.accuracy_exclusion_reason || "Excluded from 2026 accuracy scoring.") + "</p>"
+    : "";
   const candidateSourceUrl = safeHttpUrl(candidateListing?.source_url);
   const candidateRows = candidateListing?.candidates.length
     ? "<div class=\"candidate-roster\">" + candidateListing.candidates.map(candidate => "<article class=\"candidate-entry " + candidatePartyClass(candidate.party) + "\"><strong class=\"candidate-name\">" + escapeHtml(candidate.name) + "</strong><span class=\"candidate-party\">" + escapeHtml(candidate.party) + "</span></article>").join("") + "</div><p class=\"fine-print\">Candidate names are listed separately from the party-level forecast probabilities above.</p>" + (candidateSourceUrl ? "<p class=\"candidate-source\">Source: <a href=\"" + escapeHtml(candidateSourceUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">2026 election candidate listing</a> · <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-SA 4.0</a></p>" : "")
@@ -834,7 +840,7 @@ async function renderRaceDetail(data: CurrentData): Promise<void> {
   const retrospectiveMarkup = retrospectives
     ? raceRetrospective(race, retrospectives)
     : "<p class=\"muted\">Historical race context could not be loaded. The current forecast remains available.</p>";
-  holder.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(race.office) + " · " + dateLabel(data.snapshot_date) + " SNAPSHOT</p><h1>" + escapeHtml(raceName(race)) + "</h1><p class=\"detail-subtitle\">" + favorite + "</p>" + detailStatsMarkup + "<section class=\"content-panel candidate-panel\"><p class=\"eyebrow\">CANDIDATES</p><h2>Race field</h2>" + candidateRows + candidateRetrievedMarkup + "</section><section class=\"content-panel detail-history\"><p class=\"eyebrow\">PAST ELECTIONS</p><h2>Prior margins and polls</h2>" + retrospectiveMarkup + "</section><section class=\"content-panel detail-source-panel\"><p class=\"eyebrow\">REFERENCE</p><h2>Sources</h2>" + sourceMarkup + "<p>See <a href=\"./methodology.html\">About the data</a> for definitions and date limits.</p></section>";
+  holder.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(race.office) + " · " + dateLabel(data.snapshot_date) + " SNAPSHOT</p><h1>" + escapeHtml(raceName(race)) + "</h1><p class=\"detail-subtitle\">" + favorite + "</p>" + scoringNote + detailStatsMarkup + "<section class=\"content-panel candidate-panel\"><p class=\"eyebrow\">CANDIDATES</p><h2>Race field</h2>" + candidateRows + candidateRetrievedMarkup + "</section><section class=\"content-panel detail-history\"><p class=\"eyebrow\">PAST ELECTIONS</p><h2>Prior margins and polls</h2>" + retrospectiveMarkup + "</section><section class=\"content-panel detail-source-panel\"><p class=\"eyebrow\">REFERENCE</p><h2>Sources</h2>" + sourceMarkup + "<p>See <a href=\"./methodology.html\">About the data</a> for definitions and date limits.</p></section>";
   void renderRaceArtwork();
   const header = document.querySelector("title");
   if (header) header.textContent = raceName(race) + " — Moelections";
@@ -855,19 +861,21 @@ function raceDetailStatsMarkup(race: ForecastRace, data: CurrentData, retrospect
   const currentPolls = retrospectives?.races[race.race_id]?.current_polling;
   const pollMean = currentPolls?.poll_average_margin_pp ?? null;
   const pollSourceDate = currentPolls?.source_as_of ? " · source through " + dateLabel(currentPolls.source_as_of) : "";
-  const forecastPollGap = pollMean === null ? null : race.dem_margin_pp - pollMean;
+  const forecastPollGap = pollMean === null || race.dem_margin_pp === null ? null : race.dem_margin_pp - pollMean;
   const errorClass = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "neutral" : signedError > 0 ? "dem" : "rep";
   const errorText = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "Mean error near zero" : "Mean error " + marginLabel(signedError);
   const gapClass = forecastPollGap === null || Math.abs(forecastPollGap) <= 0.05 ? "neutral" : forecastPollGap > 0 ? "dem" : "rep";
   const pollDetails = currentPolls
     ? pollMean === null
       ? "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · no usable average" + escapeHtml(pollSourceDate) + "</small><small>Forecast-to-poll gap unavailable</small>"
-      : "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast − poll mean: <b class=\"" + gapClass + "\">" + marginLabel(forecastPollGap as number) + "</b></small>"
+      : forecastPollGap === null
+        ? "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast-to-poll gap unavailable because this race has no scored margin.</small>"
+        : "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast − poll mean: <b class=\"" + gapClass + "\">" + marginLabel(forecastPollGap) + "</b></small>"
     : "<small>Poll summary unavailable</small>";
   const priorDetails = Number.isFinite(mae) && cycles > 0
     ? "<strong>" + mae.toFixed(1) + " pp MAE</strong><small class=\"" + errorClass + "\">" + escapeHtml(errorText) + "</small><small>" + cycles + " elections · " + rows.toLocaleString() + (isPeerAverage ? " peer rows" : " race rows") + "</small>"
     : "<strong>No prior average</strong><small>No historical comparison is available</small>";
-  return "<section class=\"detail-metrics\" aria-label=\"Race forecast statistics\"><article class=\"detail-stat\"><span>Forecast margin</span><strong class=\"" + (race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</strong><small>" + escapeHtml(classification) + " rating</small></article><article class=\"detail-stat detail-probability\"><span>Win probability</span><div class=\"detail-probability-values\"><b class=\"dem\">D " + pct(race.dem_probability) + "</b><b class=\"rep\">R " + pct(race.rep_probability) + "</b></div><div class=\"probability-split\" role=\"img\" aria-label=\"Democratic win probability " + pct(race.dem_probability) + ", Republican win probability " + pct(race.rep_probability) + "\"><i class=\"probability-dem\" style=\"width:" + (race.dem_probability * 100).toFixed(1) + "%\"></i><i class=\"probability-rep\" style=\"width:" + (race.rep_probability * 100).toFixed(1) + "%\"></i></div><small>Published race probabilities</small></article><article class=\"detail-stat\"><span>Current poll average</span><strong>" + (pollMean === null ? "No matched mean" : marginLabel(pollMean)) + "</strong>" + pollDetails + "</article><article class=\"detail-stat\"><span>Past forecast error</span>" + priorDetails + "</article></section>";
+  return "<section class=\"detail-metrics\" aria-label=\"Race forecast statistics\"><article class=\"detail-stat\"><span>Forecast margin</span><strong class=\"" + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</strong><small>" + escapeHtml(classification) + " rating</small></article><article class=\"detail-stat detail-probability\"><span>Win probability</span><div class=\"detail-probability-values\"><b class=\"dem\">D " + pct(race.dem_probability) + "</b><b class=\"rep\">R " + pct(race.rep_probability) + "</b></div><div class=\"probability-split\" role=\"img\" aria-label=\"Democratic win probability " + pct(race.dem_probability) + ", Republican win probability " + pct(race.rep_probability) + "\"><i class=\"probability-dem\" style=\"width:" + (race.dem_probability * 100).toFixed(1) + "%\"></i><i class=\"probability-rep\" style=\"width:" + (race.rep_probability * 100).toFixed(1) + "%\"></i></div><small>Published race probabilities</small></article><article class=\"detail-stat\"><span>Current poll average</span><strong>" + (pollMean === null ? "No matched mean" : marginLabel(pollMean)) + "</strong>" + pollDetails + "</article><article class=\"detail-stat\"><span>Past forecast error</span>" + priorDetails + "</article></section>";
 }
 
 function safeHttpUrl(value: string | undefined): string | null {
@@ -1476,9 +1484,9 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
     const previousCategory = previous ? archiveCategoryLabel(previous) : "";
     const currentCategory = currentRace ? archiveCategoryLabel(currentRace) : "";
     const categoryChanged = Boolean(previous && currentRace && previousCategory !== currentCategory);
-    const marginDelta = previous && currentRace ? Number(currentRace.dem_margin_pp) - Number(previous.dem_margin_pp) : null;
+    const marginDelta = previous && currentRace && typeof currentRace.dem_margin_pp === "number" && typeof previous.dem_margin_pp === "number" ? currentRace.dem_margin_pp - previous.dem_margin_pp : null;
     const probabilityDelta = previous && currentRace ? (Number(currentRace.dem_probability) - Number(previous.dem_probability)) * 100 : null;
-    const numericLarge = marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 5 || Math.abs(probabilityDelta) >= 5);
+    const numericLarge = (marginDelta !== null && Math.abs(marginDelta) >= 5) || (probabilityDelta !== null && Math.abs(probabilityDelta) >= 5);
     const status = !previous ? "Added" : !currentRace ? "Removed" : "Matched";
     const categoryLabel = previous && currentRace
       ? previousCategory === currentCategory ? previousCategory + " · same" : previousCategory + " → " + currentCategory
@@ -1488,7 +1496,8 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
         ? `<span class="archive-category-sequence">${archiveCategoryPill(previous)}<span class="archive-category-arrow" aria-hidden="true">→</span>${archiveCategoryPill(currentRace)}</span>`
         : `<span class="archive-category-sequence">${archiveCategoryPill(currentRace)}<span class="archive-category-same">same</span></span>`
       : `<span class="archive-category-sequence"><span class="archive-category-pill neutral">${escapeHtml(status)}</span></span>`;
-    const impactLabel = callFlipped ? "Winner flipped" : numericLarge ? "Large shift" : categoryChanged ? "Category changed" : status !== "Matched" ? status : marginDelta !== null && probabilityDelta !== null && (Math.abs(marginDelta) >= 0.01 || Math.abs(probabilityDelta) >= 0.01) ? "Smaller shift" : "No material change";
+    const hasNumericChange = (marginDelta !== null && Math.abs(marginDelta) >= 0.01) || (probabilityDelta !== null && Math.abs(probabilityDelta) >= 0.01);
+    const impactLabel = callFlipped ? "Winner flipped" : numericLarge ? "Large shift" : categoryChanged ? "Category changed" : status !== "Matched" ? status : hasNumericChange ? "Smaller shift" : "No material change";
     const impactTier = callFlipped ? 4 : numericLarge ? 3 : categoryChanged ? 2 : status !== "Matched" ? 1 : 0;
     const impactScore = impactTier * 100000 + Math.round(Math.max(Math.abs(marginDelta || 0), Math.abs(probabilityDelta || 0)) * 100);
     const deltaClass = (value: number | null) => value === null || !Number.isFinite(value) ? "" : value > 0 ? " archive-delta-positive" : value < 0 ? " archive-delta-negative" : "";
@@ -1516,7 +1525,9 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
   const largeShifts = matched.filter(id => {
     const oldRace = olderById.get(id)!;
     const newRace = newerById.get(id)!;
-    return Math.abs(Number(newRace.dem_margin_pp) - Number(oldRace.dem_margin_pp)) >= 5 || Math.abs((Number(newRace.dem_probability) - Number(oldRace.dem_probability)) * 100) >= 5;
+    const marginLarge = typeof newRace.dem_margin_pp === "number" && typeof oldRace.dem_margin_pp === "number" && Math.abs(newRace.dem_margin_pp - oldRace.dem_margin_pp) >= 5;
+    const probabilityLarge = Math.abs((Number(newRace.dem_probability) - Number(oldRace.dem_probability)) * 100) >= 5;
+    return marginLarge || probabilityLarge;
   }).length;
   const added = raceIds.filter(id => !olderById.has(id) && newerById.has(id)).length;
   const removed = raceIds.filter(id => olderById.has(id) && !newerById.has(id)).length;

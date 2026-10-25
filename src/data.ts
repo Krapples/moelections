@@ -57,7 +57,8 @@ export function pct(value: number): string {
   return (Number(value) * 100).toFixed(1) + "%";
 }
 
-export function marginLabel(value: number): string {
+export function marginLabel(value: number | null | undefined): string {
+  if (value === null || value === undefined) return "Not scored";
   const margin = Number(value);
   if (!Number.isFinite(margin)) return "—";
   if (Math.abs(margin) < 1e-10) return "Even";
@@ -255,10 +256,10 @@ export function compareSnapshots(current: CurrentData, previous: CurrentData): S
       added.push(race);
       continue;
     }
-    const marginDelta = race.dem_margin_pp - oldRace.dem_margin_pp;
+    const marginDelta = typeof race.dem_margin_pp === "number" && typeof oldRace.dem_margin_pp === "number" ? race.dem_margin_pp - oldRace.dem_margin_pp : null;
     const demDelta = (race.dem_probability - oldRace.dem_probability) * 100;
     const repDelta = (race.rep_probability - oldRace.rep_probability) * 100;
-    if (Math.abs(marginDelta) > 1e-12 || Math.abs(demDelta) > 1e-10 || Math.abs(repDelta) > 1e-10) {
+    if ((marginDelta !== null && Math.abs(marginDelta) > 1e-12) || Math.abs(demDelta) > 1e-10 || Math.abs(repDelta) > 1e-10) {
       changed.push({ current:race, previous:oldRace, margin_delta_pp:marginDelta, dem_probability_delta_pp:demDelta, rep_probability_delta_pp:repDelta });
     }
   }

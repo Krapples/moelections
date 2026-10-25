@@ -315,11 +315,29 @@ for (const row of current.races) {
     ? "house-" + String(row.state).toLowerCase() + "-" + String(Number.isFinite(district) ? district : 0).padStart(2, "0")
     : String(row.office).toLowerCase() + "-" + String(row.state).toLowerCase();
   if (row.race_id !== expectedId) throw new Error("Built race ID is not stable for " + row.office + " " + row.state + ".");
-  const margin = Number(row.dem_margin_pp);
+  const marginValid = row.dem_margin_pp === null ? row.accuracy_scoring_eligible === false : typeof row.dem_margin_pp === "number" && Number.isFinite(row.dem_margin_pp);
   const probability = Number(row.dem_probability);
   const repProbability = Number(row.rep_probability);
-  if (!Number.isFinite(margin) || !Number.isFinite(probability) || !Number.isFinite(repProbability) || probability < 0 || probability > 1 || Math.abs(probability + repProbability - 1) > 1e-10) {
+  if (!marginValid || !Number.isFinite(probability) || !Number.isFinite(repProbability) || probability < 0 || probability > 1 || Math.abs(probability + repProbability - 1) > 1e-10) {
     throw new Error("Published race values are invalid or internally inconsistent for " + row.race_id + ".");
+  }
+}
+const onePartyHouseIds = candidateData.races
+  .filter(listing => listing.office === "House" && new Set(listing.candidates.map(candidate => candidate.party.trim())).size === 1)
+  .map(listing => listing.race_id)
+  .sort();
+const excludedRaces = current.races.filter(row => row.accuracy_scoring_eligible === false).sort((a, b) => a.race_id.localeCompare(b.race_id));
+if (JSON.stringify(onePartyHouseIds) !== JSON.stringify(excludedRaces.map(row => row.race_id))) {
+  throw new Error("Every single-party House candidate field must be excluded from 2026 accuracy scoring, and no other race may be excluded.");
+}
+for (const id of onePartyHouseIds) {
+  const race = current.races.find(row => row.race_id === id);
+  const listing = candidatesByRace.get(id);
+  const party = [...new Set(listing.candidates.map(candidate => candidate.party.trim()))][0];
+  const expectedDem = party === "Democratic" ? 1 : 0;
+  const expectedRep = party === "Republican" ? 1 : 0;
+  if (race.dem_margin_pp !== null || race.dem_probability !== expectedDem || race.rep_probability !== expectedRep || !race.accuracy_exclusion_reason) {
+    throw new Error("Single-party race forecast or scoring exclusion is invalid for " + id + ".");
   }
 }
 const publicSiteRoot = "https://krapples.github.io/moelections/";
@@ -349,8 +367,9 @@ for (const race of current.races) {
   assertFile(image);
   const html = fs.readFileSync(path.join(output, page), "utf8");
   if (internalModelIdentifier.test(html)) throw new Error(page + " exposes an internal model identifier.");
-  const margin = Number(race.dem_margin_pp);
-  const marginLabel = Math.abs(margin) < 0.05 ? "EVEN" : (margin > 0 ? "D+" : "R+") + Math.abs(margin).toFixed(1);
+  const margin = race.dem_margin_pp === null ? null : Number(race.dem_margin_pp);
+  const marginLabel = margin === null ? "NOT SCORED" : Math.abs(margin) < 0.05 ? "EVEN" : (margin > 0 ? "D+" : "R+") + Math.abs(margin).toFixed(1);
+  const marginDescription = margin === null ? "not scored for this single-party field" : marginLabel + " pp";
   const dem = (Number(race.dem_probability) * 100).toFixed(1) + "%";
   const rep = (Number(race.rep_probability) * 100).toFixed(1) + "%";
   const snapshotDateLabel = new Intl.DateTimeFormat("en-US", {year:"numeric", month:"long", day:"numeric", timeZone:"UTC"}).format(new Date(snapshotDate + "T00:00:00Z"));
@@ -364,7 +383,7 @@ for (const race of current.races) {
   if (metaContent(html, "twitter:title") !== title || metaContent(html, "description") !== description || metaContent(html, "twitter:description") !== description) {
     throw new Error("Race share titles and descriptions must match across social and browser metadata for " + race.race_id + ".");
   }
-  if (!description.includes("D-R margin " + marginLabel + " pp") || !description.includes("Democratic win chance " + dem) || !description.includes("Republican win chance " + rep) || !description.includes(snapshotDateLabel)) {
+  if (!description.includes("D-R margin " + marginDescription) || !description.includes("Democratic win chance " + dem) || !description.includes("Republican win chance " + rep) || !description.includes(snapshotDateLabel)) {
     throw new Error("Race share description is missing its public margin, win probabilities, or snapshot date for " + race.race_id + ".");
   }
   if (metaContent(html, "og:url", "property") !== canonicalUrl || !html.includes("<link rel=\"canonical\" href=\"" + canonicalUrl + "\">")) {
@@ -376,7 +395,7 @@ for (const race of current.races) {
   if (!imageAlt.includes(marginLabel) || !imageAlt.includes(dem) || !imageAlt.includes(rep) || !imageAlt.includes(snapshotDateLabel) || !metaContent(html, "twitter:image:alt").includes(imageAlt)) {
     throw new Error("Race share image alt text must describe the card's forecast values and date for " + race.race_id + ".");
   }
-  if (metaContent(html, "moelections:race-id") !== race.race_id || metaContent(html, "moelections:dem-margin-pp") !== String(margin) || metaContent(html, "moelections:dem-win-probability") !== dem || metaContent(html, "moelections:rep-win-probability") !== rep || metaContent(html, "moelections:snapshot-date") !== snapshotDate) {
+  if (metaContent(html, "moelections:race-id") !== race.race_id || metaContent(html, "moelections:dem-margin-pp") !== (margin === null ? "not-scored" : String(margin)) || metaContent(html, "moelections:dem-win-probability") !== dem || metaContent(html, "moelections:rep-win-probability") !== rep || metaContent(html, "moelections:snapshot-date") !== snapshotDate) {
     throw new Error("Race share page initial HTML does not preserve its public forecast values for " + race.race_id + ".");
   }
   if (!html.includes("<body data-page=\"race\" data-race-id=\"" + race.race_id + "\">")) throw new Error("Static race route does not select its own race on page load: " + race.race_id + ".");
@@ -417,7 +436,7 @@ const hasDirectionConflict = (margin, probability) => probability === 0.5
   ? margin !== 0
   : probability > 0.5 ? margin <= 0 : margin >= 0;
 const currentHouseDirectionConflicts = current.races
-  .filter(row => row.office === "House" && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability)))
+  .filter(row => row.office === "House" && row.dem_margin_pp !== null && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability)))
   .map(row => String(row.state).toUpperCase() + "-" + String(Number.parseInt(String(row.district || "0"), 10) || 0).padStart(2, "0"))
   .sort();
 const activeSourceAuditPath = path.join(root, "dist/audit/active_forecast_source_audit.json");
@@ -425,7 +444,7 @@ const sourceAudit = fs.existsSync(activeSourceAuditPath) ? JSON.parse(fs.readFil
 const auditedHouseDirectionConflicts = sourceAudit?.rcp_refresh?.current_house_probability_margin_direction_conflicts;
 const selectedHouseDirectionConflicts = sourceAudit?.forecasts?.House?.probability_margin_direction_conflicts;
 const sameIds = value => Array.isArray(value) && JSON.stringify([...value].map(String).sort()) === JSON.stringify(currentHouseDirectionConflicts);
-if (current.races.some(row => row.office !== "House" && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability))) || (sourceAudit && (!sameIds(auditedHouseDirectionConflicts) || !sameIds(selectedHouseDirectionConflicts)))) {
+if (current.races.some(row => row.office !== "House" && row.dem_margin_pp !== null && hasDirectionConflict(Number(row.dem_margin_pp), Number(row.dem_probability))) || (sourceAudit && (!sameIds(auditedHouseDirectionConflicts) || !sameIds(selectedHouseDirectionConflicts)))) {
   throw new Error("Published House margin/probability direction exceptions must match the current forecast and its source audit.");
 }
 if (!sourceAudit && currentHouseDirectionConflicts.length) {

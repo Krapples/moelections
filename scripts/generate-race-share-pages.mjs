@@ -138,6 +138,7 @@ function fullRaceName(race) {
 }
 
 function formatMargin(value) {
+  if (value === null) return "NOT SCORED";
   const margin = Number(value);
   if (!Number.isFinite(margin)) throw new Error("A published race margin is not finite.");
   if (Math.abs(margin) < 0.05) return "EVEN";
@@ -167,10 +168,10 @@ function drawShareCard(race, snapshotDate) {
   const name = fullRaceName(race);
   drawText(canvas, name, 64, 178, fitScale(name, 1068, 7, 4), colors.white);
 
-  const margin = Number(race.dem_margin_pp);
+  const margin = race.dem_margin_pp === null ? null : Number(race.dem_margin_pp);
   const dem = Number(race.dem_probability);
   const rep = Number(race.rep_probability);
-  if (![margin, dem, rep].every(Number.isFinite) || dem < 0 || dem > 1 || rep < 0 || rep > 1 || Math.abs(dem + rep - 1) > 1e-10) {
+  if ((margin === null ? race.accuracy_scoring_eligible !== false : !Number.isFinite(margin)) || ![dem, rep].every(Number.isFinite) || dem < 0 || dem > 1 || rep < 0 || rep > 1 || Math.abs(dem + rep - 1) > 1e-10) {
     throw new Error("Published values are invalid for " + race.race_id + ".");
   }
 
@@ -180,8 +181,8 @@ function drawShareCard(race, snapshotDate) {
   roundRect(canvas, 560, 272, 574, 236, 18, colors.panel);
   drawText(canvas, "D-R MARGIN", 96, 307, 3, colors.muted);
   const marginText = formatMargin(margin);
-  drawText(canvas, marginText, 94, 358, fitScale(marginText, 400, 10, 7), margin > 0 ? colors.blue : margin < 0 ? colors.red : colors.white);
-  drawText(canvas, "PERCENTAGE POINTS", 98, 461, 2, colors.muted);
+  drawText(canvas, marginText, 94, 358, fitScale(marginText, 400, 10, 7), margin === null ? colors.muted : margin > 0 ? colors.blue : margin < 0 ? colors.red : colors.white);
+  drawText(canvas, margin === null ? "SINGLE-PARTY FIELD" : "PERCENTAGE POINTS", 98, 461, 2, colors.muted);
 
   drawText(canvas, "WIN PROBABILITY", 592, 307, 3, colors.muted);
   drawText(canvas, "DEMOCRATS", 592, 350, 3, colors.blue);
@@ -276,8 +277,10 @@ function createRacePage(template, race, snapshotDate, dateText, name) {
   const margin = formatMargin(race.dem_margin_pp);
   const dem = (Number(race.dem_probability) * 100).toFixed(1) + "%";
   const rep = (Number(race.rep_probability) * 100).toFixed(1) + "%";
-  const description = "2026 " + name + " forecast: D-R margin " + margin + " pp; Democratic win chance " + dem + "; Republican win chance " + rep + ". Snapshot: " + dateText + ".";
-  const imageAlt = "2026 " + name + " forecast card showing D-R margin " + margin + " percentage points, Democratic win chance " + dem + ", Republican win chance " + rep + ", and snapshot date " + dateText + ".";
+  const marginDescription = race.dem_margin_pp === null ? "not scored for this single-party field" : margin + " pp";
+  const marginAlt = race.dem_margin_pp === null ? "NOT SCORED (single-party field)" : margin + " percentage points";
+  const description = "2026 " + name + " forecast: D-R margin " + marginDescription + "; Democratic win chance " + dem + "; Republican win chance " + rep + ". Snapshot: " + dateText + ".";
+  const imageAlt = "2026 " + name + " forecast card showing D-R margin " + marginAlt + ", Democratic win chance " + dem + ", Republican win chance " + rep + ", and snapshot date " + dateText + ".";
   let html = template.replace(/<title>[^<]*<\/title>/, "<title>" + escapeHtml(title) + "</title>");
   html = setCanonical(html, canonicalUrl);
   html = setMeta(html, "name", "description", description);
@@ -295,7 +298,7 @@ function createRacePage(template, race, snapshotDate, dateText, name) {
   html = setMeta(html, "name", "twitter:image:alt", imageAlt);
   const raceMetadata = [
     "<meta name=\"moelections:race-id\" content=\"" + escapeHtml(race.race_id) + "\">",
-    "<meta name=\"moelections:dem-margin-pp\" content=\"" + escapeHtml(Number(race.dem_margin_pp).toString()) + "\">",
+    "<meta name=\"moelections:dem-margin-pp\" content=\"" + (race.dem_margin_pp === null ? "not-scored" : escapeHtml(Number(race.dem_margin_pp).toString())) + "\">",
     "<meta name=\"moelections:dem-win-probability\" content=\"" + escapeHtml(dem) + "\">",
     "<meta name=\"moelections:rep-win-probability\" content=\"" + escapeHtml(rep) + "\">",
     "<meta name=\"moelections:snapshot-date\" content=\"" + escapeHtml(snapshotDate) + "\">"

@@ -3,6 +3,22 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-10-24",
+      "snapshot_date": "2026-10-24",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-24.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-24.csv",
+      "status": "superseded",
+      "archive_note": "Previous published forecast retained as a rollback snapshot; source timing and lineage vary by input stream.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-10-23",
       "snapshot_date": "2026-10-23",
       "series_id": "moelections-2026-midterm-races-v1",

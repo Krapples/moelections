@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_date": "2026-10-24",
+  "snapshot_date": "2026-10-25",
   "office": "U.S. House generic ballot",
   "method": "Unweighted arithmetic mean of each listed poll's published Democratic percentage minus its Republican percentage. One poll per polling organization; no sample-size weighting.",
   "population_note": "All included toplines use the pollster's likely-voter screen. Definitions differ by source; Fox's result is among respondents certain to vote. Published percentages are rounded to whole points, so the average is descriptive rather than more precise than the underlying polls.",

@@ -530,38 +530,6 @@
       "height": 600
     },
     {
-      "series_key": "12_Political_Chibi",
-      "series": "Political Chibi",
-      "filename": "01_patriotic_chibi_portrait.png",
-      "image": "artwork/12_Bonus_Art/Political_Chibi/01_patriotic_chibi_portrait.webp",
-      "width": 1254,
-      "height": 1254
-    },
-    {
-      "series_key": "12_Political_Chibi",
-      "series": "Political Chibi",
-      "filename": "02_task_force_podium.png",
-      "image": "artwork/12_Bonus_Art/Political_Chibi/02_task_force_podium.webp",
-      "width": 1254,
-      "height": 1254
-    },
-    {
-      "series_key": "12_Political_Chibi",
-      "series": "Political Chibi",
-      "filename": "03_chibi_diplomat.png",
-      "image": "artwork/12_Bonus_Art/Political_Chibi/03_chibi_diplomat.webp",
-      "width": 1254,
-      "height": 1254
-    },
-    {
-      "series_key": "12_Political_Chibi",
-      "series": "Political Chibi",
-      "filename": "04_capitol_steps.png",
-      "image": "artwork/12_Bonus_Art/Political_Chibi/04_capitol_steps.webp",
-      "width": 1254,
-      "height": 1254
-    },
-    {
       "series_key": "03_Haruhi_Suzumiya",
       "series": "Haruhi Suzumiya",
       "filename": "01_haruhi_early_election_desk.png",
@@ -648,15 +616,6 @@
       "image": "artwork/07_Kinos_Journey/02_Election_Forecast_Extras/06_patriotic_washington_overlook.webp",
       "width": 1600,
       "height": 686
-    },
-    {
-      "series_key": "12_Political_Chibi",
-      "series": "Political Chibi",
-      "filename": "trump-kawaii.png",
-      "image": "artwork/12_Political_Art/trump-kawaii.webp",
-      "width": 1254,
-      "height": 1254,
-      "alt": "Kawaii illustration of Donald Trump in a navy suit and red tie, with the White House, American flags, and hearts in the background."
     },
     {
       "series_key": "07_Kinos_Journey",

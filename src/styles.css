@@ -517,6 +517,10 @@ tbody th[scope="row"] { font-weight: 600; }
 .generic-history-actual-marker { fill: #fffefa; stroke: #5d6a7c; stroke-width: 2; }
 .generic-history-actual-line { stroke-dasharray: 7 5; }
 .archive-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: .9rem 0 1.1rem; }
+.archive-view-tabs { display: flex; gap: .4rem; margin: .8rem 0 .7rem; padding: .28rem; width: fit-content; max-width: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: .72rem; }
+.archive-view-tabs button { padding: .55rem .9rem; color: var(--muted); background: transparent; border: 0; border-radius: .5rem; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; }
+.archive-view-tabs button[aria-selected="true"] { color: var(--ink); background: #eaf2f8; box-shadow: inset 0 0 0 1px #d4e1eb; }
+.archive-view-tabs button:focus-visible, .sim-history-controls select:focus-visible, .sim-history-controls input:focus-visible, .sim-history-race-controls select:focus-visible, .sim-history-race-link:focus-visible { outline: 3px solid #a7c8e8; outline-offset: 2px; }
 .archive-generic-panel, .archive-release-panel { min-width: 0; margin: 0; padding: clamp(1.1rem, 3vw, 1.8rem); }
 .archive-section-heading { align-items: center; margin-bottom: .95rem; }
 .archive-section-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
@@ -619,6 +623,41 @@ tbody th[scope="row"] { font-weight: 600; }
 .archive-seat-footer strong { font: 700 .95rem "DM Mono", monospace; }
 .archive-seat-footer small { color: var(--muted); font-size: .59rem; text-align: right; }
 .archive-loading { color: var(--muted); font-size: .82rem; }
+.sim-history-panel { margin: 0; padding: clamp(.85rem, 2vw, 1.35rem); }
+.sim-history-panel .archive-section-heading { align-items: flex-start; }
+.sim-history-warning { max-width: 920px; margin: .1rem 0 .35rem; padding: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+.sim-history-controls { display: grid; grid-template-columns: minmax(140px, .3fr) minmax(240px, 1fr) minmax(220px, .8fr); align-items: end; gap: .65rem 1rem; margin: .35rem 0 .05rem; }
+.sim-history-controls label, .sim-history-race-controls label { display: grid; gap: .35rem; color: #536176; font-size: .75rem; font-weight: 700; }
+.sim-history-controls select, .sim-history-race-controls select { max-width: 100%; min-height: 2.35rem; padding: .45rem .58rem; color: var(--ink); background: #fffefa; border: 1px solid #d9d5cb; border-radius: .45rem; font: inherit; }
+.sim-history-date-control input { width: 100%; accent-color: #326eb8; }
+.sim-history-date-control output { color: var(--ink); font: 700 .86rem "DM Mono", monospace; font-variant-numeric: tabular-nums; }
+.sim-history-help { margin: .1rem 0 .35rem; color: var(--muted); font-size: .68rem; }
+.sim-history-selection-notice { margin: .15rem 0; color: #8b5d23; font-size: .72rem; }
+.sim-history-chart { min-width: 0; }
+.sim-history-chart-scroll { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: .7rem; background: #fffefa; }
+.sim-history-svg { display: block; width: 100%; min-width: 690px; height: auto; }
+.sim-history-gridline { stroke: #e7e3da; stroke-width: 1; }
+.sim-history-axis-label, .sim-history-axis-caption { fill: #697487; font: 12px "DM Sans", Arial, sans-serif; }
+.sim-history-axis-caption { font-size: 11px; }
+.sim-history-line { fill: none; stroke: #326eb8; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.sim-history-point { fill: #326eb8; stroke: #fffefa; stroke-width: 1.2; cursor: pointer; }
+.sim-history-point:hover, .sim-history-point.is-selected { fill: #c27b35; stroke-width: 2; }
+.sim-history-selected-date { stroke: #c27b35; stroke-width: 1.5; stroke-dasharray: 4 4; pointer-events: none; }
+.sim-history-selected-value { min-height: 1.2rem; margin: .45rem 0; color: var(--ink); font: 700 .84rem "DM Mono", monospace; font-variant-numeric: tabular-nums; }
+.sim-history-race-controls { display: grid; grid-template-columns: minmax(220px, 1fr) auto; align-items: end; gap: .65rem 1rem; padding: .75rem 0 .9rem; border-bottom: 1px solid var(--line); }
+.sim-history-race-controls .fine-print { grid-column: 1 / -1; margin: -.2rem 0 0; }
+.sim-history-race-link[hidden] { display: none; }
+.sim-history-disclosure { margin-top: .8rem; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+.sim-history-disclosure summary { width: fit-content; color: var(--ink); font-weight: 700; cursor: pointer; }
+.sim-history-disclosure p { margin: .6rem 0; }
+.simulated-race-context { margin: 1rem 0; padding: 1rem; border-left: 3px solid #c89432; }
+.simulated-history-page-link { margin: .25rem 0 .7rem; color: var(--muted); font-size: .76rem; }
+.simulated-history-page-link a { text-underline-offset: 2px; }
+.simulated-race-context h2 { margin: 0 0 .7rem; font-size: 1.15rem; }
+.simulated-race-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .8rem 0; }
+.simulated-race-stats > div { display: grid; gap: .25rem; padding: .7rem .8rem; background: #f6f8fa; border: 1px solid #e1e7ed; border-radius: .6rem; }
+.simulated-race-stats span { color: #58667a; font-size: .7rem; }
+.simulated-race-stats strong { color: var(--ink); font: 700 1rem "DM Mono", monospace; }
 .guide-jump ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1.4rem; padding-left: 1.15rem; }
 @media (max-width: 650px) {
   .history-summary-grid { grid-template-columns: 1fr; }
@@ -629,6 +668,10 @@ tbody th[scope="row"] { font-weight: 600; }
   .archive-section-heading, .archive-generic-chart-heading { align-items: flex-start; flex-direction: column; gap: .35rem; }
   .archive-change-heading, .archive-change-controls { align-items: flex-start; flex-direction: column; gap: .5rem; }
   .archive-generic-stat-grid, .archive-seat-overview { grid-template-columns: 1fr; }
+  .sim-history-controls, .sim-history-race-controls, .simulated-race-stats { grid-template-columns: 1fr; }
+  .sim-history-race-controls .fine-print { grid-column: auto; }
+  .archive-view-tabs { width: 100%; }
+  .archive-view-tabs button { flex: 1; }
   .archive-seat-card { padding: 1rem; }
   .archive-release-picker { grid-template-columns: 1fr; }
   .archive-current-tag { white-space: normal; }
@@ -688,8 +731,10 @@ tbody th[scope="row"] { font-weight: 600; }
 :root[data-theme="dark"] .chart-empty,
 :root[data-theme="dark"] .archive-generic-stat-grid article,
 :root[data-theme="dark"] .archive-current-tag,
+:root[data-theme="dark"] .archive-view-tabs,
 :root[data-theme="dark"] .archive-release-choice,
 :root[data-theme="dark"] .archive-seat-card,
+:root[data-theme="dark"] .simulated-race-stats > div,
 :root[data-theme="dark"] .series-chip,
 :root[data-theme="dark"] .dialog-close {
   color: var(--ink);
@@ -698,7 +743,18 @@ tbody th[scope="row"] { font-weight: 600; }
 }
 :root[data-theme="dark"] .state-tile.selected,
 :root[data-theme="dark"] .archive-release-choice:hover,
-:root[data-theme="dark"] .archive-release-choice.is-selected { background-color: #263650; border-color: #7189a9; }
+:root[data-theme="dark"] .archive-release-choice.is-selected,
+:root[data-theme="dark"] .archive-view-tabs button[aria-selected="true"] { color: var(--ink); background-color: #263650; border-color: #7189a9; }
+:root[data-theme="dark"] .sim-history-chart-scroll { background: #1c293d; border-color: #344157; }
+:root[data-theme="dark"] .sim-history-gridline { stroke: #344157; }
+:root[data-theme="dark"] .sim-history-axis-label, :root[data-theme="dark"] .sim-history-axis-caption { fill: #bdc7d8; }
+:root[data-theme="dark"] .sim-history-point { stroke: #1c293d; }
+:root[data-theme="dark"] .sim-history-warning { color: #bdc7d8; }
+:root[data-theme="dark"] .sim-history-selection-notice { color: #f0c98b; }
+:root[data-theme="dark"] .sim-history-controls label, :root[data-theme="dark"] .sim-history-race-controls label,
+:root[data-theme="dark"] .sim-history-disclosure summary { color: #bdc7d8; }
+:root[data-theme="dark"] .sim-history-controls select, :root[data-theme="dark"] .sim-history-race-controls select { color: var(--ink); background: #1c293d; border-color: #344157; }
+:root[data-theme="dark"] .simulated-race-context { border-left-color: #c89432; }
 :root[data-theme="dark"] .site-header { background: var(--navy); }
 :root[data-theme="dark"] .main-nav a:hover,
 :root[data-theme="dark"] .main-nav a.active { background: #2a3a54; }

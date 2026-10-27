@@ -1,6 +1,7 @@
 import "./styles.css";
+import { renderSimulatedHistory } from "./simulatedHistory";
 import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, RatingAccuracyMetric, SavedForecastSnapshot, SnapshotIndex } from "./types";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, RatingAccuracyMetric, SavedForecastSnapshot, SimulatedHistory, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -840,12 +841,33 @@ async function renderRaceDetail(data: CurrentData): Promise<void> {
   const retrospectiveMarkup = retrospectives
     ? raceRetrospective(race, retrospectives)
     : "<p class=\"muted\">Historical race context could not be loaded. The current forecast remains available.</p>";
-  holder.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(race.office) + " · " + dateLabel(data.snapshot_date) + " SNAPSHOT</p><h1>" + escapeHtml(raceName(race)) + "</h1><p class=\"detail-subtitle\">" + favorite + "</p>" + scoringNote + detailStatsMarkup + "<section class=\"content-panel candidate-panel\"><p class=\"eyebrow\">CANDIDATES</p><h2>Race field</h2>" + candidateRows + candidateRetrievedMarkup + "</section><section class=\"content-panel detail-history\"><p class=\"eyebrow\">PAST ELECTIONS</p><h2>Prior margins and polls</h2>" + retrospectiveMarkup + "</section><section class=\"content-panel detail-source-panel\"><p class=\"eyebrow\">REFERENCE</p><h2>Sources</h2>" + sourceMarkup + "<p>See <a href=\"./methodology.html\">About the data</a> for definitions and date limits.</p></section>";
+  const simulationParams = new URLSearchParams(window.location.search);
+  const simulationDate = simulationParams.get("simulation_date") || "";
+  const simulationOffice = simulationParams.get("simulation_office") || "";
+  const simulatedRaceMarkup = await simulatedRaceDetailMarkup(race, simulationDate, simulationOffice);
+  const simulatedHistoryUrl = "./daily-changes.html?view=simulated&office=" + encodeURIComponent(race.office) + "&race=" + encodeURIComponent(race.race_id);
+  const simulatedHistoryLink = "<p class=\"simulated-history-page-link\"><a href=\"" + escapeHtml(simulatedHistoryUrl) + "\">View simulated history for this race</a></p>";
+  holder.innerHTML = "<p class=\"eyebrow\">" + escapeHtml(race.office) + " · " + dateLabel(data.snapshot_date) + " SNAPSHOT</p><h1>" + escapeHtml(raceName(race)) + "</h1><p class=\"detail-subtitle\">" + favorite + "</p>" + simulatedHistoryLink + simulatedRaceMarkup + scoringNote + detailStatsMarkup + "<section class=\"content-panel candidate-panel\"><p class=\"eyebrow\">CANDIDATES</p><h2>Race field</h2>" + candidateRows + candidateRetrievedMarkup + "</section><section class=\"content-panel detail-history\"><p class=\"eyebrow\">PAST ELECTIONS</p><h2>Prior margins and polls</h2>" + retrospectiveMarkup + "</section><section class=\"content-panel detail-source-panel\"><p class=\"eyebrow\">REFERENCE</p><h2>Sources</h2>" + sourceMarkup + "<p>See <a href=\"./methodology.html\">About the data</a> for definitions and date limits.</p></section>";
   void renderRaceArtwork();
   const header = document.querySelector("title");
   if (header) header.textContent = raceName(race) + " — Moelections";
   const footerDate = element("race-footer-date");
   if (footerDate) footerDate.textContent = dateLabel(data.snapshot_date);
+}
+
+async function simulatedRaceDetailMarkup(race: ForecastRace, date: string, office: string): Promise<string> {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !OFFICE_ORDER.includes(office as Office) || office !== race.office) return "";
+  try {
+    const response = await fetch(assetUrl("data/simulated-history.json"), { cache: "no-store" });
+    if (!response.ok) throw new Error("The simulated race values could not be loaded.");
+    const history = await response.json() as SimulatedHistory;
+    const simulated = history.races[date]?.[race.office]?.find(row => row.id === race.race_id);
+    if (!simulated) throw new Error("No simulated value is available for this race on the selected date.");
+    const archiveUrl = "./daily-changes.html?view=simulated&date=" + encodeURIComponent(date) + "&office=" + encodeURIComponent(race.office) + "&race=" + encodeURIComponent(race.race_id);
+    return "<section class=\"content-panel simulated-race-context\"><p class=\"eyebrow\">COUNTERFACTUAL SIMULATION · " + escapeHtml(dateLabel(date)) + "</p><h2>Simulated value for this date</h2><div class=\"simulated-race-stats\"><div><span>Democratic margin</span><strong>" + escapeHtml(marginLabel(simulated.margin)) + " pp</strong></div><div><span>Democratic win chance</span><strong>" + pct(simulated.chance) + "</strong></div></div><p>This reconstructed value is separate from the published forecast shown below.</p><a href=\"" + escapeHtml(archiveUrl) + "\">Back to this date in Simulated history</a></section>";
+  } catch (error) {
+    return "<section class=\"content-panel simulated-race-context\"><p class=\"eyebrow\">COUNTERFACTUAL SIMULATION · " + escapeHtml(dateLabel(date)) + "</p><p>" + escapeHtml(error instanceof Error ? error.message : "Simulated race values are unavailable.") + "</p><a href=\"./daily-changes.html?view=simulated\">Return to Simulated history</a></section>";
+  }
 }
 
 function raceDetailStatsMarkup(race: ForecastRace, data: CurrentData, retrospectives: RaceRetrospectives | null, classification: string): string {
@@ -1544,8 +1566,40 @@ function renderArchiveRaceChanges(newer: SavedForecastSnapshot | CurrentData, ol
 }
 
 async function renderSnapshotArchive(data: CurrentData): Promise<void> {
-  const holder = element("changes-content");
-  if (!holder) return;
+  const root = element("changes-content");
+  if (!root) return;
+  root.innerHTML = "<div class=\"archive-view-tabs\" role=\"tablist\" aria-label=\"Forecast archive views\"><button id=\"archive-published-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" aria-controls=\"archive-published-view\">Published forecasts</button><button id=\"archive-simulated-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" aria-controls=\"archive-simulated-view\" tabindex=\"-1\">Simulated history</button></div><div id=\"archive-published-view\" role=\"tabpanel\" aria-labelledby=\"archive-published-tab\"><section class=\"content-panel\"><p>Loading the published forecast archive…</p></section></div><div id=\"archive-simulated-view\" role=\"tabpanel\" aria-labelledby=\"archive-simulated-tab\" hidden><div id=\"simulated-history-content\"></div></div>";
+  const holder = element("archive-published-view");
+  const simulatedView = element("archive-simulated-view");
+  if (!holder || !simulatedView) return;
+  const publishedTab = element<HTMLButtonElement>("archive-published-tab");
+  const simulatedTab = element<HTMLButtonElement>("archive-simulated-tab");
+  const pageContext = element<HTMLElement>("archive-context");
+  let simulatedReady = false;
+  const selectView = (view: "published" | "simulated"): void => {
+    const isSimulated = view === "simulated";
+    holder.hidden = isSimulated;
+    simulatedView.hidden = !isSimulated;
+    if (publishedTab && simulatedTab) {
+      publishedTab.setAttribute("aria-selected", String(!isSimulated));
+      simulatedTab.setAttribute("aria-selected", String(isSimulated));
+      publishedTab.tabIndex = isSimulated ? -1 : 0;
+      simulatedTab.tabIndex = isSimulated ? 0 : -1;
+    }
+    if (pageContext) pageContext.hidden = isSimulated;
+    if (isSimulated && !simulatedReady) {
+      simulatedReady = true;
+      const target = element("simulated-history-content");
+      if (target) void renderSimulatedHistory(target, data);
+    }
+  };
+  root.addEventListener("click", event => {
+    const tab = (event.target as HTMLElement).closest<HTMLButtonElement>("button[role='tab']");
+    if (tab === publishedTab) selectView("published");
+    else if (tab === simulatedTab) selectView("simulated");
+  });
+  const initialView = new URLSearchParams(window.location.search).get("view") === "simulated" ? "simulated" : "published";
+  selectView(initialView);
   try {
     const response = await fetch(assetUrl("data/snapshots/index.json"), {cache:"no-store"});
     if (!response.ok) throw new Error("The saved forecast index could not be loaded.");

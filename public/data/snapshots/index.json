@@ -3,6 +3,22 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-10-25",
+      "snapshot_date": "2026-10-25",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-25.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-25.csv",
+      "status": "superseded",
+      "archive_note": "Oct25 published forecast preserved before Oct27 prediction-only refresh.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-10-24",
       "snapshot_date": "2026-10-24",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -79,5 +95,5 @@
       }
     }
   ],
-  "schema_note": "Saved race predictions can be inspected by date. Source lineage is not verified as comparable across all releases, so the archive does not calculate cross-release changes or a day-by-day replay."
+  "schema_note": "Saved race predictions can be inspected by archived snapshot date. Source lineage is not verified as comparable across all releases, so the archive does not calculate cross-release changes. The separate simulated-history.json view presents available fixed-model daily replay points; dates without an audited forecast remain explicit null gaps and are not interpolated."
 }

@@ -320,6 +320,28 @@ export interface SavedForecastSnapshot {
   races: ForecastRace[];
 }
 
+export interface SimulatedHistoryPoint {
+  date: string;
+  h: number | null;
+  s: number | null;
+  g: number | null;
+}
+
+export interface SimulatedHistoryRace {
+  id: string;
+  state: string;
+  margin: number;
+  chance: number;
+}
+
+export interface SimulatedHistory {
+  schema_version: number;
+  start_date: string;
+  cutoff_date_utc: string;
+  daily: SimulatedHistoryPoint[];
+  races: Record<string, Partial<Record<Office, SimulatedHistoryRace[]>>>;
+}
+
 export interface ArtworkManifest {
   schema_version: number;
   images: Array<{

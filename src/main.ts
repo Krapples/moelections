@@ -1576,6 +1576,9 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
   const simulatedTab = element<HTMLButtonElement>("archive-simulated-tab");
   const pageContext = element<HTMLElement>("archive-context");
   let simulatedReady = false;
+  let publishedRequested = false;
+  let publishedArchivePromise: Promise<void> | null = null;
+  let startPublishedArchive: () => Promise<void> = async () => {};
   const selectView = (view: "published" | "simulated"): void => {
     const isSimulated = view === "simulated";
     holder.hidden = isSimulated;
@@ -1591,6 +1594,10 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       simulatedReady = true;
       const target = element("simulated-history-content");
       if (target) void renderSimulatedHistory(target, data);
+    }
+    if (!isSimulated) {
+      publishedRequested = true;
+      void startPublishedArchive();
     }
   };
   root.addEventListener("click", event => {
@@ -1638,7 +1645,6 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const available = archived.filter((snapshot): snapshot is SavedForecastSnapshot | CurrentData => snapshot !== null);
       trendHolder.innerHTML = archiveTrendMarkup([data, ...available], data);
     };
-    void loadTrends();
     const showRelease = async (button: HTMLButtonElement): Promise<void> => {
       const sequence = ++selectionSequence;
       const path = button.dataset.snapshotPath || "";
@@ -1696,7 +1702,15 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       if ((target.closest("#archive-change-filter") || target.closest("#archive-office-filter")) && changes) filterArchiveRaceRows(changes);
     });
     const currentButton = choices.find(choice => choice.dataset.snapshotPath === "current");
-    if (currentButton) await showRelease(currentButton);
+    startPublishedArchive = (): Promise<void> => {
+      if (publishedArchivePromise) return publishedArchivePromise;
+      publishedArchivePromise = (async (): Promise<void> => {
+        void loadTrends();
+        if (currentButton) await showRelease(currentButton);
+      })();
+      return publishedArchivePromise;
+    };
+    if (publishedRequested) await startPublishedArchive();
   } catch (error) {
     holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved forecast index could not be read.") + "</p></section>";
   }

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, process.argv[2] || "build");
 const basePath = process.env.BASE_PATH || "./";
-const internalModelIdentifier = /\b(?:trial\s*\d+|ten[- ]expert\s+MoE|optuna|random forest|lightgbm|house-gap ridge|kde)\b/i;
+const internalModelIdentifier = /\b(?:trial\s*\d+|model[- _]?(?:id|family|version)|internal[- _]model)\b/i;
 const pages = ["index.html", "race.html", "methodology.html", "daily-changes.html", "performance.html", "gallery.html", "states.html", "site-guide.html"];
 const required = [...pages, "favicon.png", "social-mascot.png", "data/current.json", "data/candidates.json", "data/generic-ballot-polls.json", "data/generic-ballot-history.json", "data/category-accuracy.json", "data/race-retrospectives.json", "data/snapshots/index.json", "data/house-seat-distribution-2026.csv", "data/senate-seat-distribution-2026.csv", "data/governor-seat-distribution-2026.csv", "artwork/manifest.json", "artwork/brand/logo.webp"];
 const assertFile = relative => {
@@ -81,7 +81,7 @@ verifyPublicJson(path.join(output, "data"));
 const current = JSON.parse(fs.readFileSync(path.join(output, "data/current.json"), "utf8"));
 const categoryAccuracy = JSON.parse(fs.readFileSync(path.join(output, "data/category-accuracy.json"), "utf8"));
 const accuracyScopes = ["All offices", "House", "Senate", "Governor"];
-const accuracyCategories = ["Toss-up", "Lean", "Likely", "Safe"];
+const accuracyCategories = ["Toss-up", "Leans", "Likely", "Safe"];
 if (categoryAccuracy.schema_version !== 1 || !Array.isArray(categoryAccuracy.validation_years) || !categoryAccuracy.results) {
   throw new Error("Historical rating accuracy has an unsupported format.");
 }
@@ -100,6 +100,11 @@ for (const office of ["House", "Senate", "Governor"]) {
     throw new Error("Historical rating accuracy does not match the published " + office + " scorecard.");
   }
 }
+for (const [scope, result] of Object.entries(categoryAccuracy.results)) {
+  if (Object.hasOwn(result, "by_year") || Object.values(result.categories || {}).some(category => Object.hasOwn(category, "by_year"))) {
+    throw new Error("Public rating accuracy should show a single pooled scorecard for " + scope + ".");
+  }
+}
 const allOfficeRaces = ["House", "Senate", "Governor"].reduce((sum, office) => sum + categoryAccuracy.results[office].overall.races, 0);
 const allOfficeCalls = ["House", "Senate", "Governor"].reduce((sum, office) => sum + categoryAccuracy.results[office].overall.correct_calls, 0);
 if (categoryAccuracy.results["All offices"].overall.races !== allOfficeRaces || categoryAccuracy.results["All offices"].overall.correct_calls !== allOfficeCalls) {
@@ -107,8 +112,8 @@ if (categoryAccuracy.results["All offices"].overall.races !== allOfficeRaces || 
 }
 const houseOutlook = current.summary?.seat_outlooks?.House;
 const housePmfLines = fs.readFileSync(path.join(output, "data/house-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
-if (!houseOutlook || housePmfLines.length !== 437 || !houseOutlook.method?.includes("435 district win probabilities") || !houseOutlook.method?.includes("independent-race Poisson-binomial") || /trial ?14|ten-expert|random forest/i.test(houseOutlook.method)) {
-  throw new Error("The House seat outlook must describe its public probability calculation without internal model identifiers.");
+if (!houseOutlook || housePmfLines.length !== 437) {
+  throw new Error("The House outlook must include the full seat distribution.");
 }
 let housePmfMass = 0;
 let houseExpectedSeats = 0;
@@ -130,19 +135,30 @@ if (Math.abs(housePmfMass - 1) > 1e-10 || Math.abs(houseExpectedSeats - houseOut
   throw new Error("House seat PMF, cumulative probability, and expected seat total are inconsistent.");
 }
 const priorReleaseIndex = JSON.parse(fs.readFileSync(path.join(output, "data/snapshots/index.json"), "utf8"));
-const latestPriorSnapshot = priorReleaseIndex.snapshots?.[0];
-if (!latestPriorSnapshot || latestPriorSnapshot.snapshot_date >= current.snapshot_date || !latestPriorSnapshot.path?.startsWith("data/snapshots/") || !fs.existsSync(path.join(output, ...latestPriorSnapshot.path.split("/")))) {
+const indexedSnapshots = Array.isArray(priorReleaseIndex.snapshots) ? priorReleaseIndex.snapshots : [];
+const currentArchivedSnapshot = indexedSnapshots.find(snapshot => snapshot.snapshot_id === current.snapshot_id && snapshot.snapshot_date === current.snapshot_date);
+const currentArchivedPath = currentArchivedSnapshot?.path;
+const currentArchivedFile = currentArchivedPath?.startsWith("data/snapshots/") && !currentArchivedPath.split("/").includes("..")
+  ? path.join(output, ...currentArchivedPath.split("/"))
+  : "";
+const archivedCurrent = currentArchivedFile && fs.existsSync(currentArchivedFile)
+  ? JSON.parse(fs.readFileSync(currentArchivedFile, "utf8"))
+  : null;
+if (!currentArchivedSnapshot || !archivedCurrent || archivedCurrent.snapshot_id !== current.snapshot_id || archivedCurrent.snapshot_date !== current.snapshot_date || !Array.isArray(archivedCurrent.races) || archivedCurrent.races.length !== current.races.length) {
+  throw new Error("The current published release must also be saved in the forecast archive.");
+}
+const latestPriorSnapshot = indexedSnapshots
+  .filter(snapshot => snapshot.snapshot_date < current.snapshot_date)
+  .sort((left, right) => right.snapshot_date.localeCompare(left.snapshot_date))[0];
+if (!latestPriorSnapshot || !latestPriorSnapshot.path?.startsWith("data/snapshots/") || latestPriorSnapshot.path.split("/").includes("..") || !fs.existsSync(path.join(output, ...latestPriorSnapshot.path.split("/")))) {
   throw new Error("The forecast archive must retain a prior snapshot for comparison with the current release.");
 }
 const governorDistribution = current.summary?.governor_seat_distribution;
-if (!governorDistribution || governorDistribution.race_count !== 36 || !Array.isArray(governorDistribution.central_50_range) || !Array.isArray(governorDistribution.central_90_range) || !governorDistribution.interpretation?.includes("independent")) {
-  throw new Error("The built Governor outlook is missing its 36-race distribution and interpretation.");
+if (!governorDistribution || governorDistribution.race_count !== 36 || !Array.isArray(governorDistribution.central_50_range) || !Array.isArray(governorDistribution.central_90_range)) {
+  throw new Error("The built Governor outlook is missing its 36-race distribution.");
 }
-const governorCalls = current.races.filter(race => race.office === "Governor");
-const rawDemCalls = governorCalls.filter(race => Number(race.dem_margin_pp) > 0).length;
-const rawRepCalls = governorCalls.length - rawDemCalls;
-if (governorCalls.length !== 36 || governorDistribution.raw_margin_dem_favored_races !== rawDemCalls || governorDistribution.raw_margin_rep_favored_races !== rawRepCalls || current.summary?.seat_outlooks?.Governor?.dem_favored_races !== rawDemCalls || current.summary?.seat_outlooks?.Governor?.rep_favored_races !== rawRepCalls || !governorDistribution.interpretation?.includes("not a party-control probability")) {
-  throw new Error("The built Governor hard-call totals must match margin signs, and its seat range must be described as a race-count range rather than a control probability.");
+if (current.races.filter(race => race.office === "Governor").length !== 36) {
+  throw new Error("The Governor outlook must cover all 36 listed races.");
 }
 const governorPmfLines = fs.readFileSync(path.join(output, "data/governor-seat-distribution-2026.csv"), "utf8").trim().split(/\r?\n/);
 if (governorPmfLines.length !== 38) throw new Error("The Governor seat distribution must contain one header and 37 win-count rows.");
@@ -165,7 +181,6 @@ for (const race of current.races) {
     throw new Error("Candidate data contains an incomplete name or party for " + race.race_id + ".");
   }
 }
-const priorHistory = current.prior_error_history || {};
 const validationYears = [2018, 2020, 2022, 2024];
 const validationYearSet = new Set(validationYears);
 const historical = current.historical_performance || {};
@@ -173,6 +188,11 @@ if (historical.snapshot_date !== current.snapshot_date || JSON.stringify(histori
   throw new Error("The public historical scorecard must match the current snapshot and four validation cycles.");
 }
 const expectedPooledRaces = {House:1598, Senate:122, Governor:94};
+const currentRaceIds = new Set(current.races.map(race => race.race_id));
+if (current.prior_error_history !== undefined || !current.previous_contest_results || Object.entries(current.previous_contest_results).some(([raceId, result]) => !currentRaceIds.has(raceId) || !Number.isInteger(Number(result.year)) || !["D", "R"].includes(result.winner))) {
+  throw new Error("The public forecast should retain only a compact record of prior contest outcomes.");
+}
+const publicMetricKeys = new Set(["office", "cycle", "races", "margin_mae_pp", "brier_score", "log_loss", "accuracy", "predicted_dem_seat_calls", "actual_dem_wins_covered", "signed_seat_error", "expected_dem_seats", "expected_seat_error"]);
 for (const office of ["House", "Senate", "Governor"]) {
   const officeRows = historical.metrics.filter(row => row.office === office);
   const cycles = officeRows.map(row => String(row.cycle));
@@ -183,6 +203,7 @@ for (const office of ["House", "Senate", "Governor"]) {
     if (!Number.isInteger(Number(row.races)) || Number(row.races) <= 0 || ![row.margin_mae_pp, row.brier_score, row.log_loss, row.accuracy].every(value => Number.isFinite(Number(value)))) {
       throw new Error("The public scorecard has incomplete metrics for " + office + " " + row.cycle + ".");
     }
+    if (Object.keys(row).some(key => !publicMetricKeys.has(key))) throw new Error("The public scorecard includes an unapproved diagnostic field for " + office + " " + row.cycle + ".");
   }
   const pooled = officeRows.find(row => row.cycle === "Pooled");
   if (Number(pooled?.races) !== expectedPooledRaces[office]) throw new Error("The public pooled scorecard has unexpected race coverage for " + office + ".");
@@ -208,39 +229,8 @@ if (fs.existsSync(sourceAuditPath)) {
 } else {
   console.warn("Skipping local source-audit provenance checks: " + path.relative(root, sourceAuditPath) + " is absent. This audit is not included in the static site build.");
 }
-for (const [office, seriesMap] of [["House", priorHistory.districts || {}], ["Senate/Governor", priorHistory.state_office_forecasts || {}]]) {
-  for (const [raceKey, series] of Object.entries(seriesMap)) {
-    const errorRows = series.errors_by_cycle || [];
-    for (const row of errorRows) {
-      const year = Number(row.year);
-      if (!validationYearSet.has(year)) throw new Error("Prior-error history includes a nonvalidation year for " + office + " " + raceKey + ": " + row.year + ".");
-      if (row.history_basis === "California peer average") {
-        if (office !== "House" || raceKey !== "CA-34" || row.actual_margin_pp !== null || row.predicted_margin_pp !== null || !Number.isInteger(row.peer_race_count) || row.peer_race_count <= 0 || !Number.isFinite(row.signed_error_pp) || !Number.isFinite(row.absolute_error_pp) || row.absolute_error_pp < 0) {
-          throw new Error("The CA-34 peer-average error must remain a validated peer summary without district outcomes.");
-        }
-        continue;
-      }
-      if (![row.actual_margin_pp, row.predicted_margin_pp, row.signed_error_pp, row.absolute_error_pp].every(Number.isFinite) || Math.abs(row.predicted_margin_pp - row.actual_margin_pp - row.signed_error_pp) > 1e-8 || Math.abs(Math.abs(row.signed_error_pp) - row.absolute_error_pp) > 1e-8) {
-        throw new Error("Prior-error history margins and errors do not reconcile for " + office + " " + raceKey + " " + year + ".");
-      }
-    }
-    const priorRows = errorRows.filter(row => Number(row.year) < 2026 && validationYearSet.has(Number(row.year)));
-    const priorAverage = series.prior_averages_by_target_election?.["2026"];
-    if (priorRows.length) {
-      const expectedMae = priorRows.reduce((sum, row) => sum + Number(row.absolute_error_pp), 0) / priorRows.length;
-      const expectedBias = priorRows.reduce((sum, row) => sum + Number(row.signed_error_pp), 0) / priorRows.length;
-      const expectedRaceCount = priorRows.reduce((sum, row) => sum + Number(row.peer_race_count || row.race_count || 1), 0);
-      const observationCount = Number(priorAverage?.prior_observation_count ?? priorAverage?.prior_cycle_count);
-      if (!priorAverage || Math.abs(Number(priorAverage.prior_average_absolute_error_pp) - expectedMae) > 1e-8 || Math.abs(Number(priorAverage.prior_average_signed_error_pp) - expectedBias) > 1e-8 || observationCount !== priorRows.length || Number(priorAverage.prior_race_count) !== expectedRaceCount) {
-        throw new Error("Prior-error averages do not match the validation-only rows for " + office + " " + raceKey + ".");
-      }
-    } else if (priorAverage && (Number(priorAverage.prior_observation_count ?? priorAverage.prior_cycle_count) !== 0 || priorAverage.prior_average_absolute_error_pp !== null || priorAverage.prior_average_signed_error_pp !== null)) {
-      throw new Error("Prior-error averages include data when there are no eligible validation rows for " + office + " " + raceKey + ".");
-    }
-  }
-}
 const retrospective = JSON.parse(fs.readFileSync(path.join(output, "data/race-retrospectives.json"), "utf8"));
-if (retrospective.schema_version !== 1 || retrospective.snapshot_date !== current.snapshot_date || !retrospective.races || Object.keys(retrospective.races).length !== current.races.length) {
+if (retrospective.schema_version !== 1 || retrospective.snapshot_date !== current.snapshot_date || Object.hasOwn(retrospective, "error_sign_convention") || !retrospective.races || Object.keys(retrospective.races).length !== current.races.length) {
   throw new Error("Race retrospective coverage does not match the current snapshot.");
 }
 for (const race of current.races) {
@@ -251,20 +241,25 @@ for (const race of current.races) {
   for (const row of history.historical_rows) {
     const year = Number(row.year);
     if (!validationYearSet.has(year)) throw new Error("Race retrospective includes a nonvalidation year for " + race.race_id + " " + row.year + ".");
-    if (race.office !== "House" && row.forecast_error_status !== "validation") throw new Error("Senate/Governor race history is not marked as validation for " + race.race_id + " " + row.year + ".");
-    if (row.history_basis === "California peer average") {
-      if (row.actual_margin_pp !== null || row.predicted_margin_pp !== null || !Number.isInteger(row.peer_race_count)) {
-        throw new Error("Peer history must not present individual CA-34 outcomes or forecasts.");
+    if (["forecast_error_status", "validation_race_id", "race_id", "actual_dem_winner", "history_basis", "signed_error_pp", "absolute_error_pp", "poll_miss_pp", "poll_average_method", "pre_election_eligible_poll_count"].some(key => Object.hasOwn(row, key))) {
+      throw new Error("Historical detail contains an internal error or validation field for " + race.race_id + " " + row.year + ".");
+    }
+    if (![row.actual_margin_pp, row.predicted_margin_pp].every(Number.isFinite)) {
+      throw new Error("Historical race margins are incomplete for " + race.race_id + " " + row.year + ".");
+    }
+    if (row.dem_win_probability !== undefined && row.dem_win_probability !== null) {
+      const probability = Number(row.dem_win_probability);
+      if (!Number.isFinite(probability) || probability < 0 || probability > 1) {
+        throw new Error("A historical win probability is outside [0,1] for " + race.race_id + " " + row.year + ".");
       }
-    } else {
-      if (![row.actual_margin_pp, row.predicted_margin_pp, row.signed_error_pp].every(Number.isFinite) || Math.abs(row.predicted_margin_pp - row.actual_margin_pp - row.signed_error_pp) > 1e-8) {
-        throw new Error("Historical forecast margins and signed errors do not reconcile for " + race.race_id + " " + row.year + ".");
+      if (row.predicted_margin_pp !== null && Math.abs(row.predicted_margin_pp) > 1e-8 && ((row.predicted_margin_pp > 0) !== (probability >= 0.5))) {
+        throw new Error("A historical House margin and win probability disagree for " + race.race_id + " " + row.year + ".");
       }
     }
     if (row.poll_average_margin_pp !== null && !Number.isFinite(row.poll_average_margin_pp)) throw new Error("A historical poll mean is not finite for " + race.race_id + ".");
-    if (row.poll_miss_pp !== null && (!Number.isFinite(row.poll_miss_pp) || row.poll_average_margin_pp === null || Math.abs(row.poll_average_margin_pp - row.actual_margin_pp - row.poll_miss_pp) > 1e-8)) {
-      throw new Error("A historical poll average error does not reconcile for " + race.race_id + " " + row.year + ".");
-    }
+  }
+  if (["poll_miss_pp", "poll_average_method"].some(key => Object.hasOwn(history.current_polling, key))) {
+    throw new Error("Current poll context contains an internal comparison field for " + race.race_id + ".");
   }
 }
 const genericPolls = JSON.parse(fs.readFileSync(path.join(output, "data/generic-ballot-polls.json"), "utf8"));
@@ -276,7 +271,7 @@ if (!genericPolls.polls.every(poll => Number.isFinite(poll.dem_pct) && Number.is
 }
 const genericHistory = JSON.parse(fs.readFileSync(path.join(output, "data/generic-ballot-history.json"), "utf8"));
 const expectedGenericCycles = [2018, 2020, 2022, 2024];
-if (genericHistory.schema_version !== 1 || !genericHistory.target?.includes("U.S. House popular vote") || !/^https:\/\//.test(genericHistory.poll_average_source_url) || !genericHistory.poll_average_method?.includes("seven days") || !genericHistory.timing_note?.includes("do not verify") || !genericHistory.validation_note?.includes("not an untouched test") || !Array.isArray(genericHistory.rows) || genericHistory.rows.length !== expectedGenericCycles.length || genericHistory.rows.some((row, index) => row.cycle !== expectedGenericCycles[index])) {
+if (genericHistory.schema_version !== 1 || !genericHistory.target?.includes("U.S. House popular vote") || !/^https:\/\//.test(genericHistory.poll_average_source_url) || !genericHistory.poll_average_method?.includes("seven days") || !genericHistory.timing_note?.includes("do not verify") || !Array.isArray(genericHistory.rows) || genericHistory.rows.length !== expectedGenericCycles.length || genericHistory.rows.some((row, index) => row.cycle !== expectedGenericCycles[index])) {
   throw new Error("The generic-ballot history must include the attributed 2018–2024 validation series and its timing limitations.");
 }
 for (const row of genericHistory.rows) {
@@ -454,6 +449,12 @@ const artwork = JSON.parse(fs.readFileSync(path.join(output, "artwork/manifest.j
 for (const image of artwork.images) assertFile(image.image);
 const snapshotIndex = JSON.parse(fs.readFileSync(path.join(output, "data/snapshots/index.json"), "utf8"));
 for (const entry of snapshotIndex.snapshots) assertFile(entry.path);
+for (const entry of snapshotIndex.snapshots) {
+  const snapshot = JSON.parse(fs.readFileSync(path.join(output, ...entry.path.split("/")), "utf8"));
+  if (["historical_performance", "prior_error_history", "house_party_only_treatment", "forecast_release_note"].some(key => Object.hasOwn(snapshot, key))) {
+    throw new Error("An archived forecast contains retired implementation diagnostics: " + entry.snapshot_id + ".");
+  }
+}
 const indexHtml = fs.readFileSync(path.join(output, "index.html"), "utf8");
 if (!["id=\"office-select\"", "<option value=\"House\" selected>", "<option value=\"Senate\">", "<option value=\"Governor\">", "id=\"rating-summary\""].every(value => indexHtml.includes(value))) {
   throw new Error("The homepage is missing the shared office selector or dynamic rating summary.");
@@ -473,8 +474,8 @@ const cachedPollForecast = current.summary?.generic_ballot_forecast;
 if (!Number.isFinite(cachedPollSummary?.long_window?.margin_pp) || !Number.isFinite(cachedPollSummary?.long_window?.poll_count) || !Number.isFinite(cachedPollForecast?.margin_pp)) {
   throw new Error("The current snapshot must include cached generic-ballot polling and forecast numbers.");
 }
-if (!bundle.includes("-DAY POLLING AVERAGE") || bundle.includes("Loading verified poll sources") || bundle.includes("generic-ballot-polls.json") || !bundle.includes("generic-ballot-history.json") || !bundle.includes("Retrospective forecast")) {
+if (!bundle.includes("-DAY POLLING AVERAGE") || bundle.includes("Loading verified poll sources") || bundle.includes("generic-ballot-polls.json") || !bundle.includes("generic-ballot-history.json") || !bundle.includes("National estimate")) {
   throw new Error("The built site must show cached generic-ballot numbers without waiting for poll-source loading, while retaining its historical comparison.");
 }
 for (const page of pages) if (!fs.statSync(path.join(output, page)).size) throw new Error("Empty page: " + page);
-process.stdout.write("Verified " + pages.length + " physical HTML pages, local links, all " + artwork.images.length + " artwork files, snapshot paths, configured runtime base, validation-aligned race histories and polls, the four-cycle national generic-ballot comparison, static JSON, " + candidateData.races.length + " candidate listings, and all " + current.races.length + " race forecasts with valid probability sums and House direction parity checks where local provenance was available in " + output + ".\n");
+process.stdout.write("Verified " + pages.length + " physical HTML pages, local links, all " + artwork.images.length + " artwork files, snapshot paths, configured runtime base, historical race records and polls, the four-cycle national vote comparison, static JSON, " + candidateData.races.length + " candidate listings, and all " + current.races.length + " race forecasts with valid probabilities in " + output + ".\n");

@@ -51,7 +51,6 @@ export interface SeatOutlook {
   outer_range?: number[] | null;
   expected_label?: string;
   coverage_note?: string;
-  method?: string;
   scope_label?: string;
 }
 
@@ -103,8 +102,6 @@ export interface ForecastSummary {
   };
   governor_seat_distribution?: {
     median_dem_wins: number;
-    raw_margin_dem_favored_races?: number;
-    raw_margin_rep_favored_races?: number;
     central_50_range: number[];
     central_80_range: number[];
     central_90_range: number[];
@@ -122,12 +119,11 @@ export interface HistoricalMetric {
   brier_score: number;
   log_loss: number;
   accuracy: number;
-  false_dem_calls: number;
-  false_rep_calls: number;
   predicted_dem_seat_calls: number;
   actual_dem_wins_covered: number;
   signed_seat_error: number;
-  full_house_actual_dem_seats_context?: number | null;
+  expected_dem_seats?: number | null;
+  expected_seat_error?: number | null;
 }
 
 export interface HistoricalPerformance {
@@ -143,13 +139,10 @@ export interface RatingAccuracyMetric {
   accuracy: number | null;
 }
 
-export interface RatingAccuracyCategory extends RatingAccuracyMetric {
-  by_year: Record<string, RatingAccuracyMetric>;
-}
+export type RatingAccuracyCategory = RatingAccuracyMetric;
 
 export interface RatingAccuracyScope {
   overall: RatingAccuracyMetric;
-  by_year: Record<string, RatingAccuracyMetric>;
   categories: Record<string, RatingAccuracyCategory>;
 }
 
@@ -161,7 +154,6 @@ export interface RatingAccuracy {
   rating_definition: string;
   validation_note: string;
   results: Record<string, RatingAccuracyScope>;
-  sources: Array<{ path: string; sha256: string }>;
 }
 
 export interface GenericBallotHistoryRow {
@@ -183,41 +175,6 @@ export interface GenericBallotHistory {
   rows: GenericBallotHistoryRow[];
 }
 
-export interface PriorErrorRecord {
-  prior_average_absolute_error_pp?: number;
-  prior_average_signed_error_pp?: number;
-  prior_observation_count?: number;
-  prior_cycle_count?: number;
-  prior_race_count?: number;
-}
-
-export interface PriorErrorCycle {
-  year: number | string;
-  signed_error_pp: number;
-  absolute_error_pp: number;
-  actual_margin_pp?: number | null;
-  predicted_margin_pp?: number | null;
-  race_id?: string;
-  race_count?: number;
-  peer_race_count?: number;
-  actual_dem_winner?: "Democratic" | "Republican" | "Tie";
-  toward_losing_party?: boolean | null;
-  toward_losing_party_race_count?: number;
-  direction_comparison_race_count?: number;
-}
-
-export interface PriorErrorSeries {
-  history_basis?: string;
-  prior_averages_by_target_election?: Record<string, PriorErrorRecord>;
-  errors_by_cycle?: PriorErrorCycle[];
-}
-
-export interface PriorErrorHistory {
-  metadata?: Record<string, unknown>;
-  districts?: Record<string, PriorErrorSeries>;
-  state_office_forecasts?: Record<string, PriorErrorSeries>;
-}
-
 export interface RetrospectivePoll {
   pollster: string;
   question?: string;
@@ -237,30 +194,18 @@ export interface RetrospectivePoll {
 
 export interface RetrospectiveHistoryRow {
   year: number;
-  forecast_error_status?: "validation";
-  race_id?: string;
-  validation_race_id?: string | null;
   actual_margin_pp: number | null;
   predicted_margin_pp: number | null;
-  signed_error_pp: number | null;
-  absolute_error_pp: number | null;
-  actual_dem_winner?: "Democratic" | "Republican" | "Tie" | null;
-  history_basis?: string;
-  peer_race_count?: number;
+  dem_win_probability?: number | null;
   poll_count: number;
   final_30_day_poll_count: number;
-  pre_election_eligible_poll_count: number;
-  poll_average_method?: "exponential_recency_weighted" | "equal_weight_final_30_days";
   poll_average_margin_pp: number | null;
-  poll_miss_pp: number | null;
   polls: RetrospectivePoll[];
 }
 
 export interface RaceRetrospective {
   office: Office;
   state: string;
-  history_basis: string;
-  history_note?: string | null;
   historical_rows: RetrospectiveHistoryRow[];
   current_polling: {
     poll_count: number;
@@ -273,12 +218,7 @@ export interface RaceRetrospective {
 export interface RaceRetrospectives {
   schema_version: number;
   snapshot_date: string;
-  margin_error_definition: string;
-  poll_miss_definition: string;
-  poll_note: string;
   coverage_note: string;
-  poll_average_window_days: number;
-  poll_average_half_life_days_by_office: Record<Office, number>;
   races: Record<string, RaceRetrospective>;
 }
 
@@ -290,7 +230,7 @@ export interface CurrentData {
   races: ForecastRace[];
   summary: ForecastSummary;
   historical_performance: HistoricalPerformance;
-  prior_error_history: PriorErrorHistory;
+  previous_contest_results: Record<string, { year: number; winner: "D" | "R" }>;
 }
 
 export interface SnapshotIndex {

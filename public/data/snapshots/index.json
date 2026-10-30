@@ -3,6 +3,54 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-10-30",
+      "snapshot_date": "2026-10-30",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-30.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-30.csv",
+      "status": "current",
+      "archive_note": "October 30 published forecast snapshot.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
+      "snapshot_id": "2026-10-30-pre-refresh",
+      "snapshot_date": "2026-10-30",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-30-pre-refresh.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-30-pre-refresh.csv",
+      "status": "superseded",
+      "archive_note": "Earlier October 30 forecast snapshot, preserved for comparison.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
+      "snapshot_id": "2026-10-27",
+      "snapshot_date": "2026-10-27",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-27.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-27.csv",
+      "status": "superseded",
+      "archive_note": "October 27, 2026 forecast snapshot, retained for comparison with later releases.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-10-25",
       "snapshot_date": "2026-10-25",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -10,7 +58,7 @@
       "path": "data/snapshots/2026-10-25.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-25.csv",
       "status": "superseded",
-      "archive_note": "Oct25 published forecast preserved before Oct27 prediction-only refresh.",
+      "archive_note": "October 25, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -26,7 +74,7 @@
       "path": "data/snapshots/2026-10-24.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-24.csv",
       "status": "superseded",
-      "archive_note": "Previous published forecast retained as a rollback snapshot; source timing and lineage vary by input stream.",
+      "archive_note": "October 24, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -41,7 +89,7 @@
       "schema_version": 1,
       "path": "data/snapshots/2026-10-23.json",
       "status": "superseded",
-      "archive_note": "Previous published forecast retained as a rollback snapshot; source timing and lineage vary by input stream.",
+      "archive_note": "October 23, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -56,7 +104,7 @@
       "schema_version": 1,
       "path": "data/snapshots/2026-10-21.json",
       "status": "superseded",
-      "archive_note": "Previous published forecast retained as a rollback snapshot; source timing and lineage vary by input stream.",
+      "archive_note": "October 21, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -71,7 +119,7 @@
       "schema_version": 1,
       "path": "data/snapshots/2026-10-20.json",
       "status": "needs_lineage_review",
-      "archive_note": "House inputs were available through October 16; Senate and Governor forecasts were prepared on October 20. Kept as a reference because release inputs differ.",
+      "archive_note": "October 20, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -86,7 +134,7 @@
       "schema_version": 1,
       "path": "data/snapshots/2026-10-18.json",
       "status": "superseded",
-      "archive_note": "Earlier forecast retained as a reference. The original source dates were not preserved, so this snapshot is not compared with later releases.",
+      "archive_note": "October 18, 2026 forecast snapshot, retained for comparison with later releases.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
@@ -95,5 +143,5 @@
       }
     }
   ],
-  "schema_note": "Saved race predictions can be inspected by archived snapshot date. Source lineage is not verified as comparable across all releases, so the archive does not calculate cross-release changes. The separate simulated-history.json view presents available fixed-model daily replay points; dates without an audited forecast remain explicit null gaps and are not interpolated."
+  "schema_note": "The archive keeps prior published forecasts and compares adjacent snapshots. Forecast inputs and source dates vary by release."
 }

@@ -1,4 +1,4 @@
-import type { CurrentData, ForecastRace, Office, PriorErrorHistory, RaceChange, RaceRetrospective, RaceRetrospectives, SnapshotComparison } from "./types";
+import type { CurrentData, ForecastRace, Office, RaceChange, RaceRetrospective, RaceRetrospectives, SnapshotComparison } from "./types";
 
 export const OFFICE_ORDER: Office[] = ["House", "Senate", "Governor"];
 const RETROSPECTIVE_VALIDATION_YEARS = new Set([2018, 2020, 2022, 2024]);
@@ -73,55 +73,31 @@ export function raceName(race: ForecastRace): string {
   return state + " " + district;
 }
 
-// Ratings are probability bands, not office-specific margin predictions. Keep an
-// explicit entry for each office so each label is routed through that office's
-// own published probability stream. The cutoffs are shared because probability
-// has the same meaning across offices; the calibrators that produce p are not.
-const RATING_THRESHOLDS: Record<Office, { tossup: number; lean: number; likely: number }> = {
-  House: { tossup:0.60, lean:0.80, likely:0.98 },
-  Senate: { tossup:0.60, lean:0.80, likely:0.98 },
-  Governor: { tossup:0.60, lean:0.80, likely:0.98 }
+// Shared probability bands give the published win chance a plain-language label.
+const RATING_THRESHOLDS: Record<Office, { tossup: number; leans: number; likely: number }> = {
+  House: { tossup:0.60, leans:0.80, likely:0.95 },
+  Senate: { tossup:0.60, leans:0.80, likely:0.95 },
+  Governor: { tossup:0.60, leans:0.80, likely:0.95 }
 };
 
 export function rating(probability: number, office: Office = "House"): string {
   const strongest = Math.max(probability, 1 - probability);
   const thresholds = RATING_THRESHOLDS[office];
-  return strongest < thresholds.tossup ? "Toss-up" : strongest < thresholds.lean ? "Lean" : strongest < thresholds.likely ? "Likely" : "Safe";
+  if (strongest < thresholds.tossup) return "Toss-up";
+  if (strongest < thresholds.leans) return "Leans";
+  return strongest < thresholds.likely ? "Likely" : "Safe";
 }
 
 export function ratingBandDescription(office: Office): string {
   const thresholds = RATING_THRESHOLDS[office];
   const percent = (value: number) => (value * 100).toFixed(0) + "%";
-  return `Toss-up <${percent(thresholds.tossup)}; Lean ${percent(thresholds.tossup)}–<${percent(thresholds.lean)}; Likely ${percent(thresholds.lean)}–<${percent(thresholds.likely)}; Safe ≥${percent(thresholds.likely)}`;
+  return `Toss-up <${percent(thresholds.tossup)}; Leans ${percent(thresholds.tossup)}–<${percent(thresholds.leans)}; Likely ${percent(thresholds.leans)}–<${percent(thresholds.likely)}; Safe ≥${percent(thresholds.likely)}`;
 }
 
 export function signedCount(value: number): string {
   const count = Number(value);
   if (!Number.isFinite(count)) return "—";
   return (count > 0 ? "+" : count < 0 ? "−" : "") + Math.abs(count).toLocaleString() + " D";
-}
-
-export function houseDistrictKey(race: ForecastRace): string {
-  const district = Number.parseInt(String(race.district), 10);
-  return race.state + "-" + String(Number.isFinite(district) ? district : 0).padStart(2, "0");
-}
-
-export function priorErrorCell(race: ForecastRace, priorHistory: PriorErrorHistory): string {
-  const history = race.office === "House"
-    ? priorHistory.districts?.[houseDistrictKey(race)]
-    : priorHistory.state_office_forecasts?.[race.office + "|" + race.state];
-  const record = history?.prior_averages_by_target_election?.["2026"];
-  const error = Number(record?.prior_average_absolute_error_pp);
-  const cycles = Number(record?.prior_cycle_count ?? record?.prior_observation_count) || 0;
-  const races = Number(record?.prior_race_count) || cycles;
-  if (!Number.isFinite(error) || cycles === 0) return "<span class=\"muted\" title=\"No eligible earlier validation forecast is available for this race label\">—</span>";
-  const signed = Number(record?.prior_average_signed_error_pp) || 0;
-  const biasClass = Math.abs(signed) <= 0.05 ? "neutral" : signed > 0 ? "dem" : "rep";
-  const peer = history?.history_basis === "state_peers";
-  const basisLabel = peer ? "California peer average" : cycles + " prior elections";
-  const signedText = Math.abs(signed) <= 0.05 ? "Mean error near zero" : "Mean error " + marginLabel(signed);
-  const accessible = "Prior forecast error: " + error.toFixed(1) + " percentage points MAE; " + signedText + "; " + races + " race rows across " + cycles + " elections.";
-  return "<div class=\"prior-error-summary\" role=\"group\" aria-label=\"" + escapeHtml(accessible) + "\" title=\"" + escapeHtml(accessible) + "\"><strong>" + error.toFixed(1) + " pp MAE</strong><span class=\"prior-error-bias " + biasClass + "\">" + escapeHtml(signedText) + "</span><small>" + escapeHtml(basisLabel) + "</small></div>";
 }
 
 function marginTone(value: number): string {
@@ -205,43 +181,24 @@ export function raceRetrospective(race: ForecastRace, retrospective: RaceRetrosp
     : "<p class=\"current-poll-archive muted\">No current race-matched poll archive is available.</p>";
   const rows: string[] = [];
   for (const item of details.historical_rows.filter(row => RETROSPECTIVE_VALIDATION_YEARS.has(row.year))) {
-    const peer = item.history_basis === "California peer average";
-    const rowName = peer
-      ? "California peer average (" + Number(item.peer_race_count || 0).toLocaleString() + " races)"
-      : String(item.year);
+    const rowName = String(item.year);
     const pollSummary = item.poll_average_margin_pp === null
       ? item.poll_count === 0 ? "<span class=\"muted\">No archive</span>" : "<span class=\"muted\">No eligible poll average</span>"
       : marginValue(item.poll_average_margin_pp);
-    const pollMissValue = typeof item.poll_average_margin_pp === "number" && typeof item.actual_margin_pp === "number"
-      ? item.poll_average_margin_pp - item.actual_margin_pp
-      : null;
-    const pollMiss = pollMissValue === null
-      ? "<span class=\"muted\">—</span>"
-      : marginValue(pollMissValue);
-    const pollHint = item.final_30_day_poll_count === 0
-      ? item.poll_average_method === "exponential_recency_weighted" && item.poll_average_margin_pp !== null
-        ? "<small class=\"cycle-poll-note\">No final-30-day average; using eligible pre-election polls weighted by recency</small>"
-        : item.poll_count > 0
-          ? "<small class=\"cycle-poll-note\">No usable final-30-day or recency-weighted pre-election average</small>"
-          : ""
+    const pollHint = item.final_30_day_poll_count === 0 && item.poll_count > 0
+      ? "<small class=\"cycle-poll-note\">No final-30-day poll average is available</small>"
       : "";
     const archived = item.polls.length ? pollDetails(item.polls, "View poll details", item.final_30_day_poll_count) : "<span class=\"muted\">No poll archive</span>";
-    const actual = peer ? "<span class=\"muted\">Peer result unavailable</span>" : marginValue(item.actual_margin_pp);
-    const predicted = peer ? "<span class=\"muted\">Peer forecast unavailable</span>" : marginValue(item.predicted_margin_pp);
-    const error = item.signed_error_pp === null
-      ? "<span class=\"muted\">—</span>"
-      : marginValue(item.signed_error_pp);
-    const pollMeanLabel = item.poll_average_method === "equal_weight_final_30_days"
-      ? "Final 30-day poll mean"
-      : item.poll_average_method === "exponential_recency_weighted"
-        ? "Pre-election recency-weighted mean"
-        : "Poll mean";
-    rows.push("<article class=\"history-cycle-card\"><div class=\"history-cycle-heading\"><h3>" + escapeHtml(rowName) + "</h3>" + archived + "</div><div class=\"history-cycle-stats\"><div><span>Actual</span>" + actual + "</div><div><span>Forecast</span>" + predicted + "</div><div><span>Forecast error</span>" + error + "</div><div><span>" + pollMeanLabel + "</span>" + pollSummary + "</div><div><span title=\"Poll mean minus actual two-party margin\">Poll average error</span>" + pollMiss + pollHint + "</div></div></article>");
+    const actual = marginValue(item.actual_margin_pp);
+    const probabilityNote = typeof item.dem_win_probability === "number"
+      ? "<small class=\"history-probability-note\">D win chance " + pct(item.dem_win_probability) + "</small>"
+      : "";
+    const predicted = marginValue(item.predicted_margin_pp) + probabilityNote;
+    rows.push("<article class=\"history-cycle-card\"><div class=\"history-cycle-heading\"><h3>" + escapeHtml(rowName) + "</h3>" + archived + "</div><div class=\"history-cycle-stats\"><div><span>Actual result</span>" + actual + "</div><div><span>Published forecast</span>" + predicted + "</div><div><span>Poll average</span>" + pollSummary + pollHint + "</div></div></article>");
   }
   const empty = rows.length ? "" : "<p class=\"muted\">No prior race-level validation rows are available for this race label.</p>";
-  const historyNote = details.history_note ? "<p class=\"history-context-note\">" + escapeHtml(details.history_note) + "</p>" : "";
-  const methodology = "<details class=\"history-method-details\"><summary>How to read the history</summary><p>" + escapeHtml(retrospective.margin_error_definition) + " " + escapeHtml(retrospective.poll_miss_definition) + " " + escapeHtml(retrospective.poll_note) + "</p><p>" + escapeHtml(retrospective.coverage_note) + "</p></details>";
-  return historyNote + currentPollMarkup + "<div class=\"history-cycle-list\">" + (rows.join("") || empty) + "</div>" + methodology;
+  const methodology = "<details class=\"history-method-details\"><summary>How to read the history</summary><p>Margins are Democratic minus Republican in percentage points. Historical rows show the recorded result, published forecast, and available poll average.</p><p>Poll archives may not preserve when a result was first made public. Missing values are left blank.</p></details>";
+  return currentPollMarkup + "<div class=\"history-cycle-list\">" + (rows.join("") || empty) + "</div>" + methodology;
 }
 
 export function compareSnapshots(current: CurrentData, previous: CurrentData): SnapshotComparison {

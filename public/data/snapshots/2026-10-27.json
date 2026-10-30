@@ -1,0 +1,5256 @@
+{
+  "schema_version": 1,
+  "series_id": "moelections-2026-midterm-races-v1",
+  "snapshot_id": "2026-10-27",
+  "snapshot_date": "2026-10-27",
+  "races": [
+    {
+      "office": "Governor",
+      "state": "AK",
+      "district": "",
+      "dem_margin_pp": -7.299609742819619,
+      "dem_probability": 0.2445122160812846,
+      "rep_probability": 0.7554877839187154,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ak"
+    },
+    {
+      "office": "Governor",
+      "state": "AL",
+      "district": "",
+      "dem_margin_pp": -18.36284800308224,
+      "dem_probability": 0.0553134846722124,
+      "rep_probability": 0.9446865153277876,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-al"
+    },
+    {
+      "office": "Governor",
+      "state": "AR",
+      "district": "",
+      "dem_margin_pp": -20.170907985240635,
+      "dem_probability": 0.042400960656436,
+      "rep_probability": 0.957599039343564,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ar"
+    },
+    {
+      "office": "Governor",
+      "state": "AZ",
+      "district": "",
+      "dem_margin_pp": 6.497663790302579,
+      "dem_probability": 0.7318764402299954,
+      "rep_probability": 0.26812355977000457,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-az"
+    },
+    {
+      "office": "Governor",
+      "state": "CA",
+      "district": "",
+      "dem_margin_pp": 19.803590322617698,
+      "dem_probability": 0.9552333418316032,
+      "rep_probability": 0.044766658168396756,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ca"
+    },
+    {
+      "office": "Governor",
+      "state": "CO",
+      "district": "",
+      "dem_margin_pp": 18.65012009110077,
+      "dem_probability": 0.9469610845895416,
+      "rep_probability": 0.053038915410458354,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-co"
+    },
+    {
+      "office": "Governor",
+      "state": "CT",
+      "district": "",
+      "dem_margin_pp": 16.238111362152832,
+      "dem_probability": 0.92480337312858,
+      "rep_probability": 0.07519662687142004,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ct"
+    },
+    {
+      "office": "Governor",
+      "state": "FL",
+      "district": "",
+      "dem_margin_pp": -9.047128977608809,
+      "dem_probability": 0.1981076265550614,
+      "rep_probability": 0.8018923734449386,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-fl"
+    },
+    {
+      "office": "Governor",
+      "state": "GA",
+      "district": "",
+      "dem_margin_pp": -2.4677751340796856,
+      "dem_probability": 0.4057951623276455,
+      "rep_probability": 0.5942048376723545,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ga"
+    },
+    {
+      "office": "Governor",
+      "state": "HI",
+      "district": "",
+      "dem_margin_pp": 23.52563588726344,
+      "dem_probability": 0.974311945199715,
+      "rep_probability": 0.02568805480028502,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-hi"
+    },
+    {
+      "office": "Governor",
+      "state": "IA",
+      "district": "",
+      "dem_margin_pp": 4.615561559360788,
+      "dem_probability": 0.6711297989270198,
+      "rep_probability": 0.32887020107298015,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ia"
+    },
+    {
+      "office": "Governor",
+      "state": "ID",
+      "district": "",
+      "dem_margin_pp": -20.054367882126968,
+      "dem_probability": 0.0431382948237706,
+      "rep_probability": 0.9568617051762294,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-id"
+    },
+    {
+      "office": "Governor",
+      "state": "IL",
+      "district": "",
+      "dem_margin_pp": 16.83446752621787,
+      "dem_probability": 0.930966860732448,
+      "rep_probability": 0.06903313926755195,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-il"
+    },
+    {
+      "office": "Governor",
+      "state": "KS",
+      "district": "",
+      "dem_margin_pp": -7.713657730292059,
+      "dem_probability": 0.2328860172525483,
+      "rep_probability": 0.7671139827474517,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ks"
+    },
+    {
+      "office": "Governor",
+      "state": "MA",
+      "district": "",
+      "dem_margin_pp": 23.392273671957728,
+      "dem_probability": 0.9737910381621184,
+      "rep_probability": 0.026208961837881573,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ma"
+    },
+    {
+      "office": "Governor",
+      "state": "MD",
+      "district": "",
+      "dem_margin_pp": 27.770000714002794,
+      "dem_probability": 0.986502205464398,
+      "rep_probability": 0.013497794535601959,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-md"
+    },
+    {
+      "office": "Governor",
+      "state": "ME",
+      "district": "",
+      "dem_margin_pp": 10.873717951321748,
+      "dem_probability": 0.842964000303905,
+      "rep_probability": 0.15703599969609505,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-me"
+    },
+    {
+      "office": "Governor",
+      "state": "MI",
+      "district": "",
+      "dem_margin_pp": 6.627897954461834,
+      "dem_probability": 0.7358074878181283,
+      "rep_probability": 0.2641925121818717,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-mi"
+    },
+    {
+      "office": "Governor",
+      "state": "MN",
+      "district": "",
+      "dem_margin_pp": 9.171791410865207,
+      "dem_probability": 0.8049351372351669,
+      "rep_probability": 0.19506486276483315,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-mn"
+    },
+    {
+      "office": "Governor",
+      "state": "NE",
+      "district": "",
+      "dem_margin_pp": -5.80164706501987,
+      "dem_probability": 0.2897497462336967,
+      "rep_probability": 0.7102502537663034,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ne"
+    },
+    {
+      "office": "Governor",
+      "state": "NH",
+      "district": "",
+      "dem_margin_pp": -9.429500690745671,
+      "dem_probability": 0.1888872879467082,
+      "rep_probability": 0.8111127120532918,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-nh"
+    },
+    {
+      "office": "Governor",
+      "state": "NM",
+      "district": "",
+      "dem_margin_pp": 5.618274666622678,
+      "dem_probability": 0.7043837159130123,
+      "rep_probability": 0.2956162840869877,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-nm"
+    },
+    {
+      "office": "Governor",
+      "state": "NV",
+      "district": "",
+      "dem_margin_pp": -1.9218518463204937,
+      "dem_probability": 0.4262892193545367,
+      "rep_probability": 0.5737107806454633,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-nv"
+    },
+    {
+      "office": "Governor",
+      "state": "NY",
+      "district": "",
+      "dem_margin_pp": 15.973768121158113,
+      "dem_probability": 0.921912661221296,
+      "rep_probability": 0.078087338778704,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ny"
+    },
+    {
+      "office": "Governor",
+      "state": "OH",
+      "district": "",
+      "dem_margin_pp": -1.5682490694295683,
+      "dem_probability": 0.4397046537820548,
+      "rep_probability": 0.5602953462179452,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-oh"
+    },
+    {
+      "office": "Governor",
+      "state": "OK",
+      "district": "",
+      "dem_margin_pp": -14.347773045825516,
+      "dem_probability": 0.0982043371783908,
+      "rep_probability": 0.9017956628216092,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ok"
+    },
+    {
+      "office": "Governor",
+      "state": "OR",
+      "district": "",
+      "dem_margin_pp": -0.4628894499122782,
+      "dem_probability": 0.4821236248545167,
+      "rep_probability": 0.5178763751454833,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-or"
+    },
+    {
+      "office": "Governor",
+      "state": "PA",
+      "district": "",
+      "dem_margin_pp": 20.64272851653097,
+      "dem_probability": 0.9604628418662464,
+      "rep_probability": 0.03953715813375358,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-pa"
+    },
+    {
+      "office": "Governor",
+      "state": "RI",
+      "district": "",
+      "dem_margin_pp": 31.021204547660265,
+      "dem_probability": 0.991789423856136,
+      "rep_probability": 0.008210576143864001,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-ri"
+    },
+    {
+      "office": "Governor",
+      "state": "SC",
+      "district": "",
+      "dem_margin_pp": -15.285514705040615,
+      "dem_probability": 0.0860963359732142,
+      "rep_probability": 0.9139036640267858,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-sc"
+    },
+    {
+      "office": "Governor",
+      "state": "SD",
+      "district": "",
+      "dem_margin_pp": -25.78762845223678,
+      "dem_probability": 0.0182480773975289,
+      "rep_probability": 0.9817519226024711,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-sd"
+    },
+    {
+      "office": "Governor",
+      "state": "TN",
+      "district": "",
+      "dem_margin_pp": -22.319574381591863,
+      "dem_probability": 0.0307892064051497,
+      "rep_probability": 0.9692107935948503,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-tn"
+    },
+    {
+      "office": "Governor",
+      "state": "TX",
+      "district": "",
+      "dem_margin_pp": -7.550797267303935,
+      "dem_probability": 0.2374126244843419,
+      "rep_probability": 0.7625873755156581,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-tx"
+    },
+    {
+      "office": "Governor",
+      "state": "VT",
+      "district": "",
+      "dem_margin_pp": -7.407493821619792,
+      "dem_probability": 0.2414454782613746,
+      "rep_probability": 0.7585545217386254,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-vt"
+    },
+    {
+      "office": "Governor",
+      "state": "WI",
+      "district": "",
+      "dem_margin_pp": -0.0732676990214098,
+      "dem_probability": 0.4971692909089587,
+      "rep_probability": 0.5028307090910413,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-wi"
+    },
+    {
+      "office": "Governor",
+      "state": "WY",
+      "district": "",
+      "dem_margin_pp": -39.76428219065142,
+      "dem_probability": 0.0021390270679813,
+      "rep_probability": 0.9978609729320187,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "governor-wy"
+    },
+    {
+      "office": "House",
+      "state": "AK",
+      "district": "0",
+      "dem_margin_pp": -19.652751177998,
+      "dem_probability": 0.0025645990391893,
+      "rep_probability": 0.9974354009608107,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ak-00"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "1",
+      "dem_margin_pp": -36.24064565098664,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-01"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "2",
+      "dem_margin_pp": -10.092840332212424,
+      "dem_probability": 0.0296974670208442,
+      "rep_probability": 0.9703025329791558,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-02"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "3",
+      "dem_margin_pp": -46.95725111155485,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-03"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "4",
+      "dem_margin_pp": -66.06111094214421,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-04"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "5",
+      "dem_margin_pp": -29.584361407913665,
+      "dem_probability": 0.000001916682089811636,
+      "rep_probability": 0.9999980833179102,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-05"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "6",
+      "dem_margin_pp": -35.39751151457914,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-06"
+    },
+    {
+      "office": "House",
+      "state": "AL",
+      "district": "7",
+      "dem_margin_pp": 17.220677957784474,
+      "dem_probability": 0.9965778680615968,
+      "rep_probability": 0.003422131938403239,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-al-07"
+    },
+    {
+      "office": "House",
+      "state": "AR",
+      "district": "1",
+      "dem_margin_pp": -46.698400972981446,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ar-01"
+    },
+    {
+      "office": "House",
+      "state": "AR",
+      "district": "2",
+      "dem_margin_pp": -12.740188642419556,
+      "dem_probability": 0.0136269163565007,
+      "rep_probability": 0.9863730836434993,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ar-02"
+    },
+    {
+      "office": "House",
+      "state": "AR",
+      "district": "3",
+      "dem_margin_pp": -26.642182733944377,
+      "dem_probability": 0.0006248254651084,
+      "rep_probability": 0.9993751745348916,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ar-03"
+    },
+    {
+      "office": "House",
+      "state": "AR",
+      "district": "4",
+      "dem_margin_pp": -41.09652605513078,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ar-04"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "1",
+      "dem_margin_pp": -3.1675244126765327,
+      "dem_probability": 0.223185694965197,
+      "rep_probability": 0.776814305034803,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-01"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "2",
+      "dem_margin_pp": -9.509633830628536,
+      "dem_probability": 0.036092493689559,
+      "rep_probability": 0.963907506310441,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-02"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "3",
+      "dem_margin_pp": 42.60968970718943,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-03"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "4",
+      "dem_margin_pp": 8.20602241310974,
+      "dem_probability": 0.9294250566597612,
+      "rep_probability": 0.07057494334023884,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-04"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "5",
+      "dem_margin_pp": -18.87974101376885,
+      "dem_probability": 0.0027275844159136,
+      "rep_probability": 0.9972724155840864,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-05"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "6",
+      "dem_margin_pp": -1.2555600986842652,
+      "dem_probability": 0.3479068844099281,
+      "rep_probability": 0.6520931155900719,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-06"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "7",
+      "dem_margin_pp": 25.70264423160692,
+      "dem_probability": 0.9993870845988136,
+      "rep_probability": 0.0006129154011863536,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-07"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "8",
+      "dem_margin_pp": -14.932899394178264,
+      "dem_probability": 0.007770457069412,
+      "rep_probability": 0.992229542930588,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-08"
+    },
+    {
+      "office": "House",
+      "state": "AZ",
+      "district": "9",
+      "dem_margin_pp": -30.55511684365684,
+      "dem_probability": 5.337392759544717e-9,
+      "rep_probability": 0.9999999946626073,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-az-09"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "1",
+      "dem_margin_pp": 11.556521406722345,
+      "dem_probability": 0.978219634523206,
+      "rep_probability": 0.02178036547679396,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-01"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "2",
+      "dem_margin_pp": 25.09965866508176,
+      "dem_probability": 0.9993831340597156,
+      "rep_probability": 0.0006168659402844279,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-02"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "3",
+      "dem_margin_pp": 10.839718944646744,
+      "dem_probability": 0.9722970483842296,
+      "rep_probability": 0.02770295161577041,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-03"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "4",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-04"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "5",
+      "dem_margin_pp": -21.933821211125608,
+      "dem_probability": 0.0019468287262116,
+      "rep_probability": 0.9980531712737885,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-05"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "6",
+      "dem_margin_pp": 8.43447335029563,
+      "dem_probability": 0.9347891208089608,
+      "rep_probability": 0.06521087919103918,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-06"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "7",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-07"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "8",
+      "dem_margin_pp": 34.6692772631316,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-08"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "9",
+      "dem_margin_pp": 12.1337667044742,
+      "dem_probability": 0.9821960616156044,
+      "rep_probability": 0.017803938384395646,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-09"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "10",
+      "dem_margin_pp": 32.9097662790417,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-10"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "11",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-11"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "12",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-12"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "13",
+      "dem_margin_pp": -1.4616960496688287,
+      "dem_probability": 0.3321763559316053,
+      "rep_probability": 0.6678236440683947,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-13"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "14",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-14"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "15",
+      "dem_margin_pp": 48.91232970862004,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-15"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "16",
+      "dem_margin_pp": 48.75746085717967,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-16"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "17",
+      "dem_margin_pp": 39.537770556913,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-17"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "18",
+      "dem_margin_pp": 28.380317493333127,
+      "dem_probability": 0.9997194005067644,
+      "rep_probability": 0.000280599493235556,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-18"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "19",
+      "dem_margin_pp": 34.16244858403975,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-19"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "20",
+      "dem_margin_pp": -34.07145637493086,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-20"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "21",
+      "dem_margin_pp": 7.482216783025968,
+      "dem_probability": 0.910860576262521,
+      "rep_probability": 0.08913942373747896,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-21"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "22",
+      "dem_margin_pp": -4.057351983860522,
+      "dem_probability": 0.1774210335883356,
+      "rep_probability": 0.8225789664116644,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-22"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "23",
+      "dem_margin_pp": -21.114366316451157,
+      "dem_probability": 0.002438562432967,
+      "rep_probability": 0.997561437567033,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-23"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "24",
+      "dem_margin_pp": 24.920261489218696,
+      "dem_probability": 0.9993783765043046,
+      "rep_probability": 0.0006216234956953892,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-24"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "25",
+      "dem_margin_pp": 4.389206981490728,
+      "dem_probability": 0.7936333537955345,
+      "rep_probability": 0.20636664620446554,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-25"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "26",
+      "dem_margin_pp": 15.889877391619557,
+      "dem_probability": 0.9946140004984012,
+      "rep_probability": 0.005385999501598793,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-26"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "27",
+      "dem_margin_pp": 9.80078590740357,
+      "dem_probability": 0.9600075694761716,
+      "rep_probability": 0.03999243052382839,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-27"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "28",
+      "dem_margin_pp": 24.411645004735007,
+      "dem_probability": 0.9993347415756328,
+      "rep_probability": 0.0006652584243671544,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-28"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "29",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-29"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "30",
+      "dem_margin_pp": 40.0997224496478,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-30"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "31",
+      "dem_margin_pp": 12.6743968073057,
+      "dem_probability": 0.9854326328983296,
+      "rep_probability": 0.014567367101670392,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-31"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "32",
+      "dem_margin_pp": 24.657323743440827,
+      "dem_probability": 0.9993633310876924,
+      "rep_probability": 0.0006366689123076252,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-32"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "33",
+      "dem_margin_pp": 10.609173494087957,
+      "dem_probability": 0.9700047659251207,
+      "rep_probability": 0.02999523407487925,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-33"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "34",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-34"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "35",
+      "dem_margin_pp": 7.7221587631063136,
+      "dem_probability": 0.9172879372728464,
+      "rep_probability": 0.08271206272715359,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-35"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "36",
+      "dem_margin_pp": 39.736443254985325,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-36"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "37",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-37"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "38",
+      "dem_margin_pp": 12.492061404050826,
+      "dem_probability": 0.984390980384425,
+      "rep_probability": 0.015609019615575037,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-38"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "39",
+      "dem_margin_pp": 10.436338295350335,
+      "dem_probability": 0.968122345124017,
+      "rep_probability": 0.03187765487598304,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-39"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "40",
+      "dem_margin_pp": null,
+      "dem_probability": 0,
+      "rep_probability": 1,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-40"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "41",
+      "dem_margin_pp": 14.290286098265838,
+      "dem_probability": 0.9919820727771868,
+      "rep_probability": 0.008017927222813248,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-41"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "42",
+      "dem_margin_pp": 13.253932019006974,
+      "dem_probability": 0.9883839821609384,
+      "rep_probability": 0.011616017839061632,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-42"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "43",
+      "dem_margin_pp": 49.27943398838553,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-43"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "44",
+      "dem_margin_pp": 34.763282452487424,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-44"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "45",
+      "dem_margin_pp": 5.004636906167734,
+      "dem_probability": 0.8254487710251718,
+      "rep_probability": 0.17455122897482822,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-45"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "46",
+      "dem_margin_pp": 16.48236501697183,
+      "dem_probability": 0.9954013883554856,
+      "rep_probability": 0.004598611644514361,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-46"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "47",
+      "dem_margin_pp": 9.672604143043923,
+      "dem_probability": 0.9581477736460696,
+      "rep_probability": 0.04185222635393038,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-47"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "48",
+      "dem_margin_pp": 3.797035230975399,
+      "dem_probability": 0.7587228298285876,
+      "rep_probability": 0.24127717017141237,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-48"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "49",
+      "dem_margin_pp": 11.169497787981577,
+      "dem_probability": 0.9752026398244436,
+      "rep_probability": 0.02479736017555645,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-49"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "50",
+      "dem_margin_pp": 18.24995653593314,
+      "dem_probability": 0.9976295674134366,
+      "rep_probability": 0.0023704325865634424,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-50"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "51",
+      "dem_margin_pp": 17.623540277496396,
+      "dem_probability": 0.9971107041526118,
+      "rep_probability": 0.0028892958473881736,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-51"
+    },
+    {
+      "office": "House",
+      "state": "CA",
+      "district": "52",
+      "dem_margin_pp": 17.374690780205796,
+      "dem_probability": 0.9968017145431448,
+      "rep_probability": 0.0031982854568551877,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ca-52"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "1",
+      "dem_margin_pp": 57.14491602961088,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-01"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "2",
+      "dem_margin_pp": 42.50972859091125,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-02"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "3",
+      "dem_margin_pp": -7.002133336394206,
+      "dem_probability": 0.078743643360181,
+      "rep_probability": 0.921256356639819,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-03"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "4",
+      "dem_margin_pp": -11.796279250920012,
+      "dem_probability": 0.0185341501237927,
+      "rep_probability": 0.9814658498762073,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-04"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "5",
+      "dem_margin_pp": -5.142319334120384,
+      "dem_probability": 0.133308029933788,
+      "rep_probability": 0.866691970066212,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-05"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "6",
+      "dem_margin_pp": 22.376602988554936,
+      "dem_probability": 0.998792207711929,
+      "rep_probability": 0.0012077922880709968,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-06"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "7",
+      "dem_margin_pp": 18.270905209887395,
+      "dem_probability": 0.9976435841211232,
+      "rep_probability": 0.0023564158788768053,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-07"
+    },
+    {
+      "office": "House",
+      "state": "CO",
+      "district": "8",
+      "dem_margin_pp": -1.0748743081804837,
+      "dem_probability": 0.3622146722330493,
+      "rep_probability": 0.6377853277669507,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-co-08"
+    },
+    {
+      "office": "House",
+      "state": "CT",
+      "district": "1",
+      "dem_margin_pp": 27.545715295583665,
+      "dem_probability": 0.9994538605543924,
+      "rep_probability": 0.0005461394456075519,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ct-01"
+    },
+    {
+      "office": "House",
+      "state": "CT",
+      "district": "2",
+      "dem_margin_pp": 14.7543532056123,
+      "dem_probability": 0.9929510580437888,
+      "rep_probability": 0.007048941956211197,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ct-02"
+    },
+    {
+      "office": "House",
+      "state": "CT",
+      "district": "3",
+      "dem_margin_pp": 18.83620988802819,
+      "dem_probability": 0.9980357858610494,
+      "rep_probability": 0.0019642141389506484,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ct-03"
+    },
+    {
+      "office": "House",
+      "state": "CT",
+      "district": "4",
+      "dem_margin_pp": 27.12712323826737,
+      "dem_probability": 0.9994046472004626,
+      "rep_probability": 0.0005953527995373742,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ct-04"
+    },
+    {
+      "office": "House",
+      "state": "CT",
+      "district": "5",
+      "dem_margin_pp": 7.661130322284863,
+      "dem_probability": 0.9156807115800037,
+      "rep_probability": 0.08431928841999625,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ct-05"
+    },
+    {
+      "office": "House",
+      "state": "DE",
+      "district": "0",
+      "dem_margin_pp": 16.514022356354385,
+      "dem_probability": 0.9954485820442494,
+      "rep_probability": 0.004551417955750647,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-de-00"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "1",
+      "dem_margin_pp": -38.21320923262857,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-01"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "2",
+      "dem_margin_pp": -18.29171413587479,
+      "dem_probability": 0.0030745858943303,
+      "rep_probability": 0.9969254141056697,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-02"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "3",
+      "dem_margin_pp": -22.157630053220448,
+      "dem_probability": 0.0017674857486116,
+      "rep_probability": 0.9982325142513884,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-03"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "4",
+      "dem_margin_pp": -14.295898931917971,
+      "dem_probability": 0.0090495418705258,
+      "rep_probability": 0.9909504581294742,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-04"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "5",
+      "dem_margin_pp": -22.74305639376658,
+      "dem_probability": 0.0014148567864597,
+      "rep_probability": 0.9985851432135403,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-05"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "6",
+      "dem_margin_pp": -30.938898363047944,
+      "dem_probability": 2.7571741659110126e-10,
+      "rep_probability": 0.9999999997242826,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-06"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "7",
+      "dem_margin_pp": -9.213163807591409,
+      "dem_probability": 0.0403265807527639,
+      "rep_probability": 0.9596734192472361,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-07"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "8",
+      "dem_margin_pp": -17.125675491122212,
+      "dem_probability": 0.004671839749084,
+      "rep_probability": 0.995328160250916,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-08"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "9",
+      "dem_margin_pp": -12.393709791638347,
+      "dem_probability": 0.015220861142191,
+      "rep_probability": 0.984779138857809,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-09"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "10",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-10"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "11",
+      "dem_margin_pp": -16.74773878530923,
+      "dem_probability": 0.0052491347159903,
+      "rep_probability": 0.9947508652840097,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-11"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "12",
+      "dem_margin_pp": -15.887808644901591,
+      "dem_probability": 0.0063155859044386,
+      "rep_probability": 0.9936844140955614,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-12"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "13",
+      "dem_margin_pp": -10.193543146262256,
+      "dem_probability": 0.0288414446663982,
+      "rep_probability": 0.9711585553336018,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-13"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "14",
+      "dem_margin_pp": -6.567669061542694,
+      "dem_probability": 0.0892710798253241,
+      "rep_probability": 0.9107289201746759,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-14"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "15",
+      "dem_margin_pp": -21.866586319960717,
+      "dem_probability": 0.0020007958280293,
+      "rep_probability": 0.9979992041719707,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-15"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "16",
+      "dem_margin_pp": -12.18858420342819,
+      "dem_probability": 0.0162956133996248,
+      "rep_probability": 0.9837043866003752,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-16"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "17",
+      "dem_margin_pp": -23.504644166073632,
+      "dem_probability": 0.0012783771241918,
+      "rep_probability": 0.9987216228758082,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-17"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "18",
+      "dem_margin_pp": -18.653150525118456,
+      "dem_probability": 0.0028328416419433,
+      "rep_probability": 0.9971671583580567,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-18"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "19",
+      "dem_margin_pp": -31.752770490193058,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-19"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "20",
+      "dem_margin_pp": 36.605026160911805,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-20"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "21",
+      "dem_margin_pp": -17.06118495969648,
+      "dem_probability": 0.0047773778206242,
+      "rep_probability": 0.9952226221793758,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-21"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "22",
+      "dem_margin_pp": -11.12397491760859,
+      "dem_probability": 0.0225954280160233,
+      "rep_probability": 0.9774045719839767,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-22"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "23",
+      "dem_margin_pp": 13.058400408555151,
+      "dem_probability": 0.9874540774734984,
+      "rep_probability": 0.012545922526501552,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-23"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "24",
+      "dem_margin_pp": 38.108951979768605,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-24"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "25",
+      "dem_margin_pp": -5.355419828125985,
+      "dem_probability": 0.1261116377386566,
+      "rep_probability": 0.8738883622613434,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-25"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "26",
+      "dem_margin_pp": -19.961825169209483,
+      "dem_probability": 0.0025496383395406,
+      "rep_probability": 0.9974503616604594,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-26"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "27",
+      "dem_margin_pp": -12.541979215188997,
+      "dem_probability": 0.0145016720920914,
+      "rep_probability": 0.9854983279079086,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-27"
+    },
+    {
+      "office": "House",
+      "state": "FL",
+      "district": "28",
+      "dem_margin_pp": -27.091395300446564,
+      "dem_probability": 0.0005697575981912,
+      "rep_probability": 0.9994302424018088,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-fl-28"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "1",
+      "dem_margin_pp": -17.037603775317525,
+      "dem_probability": 0.0048153995262746,
+      "rep_probability": 0.9951846004737254,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-01"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "2",
+      "dem_margin_pp": 10.838573324407772,
+      "dem_probability": 0.9722862406607972,
+      "rep_probability": 0.027713759339202837,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-02"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "3",
+      "dem_margin_pp": -30.133288566693988,
+      "dem_probability": 9.116477346873033e-8,
+      "rep_probability": 0.9999999088352265,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-03"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "4",
+      "dem_margin_pp": 52.24079901047827,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-04"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "5",
+      "dem_margin_pp": 71.99878338937359,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-05"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "6",
+      "dem_margin_pp": 50.16708794074449,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-06"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "7",
+      "dem_margin_pp": -17.088819965476056,
+      "dem_probability": 0.0047324132535219,
+      "rep_probability": 0.9952675867464781,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-07"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "8",
+      "dem_margin_pp": -32.26958398356848,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-08"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "9",
+      "dem_margin_pp": -34.005234040802726,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-09"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "10",
+      "dem_margin_pp": -20.82313879362594,
+      "dem_probability": 0.0025034857318283,
+      "rep_probability": 0.9974965142681717,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-10"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "11",
+      "dem_margin_pp": -19.00417687446624,
+      "dem_probability": 0.0026827444600836,
+      "rep_probability": 0.9973172555399163,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-11"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "12",
+      "dem_margin_pp": -15.214346879839336,
+      "dem_probability": 0.0073089830960629,
+      "rep_probability": 0.9926910169039371,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-12"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "13",
+      "dem_margin_pp": 43.38983296363957,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-13"
+    },
+    {
+      "office": "House",
+      "state": "GA",
+      "district": "14",
+      "dem_margin_pp": -32.9349797860651,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ga-14"
+    },
+    {
+      "office": "House",
+      "state": "HI",
+      "district": "1",
+      "dem_margin_pp": 34.145376967358395,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-hi-01"
+    },
+    {
+      "office": "House",
+      "state": "HI",
+      "district": "2",
+      "dem_margin_pp": 31.159796107954065,
+      "dem_probability": 0.9999999984713642,
+      "rep_probability": 1.5286357735178058e-9,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-hi-02"
+    },
+    {
+      "office": "House",
+      "state": "IA",
+      "district": "1",
+      "dem_margin_pp": 2.988506360209138,
+      "dem_probability": 0.704571125231053,
+      "rep_probability": 0.29542887476894697,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ia-01"
+    },
+    {
+      "office": "House",
+      "state": "IA",
+      "district": "2",
+      "dem_margin_pp": -7.776243695350077,
+      "dem_probability": 0.0643933618406549,
+      "rep_probability": 0.9356066381593451,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ia-02"
+    },
+    {
+      "office": "House",
+      "state": "IA",
+      "district": "3",
+      "dem_margin_pp": -0.7351520611680273,
+      "dem_probability": 0.3904003112008177,
+      "rep_probability": 0.6095996887991824,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ia-03"
+    },
+    {
+      "office": "House",
+      "state": "IA",
+      "district": "4",
+      "dem_margin_pp": -30.529361226555707,
+      "dem_probability": 6.427234065973911e-9,
+      "rep_probability": 0.9999999935727659,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ia-04"
+    },
+    {
+      "office": "House",
+      "state": "ID",
+      "district": "1",
+      "dem_margin_pp": -45.24915635803088,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-id-01"
+    },
+    {
+      "office": "House",
+      "state": "ID",
+      "district": "2",
+      "dem_margin_pp": -28.14914476456559,
+      "dem_probability": 0.0002090771009429,
+      "rep_probability": 0.9997909228990571,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-id-02"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "1",
+      "dem_margin_pp": 33.13260915748723,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-01"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "2",
+      "dem_margin_pp": 35.98525988463714,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-02"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "3",
+      "dem_margin_pp": 34.02442468729275,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-03"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "4",
+      "dem_margin_pp": 34.33417990954671,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-04"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "5",
+      "dem_margin_pp": 38.591511345439166,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-05"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "6",
+      "dem_margin_pp": 10.08107325498742,
+      "dem_probability": 0.9638097283675392,
+      "rep_probability": 0.0361902716324608,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-06"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "7",
+      "dem_margin_pp": 65.22744081193542,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-07"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "8",
+      "dem_margin_pp": 12.016410670814432,
+      "dem_probability": 0.9814329543803748,
+      "rep_probability": 0.01856704561962519,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-08"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "9",
+      "dem_margin_pp": 38.30043683026912,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-09"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "10",
+      "dem_margin_pp": 23.35427866180973,
+      "dem_probability": 0.999001930092171,
+      "rep_probability": 0.0009980699078290245,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-10"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "11",
+      "dem_margin_pp": 14.23108893459462,
+      "dem_probability": 0.9918361441076532,
+      "rep_probability": 0.008163855892346805,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-11"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "12",
+      "dem_margin_pp": -44.28884997168492,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-12"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "13",
+      "dem_margin_pp": 15.379864348805665,
+      "dem_probability": 0.9939507871989288,
+      "rep_probability": 0.00604921280107118,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-13"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "14",
+      "dem_margin_pp": 7.989737493744169,
+      "dem_probability": 0.9241282519747632,
+      "rep_probability": 0.07587174802523677,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-14"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "15",
+      "dem_margin_pp": -38.06770566009568,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-15"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "16",
+      "dem_margin_pp": -24.188102553259636,
+      "dem_probability": 0.0012256057836874,
+      "rep_probability": 0.9987743942163126,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-16"
+    },
+    {
+      "office": "House",
+      "state": "IL",
+      "district": "17",
+      "dem_margin_pp": 9.298529320272728,
+      "dem_probability": 0.9521986717763856,
+      "rep_probability": 0.04780132822361438,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-il-17"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "1",
+      "dem_margin_pp": 2.773072927660797,
+      "dem_probability": 0.6885754308686876,
+      "rep_probability": 0.31142456913131245,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-01"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "2",
+      "dem_margin_pp": -27.258920297427785,
+      "dem_probability": 0.0005330015495076,
+      "rep_probability": 0.9994669984504924,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-02"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "3",
+      "dem_margin_pp": -31.847566700282336,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-03"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "4",
+      "dem_margin_pp": -30.36753040549835,
+      "dem_probability": 1.989867007663363e-8,
+      "rep_probability": 0.99999998010133,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-04"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "5",
+      "dem_margin_pp": -13.022543025242287,
+      "dem_probability": 0.0125549328541351,
+      "rep_probability": 0.9874450671458649,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-05"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "6",
+      "dem_margin_pp": -32.485678854194255,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-06"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "7",
+      "dem_margin_pp": 42.22153369093088,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-07"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "8",
+      "dem_margin_pp": -36.28768618909217,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-08"
+    },
+    {
+      "office": "House",
+      "state": "IN",
+      "district": "9",
+      "dem_margin_pp": -30.41849059058464,
+      "dem_probability": 1.4037491910923644e-8,
+      "rep_probability": 0.999999985962508,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-in-09"
+    },
+    {
+      "office": "House",
+      "state": "KS",
+      "district": "1",
+      "dem_margin_pp": -33.1192658778498,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ks-01"
+    },
+    {
+      "office": "House",
+      "state": "KS",
+      "district": "2",
+      "dem_margin_pp": -18.79311478456364,
+      "dem_probability": 0.0027640801750357,
+      "rep_probability": 0.9972359198249643,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ks-02"
+    },
+    {
+      "office": "House",
+      "state": "KS",
+      "district": "3",
+      "dem_margin_pp": 7.671837436147759,
+      "dem_probability": 0.9159640162852164,
+      "rep_probability": 0.0840359837147836,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ks-03"
+    },
+    {
+      "office": "House",
+      "state": "KS",
+      "district": "4",
+      "dem_margin_pp": -25.59134592119067,
+      "dem_probability": 0.0007702232701014,
+      "rep_probability": 0.9992297767298985,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ks-04"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "1",
+      "dem_margin_pp": -47.78426830705632,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-01"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "2",
+      "dem_margin_pp": -42.16546835901106,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-02"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "3",
+      "dem_margin_pp": 22.522723710078893,
+      "dem_probability": 0.9988040161304153,
+      "rep_probability": 0.0011959838695847491,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-03"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "4",
+      "dem_margin_pp": -36.610921766354565,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-04"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "5",
+      "dem_margin_pp": -62.89999877822592,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-05"
+    },
+    {
+      "office": "House",
+      "state": "KY",
+      "district": "6",
+      "dem_margin_pp": -7.847014562813951,
+      "dem_probability": 0.0632070982128675,
+      "rep_probability": 0.9367929017871325,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ky-06"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "1",
+      "dem_margin_pp": -39.09101603397509,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-01"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "2",
+      "dem_margin_pp": 48.02892264069004,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-02"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "3",
+      "dem_margin_pp": -37.11119151519008,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-03"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "4",
+      "dem_margin_pp": -33.175160978245074,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-04"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "5",
+      "dem_margin_pp": -34.61731281902092,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-05"
+    },
+    {
+      "office": "House",
+      "state": "LA",
+      "district": "6",
+      "dem_margin_pp": -30.773882690039976,
+      "dem_probability": 1.0308874013084175e-9,
+      "rep_probability": 0.9999999989691126,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-la-06"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "1",
+      "dem_margin_pp": 19.3020393970038,
+      "dem_probability": 0.998369174311689,
+      "rep_probability": 0.0016308256883109662,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-01"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "2",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-02"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "3",
+      "dem_margin_pp": 22.792498699042294,
+      "dem_probability": 0.998841492980548,
+      "rep_probability": 0.0011585070194519709,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-03"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "4",
+      "dem_margin_pp": 24.42716078997838,
+      "dem_probability": 0.9993370894687816,
+      "rep_probability": 0.0006629105312183636,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-04"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "5",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-05"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "6",
+      "dem_margin_pp": 25.4308322623212,
+      "dem_probability": 0.9993864369205022,
+      "rep_probability": 0.0006135630794977809,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-06"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "7",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-07"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "8",
+      "dem_margin_pp": 35.99691474689898,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-08"
+    },
+    {
+      "office": "House",
+      "state": "MA",
+      "district": "9",
+      "dem_margin_pp": 16.30377051843537,
+      "dem_probability": 0.9951467478828204,
+      "rep_probability": 0.004853252117179574,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ma-09"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "1",
+      "dem_margin_pp": -17.201338240783834,
+      "dem_probability": 0.0045457972368523,
+      "rep_probability": 0.9954542027631477,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-01"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "2",
+      "dem_margin_pp": 21.25983318800481,
+      "dem_probability": 0.9987741301119766,
+      "rep_probability": 0.0012258698880234231,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-02"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "3",
+      "dem_margin_pp": 26.41208782305243,
+      "dem_probability": 0.9993879491111076,
+      "rep_probability": 0.0006120508888923792,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-03"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "4",
+      "dem_margin_pp": 76.67817462084625,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-04"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "5",
+      "dem_margin_pp": 35.72795804995021,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-05"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "6",
+      "dem_margin_pp": 8.722674056651769,
+      "dem_probability": 0.9411589160039988,
+      "rep_probability": 0.05884108399600119,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-06"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "7",
+      "dem_margin_pp": 62.59501582480433,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-07"
+    },
+    {
+      "office": "House",
+      "state": "MD",
+      "district": "8",
+      "dem_margin_pp": 58.40776792133634,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-md-08"
+    },
+    {
+      "office": "House",
+      "state": "ME",
+      "district": "1",
+      "dem_margin_pp": 22.91546150108868,
+      "dem_probability": 0.998866930127924,
+      "rep_probability": 0.0011330698720759536,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-me-01"
+    },
+    {
+      "office": "House",
+      "state": "ME",
+      "district": "2",
+      "dem_margin_pp": -3.1467004221275308,
+      "dem_probability": 0.2243328048528887,
+      "rep_probability": 0.7756671951471112,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-me-02"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "1",
+      "dem_margin_pp": -19.506578912878364,
+      "dem_probability": 0.0025780284395604,
+      "rep_probability": 0.9974219715604395,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-01"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "2",
+      "dem_margin_pp": -31.426297879834465,
+      "dem_probability": 3.772836645993622e-12,
+      "rep_probability": 0.9999999999962271,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-02"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "3",
+      "dem_margin_pp": 10.315398084318456,
+      "dem_probability": 0.9667198627305394,
+      "rep_probability": 0.03328013726946055,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-03"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "4",
+      "dem_margin_pp": -5.376645038752349,
+      "dem_probability": 0.1254118348426848,
+      "rep_probability": 0.8745881651573152,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-04"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "5",
+      "dem_margin_pp": -28.93443594787104,
+      "dem_probability": 0.000028136486127227106,
+      "rep_probability": 0.9999718635138728,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-05"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "6",
+      "dem_margin_pp": 27.002621253914683,
+      "dem_probability": 0.9993980711944462,
+      "rep_probability": 0.0006019288055537642,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-06"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "7",
+      "dem_margin_pp": 0.0966885513465665,
+      "dem_probability": 0.4643783623533535,
+      "rep_probability": 0.5356216376466465,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-07"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "8",
+      "dem_margin_pp": 4.8000386098915016,
+      "dem_probability": 0.8154833099596199,
+      "rep_probability": 0.18451669004038007,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-08"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "9",
+      "dem_margin_pp": -34.30980092754633,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-09"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "10",
+      "dem_margin_pp": -3.791119140267904,
+      "dem_probability": 0.1903820844197155,
+      "rep_probability": 0.8096179155802845,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-10"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "11",
+      "dem_margin_pp": 18.67146481279065,
+      "dem_probability": 0.9979163976497348,
+      "rep_probability": 0.002083602350265168,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-11"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "12",
+      "dem_margin_pp": 43.17181504841867,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-12"
+    },
+    {
+      "office": "House",
+      "state": "MI",
+      "district": "13",
+      "dem_margin_pp": 43.145506283790645,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mi-13"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "1",
+      "dem_margin_pp": -7.819664260779329,
+      "dem_probability": 0.0636651919737289,
+      "rep_probability": 0.9363348080262711,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-01"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "2",
+      "dem_margin_pp": 10.469308235735324,
+      "dem_probability": 0.9684925495600512,
+      "rep_probability": 0.03150745043994885,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-02"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "3",
+      "dem_margin_pp": 21.84447753926484,
+      "dem_probability": 0.998776317432596,
+      "rep_probability": 0.0012236825674040164,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-03"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "4",
+      "dem_margin_pp": 37.04734491756434,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-04"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "5",
+      "dem_margin_pp": 59.28121362057568,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-05"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "6",
+      "dem_margin_pp": -20.14729998905153,
+      "dem_probability": 0.0025448994970714,
+      "rep_probability": 0.9974551005029286,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-06"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "7",
+      "dem_margin_pp": -36.64143797363574,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-07"
+    },
+    {
+      "office": "House",
+      "state": "MN",
+      "district": "8",
+      "dem_margin_pp": -14.162210403064137,
+      "dem_probability": 0.0093688711307173,
+      "rep_probability": 0.9906311288692827,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mn-08"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "1",
+      "dem_margin_pp": 57.25273284427126,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-01"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "2",
+      "dem_margin_pp": -5.637957421766382,
+      "dem_probability": 0.1169822882155295,
+      "rep_probability": 0.8830177117844705,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-02"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "3",
+      "dem_margin_pp": -26.79003104023553,
+      "dem_probability": 0.0006119676561666,
+      "rep_probability": 0.9993880323438334,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-03"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "4",
+      "dem_margin_pp": -41.187720677421126,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-04"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "5",
+      "dem_margin_pp": 24.73464048496465,
+      "dem_probability": 0.9993690863286454,
+      "rep_probability": 0.0006309136713545938,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-05"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "6",
+      "dem_margin_pp": -38.16266925686585,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-06"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "7",
+      "dem_margin_pp": -42.031819444715595,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-07"
+    },
+    {
+      "office": "House",
+      "state": "MO",
+      "district": "8",
+      "dem_margin_pp": -52.904067607092806,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mo-08"
+    },
+    {
+      "office": "House",
+      "state": "MS",
+      "district": "1",
+      "dem_margin_pp": -37.32935253326427,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ms-01"
+    },
+    {
+      "office": "House",
+      "state": "MS",
+      "district": "2",
+      "dem_margin_pp": 23.28627957772288,
+      "dem_probability": 0.9989771599251784,
+      "rep_probability": 0.0010228400748215627,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ms-02"
+    },
+    {
+      "office": "House",
+      "state": "MS",
+      "district": "3",
+      "dem_margin_pp": -29.494712366941396,
+      "dem_probability": 0.0000029434205207871888,
+      "rep_probability": 0.9999970565794792,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ms-03"
+    },
+    {
+      "office": "House",
+      "state": "MS",
+      "district": "4",
+      "dem_margin_pp": -43.29014546013632,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ms-04"
+    },
+    {
+      "office": "House",
+      "state": "MT",
+      "district": "1",
+      "dem_margin_pp": -5.63765642059635,
+      "dem_probability": 0.116991834040366,
+      "rep_probability": 0.883008165959634,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mt-01"
+    },
+    {
+      "office": "House",
+      "state": "MT",
+      "district": "2",
+      "dem_margin_pp": -31.541299471077256,
+      "dem_probability": 1.2567861000137805e-12,
+      "rep_probability": 0.9999999999987432,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-mt-02"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "1",
+      "dem_margin_pp": -2.632356311341927,
+      "dem_probability": 0.2538332241917513,
+      "rep_probability": 0.7461667758082486,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-01"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "2",
+      "dem_margin_pp": 34.86126810949728,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-02"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "3",
+      "dem_margin_pp": -13.82390524631288,
+      "dem_probability": 0.010227604214454,
+      "rep_probability": 0.989772395785546,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-03"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "4",
+      "dem_margin_pp": 46.446532749827206,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-04"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "5",
+      "dem_margin_pp": -17.30359900285425,
+      "dem_probability": 0.0043736035834504,
+      "rep_probability": 0.9956263964165496,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-05"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "6",
+      "dem_margin_pp": -17.832284610887136,
+      "dem_probability": 0.0035576218605497,
+      "rep_probability": 0.9964423781394502,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-06"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "7",
+      "dem_margin_pp": -13.970658545744383,
+      "dem_probability": 0.0098482138274732,
+      "rep_probability": 0.9901517861725267,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-07"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "8",
+      "dem_margin_pp": -19.098406391396807,
+      "dem_probability": 0.0026543782948493,
+      "rep_probability": 0.9973456217051507,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-08"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "9",
+      "dem_margin_pp": -12.069719154742833,
+      "dem_probability": 0.0169532022766902,
+      "rep_probability": 0.9830467977233098,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-09"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "10",
+      "dem_margin_pp": -17.962433463373245,
+      "dem_probability": 0.0033973328495582,
+      "rep_probability": 0.9966026671504418,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-10"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "11",
+      "dem_margin_pp": -3.5216703028224328,
+      "dem_probability": 0.204179577600227,
+      "rep_probability": 0.795820422399773,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-11"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "12",
+      "dem_margin_pp": 46.35270290700889,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-12"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "13",
+      "dem_margin_pp": -15.623992434298035,
+      "dem_probability": 0.0066845265286222,
+      "rep_probability": 0.9933154734713778,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-13"
+    },
+    {
+      "office": "House",
+      "state": "NC",
+      "district": "14",
+      "dem_margin_pp": -15.065149692570394,
+      "dem_probability": 0.0075489856544167,
+      "rep_probability": 0.9924510143455832,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nc-14"
+    },
+    {
+      "office": "House",
+      "state": "ND",
+      "district": "0",
+      "dem_margin_pp": -36.50208733639428,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nd-00"
+    },
+    {
+      "office": "House",
+      "state": "NE",
+      "district": "1",
+      "dem_margin_pp": -10.24628155393964,
+      "dem_probability": 0.0284165065353137,
+      "rep_probability": 0.9715834934646863,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ne-01"
+    },
+    {
+      "office": "House",
+      "state": "NE",
+      "district": "2",
+      "dem_margin_pp": 5.0939068902798015,
+      "dem_probability": 0.82958943104778,
+      "rep_probability": 0.17041056895221995,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ne-02"
+    },
+    {
+      "office": "House",
+      "state": "NE",
+      "district": "3",
+      "dem_margin_pp": -55.73610435416124,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ne-03"
+    },
+    {
+      "office": "House",
+      "state": "NH",
+      "district": "1",
+      "dem_margin_pp": 3.541341133227217,
+      "dem_probability": 0.7425311219556537,
+      "rep_probability": 0.25746887804434626,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nh-01"
+    },
+    {
+      "office": "House",
+      "state": "NH",
+      "district": "2",
+      "dem_margin_pp": 10.797644582959856,
+      "dem_probability": 0.9718964601770442,
+      "rep_probability": 0.02810353982295577,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nh-02"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "1",
+      "dem_margin_pp": 20.841601830055392,
+      "dem_probability": 0.99877070275696,
+      "rep_probability": 0.001229297243039995,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-01"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "2",
+      "dem_margin_pp": -12.633291897535386,
+      "dem_probability": 0.0140859626987717,
+      "rep_probability": 0.9859140373012283,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-02"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "3",
+      "dem_margin_pp": 11.58121862578051,
+      "dem_probability": 0.9784015778771712,
+      "rep_probability": 0.02159842212282881,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-03"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "4",
+      "dem_margin_pp": -31.388319455195948,
+      "dem_probability": 5.3847339125424605e-12,
+      "rep_probability": 0.9999999999946153,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-04"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "5",
+      "dem_margin_pp": 7.468157534201779,
+      "dem_probability": 0.9104747564241948,
+      "rep_probability": 0.08952524357580516,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-05"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "6",
+      "dem_margin_pp": 10.645616309543607,
+      "dem_probability": 0.970383387885721,
+      "rep_probability": 0.029616612114279017,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-06"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "7",
+      "dem_margin_pp": -0.9235905167138572,
+      "dem_probability": 0.3745656474178529,
+      "rep_probability": 0.6254343525821471,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-07"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "8",
+      "dem_margin_pp": 27.119393570435676,
+      "dem_probability": 0.9994041591714204,
+      "rep_probability": 0.0005958408285795525,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-08"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "9",
+      "dem_margin_pp": 4.983467163177121,
+      "dem_probability": 0.8244481727616813,
+      "rep_probability": 0.17555182723831875,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-09"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "10",
+      "dem_margin_pp": 51.86569304728111,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-10"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "11",
+      "dem_margin_pp": 13.300704046701808,
+      "dem_probability": 0.9885954944970932,
+      "rep_probability": 0.011404505502906837,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-11"
+    },
+    {
+      "office": "House",
+      "state": "NJ",
+      "district": "12",
+      "dem_margin_pp": 26.08461118066286,
+      "dem_probability": 0.999387345508297,
+      "rep_probability": 0.0006126544917030019,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nj-12"
+    },
+    {
+      "office": "House",
+      "state": "NM",
+      "district": "1",
+      "dem_margin_pp": 16.507143813995857,
+      "dem_probability": 0.9954382753789968,
+      "rep_probability": 0.004561724621003238,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nm-01"
+    },
+    {
+      "office": "House",
+      "state": "NM",
+      "district": "2",
+      "dem_margin_pp": 2.713851657034536,
+      "dem_probability": 0.6840705551522595,
+      "rep_probability": 0.31592944484774055,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nm-02"
+    },
+    {
+      "office": "House",
+      "state": "NM",
+      "district": "3",
+      "dem_margin_pp": 9.235119551120723,
+      "dem_probability": 0.951100964662214,
+      "rep_probability": 0.048899035337785945,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nm-03"
+    },
+    {
+      "office": "House",
+      "state": "NV",
+      "district": "1",
+      "dem_margin_pp": 6.1797676637788825,
+      "dem_probability": 0.8711840486213097,
+      "rep_probability": 0.12881595137869029,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nv-01"
+    },
+    {
+      "office": "House",
+      "state": "NV",
+      "district": "2",
+      "dem_margin_pp": -9.138036773322765,
+      "dem_probability": 0.0414868141889309,
+      "rep_probability": 0.9585131858110691,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nv-02"
+    },
+    {
+      "office": "House",
+      "state": "NV",
+      "district": "3",
+      "dem_margin_pp": 4.54243293092139,
+      "dem_probability": 0.8020468033521189,
+      "rep_probability": 0.19795319664788114,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nv-03"
+    },
+    {
+      "office": "House",
+      "state": "NV",
+      "district": "4",
+      "dem_margin_pp": 7.208034590558693,
+      "dem_probability": 0.9031467921372188,
+      "rep_probability": 0.09685320786278118,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-nv-04"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "1",
+      "dem_margin_pp": -10.793769272754938,
+      "dem_probability": 0.0246327851375413,
+      "rep_probability": 0.9753672148624587,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-01"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "2",
+      "dem_margin_pp": -15.262574175940204,
+      "dem_probability": 0.0072330330448546,
+      "rep_probability": 0.9927669669551454,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-02"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "3",
+      "dem_margin_pp": 2.4786470958777915,
+      "dem_probability": 0.6657957340673573,
+      "rep_probability": 0.33420426593264274,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-03"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "4",
+      "dem_margin_pp": 1.7969330856081385,
+      "dem_probability": 0.61079146312788,
+      "rep_probability": 0.38920853687212,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-04"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "5",
+      "dem_margin_pp": 45.602865262173815,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-05"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "6",
+      "dem_margin_pp": 14.34591151418801,
+      "dem_probability": 0.9921137975495758,
+      "rep_probability": 0.007886202450424151,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-06"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "7",
+      "dem_margin_pp": 49.580403442429656,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-07"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "8",
+      "dem_margin_pp": 46.18953621405023,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-08"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "9",
+      "dem_margin_pp": 43.592562459068645,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-09"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "10",
+      "dem_margin_pp": 63.31510300392717,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-10"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "11",
+      "dem_margin_pp": -25.52560943982716,
+      "dem_probability": 0.0007904434640875,
+      "rep_probability": 0.9992095565359125,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-11"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "12",
+      "dem_margin_pp": 61.81518276472068,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-12"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "13",
+      "dem_margin_pp": 61.934590272332976,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-13"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "14",
+      "dem_margin_pp": 34.228514652480094,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-14"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "15",
+      "dem_margin_pp": 50.71121409804427,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-15"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "16",
+      "dem_margin_pp": 36.58615558901493,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-16"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "17",
+      "dem_margin_pp": -0.0029238514840708,
+      "dem_probability": 0.4553403565544197,
+      "rep_probability": 0.5446596434455804,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-17"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "18",
+      "dem_margin_pp": 9.713237984392364,
+      "dem_probability": 0.9587461175283276,
+      "rep_probability": 0.04125388247167239,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-18"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "19",
+      "dem_margin_pp": 4.297796752420462,
+      "dem_probability": 0.7884810236619569,
+      "rep_probability": 0.21151897633804306,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-19"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "20",
+      "dem_margin_pp": 18.918522669752694,
+      "dem_probability": 0.9980964716655368,
+      "rep_probability": 0.001903528334463167,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-20"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "21",
+      "dem_margin_pp": -12.361146851782532,
+      "dem_probability": 0.0153856769738076,
+      "rep_probability": 0.9846143230261925,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-21"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "22",
+      "dem_margin_pp": 9.39798966492515,
+      "dem_probability": 0.9538649666992124,
+      "rep_probability": 0.04613503330078761,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-22"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "23",
+      "dem_margin_pp": -23.07445158890405,
+      "dem_probability": 0.0013234941025792,
+      "rep_probability": 0.9986765058974209,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-23"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "24",
+      "dem_margin_pp": -25.637858215789187,
+      "dem_probability": 0.0007568947990856,
+      "rep_probability": 0.9992431052009144,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-24"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "25",
+      "dem_margin_pp": 19.752788019002946,
+      "dem_probability": 0.998608773563786,
+      "rep_probability": 0.0013912264362140325,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-25"
+    },
+    {
+      "office": "House",
+      "state": "NY",
+      "district": "26",
+      "dem_margin_pp": 24.030605535551903,
+      "dem_probability": 0.9992495571575012,
+      "rep_probability": 0.0007504428424988108,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ny-26"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "1",
+      "dem_margin_pp": 0.2745359713004749,
+      "dem_probability": 0.4804947979891802,
+      "rep_probability": 0.5195052020108197,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-01"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "2",
+      "dem_margin_pp": -41.31079307456167,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-02"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "3",
+      "dem_margin_pp": 41.69373078573077,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-03"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "4",
+      "dem_margin_pp": -41.82726782361807,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-04"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "5",
+      "dem_margin_pp": -24.55550465742445,
+      "dem_probability": 0.0011480897640919,
+      "rep_probability": 0.9988519102359081,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-05"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "6",
+      "dem_margin_pp": -35.078406759216726,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-06"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "7",
+      "dem_margin_pp": -9.786307879091556,
+      "dem_probability": 0.0327304744601431,
+      "rep_probability": 0.9672695255398569,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-07"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "8",
+      "dem_margin_pp": -15.656950212042728,
+      "dem_probability": 0.0066366420894794,
+      "rep_probability": 0.9933633579105206,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-08"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "9",
+      "dem_margin_pp": -6.347932375853481,
+      "dem_probability": 0.0953631193889827,
+      "rep_probability": 0.9046368806110173,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-09"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "10",
+      "dem_margin_pp": -6.094912756618078,
+      "dem_probability": 0.1028246093953737,
+      "rep_probability": 0.8971753906046263,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-10"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "11",
+      "dem_margin_pp": 54.747331556455954,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-11"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "12",
+      "dem_margin_pp": -30.92083965238163,
+      "dem_probability": 3.195770336480376e-10,
+      "rep_probability": 0.999999999680423,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-12"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "13",
+      "dem_margin_pp": 6.242241924106328,
+      "dem_probability": 0.8732447818720682,
+      "rep_probability": 0.12675521812793178,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-13"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "14",
+      "dem_margin_pp": -21.131908336669667,
+      "dem_probability": 0.0024329975066351,
+      "rep_probability": 0.9975670024933649,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-14"
+    },
+    {
+      "office": "House",
+      "state": "OH",
+      "district": "15",
+      "dem_margin_pp": -6.082137615703246,
+      "dem_probability": 0.1032105011736918,
+      "rep_probability": 0.8967894988263082,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-oh-15"
+    },
+    {
+      "office": "House",
+      "state": "OK",
+      "district": "1",
+      "dem_margin_pp": -21.281158889458247,
+      "dem_probability": 0.0023766259547808,
+      "rep_probability": 0.9976233740452192,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ok-01"
+    },
+    {
+      "office": "House",
+      "state": "OK",
+      "district": "2",
+      "dem_margin_pp": -54.775790996211455,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ok-02"
+    },
+    {
+      "office": "House",
+      "state": "OK",
+      "district": "3",
+      "dem_margin_pp": -46.44135282134469,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ok-03"
+    },
+    {
+      "office": "House",
+      "state": "OK",
+      "district": "4",
+      "dem_margin_pp": -34.66458808713147,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ok-04"
+    },
+    {
+      "office": "House",
+      "state": "OK",
+      "district": "5",
+      "dem_margin_pp": -17.285677188521596,
+      "dem_probability": 0.0044038190023517,
+      "rep_probability": 0.9955961809976484,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ok-05"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "1",
+      "dem_margin_pp": 40.83004104879444,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-01"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "2",
+      "dem_margin_pp": -29.399966457300486,
+      "dem_probability": 0.000004537421257931288,
+      "rep_probability": 0.9999954625787421,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-02"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "3",
+      "dem_margin_pp": 47.03353478439277,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-03"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "4",
+      "dem_margin_pp": 12.144106973717538,
+      "dem_probability": 0.982262227750522,
+      "rep_probability": 0.017737772249478034,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-04"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "5",
+      "dem_margin_pp": 8.081450254884516,
+      "dem_probability": 0.926399240942728,
+      "rep_probability": 0.07360075905727204,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-05"
+    },
+    {
+      "office": "House",
+      "state": "OR",
+      "district": "6",
+      "dem_margin_pp": 13.305651262342844,
+      "dem_probability": 0.9886176113782592,
+      "rep_probability": 0.011382388621740791,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-or-06"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "1",
+      "dem_margin_pp": -3.3632863490291167,
+      "dem_probability": 0.2125628410139948,
+      "rep_probability": 0.7874371589860052,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-01"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "2",
+      "dem_margin_pp": 40.19600357570692,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-02"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "3",
+      "dem_margin_pp": 77.26935632407623,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-03"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "4",
+      "dem_margin_pp": 19.14773343948128,
+      "dem_probability": 0.9982635934940032,
+      "rep_probability": 0.0017364065059968237,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-04"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "5",
+      "dem_margin_pp": 30.63124205390284,
+      "dem_probability": 0.9999999382785004,
+      "rep_probability": 6.172149957794915e-8,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-05"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "6",
+      "dem_margin_pp": 13.85120430762096,
+      "dem_probability": 0.9907380137053424,
+      "rep_probability": 0.009261986294657576,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-06"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "7",
+      "dem_margin_pp": 0.7119175003068001,
+      "dem_probability": 0.5195328724030033,
+      "rep_probability": 0.4804671275969967,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-07"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "8",
+      "dem_margin_pp": -4.268595824417332,
+      "dem_probability": 0.1677010529567007,
+      "rep_probability": 0.8322989470432993,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-08"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "9",
+      "dem_margin_pp": -37.51248718087529,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-09"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "10",
+      "dem_margin_pp": -1.204493088679129,
+      "dem_probability": 0.3519012621777693,
+      "rep_probability": 0.6480987378222307,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-10"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "11",
+      "dem_margin_pp": -22.248008735002944,
+      "dem_probability": 0.0016987786422934,
+      "rep_probability": 0.9983012213577066,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-11"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "12",
+      "dem_margin_pp": 17.638018672727988,
+      "dem_probability": 0.9971265120661778,
+      "rep_probability": 0.0028734879338222497,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-12"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "13",
+      "dem_margin_pp": -46.88330148002104,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-13"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "14",
+      "dem_margin_pp": -32.98231457846563,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-14"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "15",
+      "dem_margin_pp": -38.35496442285334,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-15"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "16",
+      "dem_margin_pp": -24.58978367406739,
+      "dem_probability": 0.0011382042314801,
+      "rep_probability": 0.9988617957685199,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-16"
+    },
+    {
+      "office": "House",
+      "state": "PA",
+      "district": "17",
+      "dem_margin_pp": 8.8340679301703,
+      "dem_probability": 0.9434807420528406,
+      "rep_probability": 0.056519257947159396,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-pa-17"
+    },
+    {
+      "office": "House",
+      "state": "RI",
+      "district": "1",
+      "dem_margin_pp": 28.441677018154813,
+      "dem_probability": 0.9997431703559244,
+      "rep_probability": 0.0002568296440755846,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ri-01"
+    },
+    {
+      "office": "House",
+      "state": "RI",
+      "district": "2",
+      "dem_margin_pp": 14.010134735200532,
+      "dem_probability": 0.9912335250866235,
+      "rep_probability": 0.008766474913376454,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ri-02"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "1",
+      "dem_margin_pp": -10.463371179348272,
+      "dem_probability": 0.0268058167937327,
+      "rep_probability": 0.9731941832062673,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-01"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "2",
+      "dem_margin_pp": -15.034494184343744,
+      "dem_probability": 0.0075994647833161,
+      "rep_probability": 0.9924005352166839,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-02"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "3",
+      "dem_margin_pp": -43.759317011735774,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-03"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "4",
+      "dem_margin_pp": -22.982967892779495,
+      "dem_probability": 0.0013420187535519,
+      "rep_probability": 0.9986579812464481,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-04"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "5",
+      "dem_margin_pp": -24.491144789309296,
+      "dem_probability": 0.00116541819249,
+      "rep_probability": 0.99883458180751,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-05"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "6",
+      "dem_margin_pp": 26.775832424136727,
+      "dem_probability": 0.9993914090808544,
+      "rep_probability": 0.0006085909191455574,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-06"
+    },
+    {
+      "office": "House",
+      "state": "SC",
+      "district": "7",
+      "dem_margin_pp": -26.648961000915904,
+      "dem_probability": 0.0006243052399458,
+      "rep_probability": 0.9993756947600542,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sc-07"
+    },
+    {
+      "office": "House",
+      "state": "SD",
+      "district": "0",
+      "dem_margin_pp": -34.37367859964765,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-sd-00"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "1",
+      "dem_margin_pp": -57.757194940520975,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-01"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "2",
+      "dem_margin_pp": -33.75251153306657,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-02"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "3",
+      "dem_margin_pp": -35.711365160097536,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-03"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "4",
+      "dem_margin_pp": -24.001713233957208,
+      "dem_probability": 0.0012474368236207,
+      "rep_probability": 0.9987525631763793,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-04"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "5",
+      "dem_margin_pp": -15.9419322369414,
+      "dem_probability": 0.0062443585877725,
+      "rep_probability": 0.9937556414122275,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-05"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "6",
+      "dem_margin_pp": -25.90518130237512,
+      "dem_probability": 0.0006964665063122,
+      "rep_probability": 0.9993035334936878,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-06"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "7",
+      "dem_margin_pp": -21.72263710255495,
+      "dem_probability": 0.0021120836436192,
+      "rep_probability": 0.9978879163563809,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-07"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "8",
+      "dem_margin_pp": -20.12059602738428,
+      "dem_probability": 0.0025455231472107,
+      "rep_probability": 0.9974544768527893,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-08"
+    },
+    {
+      "office": "House",
+      "state": "TN",
+      "district": "9",
+      "dem_margin_pp": -14.194073584835314,
+      "dem_probability": 0.0092914464950079,
+      "rep_probability": 0.9907085535049921,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tn-09"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "1",
+      "dem_margin_pp": -50.062125556188434,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-01"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "2",
+      "dem_margin_pp": -19.23398787555962,
+      "dem_probability": 0.0026213003392893,
+      "rep_probability": 0.9973786996607107,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-02"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "3",
+      "dem_margin_pp": -24.908762485292044,
+      "dem_probability": 0.0010272501524251,
+      "rep_probability": 0.9989727498475749,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-03"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "4",
+      "dem_margin_pp": -26.72882081654346,
+      "dem_probability": 0.0006177218322383,
+      "rep_probability": 0.9993822781677617,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-04"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "5",
+      "dem_margin_pp": -22.70257996964905,
+      "dem_probability": 0.0014311509379491,
+      "rep_probability": 0.9985688490620509,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-05"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "6",
+      "dem_margin_pp": -25.03781705114676,
+      "dem_probability": 0.0009757122359118,
+      "rep_probability": 0.9990242877640882,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-06"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "7",
+      "dem_margin_pp": 23.13049150465635,
+      "dem_probability": 0.9989251025085326,
+      "rep_probability": 0.0010748974914673859,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-07"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "8",
+      "dem_margin_pp": -29.179219588712662,
+      "dem_probability": 0.000011467472262007108,
+      "rep_probability": 0.999988532527738,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-08"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "9",
+      "dem_margin_pp": -16.3284385463485,
+      "dem_probability": 0.0057726597246036,
+      "rep_probability": 0.9942273402753964,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-09"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "10",
+      "dem_margin_pp": -21.251643001286816,
+      "dem_probability": 0.0023890984690032,
+      "rep_probability": 0.9976109015309969,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-10"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "11",
+      "dem_margin_pp": -35.438466457743544,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-11"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "12",
+      "dem_margin_pp": -25.9628650524528,
+      "dem_probability": 0.0006868733357089,
+      "rep_probability": 0.9993131266642911,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-12"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "13",
+      "dem_margin_pp": -47.905779379526976,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-13"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "14",
+      "dem_margin_pp": -25.733539598341007,
+      "dem_probability": 0.0007321117265211,
+      "rep_probability": 0.9992678882734789,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-14"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "15",
+      "dem_margin_pp": -7.70429653899064,
+      "dem_probability": 0.0656044423484794,
+      "rep_probability": 0.9343955576515206,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-15"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "16",
+      "dem_margin_pp": 15.847669423970004,
+      "dem_probability": 0.9945615467039318,
+      "rep_probability": 0.00543845329606818,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-16"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "17",
+      "dem_margin_pp": -23.250218005352263,
+      "dem_probability": 0.0012985614793298,
+      "rep_probability": 0.9987014385206702,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-17"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "18",
+      "dem_margin_pp": 53.41788515842936,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-18"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "19",
+      "dem_margin_pp": -52.022525582672806,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-19"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "20",
+      "dem_margin_pp": 27.74012995170248,
+      "dem_probability": 0.9994965596994392,
+      "rep_probability": 0.0005034403005608201,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-20"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "21",
+      "dem_margin_pp": -22.368348822819414,
+      "dem_probability": 0.001613808982766,
+      "rep_probability": 0.998386191017234,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-21"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "22",
+      "dem_margin_pp": -23.705560648187884,
+      "dem_probability": 0.0012676918966117,
+      "rep_probability": 0.9987323081033883,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-22"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "23",
+      "dem_margin_pp": -11.607512033614505,
+      "dem_probability": 0.0196607618418914,
+      "rep_probability": 0.9803392381581086,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-23"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "24",
+      "dem_margin_pp": -17.679387958679328,
+      "dem_probability": 0.003769984435319,
+      "rep_probability": 0.996230015564681,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-24"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "25",
+      "dem_margin_pp": -25.547371444824417,
+      "dem_probability": 0.0007835744400074,
+      "rep_probability": 0.9992164255599926,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-25"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "26",
+      "dem_margin_pp": -26.11439322334784,
+      "dem_probability": 0.0006665741200841,
+      "rep_probability": 0.9993334258799159,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-26"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "27",
+      "dem_margin_pp": -21.05412214546483,
+      "dem_probability": 0.0024560913151485,
+      "rep_probability": 0.9975439086848515,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-27"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "28",
+      "dem_margin_pp": -1.0537494719117173,
+      "dem_probability": 0.3639192032916768,
+      "rep_probability": 0.6360807967083232,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-28"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "29",
+      "dem_margin_pp": 28.80306041064213,
+      "dem_probability": 0.9998673120703914,
+      "rep_probability": 0.00013268792960863252,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-29"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "30",
+      "dem_margin_pp": 45.79138730598135,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-30"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "31",
+      "dem_margin_pp": -22.62065002350873,
+      "dem_probability": 0.0014679869339754,
+      "rep_probability": 0.9985320130660246,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-31"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "32",
+      "dem_margin_pp": -19.27953312297007,
+      "dem_probability": 0.0026120691278442,
+      "rep_probability": 0.9973879308721558,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-32"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "33",
+      "dem_margin_pp": 32.34219684269436,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-33"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "34",
+      "dem_margin_pp": -6.544800138968792,
+      "dem_probability": 0.0898839215527572,
+      "rep_probability": 0.9101160784472428,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-34"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "35",
+      "dem_margin_pp": -6.883737802716122,
+      "dem_probability": 0.0813946645985161,
+      "rep_probability": 0.9186053354014839,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-35"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "36",
+      "dem_margin_pp": -26.942447335634903,
+      "dem_probability": 0.000593958570741,
+      "rep_probability": 0.999406041429259,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-36"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "37",
+      "dem_margin_pp": 55.224487700908846,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-37"
+    },
+    {
+      "office": "House",
+      "state": "TX",
+      "district": "38",
+      "dem_margin_pp": -21.807107159938106,
+      "dem_probability": 0.0020476824892483,
+      "rep_probability": 0.9979523175107518,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-tx-38"
+    },
+    {
+      "office": "House",
+      "state": "UT",
+      "district": "1",
+      "dem_margin_pp": 29.83463290163727,
+      "dem_probability": 0.9999954882656336,
+      "rep_probability": 0.000004511734366441367,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ut-01"
+    },
+    {
+      "office": "House",
+      "state": "UT",
+      "district": "2",
+      "dem_margin_pp": -21.99513875041983,
+      "dem_probability": 0.0018972116147449,
+      "rep_probability": 0.9981027883852551,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ut-02"
+    },
+    {
+      "office": "House",
+      "state": "UT",
+      "district": "3",
+      "dem_margin_pp": -39.60800037960718,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ut-03"
+    },
+    {
+      "office": "House",
+      "state": "UT",
+      "district": "4",
+      "dem_margin_pp": -29.342693249730463,
+      "dem_probability": 0.000005834450076058508,
+      "rep_probability": 0.9999941655499239,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-ut-04"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "1",
+      "dem_margin_pp": -3.0762554128590573,
+      "dem_probability": 0.2282384504473495,
+      "rep_probability": 0.7717615495526505,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-01"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "2",
+      "dem_margin_pp": 0.04070669526702,
+      "dem_probability": 0.4592983962429553,
+      "rep_probability": 0.5407016037570447,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-02"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "3",
+      "dem_margin_pp": 37.52265764394745,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-03"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "4",
+      "dem_margin_pp": 35.50883285059533,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-04"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "5",
+      "dem_margin_pp": -9.207579355908113,
+      "dem_probability": 0.0404117557824331,
+      "rep_probability": 0.9595882442175669,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-05"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "6",
+      "dem_margin_pp": -26.4734838620628,
+      "dem_probability": 0.0006366865937829,
+      "rep_probability": 0.9993633134062171,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-06"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "7",
+      "dem_margin_pp": 5.696809626549353,
+      "dem_probability": 0.8543688135316343,
+      "rep_probability": 0.1456311864683657,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-07"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "8",
+      "dem_margin_pp": 50.342580420600896,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-08"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "9",
+      "dem_margin_pp": -43.505325477641314,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-09"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "10",
+      "dem_margin_pp": 11.0175410808027,
+      "dem_probability": 0.973911352188858,
+      "rep_probability": 0.026088647811141952,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-10"
+    },
+    {
+      "office": "House",
+      "state": "VA",
+      "district": "11",
+      "dem_margin_pp": 35.83998338783118,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-va-11"
+    },
+    {
+      "office": "House",
+      "state": "VT",
+      "district": "0",
+      "dem_margin_pp": 34.81091720446953,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-vt-00"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "1",
+      "dem_margin_pp": 30.77102261268417,
+      "dem_probability": 0.9999999751871635,
+      "rep_probability": 2.4812836452170473e-8,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-01"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "2",
+      "dem_margin_pp": 27.74426325869468,
+      "dem_probability": 0.9994976231993624,
+      "rep_probability": 0.0005023768006375828,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-02"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "3",
+      "dem_margin_pp": 0.3508305394932058,
+      "dem_probability": 0.4873818297511853,
+      "rep_probability": 0.5126181702488146,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-03"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "4",
+      "dem_margin_pp": -21.08286617813629,
+      "dem_probability": 0.0024480280097477,
+      "rep_probability": 0.9975519719902523,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-04"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "5",
+      "dem_margin_pp": -13.484792472978672,
+      "dem_probability": 0.0111383364700017,
+      "rep_probability": 0.9888616635299983,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-05"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "6",
+      "dem_margin_pp": 19.84175669573725,
+      "dem_probability": 0.998641314870609,
+      "rep_probability": 0.0013586851293909685,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-06"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "7",
+      "dem_margin_pp": 74.24883860667757,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-07"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "8",
+      "dem_margin_pp": 9.851874245001564,
+      "dem_probability": 0.9607268961725453,
+      "rep_probability": 0.03927310382745475,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-08"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "9",
+      "dem_margin_pp": 42.45703476844088,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-09"
+    },
+    {
+      "office": "House",
+      "state": "WA",
+      "district": "10",
+      "dem_margin_pp": 19.374498019952497,
+      "dem_probability": 0.9984154079397656,
+      "rep_probability": 0.0015845920602344243,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wa-10"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "1",
+      "dem_margin_pp": -4.655252624223673,
+      "dem_probability": 0.15135464142138,
+      "rep_probability": 0.84864535857862,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-01"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "2",
+      "dem_margin_pp": null,
+      "dem_probability": 1,
+      "rep_probability": 0,
+      "accuracy_scoring_eligible": false,
+      "accuracy_exclusion_reason": "Only one party appears in the listed 2026 candidate field; excluded from 2026 accuracy scoring.",
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-02"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "3",
+      "dem_margin_pp": -5.483482275316003,
+      "dem_probability": 0.1219273337832053,
+      "rep_probability": 0.8780726662167947,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-03"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "4",
+      "dem_margin_pp": 52.66334043837773,
+      "dem_probability": 0.999999999999,
+      "rep_probability": 9.999778782798785e-13,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-04"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "5",
+      "dem_margin_pp": -23.28414187369902,
+      "dem_probability": 0.00129501975043,
+      "rep_probability": 0.99870498024957,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-05"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "6",
+      "dem_margin_pp": -16.780337522559414,
+      "dem_probability": 0.0052037712580287,
+      "rep_probability": 0.9947962287419713,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-06"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "7",
+      "dem_margin_pp": -23.066328352216743,
+      "dem_probability": 0.0013249652169936,
+      "rep_probability": 0.9986750347830065,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-07"
+    },
+    {
+      "office": "House",
+      "state": "WI",
+      "district": "8",
+      "dem_margin_pp": -14.77584587566322,
+      "dem_probability": 0.0080490265200213,
+      "rep_probability": 0.9919509734799787,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wi-08"
+    },
+    {
+      "office": "House",
+      "state": "WV",
+      "district": "1",
+      "dem_margin_pp": -42.88848766256648,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wv-01"
+    },
+    {
+      "office": "House",
+      "state": "WV",
+      "district": "2",
+      "dem_margin_pp": -38.7401906417354,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wv-02"
+    },
+    {
+      "office": "House",
+      "state": "WY",
+      "district": "0",
+      "dem_margin_pp": -45.80348663896472,
+      "dem_probability": 1.0000000000000002e-12,
+      "rep_probability": 0.999999999999,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "house-wy-00"
+    },
+    {
+      "office": "Senate",
+      "state": "AK",
+      "district": "",
+      "dem_margin_pp": -5.456667922010835,
+      "dem_probability": 0.2674861218229036,
+      "rep_probability": 0.7325138781770963,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ak"
+    },
+    {
+      "office": "Senate",
+      "state": "AL",
+      "district": "",
+      "dem_margin_pp": -28.032079134309456,
+      "dem_probability": 0.0056226933070381,
+      "rep_probability": 0.9943773066929619,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-al"
+    },
+    {
+      "office": "Senate",
+      "state": "AR",
+      "district": "",
+      "dem_margin_pp": -17.447902639782765,
+      "dem_probability": 0.0383739650339423,
+      "rep_probability": 0.9616260349660577,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ar"
+    },
+    {
+      "office": "Senate",
+      "state": "CO",
+      "district": "",
+      "dem_margin_pp": 9.847154728253152,
+      "dem_probability": 0.8603247627772204,
+      "rep_probability": 0.13967523722277964,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-co"
+    },
+    {
+      "office": "Senate",
+      "state": "DE",
+      "district": "",
+      "dem_margin_pp": 15.996914849261865,
+      "dem_probability": 0.950422231420647,
+      "rep_probability": 0.04957776857935303,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-de"
+    },
+    {
+      "office": "Senate",
+      "state": "FL",
+      "district": "",
+      "dem_margin_pp": -15.269028558948955,
+      "dem_probability": 0.0563070635457201,
+      "rep_probability": 0.9436929364542799,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-fl"
+    },
+    {
+      "office": "Senate",
+      "state": "GA",
+      "district": "",
+      "dem_margin_pp": 1.597798553195572,
+      "dem_probability": 0.5732165697286059,
+      "rep_probability": 0.4267834302713941,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ga"
+    },
+    {
+      "office": "Senate",
+      "state": "IA",
+      "district": "",
+      "dem_margin_pp": -5.739069846901593,
+      "dem_probability": 0.2573950997454129,
+      "rep_probability": 0.7426049002545871,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ia"
+    },
+    {
+      "office": "Senate",
+      "state": "ID",
+      "district": "",
+      "dem_margin_pp": -25.577010132407768,
+      "dem_probability": 0.0088184723848552,
+      "rep_probability": 0.9911815276151448,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-id"
+    },
+    {
+      "office": "Senate",
+      "state": "IL",
+      "district": "",
+      "dem_margin_pp": 10.291491739165398,
+      "dem_probability": 0.8698942223096251,
+      "rep_probability": 0.1301057776903749,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-il"
+    },
+    {
+      "office": "Senate",
+      "state": "KS",
+      "district": "",
+      "dem_margin_pp": -6.962620243494467,
+      "dem_probability": 0.2166248266077702,
+      "rep_probability": 0.7833751733922298,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ks"
+    },
+    {
+      "office": "Senate",
+      "state": "KY",
+      "district": "",
+      "dem_margin_pp": -20.336270898027752,
+      "dem_probability": 0.0228765782088766,
+      "rep_probability": 0.9771234217911234,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ky"
+    },
+    {
+      "office": "Senate",
+      "state": "LA",
+      "district": "",
+      "dem_margin_pp": -13.591095890772326,
+      "dem_probability": 0.0752157713739322,
+      "rep_probability": 0.9247842286260678,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-la"
+    },
+    {
+      "office": "Senate",
+      "state": "MA",
+      "district": "",
+      "dem_margin_pp": 21.563439280719034,
+      "dem_probability": 0.9816761904178832,
+      "rep_probability": 0.018323809582116768,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ma"
+    },
+    {
+      "office": "Senate",
+      "state": "ME",
+      "district": "",
+      "dem_margin_pp": -3.103447512070441,
+      "dem_probability": 0.3605538523148383,
+      "rep_probability": 0.6394461476851617,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-me"
+    },
+    {
+      "office": "Senate",
+      "state": "MI",
+      "district": "",
+      "dem_margin_pp": -2.9757519331193625,
+      "dem_probability": 0.3660069163805438,
+      "rep_probability": 0.6339930836194563,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-mi"
+    },
+    {
+      "office": "Senate",
+      "state": "MN",
+      "district": "",
+      "dem_margin_pp": -0.9623885672365384,
+      "dem_probability": 0.45569724272909,
+      "rep_probability": 0.54430275727091,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-mn"
+    },
+    {
+      "office": "Senate",
+      "state": "MS",
+      "district": "",
+      "dem_margin_pp": -12.865240969063162,
+      "dem_probability": 0.0850841314364462,
+      "rep_probability": 0.9149158685635538,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ms"
+    },
+    {
+      "office": "Senate",
+      "state": "MT",
+      "district": "",
+      "dem_margin_pp": -25.675383172788905,
+      "dem_probability": 0.0086611340654872,
+      "rep_probability": 0.9913388659345128,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-mt"
+    },
+    {
+      "office": "Senate",
+      "state": "NC",
+      "district": "",
+      "dem_margin_pp": 3.9328945825460977,
+      "dem_probability": 0.6739476075080819,
+      "rep_probability": 0.3260523924919181,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-nc"
+    },
+    {
+      "office": "Senate",
+      "state": "NE",
+      "district": "",
+      "dem_margin_pp": -5.272338446681103,
+      "dem_probability": 0.2742066046860203,
+      "rep_probability": 0.7257933953139797,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ne"
+    },
+    {
+      "office": "Senate",
+      "state": "NH",
+      "district": "",
+      "dem_margin_pp": 2.0993430386838945,
+      "dem_probability": 0.5957005930803481,
+      "rep_probability": 0.40429940691965194,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-nh"
+    },
+    {
+      "office": "Senate",
+      "state": "NJ",
+      "district": "",
+      "dem_margin_pp": 12.124282949795663,
+      "dem_probability": 0.9036448240111632,
+      "rep_probability": 0.0963551759888368,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-nj"
+    },
+    {
+      "office": "Senate",
+      "state": "NM",
+      "district": "",
+      "dem_margin_pp": 12.466406316887896,
+      "dem_probability": 0.9090060209591044,
+      "rep_probability": 0.09099397904089557,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-nm"
+    },
+    {
+      "office": "Senate",
+      "state": "OH",
+      "district": "",
+      "dem_margin_pp": -4.359981262538599,
+      "dem_probability": 0.3089690734002659,
+      "rep_probability": 0.6910309265997341,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-oh"
+    },
+    {
+      "office": "Senate",
+      "state": "OK",
+      "district": "",
+      "dem_margin_pp": -35.982717642701495,
+      "dem_probability": 0.0013012088892083,
+      "rep_probability": 0.9986987911107917,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ok"
+    },
+    {
+      "office": "Senate",
+      "state": "OR",
+      "district": "",
+      "dem_margin_pp": 14.43381355233829,
+      "dem_probability": 0.9349162925281738,
+      "rep_probability": 0.06508370747182624,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-or"
+    },
+    {
+      "office": "Senate",
+      "state": "RI",
+      "district": "",
+      "dem_margin_pp": 18.69925221978948,
+      "dem_probability": 0.96929881274755,
+      "rep_probability": 0.03070118725244997,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-ri"
+    },
+    {
+      "office": "Senate",
+      "state": "SC",
+      "district": "",
+      "dem_margin_pp": -8.607213746270121,
+      "dem_probability": 0.1695146391100492,
+      "rep_probability": 0.8304853608899508,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-sc"
+    },
+    {
+      "office": "Senate",
+      "state": "SD",
+      "district": "",
+      "dem_margin_pp": -19.3541504330814,
+      "dem_probability": 0.0273002533550679,
+      "rep_probability": 0.9726997466449321,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-sd"
+    },
+    {
+      "office": "Senate",
+      "state": "TN",
+      "district": "",
+      "dem_margin_pp": -32.11689281113323,
+      "dem_probability": 0.0026528942211394,
+      "rep_probability": 0.9973471057788607,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-tn"
+    },
+    {
+      "office": "Senate",
+      "state": "TX",
+      "district": "",
+      "dem_margin_pp": -5.313224808388273,
+      "dem_probability": 0.2727068906070108,
+      "rep_probability": 0.7272931093929892,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-tx"
+    },
+    {
+      "office": "Senate",
+      "state": "VA",
+      "district": "",
+      "dem_margin_pp": 18.422315279094,
+      "dem_probability": 0.967740246526104,
+      "rep_probability": 0.03225975347389598,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-va"
+    },
+    {
+      "office": "Senate",
+      "state": "WV",
+      "district": "",
+      "dem_margin_pp": -38.36802016977232,
+      "dem_probability": 0.0008380988736856,
+      "rep_probability": 0.9991619011263144,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-wv"
+    },
+    {
+      "office": "Senate",
+      "state": "WY",
+      "district": "",
+      "dem_margin_pp": -45.695612681871125,
+      "dem_probability": 0.0002167904999586,
+      "rep_probability": 0.9997832095000414,
+      "forecast_as_of": "2026-10-27",
+      "race_id": "senate-wy"
+    }
+  ],
+  "summary": {
+    "generic_ballot": {
+      "margin_pp": 8.663619797970593,
+      "input_snapshot_date": "2026-10-27",
+      "source_label": "PollingForecast-compatible merged poll archive (RCP plus existing poll inputs)",
+      "source_url": "https://www.pollingforecast.com/api/us/polls",
+      "display_type": "polling average, not an election-day forecast",
+      "external_poll": {
+        "release_date": "2026-10-18",
+        "field_dates": "2026-10-09 to 2026-10-13",
+        "likely_voter_margin_pp": 8,
+        "registered_voter_margin_pp": 8,
+        "source_url": "https://abcnews.com/Politics/democrats-lead-republicans-house-vote-choice-trumps-approval/story?id=137322849",
+        "status": "public context only; not included in the district forecast"
+      },
+      "short_window": {
+        "margin_pp": 8.383181925100956,
+        "poll_count": 6,
+        "window_days": 7,
+        "window_lower_inclusive": "2026-10-20",
+        "window_upper_inclusive": "2026-10-27"
+      },
+      "long_window": {
+        "margin_pp": 8.663619797970593,
+        "poll_count": 40,
+        "window_days": 30,
+        "window_lower_inclusive": "2026-09-27",
+        "window_upper_inclusive": "2026-10-27"
+      },
+      "margin_definition": "D/R two-party margin: 100 × (D share − R share) / (D share + R share).",
+      "timing_rule": "Primary timing policy: include measurement fieldwork ending by 2026-10-27; exclude only verified first-public dates after the cutoff. Unknown first-public dates remain unknown and are retained. The current local input package was captured at 2026-10-27T21:32:02.844730Z; this is not an end-of-day-complete feed. The full live PollingForecast API snapshot was unavailable.",
+      "unknown_first_public_date_polls_used": 38,
+      "first_public_timing_verified": false,
+      "source_coverage_note": "Weighted poll averages use the frozen Oct25 merged feed plus audited direct-source additions; the full live archive could not be snapshotted."
+    },
+    "seat_outlooks": {
+      "House": {
+        "snapshot_date": "2026-10-27",
+        "total_seats": 435,
+        "expected_dem_seats": 208.1104983482823,
+        "expected_rep_seats": 226.8895016517177,
+        "rounded_dem_seats": 208,
+        "rounded_rep_seats": 227,
+        "dem_favored_districts": 205,
+        "rep_favored_districts": 230,
+        "core_range": [
+          206,
+          210
+        ],
+        "outer_range": [
+          203,
+          214
+        ],
+        "pmf_file": "./data/snapshots/house-seat-distribution-2026-10-27.csv"
+      },
+      "Senate": {
+        "snapshot_date": "2026-10-27",
+        "probability_snapshot_date": "2026-10-27",
+        "total_seats": 100,
+        "scope_label": "100 SEATS",
+        "expected_dem_seats": 47.47221869661374,
+        "expected_rep_seats": 52.52778130338626,
+        "rounded_dem_seats": 47,
+        "rounded_rep_seats": 53,
+        "forecast_seats": 35,
+        "fixed_seats": 65,
+        "core_range": [
+          46,
+          49
+        ],
+        "outer_range": [
+          44,
+          51
+        ],
+        "expected_label": "expected Democratic-caucus seats",
+        "coverage_note": "35 forecast races plus 65 fixed seats (34 Democratic-caucus, 31 Republican)."
+      },
+      "Governor": {
+        "snapshot_date": "2026-10-27",
+        "probability_snapshot_date": "2026-10-27",
+        "total_seats": 36,
+        "scope_label": "36 RACES",
+        "expected_dem_seats": 18.31824402869671,
+        "expected_rep_seats": 17.68175597130329,
+        "rounded_dem_seats": 18,
+        "rounded_rep_seats": 18,
+        "dem_favored_races": 16,
+        "rep_favored_races": 20,
+        "core_range": [
+          17,
+          20
+        ],
+        "outer_range": [
+          15,
+          22
+        ],
+        "expected_label": "expected wins across 36 races",
+        "coverage_note": "Covers 36 Governor races; source coverage is documented in the private release audit."
+      }
+    },
+    "senate_seat_distribution": {
+      "snapshot_date": "2026-10-27",
+      "probability_snapshot_date": "2026-10-27",
+      "race_count": 35,
+      "fixed_seats": 65,
+      "fixed_dem_caucus_seats": 34,
+      "fixed_rep_seats": 31,
+      "median_dem_seats": 47,
+      "central_50_range": [
+        46,
+        49
+      ],
+      "central_80_range": [
+        45,
+        50
+      ],
+      "central_90_range": [
+        44,
+        51
+      ],
+      "pmf_file": "./data/senate-seat-distribution-2026.csv",
+      "source_dates": {
+        "forecast_as_of": "2026-10-27",
+        "poll_snapshot": "2026-10-27"
+      },
+      "interpretation": "Approximate range across the listed Senate races and seats already held; not a party-control probability."
+    },
+    "seat_range_note": "House and Governor seat ranges aggregate the published race probabilities under an independent-race assumption. Senate includes 65 fixed seats (34 Democratic-caucus and 31 Republican).",
+    "governor_seat_distribution": {
+      "snapshot_date": "2026-10-27",
+      "probability_snapshot_date": "2026-10-27",
+      "race_count": 36,
+      "mean_dem_wins": 18.31824402869671,
+      "median_dem_wins": 18,
+      "central_50_range": [
+        17,
+        20
+      ],
+      "central_80_range": [
+        16,
+        21
+      ],
+      "central_90_range": [
+        15,
+        22
+      ],
+      "pmf_file": "./data/governor-seat-distribution-2026.csv",
+      "interpretation": "Range of Democratic wins among listed Governor races; not a party-control probability."
+    },
+    "generic_ballot_forecast": {
+      "margin_pp": 4.718099370133226,
+      "input_snapshot_date": "2026-10-27",
+      "target": "National Democratic-minus-Republican House two-party popular-vote margin in percentage points"
+    }
+  },
+  "house_forecast_generated_date": "2026-10-27",
+  "senate_governor_forecast_date": "2026-10-27",
+  "senate_governor_poll_snapshot_date": "2026-10-27",
+  "governor_forecast_date": "2026-10-27",
+  "archive_note": "October 27, 2026 forecast snapshot, retained for comparison with later releases."
+}

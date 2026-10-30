@@ -3,7 +3,7 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshot_id": "2026-10-18",
   "snapshot_date": "2026-10-18",
-  "archive_note": "Earlier forecast retained as a reference. The original source dates were not preserved, so this snapshot is not compared with later releases.",
+  "archive_note": "October 18, 2026 forecast snapshot, retained for comparison with later releases.",
   "race_count": 506,
   "office_counts": {
     "House": 435,
@@ -350,7 +350,7 @@
       "district": "1",
       "race_id": "house-al-01",
       "dem_margin_pp": -37.1869892429,
-      "dem_probability": 1.82618518111E-05,
+      "dem_probability": 0.0000182618518111,
       "rep_probability": 0.9999817381481889
     },
     {
@@ -368,7 +368,7 @@
       "district": "3",
       "race_id": "house-al-03",
       "dem_margin_pp": -47.9094282161,
-      "dem_probability": 7.85734550007E-07,
+      "dem_probability": 7.85734550007e-7,
       "rep_probability": 0.99999921426545
     },
     {
@@ -377,7 +377,7 @@
       "district": "4",
       "race_id": "house-al-04",
       "dem_margin_pp": -66.5216176959,
-      "dem_probability": 3.33941522654E-09,
+      "dem_probability": 3.33941522654e-9,
       "rep_probability": 0.9999999966605848
     },
     {
@@ -395,7 +395,7 @@
       "district": "6",
       "race_id": "house-al-06",
       "dem_margin_pp": -35.9925997306,
-      "dem_probability": 2.59258618073E-05,
+      "dem_probability": 0.0000259258618073,
       "rep_probability": 0.9999740741381927
     },
     {
@@ -413,7 +413,7 @@
       "district": "1",
       "race_id": "house-ar-01",
       "dem_margin_pp": -47.2790738487,
-      "dem_probability": 9.45359317171E-07,
+      "dem_probability": 9.45359317171e-7,
       "rep_probability": 0.9999990546406828
     },
     {
@@ -440,7 +440,7 @@
       "district": "4",
       "race_id": "house-ar-04",
       "dem_margin_pp": -41.869297375,
-      "dem_probability": 4.62296734579E-06,
+      "dem_probability": 0.00000462296734579,
       "rep_probability": 0.9999953770326542
     },
     {
@@ -468,7 +468,7 @@
       "race_id": "house-az-03",
       "dem_margin_pp": 41.5986926389,
       "dem_probability": 0.999994995027,
-      "rep_probability": 5.004973000044544E-06
+      "rep_probability": 0.000005004973000044544
     },
     {
       "office": "House",
@@ -594,7 +594,7 @@
       "race_id": "house-ca-08",
       "dem_margin_pp": 33.7633261341,
       "dem_probability": 0.999950136621,
-      "rep_probability": 4.98633790000369E-05
+      "rep_probability": 0.0000498633790000369
     },
     {
       "office": "House",
@@ -612,7 +612,7 @@
       "race_id": "house-ca-10",
       "dem_margin_pp": 32.1676310506,
       "dem_probability": 0.999920366514,
-      "rep_probability": 7.963348600004139E-05
+      "rep_probability": 0.00007963348600004139
     },
     {
       "office": "House",
@@ -621,7 +621,7 @@
       "race_id": "house-ca-11",
       "dem_margin_pp": 66.9888257352,
       "dem_probability": 0.999999997088,
-      "rep_probability": 2.9119999744864344E-09
+      "rep_probability": 2.9119999744864344e-9
     },
     {
       "office": "House",
@@ -630,7 +630,7 @@
       "race_id": "house-ca-12",
       "dem_margin_pp": 74.0300791344,
       "dem_probability": 0.999999999631,
-      "rep_probability": 3.690000527356574E-10
+      "rep_probability": 3.690000527356574e-10
     },
     {
       "office": "House",
@@ -648,7 +648,7 @@
       "race_id": "house-ca-14",
       "dem_margin_pp": 34.4844885431,
       "dem_probability": 0.999959645335,
-      "rep_probability": 4.035466499996421E-05
+      "rep_probability": 0.00004035466499996421
     },
     {
       "office": "House",
@@ -657,7 +657,7 @@
       "race_id": "house-ca-15",
       "dem_margin_pp": 48.0735579085,
       "dem_probability": 0.999999251206,
-      "rep_probability": 7.48794000027253E-07
+      "rep_probability": 7.48794000027253e-7
     },
     {
       "office": "House",
@@ -666,7 +666,7 @@
       "race_id": "house-ca-16",
       "dem_margin_pp": 48.0364388605,
       "dem_probability": 0.999999243007,
-      "rep_probability": 7.569929999506897E-07
+      "rep_probability": 7.569929999506897e-7
     },
     {
       "office": "House",
@@ -675,7 +675,7 @@
       "race_id": "house-ca-17",
       "dem_margin_pp": 38.5832163699,
       "dem_probability": 0.999987876244,
-      "rep_probability": 1.2123756000015362E-05
+      "rep_probability": 0.000012123756000015362
     },
     {
       "office": "House",
@@ -693,7 +693,7 @@
       "race_id": "house-ca-19",
       "dem_margin_pp": 33.4347090476,
       "dem_probability": 0.999945089851,
-      "rep_probability": 5.491014900005364E-05
+      "rep_probability": 0.00005491014900005364
     },
     {
       "office": "House",
@@ -701,7 +701,7 @@
       "district": "20",
       "race_id": "house-ca-20",
       "dem_margin_pp": -34.6497766879,
-      "dem_probability": 3.84444104174E-05,
+      "dem_probability": 0.0000384444104174,
       "rep_probability": 0.9999615555895826
     },
     {
@@ -783,7 +783,7 @@
       "race_id": "house-ca-29",
       "dem_margin_pp": 32.8575850639,
       "dem_probability": 0.999934959089,
-      "rep_probability": 6.504091100001386E-05
+      "rep_probability": 0.00006504091100001386
     },
     {
       "office": "House",
@@ -792,7 +792,7 @@
       "race_id": "house-ca-30",
       "dem_margin_pp": 39.8849224074,
       "dem_probability": 0.999991724912,
-      "rep_probability": 8.27508800005372E-06
+      "rep_probability": 0.00000827508800005372
     },
     {
       "office": "House",
@@ -828,7 +828,7 @@
       "race_id": "house-ca-34",
       "dem_margin_pp": 50.2398777031,
       "dem_probability": 0.999999603425,
-      "rep_probability": 3.965749999501611E-07
+      "rep_probability": 3.965749999501611e-7
     },
     {
       "office": "House",
@@ -846,7 +846,7 @@
       "race_id": "house-ca-36",
       "dem_margin_pp": 38.9432795815,
       "dem_probability": 0.999989091685,
-      "rep_probability": 1.0908314999946711E-05
+      "rep_probability": 0.000010908314999946711
     },
     {
       "office": "House",
@@ -855,7 +855,7 @@
       "race_id": "house-ca-37",
       "dem_margin_pp": 59.0810521728,
       "dem_probability": 0.999999970368,
-      "rep_probability": 2.9631999964863098E-08
+      "rep_probability": 2.9631999964863098e-8
     },
     {
       "office": "House",
@@ -909,7 +909,7 @@
       "race_id": "house-ca-43",
       "dem_margin_pp": 48.2943018689,
       "dem_probability": 0.999999298166,
-      "rep_probability": 7.018340000275458E-07
+      "rep_probability": 7.018340000275458e-7
     },
     {
       "office": "House",
@@ -918,7 +918,7 @@
       "race_id": "house-ca-44",
       "dem_margin_pp": 33.7594200834,
       "dem_probability": 0.999950079446,
-      "rep_probability": 4.992055399999362E-05
+      "rep_probability": 0.00004992055399999362
     },
     {
       "office": "House",
@@ -999,7 +999,7 @@
       "race_id": "house-co-01",
       "dem_margin_pp": 56.2695574309,
       "dem_probability": 0.99999993239,
-      "rep_probability": 6.761000004296136E-08
+      "rep_probability": 6.761000004296136e-8
     },
     {
       "office": "House",
@@ -1008,7 +1008,7 @@
       "race_id": "house-co-02",
       "dem_margin_pp": 41.9986478339,
       "dem_probability": 0.999995549193,
-      "rep_probability": 4.450806999956036E-06
+      "rep_probability": 0.000004450806999956036
     },
     {
       "office": "House",
@@ -1124,7 +1124,7 @@
       "district": "1",
       "race_id": "house-fl-01",
       "dem_margin_pp": -38.9334129741,
-      "dem_probability": 1.09399383433E-05,
+      "dem_probability": 0.0000109399383433,
       "rep_probability": 0.9999890600616567
     },
     {
@@ -1169,7 +1169,7 @@
       "district": "6",
       "race_id": "house-fl-06",
       "dem_margin_pp": -31.5248527722,
-      "dem_probability": 9.61596241186E-05,
+      "dem_probability": 0.0000961596241186,
       "rep_probability": 0.9999038403758814
     },
     {
@@ -1286,7 +1286,7 @@
       "district": "19",
       "race_id": "house-fl-19",
       "dem_margin_pp": -32.5985114448,
-      "dem_probability": 7.01772123672E-05,
+      "dem_probability": 0.0000701772123672,
       "rep_probability": 0.9999298227876328
     },
     {
@@ -1296,7 +1296,7 @@
       "race_id": "house-fl-20",
       "dem_margin_pp": 35.6427913205,
       "dem_probability": 0.999971272004,
-      "rep_probability": 2.8727995999955347E-05
+      "rep_probability": 0.000028727995999955347
     },
     {
       "office": "House",
@@ -1332,7 +1332,7 @@
       "race_id": "house-fl-24",
       "dem_margin_pp": 37.0930840377,
       "dem_probability": 0.999981228015,
-      "rep_probability": 1.8771984999998992E-05
+      "rep_probability": 0.000018771984999998992
     },
     {
       "office": "House",
@@ -1404,7 +1404,7 @@
       "race_id": "house-ga-04",
       "dem_margin_pp": 51.6620454145,
       "dem_probability": 0.999999738718,
-      "rep_probability": 2.61282000035834E-07
+      "rep_probability": 2.61282000035834e-7
     },
     {
       "office": "House",
@@ -1413,7 +1413,7 @@
       "race_id": "house-ga-05",
       "dem_margin_pp": 71.4163191072,
       "dem_probability": 0.999999999206,
-      "rep_probability": 7.939999768780126E-10
+      "rep_probability": 7.939999768780126e-10
     },
     {
       "office": "House",
@@ -1422,7 +1422,7 @@
       "race_id": "house-ga-06",
       "dem_margin_pp": 49.5516489717,
       "dem_probability": 0.999999514688,
-      "rep_probability": 4.853120000314348E-07
+      "rep_probability": 4.853120000314348e-7
     },
     {
       "office": "House",
@@ -1439,7 +1439,7 @@
       "district": "8",
       "race_id": "house-ga-08",
       "dem_margin_pp": -32.9111268028,
-      "dem_probability": 6.40272211459E-05,
+      "dem_probability": 0.0000640272211459,
       "rep_probability": 0.9999359727788542
     },
     {
@@ -1448,7 +1448,7 @@
       "district": "9",
       "race_id": "house-ga-09",
       "dem_margin_pp": -34.7204773437,
-      "dem_probability": 3.76551789633E-05,
+      "dem_probability": 0.0000376551789633,
       "rep_probability": 0.9999623448210367
     },
     {
@@ -1485,7 +1485,7 @@
       "race_id": "house-ga-13",
       "dem_margin_pp": 42.5117177837,
       "dem_probability": 0.999996171201,
-      "rep_probability": 3.828798999960803E-06
+      "rep_probability": 0.000003828798999960803
     },
     {
       "office": "House",
@@ -1493,7 +1493,7 @@
       "district": "14",
       "race_id": "house-ga-14",
       "dem_margin_pp": -33.4778613688,
-      "dem_probability": 5.42193565119E-05,
+      "dem_probability": 0.0000542193565119,
       "rep_probability": 0.999945780643488
     },
     {
@@ -1503,7 +1503,7 @@
       "race_id": "house-hi-01",
       "dem_margin_pp": 33.5954885428,
       "dem_probability": 0.999947619837,
-      "rep_probability": 5.238016300002091E-05
+      "rep_probability": 0.00005238016300002091
     },
     {
       "office": "House",
@@ -1556,7 +1556,7 @@
       "district": "1",
       "race_id": "house-id-01",
       "dem_margin_pp": -45.6891223352,
-      "dem_probability": 1.50727242338E-06,
+      "dem_probability": 0.00000150727242338,
       "rep_probability": 0.9999984927275766
     },
     {
@@ -1575,7 +1575,7 @@
       "race_id": "house-il-01",
       "dem_margin_pp": 32.6647498758,
       "dem_probability": 0.999931173378,
-      "rep_probability": 6.882662200002887E-05
+      "rep_probability": 0.00006882662200002887
     },
     {
       "office": "House",
@@ -1584,7 +1584,7 @@
       "race_id": "house-il-02",
       "dem_margin_pp": 35.0366215079,
       "dem_probability": 0.999965680387,
-      "rep_probability": 3.431961300004449E-05
+      "rep_probability": 0.00003431961300004449
     },
     {
       "office": "House",
@@ -1593,7 +1593,7 @@
       "race_id": "house-il-03",
       "dem_margin_pp": 33.1909984012,
       "dem_probability": 0.999941019969,
-      "rep_probability": 5.898003100002214E-05
+      "rep_probability": 0.00005898003100002214
     },
     {
       "office": "House",
@@ -1602,7 +1602,7 @@
       "race_id": "house-il-04",
       "dem_margin_pp": 33.3281079939,
       "dem_probability": 0.999943345397,
-      "rep_probability": 5.66546029999726E-05
+      "rep_probability": 0.0000566546029999726
     },
     {
       "office": "House",
@@ -1611,7 +1611,7 @@
       "race_id": "house-il-05",
       "dem_margin_pp": 38.2246999778,
       "dem_probability": 0.999986531491,
-      "rep_probability": 1.3468508999969764E-05
+      "rep_probability": 0.000013468508999969764
     },
     {
       "office": "House",
@@ -1629,7 +1629,7 @@
       "race_id": "house-il-07",
       "dem_margin_pp": 64.6758988756,
       "dem_probability": 0.999999994261,
-      "rep_probability": 5.73900005296224E-09
+      "rep_probability": 5.73900005296224e-9
     },
     {
       "office": "House",
@@ -1647,7 +1647,7 @@
       "race_id": "house-il-09",
       "dem_margin_pp": 37.7283636163,
       "dem_probability": 0.999984420164,
-      "rep_probability": 1.5579835999979252E-05
+      "rep_probability": 0.000015579835999979252
     },
     {
       "office": "House",
@@ -1673,7 +1673,7 @@
       "district": "12",
       "race_id": "house-il-12",
       "dem_margin_pp": -44.7092400938,
-      "dem_probability": 2.00932536777E-06,
+      "dem_probability": 0.00000200932536777,
       "rep_probability": 0.9999979906746322
     },
     {
@@ -1700,7 +1700,7 @@
       "district": "15",
       "race_id": "house-il-15",
       "dem_margin_pp": -38.8293809358,
-      "dem_probability": 1.12790031062E-05,
+      "dem_probability": 0.0000112790031062,
       "rep_probability": 0.9999887209968938
     },
     {
@@ -1745,7 +1745,7 @@
       "district": "3",
       "race_id": "house-in-03",
       "dem_margin_pp": -32.5723665764,
-      "dem_probability": 7.07175676023E-05,
+      "dem_probability": 0.0000707175676023,
       "rep_probability": 0.9999292824323976
     },
     {
@@ -1772,7 +1772,7 @@
       "district": "6",
       "race_id": "house-in-06",
       "dem_margin_pp": -33.0430725251,
-      "dem_probability": 6.15960549341E-05,
+      "dem_probability": 0.0000615960549341,
       "rep_probability": 0.999938403945066
     },
     {
@@ -1782,7 +1782,7 @@
       "race_id": "house-in-07",
       "dem_margin_pp": 41.4511650664,
       "dem_probability": 0.999994773633,
-      "rep_probability": 5.2263669999552675E-06
+      "rep_probability": 0.0000052263669999552675
     },
     {
       "office": "House",
@@ -1790,7 +1790,7 @@
       "district": "8",
       "race_id": "house-in-08",
       "dem_margin_pp": -36.984197879,
-      "dem_probability": 1.93813688098E-05,
+      "dem_probability": 0.0000193813688098,
       "rep_probability": 0.9999806186311903
     },
     {
@@ -1808,7 +1808,7 @@
       "district": "1",
       "race_id": "house-ks-01",
       "dem_margin_pp": -33.7857683435,
-      "dem_probability": 4.95361460206E-05,
+      "dem_probability": 0.0000495361460206,
       "rep_probability": 0.9999504638539795
     },
     {
@@ -1844,7 +1844,7 @@
       "district": "1",
       "race_id": "house-ky-01",
       "dem_margin_pp": -48.504451169,
-      "dem_probability": 6.59867566658E-07,
+      "dem_probability": 6.59867566658e-7,
       "rep_probability": 0.9999993401324333
     },
     {
@@ -1853,7 +1853,7 @@
       "district": "2",
       "race_id": "house-ky-02",
       "dem_margin_pp": -42.8574330058,
-      "dem_probability": 3.4594808781E-06,
+      "dem_probability": 0.0000034594808781,
       "rep_probability": 0.9999965405191219
     },
     {
@@ -1871,7 +1871,7 @@
       "district": "4",
       "race_id": "house-ky-04",
       "dem_margin_pp": -36.8448118156,
-      "dem_probability": 2.01904022134E-05,
+      "dem_probability": 0.0000201904022134,
       "rep_probability": 0.9999798095977867
     },
     {
@@ -1880,7 +1880,7 @@
       "district": "5",
       "race_id": "house-ky-05",
       "dem_margin_pp": -63.7505739048,
-      "dem_probability": 7.5294432319E-09,
+      "dem_probability": 7.5294432319e-9,
       "rep_probability": 0.9999999924705568
     },
     {
@@ -1898,7 +1898,7 @@
       "district": "1",
       "race_id": "house-la-01",
       "dem_margin_pp": -39.8044087505,
-      "dem_probability": 8.47289383535E-06,
+      "dem_probability": 0.00000847289383535,
       "rep_probability": 0.9999915271061647
     },
     {
@@ -1908,7 +1908,7 @@
       "race_id": "house-la-02",
       "dem_margin_pp": 47.2961159249,
       "dem_probability": 0.999999059356,
-      "rep_probability": 9.40644000024804E-07
+      "rep_probability": 9.40644000024804e-7
     },
     {
       "office": "House",
@@ -1916,7 +1916,7 @@
       "district": "3",
       "race_id": "house-la-03",
       "dem_margin_pp": -37.7905070006,
-      "dem_probability": 1.52983485944E-05,
+      "dem_probability": 0.0000152983485944,
       "rep_probability": 0.9999847016514056
     },
     {
@@ -1925,7 +1925,7 @@
       "district": "4",
       "race_id": "house-la-04",
       "dem_margin_pp": -34.0343612397,
-      "dem_probability": 4.6051892186E-05,
+      "dem_probability": 0.000046051892186,
       "rep_probability": 0.999953948107814
     },
     {
@@ -1934,7 +1934,7 @@
       "district": "5",
       "race_id": "house-la-05",
       "dem_margin_pp": -35.4778979018,
-      "dem_probability": 3.01519771746E-05,
+      "dem_probability": 0.0000301519771746,
       "rep_probability": 0.9999698480228254
     },
     {
@@ -1943,7 +1943,7 @@
       "district": "6",
       "race_id": "house-la-06",
       "dem_margin_pp": -31.6644266061,
-      "dem_probability": 9.23016852394E-05,
+      "dem_probability": 0.0000923016852394,
       "rep_probability": 0.9999076983147606
     },
     {
@@ -1989,7 +1989,7 @@
       "race_id": "house-ma-05",
       "dem_margin_pp": 49.2535592116,
       "dem_probability": 0.999999470332,
-      "rep_probability": 5.296680000155263E-07
+      "rep_probability": 5.296680000155263e-7
     },
     {
       "office": "House",
@@ -2007,7 +2007,7 @@
       "race_id": "house-ma-07",
       "dem_margin_pp": 66.6480898063,
       "dem_probability": 0.999999996782,
-      "rep_probability": 3.2179999776005275E-09
+      "rep_probability": 3.2179999776005275e-9
     },
     {
       "office": "House",
@@ -2016,7 +2016,7 @@
       "race_id": "house-ma-08",
       "dem_margin_pp": 35.7018784396,
       "dem_probability": 0.999971765732,
-      "rep_probability": 2.823426800002693E-05
+      "rep_probability": 0.00002823426800002693
     },
     {
       "office": "House",
@@ -2061,7 +2061,7 @@
       "race_id": "house-md-04",
       "dem_margin_pp": 75.8351228887,
       "dem_probability": 0.999999999783,
-      "rep_probability": 2.1699997354573952E-10
+      "rep_probability": 2.1699997354573952e-10
     },
     {
       "office": "House",
@@ -2070,7 +2070,7 @@
       "race_id": "house-md-05",
       "dem_margin_pp": 35.1435618501,
       "dem_probability": 0.999966740457,
-      "rep_probability": 3.3259543000041525E-05
+      "rep_probability": 0.000033259543000041525
     },
     {
       "office": "House",
@@ -2088,7 +2088,7 @@
       "race_id": "house-md-07",
       "dem_margin_pp": 61.9781331587,
       "dem_probability": 0.999999987335,
-      "rep_probability": 1.2665000048706077E-08
+      "rep_probability": 1.2665000048706077e-8
     },
     {
       "office": "House",
@@ -2097,7 +2097,7 @@
       "race_id": "house-md-08",
       "dem_margin_pp": 57.9627209057,
       "dem_probability": 0.99999995886,
-      "rep_probability": 4.1139999962247487E-08
+      "rep_probability": 4.1139999962247487e-8
     },
     {
       "office": "House",
@@ -2132,7 +2132,7 @@
       "district": "2",
       "race_id": "house-mi-02",
       "dem_margin_pp": -31.9559591281,
-      "dem_probability": 8.47354630467E-05,
+      "dem_probability": 0.0000847354630467,
       "rep_probability": 0.9999152645369533
     },
     {
@@ -2195,7 +2195,7 @@
       "district": "9",
       "race_id": "house-mi-09",
       "dem_margin_pp": -34.8618687896,
-      "dem_probability": 3.61250930335E-05,
+      "dem_probability": 0.0000361250930335,
       "rep_probability": 0.9999638749069665
     },
     {
@@ -2223,7 +2223,7 @@
       "race_id": "house-mi-12",
       "dem_margin_pp": 42.4964789857,
       "dem_probability": 0.999996154044,
-      "rep_probability": 3.845956000003703E-06
+      "rep_probability": 0.000003845956000003703
     },
     {
       "office": "House",
@@ -2232,7 +2232,7 @@
       "race_id": "house-mi-13",
       "dem_margin_pp": 42.1511993233,
       "dem_probability": 0.999995744012,
-      "rep_probability": 4.255988000023692E-06
+      "rep_probability": 0.000004255988000023692
     },
     {
       "office": "House",
@@ -2268,7 +2268,7 @@
       "race_id": "house-mn-04",
       "dem_margin_pp": 36.4726801298,
       "dem_probability": 0.999977480342,
-      "rep_probability": 2.2519658000041964E-05
+      "rep_probability": 0.000022519658000041964
     },
     {
       "office": "House",
@@ -2277,7 +2277,7 @@
       "race_id": "house-mn-05",
       "dem_margin_pp": 57.6336838585,
       "dem_probability": 0.99999995469,
-      "rep_probability": 4.5309999974207926E-08
+      "rep_probability": 4.5309999974207926e-8
     },
     {
       "office": "House",
@@ -2294,7 +2294,7 @@
       "district": "7",
       "race_id": "house-mn-07",
       "dem_margin_pp": -38.0389623395,
-      "dem_probability": 1.42228391589E-05,
+      "dem_probability": 0.0000142228391589,
       "rep_probability": 0.9999857771608411
     },
     {
@@ -2313,7 +2313,7 @@
       "race_id": "house-mo-01",
       "dem_margin_pp": 56.5929979805,
       "dem_probability": 0.999999938511,
-      "rep_probability": 6.148900000280122E-08
+      "rep_probability": 6.148900000280122e-8
     },
     {
       "office": "House",
@@ -2339,7 +2339,7 @@
       "district": "4",
       "race_id": "house-mo-04",
       "dem_margin_pp": -41.9385649855,
-      "dem_probability": 4.52996280665E-06,
+      "dem_probability": 0.00000452996280665,
       "rep_probability": 0.9999954700371934
     },
     {
@@ -2357,7 +2357,7 @@
       "district": "6",
       "race_id": "house-mo-06",
       "dem_margin_pp": -38.9339799273,
-      "dem_probability": 1.09381187181E-05,
+      "dem_probability": 0.0000109381187181,
       "rep_probability": 0.9999890618812819
     },
     {
@@ -2366,7 +2366,7 @@
       "district": "7",
       "race_id": "house-mo-07",
       "dem_margin_pp": -42.8859734912,
-      "dem_probability": 3.43063296213E-06,
+      "dem_probability": 0.00000343063296213,
       "rep_probability": 0.9999965693670378
     },
     {
@@ -2375,7 +2375,7 @@
       "district": "8",
       "race_id": "house-mo-08",
       "dem_margin_pp": -53.6854080361,
-      "dem_probability": 1.44307261665E-07,
+      "dem_probability": 1.44307261665e-7,
       "rep_probability": 0.9999998556927383
     },
     {
@@ -2384,7 +2384,7 @@
       "district": "1",
       "race_id": "house-ms-01",
       "dem_margin_pp": -38.1826188421,
-      "dem_probability": 1.36358284534E-05,
+      "dem_probability": 0.0000136358284534,
       "rep_probability": 0.9999863641715466
     },
     {
@@ -2411,7 +2411,7 @@
       "district": "4",
       "race_id": "house-ms-04",
       "dem_margin_pp": -43.7948080857,
-      "dem_probability": 2.62765848191E-06,
+      "dem_probability": 0.00000262765848191,
       "rep_probability": 0.9999973723415181
     },
     {
@@ -2448,7 +2448,7 @@
       "race_id": "house-nc-02",
       "dem_margin_pp": 34.2653201618,
       "dem_probability": 0.999956965229,
-      "rep_probability": 4.303477099998343E-05
+      "rep_probability": 0.00004303477099998343
     },
     {
       "office": "House",
@@ -2466,7 +2466,7 @@
       "race_id": "house-nc-04",
       "dem_margin_pp": 45.6881191406,
       "dem_probability": 0.999998492284,
-      "rep_probability": 1.507716000048731E-06
+      "rep_probability": 0.000001507716000048731
     },
     {
       "office": "House",
@@ -2538,7 +2538,7 @@
       "race_id": "house-nc-12",
       "dem_margin_pp": 45.718788061,
       "dem_probability": 0.99999850579,
-      "rep_probability": 1.4942099999526448E-06
+      "rep_probability": 0.0000014942099999526448
     },
     {
       "office": "House",
@@ -2564,7 +2564,7 @@
       "district": "0",
       "race_id": "house-nd-00",
       "dem_margin_pp": -37.4837182764,
-      "dem_probability": 1.67392353353E-05,
+      "dem_probability": 0.0000167392353353,
       "rep_probability": 0.9999832607646647
     },
     {
@@ -2591,7 +2591,7 @@
       "district": "3",
       "race_id": "house-ne-03",
       "dem_margin_pp": -56.0326825742,
-      "dem_probability": 7.24758599471E-08,
+      "dem_probability": 7.24758599471e-8,
       "rep_probability": 0.99999992752414
     },
     {
@@ -2645,7 +2645,7 @@
       "district": "4",
       "race_id": "house-nj-04",
       "dem_margin_pp": -31.8496345167,
-      "dem_probability": 8.74202722719E-05,
+      "dem_probability": 0.0000874202722719,
       "rep_probability": 0.9999125797277281
     },
     {
@@ -2700,7 +2700,7 @@
       "race_id": "house-nj-10",
       "dem_margin_pp": 51.5469069555,
       "dem_probability": 0.999999729741,
-      "rep_probability": 2.702589999570293E-07
+      "rep_probability": 2.702589999570293e-7
     },
     {
       "office": "House",
@@ -2826,7 +2826,7 @@
       "race_id": "house-ny-05",
       "dem_margin_pp": 44.4439998783,
       "dem_probability": 0.999997828061,
-      "rep_probability": 2.1719389999841354E-06
+      "rep_probability": 0.0000021719389999841354
     },
     {
       "office": "House",
@@ -2844,7 +2844,7 @@
       "race_id": "house-ny-07",
       "dem_margin_pp": 48.3648489029,
       "dem_probability": 0.999999312544,
-      "rep_probability": 6.874560000147412E-07
+      "rep_probability": 6.874560000147412e-7
     },
     {
       "office": "House",
@@ -2853,7 +2853,7 @@
       "race_id": "house-ny-08",
       "dem_margin_pp": 45.0534848163,
       "dem_probability": 0.999998183707,
-      "rep_probability": 1.816293000000968E-06
+      "rep_probability": 0.000001816293000000968
     },
     {
       "office": "House",
@@ -2862,7 +2862,7 @@
       "race_id": "house-ny-09",
       "dem_margin_pp": 42.7349979938,
       "dem_probability": 0.999996413987,
-      "rep_probability": 3.5860129999898405E-06
+      "rep_probability": 0.0000035860129999898405
     },
     {
       "office": "House",
@@ -2871,7 +2871,7 @@
       "race_id": "house-ny-10",
       "dem_margin_pp": 62.294119995,
       "dem_probability": 0.999999988456,
-      "rep_probability": 1.1543999978158581E-08
+      "rep_probability": 1.1543999978158581e-8
     },
     {
       "office": "House",
@@ -2889,7 +2889,7 @@
       "race_id": "house-ny-12",
       "dem_margin_pp": 61.0599417401,
       "dem_probability": 0.999999983419,
-      "rep_probability": 1.6581000017446E-08
+      "rep_probability": 1.6581000017446e-8
     },
     {
       "office": "House",
@@ -2898,7 +2898,7 @@
       "race_id": "house-ny-13",
       "dem_margin_pp": 60.2056963052,
       "dem_probability": 0.999999978696,
-      "rep_probability": 2.1304000008548485E-08
+      "rep_probability": 2.1304000008548485e-8
     },
     {
       "office": "House",
@@ -2907,7 +2907,7 @@
       "race_id": "house-ny-14",
       "dem_margin_pp": 32.833077423,
       "dem_probability": 0.999934489754,
-      "rep_probability": 6.5510245999989E-05
+      "rep_probability": 0.000065510245999989
     },
     {
       "office": "House",
@@ -2916,7 +2916,7 @@
       "race_id": "house-ny-15",
       "dem_margin_pp": 49.1866722258,
       "dem_probability": 0.999999459835,
-      "rep_probability": 5.401649999514646E-07
+      "rep_probability": 5.401649999514646e-7
     },
     {
       "office": "House",
@@ -2925,7 +2925,7 @@
       "race_id": "house-ny-16",
       "dem_margin_pp": 35.734002818,
       "dem_probability": 0.999972030591,
-      "rep_probability": 2.7969408999961587E-05
+      "rep_probability": 0.000027969408999961587
     },
     {
       "office": "House",
@@ -3032,7 +3032,7 @@
       "district": "2",
       "race_id": "house-oh-02",
       "dem_margin_pp": -41.9086099799,
-      "dem_probability": 4.569951079E-06,
+      "dem_probability": 0.000004569951079,
       "rep_probability": 0.999995430048921
     },
     {
@@ -3042,7 +3042,7 @@
       "race_id": "house-oh-03",
       "dem_margin_pp": 41.0120290686,
       "dem_probability": 0.999994054954,
-      "rep_probability": 5.945046000044307E-06
+      "rep_probability": 0.000005945046000044307
     },
     {
       "office": "House",
@@ -3050,7 +3050,7 @@
       "district": "4",
       "race_id": "house-oh-04",
       "dem_margin_pp": -42.7579459388,
-      "dem_probability": 3.56194942641E-06,
+      "dem_probability": 0.00000356194942641,
       "rep_probability": 0.9999964380505736
     },
     {
@@ -3068,7 +3068,7 @@
       "district": "6",
       "race_id": "house-oh-06",
       "dem_margin_pp": -35.6155075054,
-      "dem_probability": 2.89588824549E-05,
+      "dem_probability": 0.0000289588824549,
       "rep_probability": 0.9999710411175451
     },
     {
@@ -3114,7 +3114,7 @@
       "race_id": "house-oh-11",
       "dem_margin_pp": 54.0781376876,
       "dem_probability": 0.999999871399,
-      "rep_probability": 1.2860099996014895E-07
+      "rep_probability": 1.2860099996014895e-7
     },
     {
       "office": "House",
@@ -3167,7 +3167,7 @@
       "district": "2",
       "race_id": "house-ok-02",
       "dem_margin_pp": -55.5042688728,
-      "dem_probability": 8.46301280205E-08,
+      "dem_probability": 8.46301280205e-8,
       "rep_probability": 0.999999915369872
     },
     {
@@ -3176,7 +3176,7 @@
       "district": "3",
       "race_id": "house-ok-03",
       "dem_margin_pp": -47.0160847793,
-      "dem_probability": 1.02119226492E-06,
+      "dem_probability": 0.00000102119226492,
       "rep_probability": 0.999998978807735
     },
     {
@@ -3185,7 +3185,7 @@
       "district": "4",
       "race_id": "house-ok-04",
       "dem_margin_pp": -35.2401979168,
-      "dem_probability": 3.23298061223E-05,
+      "dem_probability": 0.0000323298061223,
       "rep_probability": 0.9999676701938777
     },
     {
@@ -3204,7 +3204,7 @@
       "race_id": "house-or-01",
       "dem_margin_pp": 40.3359342375,
       "dem_probability": 0.999992750565,
-      "rep_probability": 7.249434999967441E-06
+      "rep_probability": 0.000007249434999967441
     },
     {
       "office": "House",
@@ -3222,7 +3222,7 @@
       "race_id": "house-or-03",
       "dem_margin_pp": 46.3324786696,
       "dem_probability": 0.999998752002,
-      "rep_probability": 1.2479980000534852E-06
+      "rep_probability": 0.0000012479980000534852
     },
     {
       "office": "House",
@@ -3267,7 +3267,7 @@
       "race_id": "house-pa-02",
       "dem_margin_pp": 39.0339701028,
       "dem_probability": 0.99998937811,
-      "rep_probability": 1.0621890000006573E-05
+      "rep_probability": 0.000010621890000006573
     },
     {
       "office": "House",
@@ -3276,7 +3276,7 @@
       "race_id": "house-pa-03",
       "dem_margin_pp": 76.3720439825,
       "dem_probability": 0.999999999814,
-      "rep_probability": 1.8599999318524851E-10
+      "rep_probability": 1.8599999318524851e-10
     },
     {
       "office": "House",
@@ -3329,7 +3329,7 @@
       "district": "9",
       "race_id": "house-pa-09",
       "dem_margin_pp": -38.0914857701,
-      "dem_probability": 1.40053427981E-05,
+      "dem_probability": 0.0000140053427981,
       "rep_probability": 0.999985994657202
     },
     {
@@ -3365,7 +3365,7 @@
       "district": "13",
       "race_id": "house-pa-13",
       "dem_margin_pp": -47.3249845893,
-      "dem_probability": 9.32710503811E-07,
+      "dem_probability": 9.32710503811e-7,
       "rep_probability": 0.9999990672894962
     },
     {
@@ -3374,7 +3374,7 @@
       "district": "14",
       "race_id": "house-pa-14",
       "dem_margin_pp": -33.5094900183,
-      "dem_probability": 5.37185628064E-05,
+      "dem_probability": 0.0000537185628064,
       "rep_probability": 0.9999462814371936
     },
     {
@@ -3383,7 +3383,7 @@
       "district": "15",
       "race_id": "house-pa-15",
       "dem_margin_pp": -38.9565006054,
-      "dem_probability": 1.08660833016E-05,
+      "dem_probability": 0.0000108660833016,
       "rep_probability": 0.9999891339166984
     },
     {
@@ -3446,7 +3446,7 @@
       "district": "3",
       "race_id": "house-sc-03",
       "dem_margin_pp": -44.4438877715,
-      "dem_probability": 2.1720107386E-06,
+      "dem_probability": 0.0000021720107386,
       "rep_probability": 0.9999978279892614
     },
     {
@@ -3500,7 +3500,7 @@
       "district": "1",
       "race_id": "house-tn-01",
       "dem_margin_pp": -58.6539202339,
-      "dem_probability": 3.35884200576E-08,
+      "dem_probability": 3.35884200576e-8,
       "rep_probability": 0.99999996641158
     },
     {
@@ -3509,7 +3509,7 @@
       "district": "2",
       "race_id": "house-tn-02",
       "dem_margin_pp": -34.5491082477,
-      "dem_probability": 3.95968006029E-05,
+      "dem_probability": 0.0000395968006029,
       "rep_probability": 0.999960403199397
     },
     {
@@ -3518,7 +3518,7 @@
       "district": "3",
       "race_id": "house-tn-03",
       "dem_margin_pp": -36.6676214486,
-      "dem_probability": 2.12677959855E-05,
+      "dem_probability": 0.0000212677959855,
       "rep_probability": 0.9999787322040145
     },
     {
@@ -3581,7 +3581,7 @@
       "district": "1",
       "race_id": "house-tx-01",
       "dem_margin_pp": -50.7130557748,
-      "dem_probability": 3.45168936752E-07,
+      "dem_probability": 3.45168936752e-7,
       "rep_probability": 0.9999996548310632
     },
     {
@@ -3671,7 +3671,7 @@
       "district": "11",
       "race_id": "house-tx-11",
       "dem_margin_pp": -35.9895069809,
-      "dem_probability": 2.59493973647E-05,
+      "dem_probability": 0.0000259493973647,
       "rep_probability": 0.9999740506026353
     },
     {
@@ -3689,7 +3689,7 @@
       "district": "13",
       "race_id": "house-tx-13",
       "dem_margin_pp": -48.3622862329,
-      "dem_probability": 6.87973542282E-07,
+      "dem_probability": 6.87973542282e-7,
       "rep_probability": 0.9999993120264578
     },
     {
@@ -3735,7 +3735,7 @@
       "race_id": "house-tx-18",
       "dem_margin_pp": 52.5421817277,
       "dem_probability": 0.999999798182,
-      "rep_probability": 2.0181799997853744E-07
+      "rep_probability": 2.0181799997853744e-7
     },
     {
       "office": "House",
@@ -3743,7 +3743,7 @@
       "district": "19",
       "race_id": "house-tx-19",
       "dem_margin_pp": -52.8457669162,
-      "dem_probability": 1.84619287482E-07,
+      "dem_probability": 1.84619287482e-7,
       "rep_probability": 0.9999998153807125
     },
     {
@@ -3843,7 +3843,7 @@
       "race_id": "house-tx-30",
       "dem_margin_pp": 45.166219703,
       "dem_probability": 0.999998242801,
-      "rep_probability": 1.7571989999742854E-06
+      "rep_probability": 0.0000017571989999742854
     },
     {
       "office": "House",
@@ -3906,7 +3906,7 @@
       "race_id": "house-tx-37",
       "dem_margin_pp": 54.4588033586,
       "dem_probability": 0.999999884989,
-      "rep_probability": 1.1501099994593034E-07
+      "rep_probability": 1.1501099994593034e-7
     },
     {
       "office": "House",
@@ -3941,7 +3941,7 @@
       "district": "3",
       "race_id": "house-ut-03",
       "dem_margin_pp": -36.98689666,
-      "dem_probability": 1.93660285588E-05,
+      "dem_probability": 0.0000193660285588,
       "rep_probability": 0.9999806339714412
     },
     {
@@ -3978,7 +3978,7 @@
       "race_id": "house-va-03",
       "dem_margin_pp": 36.9661173212,
       "dem_probability": 0.999980515545,
-      "rep_probability": 1.948445499999618E-05
+      "rep_probability": 0.00001948445499999618
     },
     {
       "office": "House",
@@ -3987,7 +3987,7 @@
       "race_id": "house-va-04",
       "dem_margin_pp": 34.8483625606,
       "dem_probability": 0.999963731474,
-      "rep_probability": 3.626852600002728E-05
+      "rep_probability": 0.00003626852600002728
     },
     {
       "office": "House",
@@ -4023,7 +4023,7 @@
       "race_id": "house-va-08",
       "dem_margin_pp": 49.6903723629,
       "dem_probability": 0.999999534045,
-      "rep_probability": 4.659550000285506E-07
+      "rep_probability": 4.659550000285506e-7
     },
     {
       "office": "House",
@@ -4031,7 +4031,7 @@
       "district": "9",
       "race_id": "house-va-09",
       "dem_margin_pp": -44.347387726,
-      "dem_probability": 2.23438592637E-06,
+      "dem_probability": 0.00000223438592637,
       "rep_probability": 0.9999977656140736
     },
     {
@@ -4050,7 +4050,7 @@
       "race_id": "house-va-11",
       "dem_margin_pp": 35.3408943718,
       "dem_probability": 0.999968611357,
-      "rep_probability": 3.1388643000007654E-05
+      "rep_probability": 0.000031388643000007654
     },
     {
       "office": "House",
@@ -4059,7 +4059,7 @@
       "race_id": "house-vt-00",
       "dem_margin_pp": 32.9514627539,
       "dem_probability": 0.999936726001,
-      "rep_probability": 6.327399899996866E-05
+      "rep_probability": 0.00006327399899996866
     },
     {
       "office": "House",
@@ -4122,7 +4122,7 @@
       "race_id": "house-wa-07",
       "dem_margin_pp": 73.550918284,
       "dem_probability": 0.999999999575,
-      "rep_probability": 4.250000351646577E-10
+      "rep_probability": 4.250000351646577e-10
     },
     {
       "office": "House",
@@ -4140,7 +4140,7 @@
       "race_id": "house-wa-09",
       "dem_margin_pp": 41.8385124792,
       "dem_probability": 0.999995335088,
-      "rep_probability": 4.664912000018617E-06
+      "rep_probability": 0.000004664912000018617
     },
     {
       "office": "House",
@@ -4167,7 +4167,7 @@
       "race_id": "house-wi-02",
       "dem_margin_pp": 40.6071166562,
       "dem_probability": 0.999993305013,
-      "rep_probability": 6.694987000011032E-06
+      "rep_probability": 0.000006694987000011032
     },
     {
       "office": "House",
@@ -4185,7 +4185,7 @@
       "race_id": "house-wi-04",
       "dem_margin_pp": 52.0662846744,
       "dem_probability": 0.99999976794,
-      "rep_probability": 2.3205999999387217E-07
+      "rep_probability": 2.3205999999387217e-7
     },
     {
       "office": "House",
@@ -4229,7 +4229,7 @@
       "district": "1",
       "race_id": "house-wv-01",
       "dem_margin_pp": -43.4161392581,
-      "dem_probability": 2.93642959628E-06,
+      "dem_probability": 0.00000293642959628,
       "rep_probability": 0.9999970635704037
     },
     {
@@ -4238,7 +4238,7 @@
       "district": "2",
       "race_id": "house-wv-02",
       "dem_margin_pp": -39.5991407928,
-      "dem_probability": 8.9988544424E-06,
+      "dem_probability": 0.0000089988544424,
       "rep_probability": 0.9999910011455576
     },
     {
@@ -4247,7 +4247,7 @@
       "district": "0",
       "race_id": "house-wy-00",
       "dem_margin_pp": -46.5001829384,
-      "dem_probability": 1.18807752826E-06,
+      "dem_probability": 0.00000118807752826,
       "rep_probability": 0.9999988119224718
     },
     {

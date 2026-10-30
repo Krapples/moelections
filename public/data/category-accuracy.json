@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_date": "2026-10-25",
+  "snapshot_date": "2026-10-30",
   "validation_years": [
     2018,
     2020,
@@ -8,284 +8,64 @@
     2024
   ],
   "call_rule": "Democratic call when Democratic win probability is at least 50%; Republican otherwise.",
-  "rating_definition": "Category is based on the stronger party's forecast win probability: Toss-up <60%; Lean 60%\u2013<80%; Likely 80%\u2013<98%; Safe \u226598%.",
-  "validation_note": "Historical out-of-sample winner-call rates for the website's released forecast streams. These are observed validation frequencies, not guarantees; races within an election cycle are related, and the panel covers four elections.",
+  "rating_definition": "Category is based on the favored party's forecast win probability: Toss-up <60%; Leans 60%–<80%; Likely 80%–<95%; Safe ≥95%. The labels do not alter published win probabilities.",
+  "validation_note": "These are observed win rates among races grouped by published rating across four election cycles. Historical rates are descriptive, not guarantees; races within each election are related.",
   "results": {
     "All offices": {
       "overall": {
         "races": 1814,
-        "correct_calls": 1742,
-        "accuracy": 0.960308710033076
-      },
-      "by_year": {
-        "2018": {
-          "races": 460,
-          "correct_calls": 437,
-          "accuracy": 0.95
-        },
-        "2020": {
-          "races": 450,
-          "correct_calls": 435,
-          "accuracy": 0.9666666666666667
-        },
-        "2022": {
-          "races": 465,
-          "correct_calls": 442,
-          "accuracy": 0.9505376344086022
-        },
-        "2024": {
-          "races": 439,
-          "correct_calls": 428,
-          "accuracy": 0.9749430523917996
-        }
+        "correct_calls": 1736,
+        "accuracy": 0.9570011025358324
       },
       "categories": {
         "Toss-up": {
-          "races": 54,
+          "races": 62,
           "correct_calls": 35,
-          "accuracy": 0.6481481481481481,
-          "by_year": {
-            "2018": {
-              "races": 15,
-              "correct_calls": 9,
-              "accuracy": 0.6
-            },
-            "2020": {
-              "races": 8,
-              "correct_calls": 5,
-              "accuracy": 0.625
-            },
-            "2022": {
-              "races": 23,
-              "correct_calls": 15,
-              "accuracy": 0.6521739130434783
-            },
-            "2024": {
-              "races": 8,
-              "correct_calls": 6,
-              "accuracy": 0.75
-            }
-          }
+          "accuracy": 0.5645161290322581
         },
-        "Lean": {
-          "races": 161,
+        "Leans": {
+          "races": 155,
           "correct_calls": 127,
-          "accuracy": 0.7888198757763976,
-          "by_year": {
-            "2018": {
-              "races": 48,
-              "correct_calls": 38,
-              "accuracy": 0.7916666666666666
-            },
-            "2020": {
-              "races": 39,
-              "correct_calls": 33,
-              "accuracy": 0.8461538461538461
-            },
-            "2022": {
-              "races": 43,
-              "correct_calls": 33,
-              "accuracy": 0.7674418604651163
-            },
-            "2024": {
-              "races": 31,
-              "correct_calls": 23,
-              "accuracy": 0.7419354838709677
-            }
-          }
+          "accuracy": 0.8193548387096774
         },
         "Likely": {
-          "races": 353,
-          "correct_calls": 336,
-          "accuracy": 0.9518413597733711,
-          "by_year": {
-            "2018": {
-              "races": 101,
-              "correct_calls": 95,
-              "accuracy": 0.9405940594059405
-            },
-            "2020": {
-              "races": 97,
-              "correct_calls": 92,
-              "accuracy": 0.9484536082474226
-            },
-            "2022": {
-              "races": 84,
-              "correct_calls": 79,
-              "accuracy": 0.9404761904761905
-            },
-            "2024": {
-              "races": 71,
-              "correct_calls": 70,
-              "accuracy": 0.9859154929577465
-            }
-          }
+          "races": 243,
+          "correct_calls": 225,
+          "accuracy": 0.9259259259259259
         },
         "Safe": {
-          "races": 1246,
-          "correct_calls": 1244,
-          "accuracy": 0.9983948635634029,
-          "by_year": {
-            "2018": {
-              "races": 296,
-              "correct_calls": 295,
-              "accuracy": 0.9966216216216216
-            },
-            "2020": {
-              "races": 306,
-              "correct_calls": 305,
-              "accuracy": 0.9967320261437909
-            },
-            "2022": {
-              "races": 315,
-              "correct_calls": 315,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 329,
-              "correct_calls": 329,
-              "accuracy": 1.0
-            }
-          }
+          "races": 1354,
+          "correct_calls": 1349,
+          "accuracy": 0.9963072378138847
         }
       }
     },
     "House": {
       "overall": {
         "races": 1598,
-        "correct_calls": 1537,
-        "accuracy": 0.9618272841051314
-      },
-      "by_year": {
-        "2018": {
-          "races": 393,
-          "correct_calls": 374,
-          "accuracy": 0.9516539440203562
-        },
-        "2020": {
-          "races": 408,
-          "correct_calls": 394,
-          "accuracy": 0.9656862745098039
-        },
-        "2022": {
-          "races": 400,
-          "correct_calls": 381,
-          "accuracy": 0.9525
-        },
-        "2024": {
-          "races": 397,
-          "correct_calls": 388,
-          "accuracy": 0.9773299748110831
-        }
+        "correct_calls": 1531,
+        "accuracy": 0.958072590738423
       },
       "categories": {
         "Toss-up": {
-          "races": 30,
+          "races": 38,
           "correct_calls": 19,
-          "accuracy": 0.6333333333333333,
-          "by_year": {
-            "2018": {
-              "races": 5,
-              "correct_calls": 2,
-              "accuracy": 0.4
-            },
-            "2020": {
-              "races": 6,
-              "correct_calls": 4,
-              "accuracy": 0.6666666666666666
-            },
-            "2022": {
-              "races": 13,
-              "correct_calls": 9,
-              "accuracy": 0.6923076923076923
-            },
-            "2024": {
-              "races": 6,
-              "correct_calls": 4,
-              "accuracy": 0.6666666666666666
-            }
-          }
+          "accuracy": 0.5
         },
-        "Lean": {
-          "races": 103,
+        "Leans": {
+          "races": 97,
           "correct_calls": 71,
-          "accuracy": 0.6893203883495146,
-          "by_year": {
-            "2018": {
-              "races": 27,
-              "correct_calls": 18,
-              "accuracy": 0.6666666666666666
-            },
-            "2020": {
-              "races": 30,
-              "correct_calls": 24,
-              "accuracy": 0.8
-            },
-            "2022": {
-              "races": 23,
-              "correct_calls": 13,
-              "accuracy": 0.5652173913043478
-            },
-            "2024": {
-              "races": 23,
-              "correct_calls": 16,
-              "accuracy": 0.6956521739130435
-            }
-          }
+          "accuracy": 0.7319587628865979
         },
         "Likely": {
-          "races": 257,
-          "correct_calls": 241,
-          "accuracy": 0.9377431906614786,
-          "by_year": {
-            "2018": {
-              "races": 74,
-              "correct_calls": 68,
-              "accuracy": 0.918918918918919
-            },
-            "2020": {
-              "races": 73,
-              "correct_calls": 68,
-              "accuracy": 0.9315068493150684
-            },
-            "2022": {
-              "races": 59,
-              "correct_calls": 54,
-              "accuracy": 0.9152542372881356
-            },
-            "2024": {
-              "races": 51,
-              "correct_calls": 51,
-              "accuracy": 1.0
-            }
-          }
+          "races": 179,
+          "correct_calls": 162,
+          "accuracy": 0.9050279329608939
         },
         "Safe": {
-          "races": 1208,
-          "correct_calls": 1206,
-          "accuracy": 0.9983443708609272,
-          "by_year": {
-            "2018": {
-              "races": 287,
-              "correct_calls": 286,
-              "accuracy": 0.9965156794425087
-            },
-            "2020": {
-              "races": 299,
-              "correct_calls": 298,
-              "accuracy": 0.9966555183946488
-            },
-            "2022": {
-              "races": 305,
-              "correct_calls": 305,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 317,
-              "correct_calls": 317,
-              "accuracy": 1.0
-            }
-          }
+          "races": 1284,
+          "correct_calls": 1279,
+          "accuracy": 0.9961059190031153
         }
       }
     },
@@ -295,136 +75,26 @@
         "correct_calls": 116,
         "accuracy": 0.9508196721311475
       },
-      "by_year": {
-        "2018": {
-          "races": 31,
-          "correct_calls": 30,
-          "accuracy": 0.967741935483871
-        },
-        "2020": {
-          "races": 31,
-          "correct_calls": 30,
-          "accuracy": 0.967741935483871
-        },
-        "2022": {
-          "races": 29,
-          "correct_calls": 27,
-          "accuracy": 0.9310344827586207
-        },
-        "2024": {
-          "races": 31,
-          "correct_calls": 29,
-          "accuracy": 0.9354838709677419
-        }
-      },
       "categories": {
         "Toss-up": {
           "races": 7,
           "correct_calls": 4,
-          "accuracy": 0.5714285714285714,
-          "by_year": {
-            "2018": {
-              "races": 1,
-              "correct_calls": 1,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 2,
-              "correct_calls": 1,
-              "accuracy": 0.5
-            },
-            "2022": {
-              "races": 3,
-              "correct_calls": 1,
-              "accuracy": 0.3333333333333333
-            },
-            "2024": {
-              "races": 1,
-              "correct_calls": 1,
-              "accuracy": 1.0
-            }
-          }
+          "accuracy": 0.5714285714285714
         },
-        "Lean": {
+        "Leans": {
           "races": 23,
           "correct_calls": 21,
-          "accuracy": 0.9130434782608695,
-          "by_year": {
-            "2018": {
-              "races": 8,
-              "correct_calls": 7,
-              "accuracy": 0.875
-            },
-            "2020": {
-              "races": 5,
-              "correct_calls": 5,
-              "accuracy": 1.0
-            },
-            "2022": {
-              "races": 6,
-              "correct_calls": 6,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 4,
-              "correct_calls": 3,
-              "accuracy": 0.75
-            }
-          }
+          "accuracy": 0.9130434782608695
         },
         "Likely": {
-          "races": 56,
-          "correct_calls": 55,
-          "accuracy": 0.9821428571428571,
-          "by_year": {
-            "2018": {
-              "races": 14,
-              "correct_calls": 14,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 17,
-              "correct_calls": 17,
-              "accuracy": 1.0
-            },
-            "2022": {
-              "races": 11,
-              "correct_calls": 11,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 14,
-              "correct_calls": 13,
-              "accuracy": 0.9285714285714286
-            }
-          }
+          "races": 33,
+          "correct_calls": 32,
+          "accuracy": 0.9696969696969697
         },
         "Safe": {
-          "races": 36,
-          "correct_calls": 36,
-          "accuracy": 1.0,
-          "by_year": {
-            "2018": {
-              "races": 8,
-              "correct_calls": 8,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 7,
-              "correct_calls": 7,
-              "accuracy": 1.0
-            },
-            "2022": {
-              "races": 9,
-              "correct_calls": 9,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 12,
-              "correct_calls": 12,
-              "accuracy": 1.0
-            }
-          }
+          "races": 59,
+          "correct_calls": 59,
+          "accuracy": 1
         }
       }
     },
@@ -434,136 +104,26 @@
         "correct_calls": 89,
         "accuracy": 0.9468085106382979
       },
-      "by_year": {
-        "2018": {
-          "races": 36,
-          "correct_calls": 33,
-          "accuracy": 0.9166666666666666
-        },
-        "2020": {
-          "races": 11,
-          "correct_calls": 11,
-          "accuracy": 1.0
-        },
-        "2022": {
-          "races": 36,
-          "correct_calls": 34,
-          "accuracy": 0.9444444444444444
-        },
-        "2024": {
-          "races": 11,
-          "correct_calls": 11,
-          "accuracy": 1.0
-        }
-      },
       "categories": {
         "Toss-up": {
           "races": 17,
           "correct_calls": 12,
-          "accuracy": 0.7058823529411765,
-          "by_year": {
-            "2018": {
-              "races": 9,
-              "correct_calls": 6,
-              "accuracy": 0.6666666666666666
-            },
-            "2020": {
-              "races": 0,
-              "correct_calls": 0,
-              "accuracy": null
-            },
-            "2022": {
-              "races": 7,
-              "correct_calls": 5,
-              "accuracy": 0.7142857142857143
-            },
-            "2024": {
-              "races": 1,
-              "correct_calls": 1,
-              "accuracy": 1.0
-            }
-          }
+          "accuracy": 0.7058823529411765
         },
-        "Lean": {
+        "Leans": {
           "races": 35,
           "correct_calls": 35,
-          "accuracy": 1.0,
-          "by_year": {
-            "2018": {
-              "races": 13,
-              "correct_calls": 13,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 4,
-              "correct_calls": 4,
-              "accuracy": 1.0
-            },
-            "2022": {
-              "races": 14,
-              "correct_calls": 14,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 4,
-              "correct_calls": 4,
-              "accuracy": 1.0
-            }
-          }
+          "accuracy": 1
         },
         "Likely": {
-          "races": 40,
-          "correct_calls": 40,
-          "accuracy": 1.0,
-          "by_year": {
-            "2018": {
-              "races": 13,
-              "correct_calls": 13,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 7,
-              "correct_calls": 7,
-              "accuracy": 1.0
-            },
-            "2022": {
-              "races": 14,
-              "correct_calls": 14,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 6,
-              "correct_calls": 6,
-              "accuracy": 1.0
-            }
-          }
+          "races": 31,
+          "correct_calls": 31,
+          "accuracy": 1
         },
         "Safe": {
-          "races": 2,
-          "correct_calls": 2,
-          "accuracy": 1.0,
-          "by_year": {
-            "2018": {
-              "races": 1,
-              "correct_calls": 1,
-              "accuracy": 1.0
-            },
-            "2020": {
-              "races": 0,
-              "correct_calls": 0,
-              "accuracy": null
-            },
-            "2022": {
-              "races": 1,
-              "correct_calls": 1,
-              "accuracy": 1.0
-            },
-            "2024": {
-              "races": 0,
-              "correct_calls": 0,
-              "accuracy": null
-            }
-          }
+          "races": 11,
+          "correct_calls": 11,
+          "accuracy": 1
         }
       }
     }

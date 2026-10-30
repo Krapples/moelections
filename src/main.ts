@@ -1,7 +1,7 @@
 import "./styles.css";
 import { renderSimulatedHistory } from "./simulatedHistory";
-import { assetUrl, dateLabel, escapeHtml, houseDistrictKey, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, priorErrorCell, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, RatingAccuracyMetric, SavedForecastSnapshot, SimulatedHistory, SnapshotIndex } from "./types";
+import { assetUrl, dateLabel, escapeHtml, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, SavedForecastSnapshot, SimulatedHistory, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -263,7 +263,7 @@ function renderBothChamberOdds(data: CurrentData): void {
   const demBoth = house.dem * senate.dem;
   const repBoth = house.rep * senate.rep;
   const split = house.dem * senate.rep + house.rep * senate.dem;
-  holder.innerHTML = "<div class=\"both-control-card\"><div class=\"both-control-heading\"><div><p class=\"eyebrow\">BOTH CHAMBERS</p><h3>Likelihood of the combined outcome</h3></div><span>Independent-chamber estimate</span></div><div class=\"both-control-grid\"><div class=\"both-control-item dem\"><span>Democrats control both</span><b>" + formatLikelihood(demBoth) + "</b></div><div class=\"both-control-item rep\"><span>Republicans control both</span><b>" + formatLikelihood(repBoth) + "</b></div><div class=\"both-control-item split\"><span>Split control</span><b>" + formatLikelihood(split) + "</b></div></div></div>";
+  holder.innerHTML = "<div class=\"both-control-card\"><div class=\"both-control-heading\"><div><p class=\"eyebrow\">BOTH CHAMBERS</p><h3>Likelihood of the combined outcome</h3></div><span>Illustrative estimate</span></div><div class=\"both-control-grid\"><div class=\"both-control-item dem\"><span>Democrats control both</span><b>" + formatLikelihood(demBoth) + "</b></div><div class=\"both-control-item rep\"><span>Republicans control both</span><b>" + formatLikelihood(repBoth) + "</b></div><div class=\"both-control-item split\"><span>Split control</span><b>" + formatLikelihood(split) + "</b></div></div></div>";
 }
 
 function officeSeatRanges(data: CurrentData, office: Office): SeatRanges {
@@ -289,25 +289,11 @@ function officeSeatRanges(data: CurrentData, office: Office): SeatRanges {
   return ranges;
 }
 
-function priorContestYear(race: ForecastRace): number {
-  if (race.office === "House") return 2024;
-  if (race.office === "Senate") return race.state === "FL" || race.state === "OH" ? 2022 : 2020;
-  return race.state === "NH" || race.state === "VT" ? 2024 : 2022;
-}
-
 function priorContestWinner(race: ForecastRace, data: CurrentData): { side: FlipSide; year: number } | null {
-  const series = race.office === "House"
-    ? data.prior_error_history.districts?.[houseDistrictKey(race)]
-    : data.prior_error_history.state_office_forecasts?.[race.office + "|" + race.state];
-  if (!series || series.history_basis === "state_peers") return null;
-  const year = priorContestYear(race);
-  const row = series.errors_by_cycle?.find(item => Number(item.year) === year);
-  if (!row) return null;
-  const winner = row.actual_dem_winner === "Democratic" ? "D" : row.actual_dem_winner === "Republican" ? "R" : null;
-  if (winner) return { side:winner, year };
-  const margin = Number(row.actual_margin_pp);
-  if (!Number.isFinite(margin) || Math.abs(margin) < 1e-10) return null;
-  return { side:margin > 0 ? "D" : "R", year };
+  const result = data.previous_contest_results?.[race.race_id];
+  return result && (result.winner === "D" || result.winner === "R")
+    ? { side:result.winner, year:Number(result.year) }
+    : null;
 }
 
 function projectedFlip(race: ForecastRace, data: CurrentData): { side: FlipSide; year: number } | null {
@@ -387,20 +373,20 @@ function renderOutlooks(data: CurrentData): void {
     const ranges = officeSeatRanges(data, entry.office);
     const range = "<div class=\"outlook-range\"><span>Central 50% <b>" + ranges.central50[0] + "–" + ranges.central50[1] + " D</b></span><span>Central 90% <b>" + ranges.central90[0] + "–" + ranges.central90[1] + " D</b></span></div>";
     const primaryValue = entry.office === "Governor" ? Number(row.dem_favored_races) : Math.round(Number(row.expected_dem_seats));
-    const primaryLabel = entry.office === "Governor" ? "D-favored calls" : "D " + expectedLabel;
+    const primaryLabel = entry.office === "Governor" ? "D-favored races" : "D " + expectedLabel;
     const expectedPair = entry.office === "Governor"
       ? "<div class=\"outlook-pair\"><span>Expected D / R wins</span><b>" + Number(row.expected_dem_seats).toFixed(1) + " / " + Number(row.expected_rep_seats).toFixed(1) + "</b></div>"
       : "<div class=\"outlook-pair\"><span>Republican expected</span><b>" + Math.round(Number(row.expected_rep_seats)).toLocaleString() + "</b></div>";
     const note = entry.office === "House"
       ? "<small>" + Number(row.dem_favored_districts).toLocaleString() + " D-favored · " + Number(row.rep_favored_districts).toLocaleString() + " R-favored</small>"
-      : entry.office === "Senate" ? "<small>" + senateRaceCount.toLocaleString() + " forecast races · " + senateFixedSeats.toLocaleString() + " fixed seats</small>" : "<small>Raw-margin calls: " + Number(row.dem_favored_races).toLocaleString() + " D-favored · " + Number(row.rep_favored_races).toLocaleString() + " R-favored</small>";
+      : entry.office === "Senate" ? "<small>" + senateRaceCount.toLocaleString() + " forecast races · " + senateFixedSeats.toLocaleString() + " fixed seats</small>" : "<small>Favored races: " + Number(row.dem_favored_races).toLocaleString() + " D · " + Number(row.rep_favored_races).toLocaleString() + " R</small>";
     const control = entry.office === "House" || entry.office === "Senate" ? renderControlOdds(data, entry.office) : "";
     return "<article class=\"outlook-card outlook-" + entry.office.toLowerCase() + "\"><p class=\"eyebrow\">" + entry.label.toUpperCase() + " · " + entry.scope.toUpperCase() + "</p><div class=\"expected-total\"><strong>" + primaryValue.toLocaleString() + "</strong><span>" + primaryLabel + "</span></div>" + expectedPair + note + range + control + "<span class=\"outlook-date\">Updated " + dateLabel(row.snapshot_date) + "</span></article>";
   }).join("");
   renderBothChamberOdds(data);
   const senate = outlooks.Senate;
   const note = element("outlook-note");
-  if (note) note.innerHTML = "Seat ranges assume races are independent; the both-chamber outlook also treats House and Senate outcomes as independent. These are illustrative ranges, not direct probabilities of party control. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
+  if (note) note.innerHTML = "Seat ranges and combined control chances are approximate; outcomes can move together with shared national or state conditions. House covers " + counts.House.toLocaleString() + " districts. Senate includes " + senateRaceCount.toLocaleString() + " listed races plus " + senateFixedSeats.toLocaleString() + " fixed seats. A 50–50 Senate is assigned to Republicans under the <a href=\"https://www.whitehouse.gov/administration/jd-vance/\" target=\"_blank\" rel=\"noopener noreferrer\">current vice president's tie-break</a>. Governor covers " + counts.Governor.toLocaleString() + " on-ballot races.";
 }
 
 function renderClosestPreview(data: CurrentData): void {
@@ -476,7 +462,7 @@ function renderRatingBar(data: CurrentData): void {
   const officeValue = element<HTMLSelectElement>("office-select")?.value || "House";
   const office: Office | "All" = officeValue === "All" ? "All" : OFFICE_ORDER.includes(officeValue as Office) ? officeValue as Office : "House";
   const races = office === "All" ? data.races : data.races.filter(race => race.office === office);
-  const counts: Record<string, number> = { "d-safe":0, "d-likely":0, "d-lean":0, tossup:0, "r-lean":0, "r-likely":0, "r-safe":0 };
+  const counts: Record<string, number> = { "d-safe":0, "d-likely":0, "d-leans":0, tossup:0, "r-leans":0, "r-likely":0, "r-safe":0 };
   const senateFixedDem = Number(data.summary.senate_seat_distribution?.fixed_dem_caucus_seats ?? 34);
   const senateFixedRep = Number(data.summary.senate_seat_distribution?.fixed_rep_seats ?? 31);
   if (office === "Senate") {
@@ -490,7 +476,7 @@ function renderRatingBar(data: CurrentData): void {
     else counts[(probability > 0.5 ? "d-" : "r-") + band] += 1;
   }
   const categories = [
-    { key:"d-safe", label:"Dem Safe" },{ key:"d-likely", label:"Dem Likely" },{ key:"d-lean", label:"Dem Lean" },{ key:"tossup", label:"Toss-up" },{ key:"r-lean", label:"Rep Lean" },{ key:"r-likely", label:"Rep Likely" },{ key:"r-safe", label:"Rep Safe" }
+    { key:"d-safe", label:"Dem Safe" },{ key:"d-likely", label:"Dem Likely" },{ key:"d-leans", label:"Dem Leans" },{ key:"tossup", label:"Toss-up" },{ key:"r-leans", label:"Rep Leans" },{ key:"r-likely", label:"Rep Likely" },{ key:"r-safe", label:"Rep Safe" }
   ];
   const bar = element("rating-bar");
   const legend = element("rating-legend");
@@ -513,7 +499,7 @@ function renderRatingBar(data: CurrentData): void {
   const outlook = office === "All" ? null : data.summary.seat_outlooks[office];
   const flips = flipSummary(races, data);
   const flipText = "Projected flips vs. prior result: <b class=\"dem\">D " + flips.dem + "</b> · <b class=\"rep\">R " + flips.rep + "</b> <small>" + flips.matched + "/" + flips.total + " contests matched</small>";
-  const governorCallText = office === "Governor" ? "<span>Raw-margin calls: <b>" + Number(outlook?.dem_favored_races).toLocaleString() + " D</b> · <b>" + Number(outlook?.rep_favored_races).toLocaleString() + " R</b></span>" : "";
+  const governorCallText = office === "Governor" ? "<span>Favored races: <b>" + Number(outlook?.dem_favored_races).toLocaleString() + " D</b> · <b>" + Number(outlook?.rep_favored_races).toLocaleString() + " R</b></span>" : "";
   if (summaryHolder) summaryHolder.innerHTML = office === "All"
     ? "<span>" + total.toLocaleString() + " forecast races across offices; Senate fixed seats are omitted from this combined view.</span><span>Choose one office for its expected total and 50% / 90% seat ranges.</span><span>" + flipText + "</span>"
     : "<span>Expected Democratic " + (office === "Governor" ? "wins" : office === "Senate" ? "caucus seats" : "seats") + ": <b>" + Number(outlook?.expected_dem_seats).toFixed(1) + " / " + total.toLocaleString() + "</b></span>" + governorCallText + "<span>Central 50%: <b>" + ranges?.central50[0] + "–" + ranges?.central50[1] + " D</b></span><span>Central 90%: <b>" + ranges?.central90[0] + "–" + ranges?.central90[1] + " D</b></span><span>" + flipText + "</span>";
@@ -521,7 +507,7 @@ function renderRatingBar(data: CurrentData): void {
     const houseBands = ratingBandDescription("House");
     const senateBands = ratingBandDescription("Senate");
     const governorBands = ratingBandDescription("Governor");
-    if (office === "House") note.textContent = "Rating bands: " + houseBands + ". The bar covers all 435 districts; the marker is the 218-seat majority line. Seat ranges treat district outcomes as independent. Flip tags compare the favored party with the 2024 result for the same district label.";
+    if (office === "House") note.textContent = "Rating bands: " + houseBands + ". The bar covers all 435 districts; the marker is the 218-seat majority line. Flip tags compare the favored party with the 2024 result for the same district label.";
     else if (office === "Senate") note.textContent = "Rating bands: " + senateBands + ". The bar covers 35 forecast races plus 65 fixed seats (34 Democratic-caucus and 31 Republican); the marker is 51 seats. Flip tags use the 2020 result for regular seats and the 2022 result for Florida and Ohio special contests.";
     else if (office === "Governor") note.textContent = "Rating bands: " + governorBands + ". The bar covers all 36 races; the marker is 19 wins. Flip tags compare with the prior contest result: 2022 for most states and 2024 for New Hampshire and Vermont.";
     else note.textContent = "Rating bands: " + houseBands + ". The combined bar counts race rows, not a unified seat total; Senate fixed seats are omitted. Select an office for its expected total, ranges, majority marker, and flip baseline.";
@@ -654,7 +640,7 @@ function renderRaceList(data: CurrentData): void {
     const scoringNote = race.accuracy_scoring_eligible === false
       ? "<small class=\"accuracy-exclusion-label\" title=\"" + escapeHtml(race.accuracy_exclusion_reason || "Excluded from 2026 accuracy scoring.") + "\">Excluded from 2026 scoring</small>"
       : "";
-    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span>" + directionMarker + "</td><td class=\"prior-cell\">" + priorErrorCell(race, data.prior_error_history) + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + " " + favoriteClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + scoringNote + flipBadge(race, data) + "</td></tr>";
+    return "<tr><th scope=\"row\"><a class=\"race-link\" href=\"" + raceUrl(race.race_id) + "\">" + escapeHtml(raceName(race)) + "<small>" + escapeHtml(race.office) + "</small></a></th><td><span class=\"margin-token " + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</span>" + directionMarker + "</td><td><span class=\"chance-value\">" + pct(dem) + "</span><span class=\"chance-track dem-track\"><i style=\"width:" + (dem * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"chance-value\">" + pct(rep) + "</span><span class=\"chance-track rep-track\"><i style=\"width:" + (rep * 100).toFixed(1) + "%\"></i></span></td><td><span class=\"favorite-label " + favoriteClass + "\">" + favorite + "</span><span class=\"rating-pill " + ratingClass + " " + favoriteClass + "\" title=\"" + (race.forecast_rating ? "Published forecast rating" : "Rating derived from the published win chance") + "\">" + escapeHtml(raceRating) + "</span>" + scoringNote + flipBadge(race, data) + "</td></tr>";
   }).join("");
   const count = element("record-count");
   const title = element("table-title");
@@ -824,7 +810,7 @@ async function renderRaceDetail(data: CurrentData): Promise<void> {
   }
   const favorite = race.dem_probability === race.rep_probability ? "Even" : race.dem_probability > race.rep_probability ? "Democrats favored" : "Republicans favored";
   const classification = race.forecast_rating || rating(race.dem_probability, race.office);
-  const detailStatsMarkup = raceDetailStatsMarkup(race, data, retrospectives, classification);
+  const detailStatsMarkup = raceDetailStatsMarkup(race, retrospectives, classification);
   const scoringNote = race.accuracy_scoring_eligible === false
     ? "<p class=\"accuracy-exclusion-label\">" + escapeHtml(race.accuracy_exclusion_reason || "Excluded from 2026 accuracy scoring.") + "</p>"
     : "";
@@ -870,22 +856,11 @@ async function simulatedRaceDetailMarkup(race: ForecastRace, date: string, offic
   }
 }
 
-function raceDetailStatsMarkup(race: ForecastRace, data: CurrentData, retrospectives: RaceRetrospectives | null, classification: string): string {
-  const history = race.office === "House"
-    ? data.prior_error_history.districts?.[houseDistrictKey(race)]
-    : data.prior_error_history.state_office_forecasts?.[race.office + "|" + race.state];
-  const prior = history?.prior_averages_by_target_election?.["2026"];
-  const mae = Number(prior?.prior_average_absolute_error_pp);
-  const signedError = Number(prior?.prior_average_signed_error_pp);
-  const cycles = Number(prior?.prior_cycle_count ?? prior?.prior_observation_count) || 0;
-  const rows = Number(prior?.prior_race_count) || 0;
-  const isPeerAverage = history?.history_basis === "state_peers";
+function raceDetailStatsMarkup(race: ForecastRace, retrospectives: RaceRetrospectives | null, classification: string): string {
   const currentPolls = retrospectives?.races[race.race_id]?.current_polling;
   const pollMean = currentPolls?.poll_average_margin_pp ?? null;
   const pollSourceDate = currentPolls?.source_as_of ? " · source through " + dateLabel(currentPolls.source_as_of) : "";
   const forecastPollGap = pollMean === null || race.dem_margin_pp === null ? null : race.dem_margin_pp - pollMean;
-  const errorClass = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "neutral" : signedError > 0 ? "dem" : "rep";
-  const errorText = !Number.isFinite(signedError) || Math.abs(signedError) <= 0.05 ? "Mean error near zero" : "Mean error " + marginLabel(signedError);
   const gapClass = forecastPollGap === null || Math.abs(forecastPollGap) <= 0.05 ? "neutral" : forecastPollGap > 0 ? "dem" : "rep";
   const pollDetails = currentPolls
     ? pollMean === null
@@ -894,10 +869,7 @@ function raceDetailStatsMarkup(race: ForecastRace, data: CurrentData, retrospect
         ? "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast-to-poll gap unavailable because this race has no scored margin.</small>"
         : "<small>" + currentPolls.poll_count.toLocaleString() + " poll records · unweighted mean" + escapeHtml(pollSourceDate) + "</small><small>Forecast − poll mean: <b class=\"" + gapClass + "\">" + marginLabel(forecastPollGap) + "</b></small>"
     : "<small>Poll summary unavailable</small>";
-  const priorDetails = Number.isFinite(mae) && cycles > 0
-    ? "<strong>" + mae.toFixed(1) + " pp MAE</strong><small class=\"" + errorClass + "\">" + escapeHtml(errorText) + "</small><small>" + cycles + " elections · " + rows.toLocaleString() + (isPeerAverage ? " peer rows" : " race rows") + "</small>"
-    : "<strong>No prior average</strong><small>No historical comparison is available</small>";
-  return "<section class=\"detail-metrics\" aria-label=\"Race forecast statistics\"><article class=\"detail-stat\"><span>Forecast margin</span><strong class=\"" + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</strong><small>" + escapeHtml(classification) + " rating</small></article><article class=\"detail-stat detail-probability\"><span>Win probability</span><div class=\"detail-probability-values\"><b class=\"dem\">D " + pct(race.dem_probability) + "</b><b class=\"rep\">R " + pct(race.rep_probability) + "</b></div><div class=\"probability-split\" role=\"img\" aria-label=\"Democratic win probability " + pct(race.dem_probability) + ", Republican win probability " + pct(race.rep_probability) + "\"><i class=\"probability-dem\" style=\"width:" + (race.dem_probability * 100).toFixed(1) + "%\"></i><i class=\"probability-rep\" style=\"width:" + (race.rep_probability * 100).toFixed(1) + "%\"></i></div><small>Published race probabilities</small></article><article class=\"detail-stat\"><span>Current poll average</span><strong>" + (pollMean === null ? "No matched mean" : marginLabel(pollMean)) + "</strong>" + pollDetails + "</article><article class=\"detail-stat\"><span>Past forecast error</span>" + priorDetails + "</article></section>";
+  return "<section class=\"detail-metrics\" aria-label=\"Race forecast summary\"><article class=\"detail-stat\"><span>Forecast margin</span><strong class=\"" + (race.dem_margin_pp === null ? "neutral" : race.dem_margin_pp > 0 ? "dem" : race.dem_margin_pp < 0 ? "rep" : "neutral") + "\">" + marginLabel(race.dem_margin_pp) + "</strong><small>" + escapeHtml(classification) + " rating</small></article><article class=\"detail-stat detail-probability\"><span>Win probability</span><div class=\"detail-probability-values\"><b class=\"dem\">D " + pct(race.dem_probability) + "</b><b class=\"rep\">R " + pct(race.rep_probability) + "</b></div><div class=\"probability-split\" role=\"img\" aria-label=\"Democratic win probability " + pct(race.dem_probability) + ", Republican win probability " + pct(race.rep_probability) + "\"><i class=\"probability-dem\" style=\"width:" + (race.dem_probability * 100).toFixed(1) + "%\"></i><i class=\"probability-rep\" style=\"width:" + (race.rep_probability * 100).toFixed(1) + "%\"></i></div><small>Published race probabilities</small></article><article class=\"detail-stat\"><span>Current poll average</span><strong>" + (pollMean === null ? "No matched mean" : marginLabel(pollMean)) + "</strong>" + pollDetails + "</article></section>";
 }
 
 function safeHttpUrl(value: string | undefined): string | null {
@@ -933,12 +905,13 @@ async function renderRaceArtwork(): Promise<void> {
   }
 }
 
-type HistoryMetricKey = "margin_mae_pp" | "accuracy" | "seat_count" | "brier_score";
+type HistoryMetricKey = "margin_mae_pp" | "accuracy" | "seat_count" | "expected_seats" | "brier_score";
 
 const HISTORY_CHART_METRICS: Record<HistoryMetricKey, { label:string; note:string }> = {
-  margin_mae_pp:{ label:"Margin error", note:"Average absolute margin error in percentage points. Lower is closer." },
+  margin_mae_pp:{ label:"Margin error", note:"Average absolute difference between forecast and actual margins. Lower is closer." },
   accuracy:{ label:"Winner accuracy", note:"Share of covered races with the correct predicted winner. Higher is better." },
   seat_count:{ label:"Seat counts in covered races", note:"Predicted Democratic calls compared with actual Democratic wins on the same covered races." },
+  expected_seats:{ label:"Expected Democratic seats", note:"Sum of House district win probabilities compared with actual Democratic wins on the same covered races. This expected-seat series is available for House." },
   brier_score:{ label:"Probability score", note:"How close the published win chances were to the outcomes, on a 0–1 scale. Lower is better." }
 };
 
@@ -946,17 +919,20 @@ const HISTORY_COLORS: Record<Office, string> = { House:"#326eb8", Senate:"#b24f4
 const GENERIC_HISTORY_COLORS = { forecast:"#326eb8", polling:"#bd8c30", actual:"#5d6a7c" };
 
 function historyMetricValue(row: HistoricalMetric, metric: HistoryMetricKey): number {
-  return metric === "seat_count" ? Number(row.predicted_dem_seat_calls) : Number(row[metric]);
+  if (metric === "seat_count") return Number(row.predicted_dem_seat_calls);
+  if (metric === "expected_seats") return Number(row.expected_dem_seats);
+  return Number(row[metric]);
 }
 
 function historyMetricLabel(value: number, metric: HistoryMetricKey): string {
   if (metric === "accuracy") return pct(value);
   if (metric === "brier_score") return value.toFixed(3);
   if (metric === "seat_count") return Math.round(value).toLocaleString();
+  if (metric === "expected_seats") return value.toFixed(1);
   return value.toFixed(2) + " pp";
 }
 
-function historySeatCountChartMarkup(rows: HistoricalMetric[], years: number[], offices: Office[]): string {
+function historySeatCountChartMarkup(rows: HistoricalMetric[], years: number[], offices: Office[], expectedSeats = false): string {
   const width = 820;
   const panelHeight = 178;
   const height = offices.length * panelHeight + 8;
@@ -969,7 +945,8 @@ function historySeatCountChartMarkup(rows: HistoricalMetric[], years: number[], 
   const panels = offices.map((office, panelIndex) => {
     const officeRows = years.map(year => rows.find(row => row.office === office && Number(row.cycle) === year)).filter((row):row is HistoricalMetric => Boolean(row));
     if (!officeRows.length) return "";
-    const seatValues = officeRows.flatMap(row => [Number(row.predicted_dem_seat_calls), Number(row.actual_dem_wins_covered)]).filter(Number.isFinite);
+    const forecastSeats = (row: HistoricalMetric): number => expectedSeats ? Number(row.expected_dem_seats) : Number(row.predicted_dem_seat_calls);
+    const seatValues = officeRows.flatMap(row => [forecastSeats(row), Number(row.actual_dem_wins_covered)]).filter(Number.isFinite);
     const observedMin = Math.min(...seatValues);
     const observedMax = Math.max(...seatValues);
     const observedSpan = Math.max(1, observedMax - observedMin);
@@ -993,19 +970,23 @@ function historySeatCountChartMarkup(rows: HistoricalMetric[], years: number[], 
       return "<g><line x1=\"" + left + "\" y1=\"" + y.toFixed(1) + "\" x2=\"" + (width - right) + "\" y2=\"" + y.toFixed(1) + "\" class=\"history-grid-line\"/><text x=\"" + (left - 12) + "\" y=\"" + (y + 4).toFixed(1) + "\" text-anchor=\"end\" class=\"history-axis-label\">" + value + "</text></g>";
     }).join("");
     const xLabels = years.map((year, index) => "<text x=\"" + xAt(index).toFixed(1) + "\" y=\"" + (panelTop + panelHeight - 8) + "\" text-anchor=\"middle\" class=\"history-axis-label history-year-label\">" + year + "</text>").join("");
-    const forecastPoints = officeRows.map(row => xAt(years.indexOf(Number(row.cycle))).toFixed(1) + "," + yAt(Number(row.predicted_dem_seat_calls)).toFixed(1)).join(" ");
+    const forecastPoints = officeRows.map(row => xAt(years.indexOf(Number(row.cycle))).toFixed(1) + "," + yAt(forecastSeats(row)).toFixed(1)).join(" ");
     const actualPoints = officeRows.map(row => xAt(years.indexOf(Number(row.cycle))).toFixed(1) + "," + yAt(Number(row.actual_dem_wins_covered)).toFixed(1)).join(" ");
     const markers = officeRows.map(row => {
       const x = xAt(years.indexOf(Number(row.cycle)));
-      const forecastY = yAt(Number(row.predicted_dem_seat_calls));
+      const forecastValue = forecastSeats(row);
+      const forecastY = yAt(forecastValue);
       const actualY = yAt(Number(row.actual_dem_wins_covered));
-      const title = office + " " + row.cycle + ": forecast " + Number(row.predicted_dem_seat_calls).toLocaleString() + " Democratic calls, actual " + Number(row.actual_dem_wins_covered).toLocaleString() + " Democratic wins across " + Number(row.races).toLocaleString() + " covered races";
+      const forecastDescription = expectedSeats ? forecastValue.toFixed(1) + " expected Democratic seats" : Math.round(forecastValue).toLocaleString() + " Democratic calls";
+      const title = office + " " + row.cycle + ": forecast " + forecastDescription + ", actual " + Number(row.actual_dem_wins_covered).toLocaleString() + " Democratic wins across " + Number(row.races).toLocaleString() + " covered races";
       return "<g><title>" + title + "</title><circle cx=\"" + x.toFixed(1) + "\" cy=\"" + forecastY.toFixed(1) + "\" r=\"5\" fill=\"" + HISTORY_COLORS[office] + "\" stroke=\"#fffefa\" stroke-width=\"2\"/><rect x=\"" + (x - 4).toFixed(1) + "\" y=\"" + (actualY - 4).toFixed(1) + "\" width=\"8\" height=\"8\" fill=\"#fffefa\" stroke=\"#5d6a7c\" stroke-width=\"2\"/></g>";
     }).join("");
     return "<g class=\"history-seat-panel\"><text x=\"" + left + "\" y=\"" + (panelTop + 16) + "\" class=\"history-panel-title\">" + office + " · " + officeRows.length + " cycles</text>" + guides + "<polyline points=\"" + forecastPoints + "\" fill=\"none\" stroke=\"" + HISTORY_COLORS[office] + "\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"" + actualPoints + "\" fill=\"none\" stroke=\"#5d6a7c\" stroke-width=\"2.5\" stroke-dasharray=\"6 5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" + markers + xLabels + "</g>";
   }).join("");
-  const title = HISTORY_CHART_METRICS.seat_count.label + " by election cycle";
-  return "<svg class=\"history-chart-svg history-seat-chart-svg\" role=\"img\" aria-labelledby=\"history-svg-title history-svg-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"history-svg-title\">" + title + "</title><desc id=\"history-svg-description\">Democratic seat calls and actual Democratic wins in covered races for " + offices.join(", ") + ". Each office uses a separate vertical scale focused on its observed seat counts.</desc>" + panels + "</svg>";
+  const metric = expectedSeats ? "expected_seats" : "seat_count";
+  const title = HISTORY_CHART_METRICS[metric].label + " by election cycle";
+  const forecastLabel = expectedSeats ? "Expected Democratic seats" : "Democratic seat calls";
+  return "<svg class=\"history-chart-svg history-seat-chart-svg\" role=\"img\" aria-labelledby=\"history-svg-title history-svg-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"history-svg-title\">" + title + "</title><desc id=\"history-svg-description\">" + forecastLabel + " and actual Democratic wins in covered races for " + offices.join(", ") + ". Each office uses a separate vertical scale focused on its observed seat counts.</desc>" + panels + "</svg>";
 }
 
 function historyChartMarkup(rows: HistoricalMetric[], metric: HistoryMetricKey): string {
@@ -1013,6 +994,11 @@ function historyChartMarkup(rows: HistoricalMetric[], metric: HistoryMetricKey):
   const offices = OFFICE_ORDER.filter(office => rows.some(row => row.office === office));
   if (!years.length || !offices.length) return "<p class=\"chart-empty\">No historical results are available for this selection.</p>";
   if (metric === "seat_count") return historySeatCountChartMarkup(rows, years, offices);
+  if (metric === "expected_seats") {
+    const houseRows = rows.filter(row => row.office === "House" && Number.isFinite(Number(row.expected_dem_seats)));
+    if (!houseRows.length) return "<p class=\"chart-empty\">Expected-seat history is available for the House only.</p>";
+    return historySeatCountChartMarkup(houseRows, years, ["House"], true);
+  }
   const values = rows.map(row => historyMetricValue(row, metric)).filter(Number.isFinite);
   if (!values.length) return "<p class=\"chart-empty\">No historical results are available for this selection.</p>";
   let min = Math.min(...values);
@@ -1055,13 +1041,9 @@ function historyChartMarkup(rows: HistoricalMetric[], metric: HistoryMetricKey):
 }
 
 function renderHistoryRow(row: HistoricalMetric): string {
-  const fullHouse = row.full_house_actual_dem_seats_context === undefined || row.full_house_actual_dem_seats_context === null ? "—" : Number(row.full_house_actual_dem_seats_context).toLocaleString();
-  return "<tr><th scope=\"row\">" + escapeHtml(row.office) + "</th><td>" + escapeHtml(row.cycle) + "</td><td>" + Number(row.races).toLocaleString() + "</td><td>" + Number(row.margin_mae_pp).toFixed(2) + " pp</td><td>" + pct(row.accuracy) + "</td><td>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</td><td>" + signedCount(row.signed_seat_error) + "</td><td>" + Number(row.false_dem_calls).toLocaleString() + " / " + Number(row.false_rep_calls).toLocaleString() + "</td><td>" + fullHouse + "</td><td>" + Number(row.brier_score).toFixed(3) + "</td><td>" + Number(row.log_loss).toFixed(3) + "</td></tr>";
-}
-
-function ratingAccuracyCell(metric: RatingAccuracyMetric | undefined): string {
-  if (!metric || !metric.races || metric.accuracy === null) return "<td>—</td>";
-  return "<td>" + pct(metric.accuracy) + " <small>(n=" + Number(metric.races).toLocaleString() + ")</small></td>";
+  const expectedSeats = row.expected_dem_seats === undefined || row.expected_dem_seats === null ? "—" : Number(row.expected_dem_seats).toFixed(1);
+  const expectedSeatError = row.expected_seat_error === undefined || row.expected_seat_error === null ? "—" : (row.expected_seat_error > 0 ? "+" : row.expected_seat_error < 0 ? "−" : "") + Math.abs(row.expected_seat_error).toFixed(1) + " D";
+  return "<tr><th scope=\"row\">" + escapeHtml(row.office) + "</th><td>" + escapeHtml(row.cycle) + "</td><td>" + Number(row.races).toLocaleString() + "</td><td>" + Number(row.margin_mae_pp).toFixed(2) + " pp</td><td>" + pct(row.accuracy) + "</td><td>" + expectedSeats + (row.expected_seat_error === undefined || row.expected_seat_error === null ? "" : " / " + Number(row.actual_dem_wins_covered).toLocaleString()) + "</td><td>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</td><td>" + signedCount(row.signed_seat_error) + "</td><td>" + Number(row.brier_score).toFixed(3) + "</td><td>" + Number(row.log_loss).toFixed(3) + "</td></tr>";
 }
 
 async function renderRatingAccuracy(): Promise<void> {
@@ -1080,30 +1062,28 @@ async function renderRatingAccuracy(): Promise<void> {
     }
     if (definition) definition.textContent = report.rating_definition;
     if (caveat) caveat.textContent = report.validation_note;
-    const years = report.validation_years.map(String);
     const render = (): void => {
       const scope = officeSelect?.value || "All offices";
       const result = report.results[scope];
       if (!result) {
-        table.innerHTML = "<tr><td colspan=\"8\">No rating accuracy is available for this office.</td></tr>";
+        table.innerHTML = "<tr><td colspan=\"4\">No rating accuracy is available for this office.</td></tr>";
         if (summary) summary.textContent = "No historical rating accuracy is available.";
         return;
       }
-      const rows = ["Toss-up", "Lean", "Likely", "Safe"].map(category => {
+      const rows = ["Toss-up", "Leans", "Likely", "Safe"].map(category => {
         const metric = result.categories[category];
         if (!metric) return "";
-        return "<tr><th scope=\"row\">" + escapeHtml(category) + "</th><td>" + Number(metric.races).toLocaleString() + "</td><td>" + Number(metric.correct_calls).toLocaleString() + "</td><td><strong>" + (metric.accuracy === null ? "—" : pct(metric.accuracy)) + "</strong></td>" + years.map(year => ratingAccuracyCell(metric.by_year[year])).join("") + "</tr>";
+        return "<tr><th scope=\"row\">" + escapeHtml(category) + "</th><td>" + Number(metric.races).toLocaleString() + "</td><td>" + Number(metric.correct_calls).toLocaleString() + "</td><td><strong>" + (metric.accuracy === null ? "—" : pct(metric.accuracy)) + "</strong></td></tr>";
       });
-      const overallYearCells = years.map(year => ratingAccuracyCell(result.by_year[year])).join("");
-      rows.push("<tr class=\"rating-accuracy-overall\"><th scope=\"row\">Overall</th><td>" + Number(result.overall.races).toLocaleString() + "</td><td>" + Number(result.overall.correct_calls).toLocaleString() + "</td><td><strong>" + (result.overall.accuracy === null ? "—" : pct(result.overall.accuracy)) + "</strong></td>" + overallYearCells + "</tr>");
+      rows.push("<tr class=\"rating-accuracy-overall\"><th scope=\"row\">Overall</th><td>" + Number(result.overall.races).toLocaleString() + "</td><td>" + Number(result.overall.correct_calls).toLocaleString() + "</td><td><strong>" + (result.overall.accuracy === null ? "—" : pct(result.overall.accuracy)) + "</strong></td></tr>");
       table.innerHTML = rows.join("");
-      if (summary) summary.textContent = scope + " · " + Number(result.overall.races).toLocaleString() + " historical race forecasts · " + report.validation_years.join(", ") + " · model snapshot " + dateLabel(report.snapshot_date);
+      if (summary) summary.textContent = scope + " · " + Number(result.overall.races).toLocaleString() + " historical races · " + report.validation_years.join(", ");
     };
     officeSelect?.addEventListener("change", render);
     render();
   } catch (error) {
     if (summary) summary.textContent = error instanceof Error ? error.message : "Historical rating accuracy is unavailable.";
-    table.innerHTML = "<tr><td colspan=\"8\">Historical rating accuracy could not be loaded.</td></tr>";
+    table.innerHTML = "<tr><td colspan=\"4\">Historical rating accuracy could not be loaded.</td></tr>";
   }
 }
 
@@ -1122,17 +1102,18 @@ function renderPerformance(data: CurrentData): void {
     const annual = filtered.filter(row => row.cycle !== "Pooled").sort((a, b) => Number(a.cycle) - Number(b.cycle) || OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office));
     const pooled = element("history-pooled");
     if (pooled) pooled.innerHTML = filtered.filter(row => row.cycle === "Pooled").sort((a, b) => OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office)).map(row => {
-      return "<article class=\"history-card\"><span class=\"eyebrow\">" + escapeHtml(row.office) + " · ALL CYCLES</span><div class=\"history-primary-stat\"><span>Margin error</span><strong>" + Number(row.margin_mae_pp).toFixed(2) + " pp</strong></div><div class=\"history-card-pair\"><span>Winner accuracy <b>" + pct(row.accuracy) + "</b></span><span>Covered races <b>" + Number(row.races).toLocaleString() + "</b></span></div><div class=\"history-card-pair\"><span>D calls / actual wins <b>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</b></span><span>Seat error <b>" + signedCount(row.signed_seat_error) + "</b></span></div></article>";
+      const expectedSeats = row.expected_dem_seats === undefined || row.expected_dem_seats === null || row.expected_seat_error === undefined || row.expected_seat_error === null ? "" : "<div class=\"history-card-pair\"><span>Expected D seats / covered wins <b>" + Number(row.expected_dem_seats).toFixed(1) + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</b></span><span>Expected-seat error <b>" + (row.expected_seat_error > 0 ? "+" : row.expected_seat_error < 0 ? "−" : "") + Math.abs(row.expected_seat_error).toFixed(1) + " D</b></span></div>";
+      return "<article class=\"history-card\"><span class=\"eyebrow\">" + escapeHtml(row.office) + " · ALL CYCLES</span><div class=\"history-primary-stat\"><span>Margin MAE</span><strong>" + Number(row.margin_mae_pp).toFixed(2) + " pp</strong></div><div class=\"history-card-pair\"><span>Winner accuracy <b>" + pct(row.accuracy) + "</b></span><span>Covered races <b>" + Number(row.races).toLocaleString() + "</b></span></div><div class=\"history-card-pair\"><span>Brier score <b>" + Number(row.brier_score).toFixed(3) + "</b></span><span>Log loss <b>" + Number(row.log_loss).toFixed(3) + "</b></span></div>" + expectedSeats + "<div class=\"history-card-pair\"><span>D calls / actual wins <b>" + Number(row.predicted_dem_seat_calls).toLocaleString() + " / " + Number(row.actual_dem_wins_covered).toLocaleString() + "</b></span><span>Seat-count error <b>" + signedCount(row.signed_seat_error) + "</b></span></div></article>";
     }).join("");
     const chartTitle = element("history-chart-title");
     const chartNote = element("history-chart-note");
     const chart = element("history-chart");
     const legend = element("history-chart-legend");
     if (chartTitle) chartTitle.textContent = HISTORY_CHART_METRICS[metric].label;
-    if (chartNote) chartNote.textContent = HISTORY_CHART_METRICS[metric].note + (metric === "seat_count" ? " Each office uses its own vertical scale, focused around the observed range." : " The vertical scale follows the observed values.");
+    if (chartNote) chartNote.textContent = HISTORY_CHART_METRICS[metric].note + ((metric === "seat_count" || metric === "expected_seats") ? " Each office uses its own vertical scale, focused around the observed range." : " The vertical scale follows the observed values.");
     if (chart) chart.innerHTML = historyChartMarkup(annual, metric);
-    if (legend) legend.innerHTML = metric === "seat_count"
-      ? "<span><i class=\"history-legend-forecast\" style=\"--series-color:#326eb8\" aria-hidden=\"true\"></i>Forecast Democratic calls</span><span><i class=\"history-legend-actual\" aria-hidden=\"true\"></i>Actual Democratic wins</span>"
+    if (legend) legend.innerHTML = metric === "seat_count" || metric === "expected_seats"
+      ? "<span><i class=\"history-legend-forecast\" style=\"--series-color:#326eb8\" aria-hidden=\"true\"></i>" + (metric === "expected_seats" ? "Expected Democratic seats" : "Forecast Democratic calls") + "</span><span><i class=\"history-legend-actual\" style=\"--series-color:#5d6a7c\" aria-hidden=\"true\"></i>Actual Democratic wins on covered races</span>"
       : OFFICE_ORDER.filter(item => annual.some(row => row.office === item)).map(item => "<span><i style=\"--series-color:" + HISTORY_COLORS[item] + "\" aria-hidden=\"true\"></i>" + item + "</span>").join("");
     const body = element("history-table");
     if (body) body.innerHTML = annual.map(row => renderHistoryRow(row)).join("");
@@ -1184,7 +1165,7 @@ function genericBallotHistoryChartMarkup(rows: GenericBallotHistoryRow[]): strin
   const series = [
     {key:"poll_average_margin_pp" as const, label:"Polling average", color:GENERIC_HISTORY_COLORS.polling, marker:"poll"},
     {key:"actual_house_margin_pp" as const, label:"Actual House result", color:GENERIC_HISTORY_COLORS.actual, marker:"actual"},
-    {key:"forecast_margin_pp" as const, label:"Retrospective forecast", color:GENERIC_HISTORY_COLORS.forecast, marker:"forecast"}
+    {key:"forecast_margin_pp" as const, label:"National estimate", color:GENERIC_HISTORY_COLORS.forecast, marker:"forecast"}
   ].map(item => {
     const points = rows.map((row, index) => ({row, x:xAt(index), y:yAt(row[item.key])}));
     const lineClass = item.marker === "actual" ? "generic-history-actual-line" : "";
@@ -1200,14 +1181,13 @@ function genericBallotHistoryChartMarkup(rows: GenericBallotHistoryRow[]): strin
     }).join("");
     return line + markers;
   }).join("");
-  return "<svg class=\"history-chart-svg\" role=\"img\" aria-labelledby=\"generic-history-svg-title generic-history-svg-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"generic-history-svg-title\">Generic-ballot forecast, polling average, and actual House margin</title><desc id=\"generic-history-svg-description\">" + years.join(", ") + " national election cycles. Each point is a Democratic-minus-Republican House popular-vote margin in percentage points.</desc>" + guides + xLabels + series + "</svg>";
+  return "<svg class=\"history-chart-svg\" role=\"img\" aria-labelledby=\"generic-history-svg-title generic-history-svg-description\" viewBox=\"0 0 " + width + " " + height + "\"><title id=\"generic-history-svg-title\">National House estimate, polling average, and actual House margin</title><desc id=\"generic-history-svg-description\">" + years.join(", ") + " national election cycles. Each point is a Democratic-minus-Republican House popular-vote margin in percentage points.</desc>" + guides + xLabels + series + "</svg>";
 }
 
 async function renderGenericBallotHistory(): Promise<void> {
   const chart = element("generic-history-chart");
   if (!chart) return;
   const summaryText = element("generic-history-summary-text");
-  const summary = element("generic-history-summary");
   const legend = element("generic-history-legend");
   const table = element("generic-history-table");
   const methodNote = element("generic-history-method-note");
@@ -1220,23 +1200,14 @@ async function renderGenericBallotHistory(): Promise<void> {
       throw new Error("The generic-ballot history file has an unexpected cycle series.");
     }
     const rows = history.rows;
-    const meanAbsoluteError = (key:"forecast_margin_pp" | "poll_average_margin_pp"):number => rows.reduce((sum, row) => sum + Math.abs(row[key] - row.actual_house_margin_pp), 0) / rows.length;
-    const directionCount = (key:"forecast_margin_pp" | "poll_average_margin_pp"):number => rows.filter(row => Math.sign(row[key]) === Math.sign(row.actual_house_margin_pp)).length;
-    const forecastMae = meanAbsoluteError("forecast_margin_pp");
-    const pollingMae = meanAbsoluteError("poll_average_margin_pp");
-    if (summaryText) summaryText.textContent = "Across the same four cycles, forecast MAE was " + forecastMae.toFixed(2) + " pp and polling-average MAE was " + pollingMae.toFixed(2) + " pp. Correct national winner direction: forecast " + directionCount("forecast_margin_pp") + "/4; polling average " + directionCount("poll_average_margin_pp") + "/4.";
-    if (summary) summary.innerHTML = "<article class=\"history-card\"><span class=\"eyebrow\">SAME FOUR ELECTIONS</span><div class=\"history-primary-stat\"><span>Forecast MAE</span><strong>" + forecastMae.toFixed(2) + " pp</strong></div><div class=\"history-card-pair\"><span>Polling-average MAE<b>" + pollingMae.toFixed(2) + " pp</b></span><span>Cycles<b>" + rows.length + "</b></span></div></article><article class=\"history-card\"><span class=\"eyebrow\">DIRECTION CALLS</span><div class=\"history-primary-stat\"><span>Forecast</span><strong>" + directionCount("forecast_margin_pp") + "/4</strong></div><div class=\"history-card-pair\"><span>Polling average<b>" + directionCount("poll_average_margin_pp") + "/4</b></span><span>Target<b>House D−R margin</b></span></div></article>";
-    if (legend) legend.innerHTML = "<span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.forecast + "\" aria-hidden=\"true\"></i>Retrospective forecast</span><span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.polling + "\" aria-hidden=\"true\"></i>Polling average</span><span><i class=\"history-legend-actual\" style=\"--series-color:" + GENERIC_HISTORY_COLORS.actual + "\" aria-hidden=\"true\"></i>Actual House result</span>";
+    if (summaryText) summaryText.textContent = "Compare the national House vote estimate and polling average with the result in each election.";
+    if (legend) legend.innerHTML = "<span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.forecast + "\" aria-hidden=\"true\"></i>National estimate</span><span><i style=\"--series-color:" + GENERIC_HISTORY_COLORS.polling + "\" aria-hidden=\"true\"></i>Polling average</span><span><i class=\"history-legend-actual\" style=\"--series-color:" + GENERIC_HISTORY_COLORS.actual + "\" aria-hidden=\"true\"></i>Actual House result</span>";
     chart.innerHTML = genericBallotHistoryChartMarkup(rows);
-    if (table) table.innerHTML = rows.map(row => {
-      const forecastError = Math.abs(row.forecast_margin_pp - row.actual_house_margin_pp);
-      const pollingError = Math.abs(row.poll_average_margin_pp - row.actual_house_margin_pp);
-      return "<tr><th scope=\"row\">" + row.cycle + "</th><td>" + escapeHtml(dateLabel(row.snapshot_date)) + "</td><td>" + formatMarginPp(row.forecast_margin_pp) + "</td><td>" + formatMarginPp(row.poll_average_margin_pp) + "</td><td>" + formatMarginPp(row.actual_house_margin_pp) + "</td><td>" + forecastError.toFixed(2) + " pp</td><td>" + pollingError.toFixed(2) + " pp</td></tr>";
-    }).join("");
+    if (table) table.innerHTML = rows.map(row => "<tr><th scope=\"row\">" + row.cycle + "</th><td>" + escapeHtml(dateLabel(row.snapshot_date)) + "</td><td>" + formatMarginPp(row.forecast_margin_pp) + "</td><td>" + formatMarginPp(row.poll_average_margin_pp) + "</td><td>" + formatMarginPp(row.actual_house_margin_pp) + "</td></tr>").join("");
     if (methodNote) {
       const sourceUrl = /^https:\/\/projects\.fivethirtyeight\.com\/polls\/generic-ballot\/?$/.test(history.poll_average_source_url) ? history.poll_average_source_url : "";
       const sourceLink = sourceUrl ? "<a href=\"" + escapeHtml(sourceUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">FiveThirtyEight</a>" : escapeHtml(history.poll_average_source_label);
-      methodNote.innerHTML = "Polling averages use archived records from " + sourceLink + ". Publication timing is unverified for some records, so these are historical comparisons rather than a day-by-day replay. " + escapeHtml(history.validation_note);
+      methodNote.innerHTML = "Polling averages use archived records from " + sourceLink + ". Publication timing is unverified for some records, so these are historical comparisons rather than a day-by-day replay.";
     }
   } catch {
     if (summaryText) summaryText.textContent = "The generic-ballot history comparison is unavailable right now.";
@@ -1576,9 +1547,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
   const simulatedTab = element<HTMLButtonElement>("archive-simulated-tab");
   const pageContext = element<HTMLElement>("archive-context");
   let simulatedReady = false;
-  let publishedRequested = false;
-  let publishedArchivePromise: Promise<void> | null = null;
-  let startPublishedArchive: () => Promise<void> = async () => {};
+  let publishedArchiveLoad: Promise<void> | null = null;
   const selectView = (view: "published" | "simulated"): void => {
     const isSimulated = view === "simulated";
     holder.hidden = isSimulated;
@@ -1594,11 +1563,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       simulatedReady = true;
       const target = element("simulated-history-content");
       if (target) void renderSimulatedHistory(target, data);
-    }
-    if (!isSimulated) {
-      publishedRequested = true;
-      void startPublishedArchive();
-    }
+    } else if (!isSimulated) void loadPublishedArchive();
   };
   root.addEventListener("click", event => {
     const tab = (event.target as HTMLElement).closest<HTMLButtonElement>("button[role='tab']");
@@ -1606,8 +1571,10 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
     else if (tab === simulatedTab) selectView("simulated");
   });
   const initialView = new URLSearchParams(window.location.search).get("view") === "simulated" ? "simulated" : "published";
-  selectView(initialView);
-  try {
+  const loadPublishedArchive = (): Promise<void> => {
+    if (publishedArchiveLoad) return publishedArchiveLoad;
+    publishedArchiveLoad = (async (): Promise<void> => {
+      try {
     const response = await fetch(assetUrl("data/snapshots/index.json"), {cache:"no-store"});
     if (!response.ok) throw new Error("The saved forecast index could not be loaded.");
     const index = await response.json() as SnapshotIndex;
@@ -1618,7 +1585,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const pathIsLocalSnapshot = entry.path.startsWith("data/snapshots/") && !entry.path.split("/").includes("..");
       return "<button class=\"archive-release-choice\" type=\"button\" data-snapshot-id=\"" + escapeHtml(entry.snapshot_id) + "\" data-snapshot-path=\"" + escapeHtml(pathIsLocalSnapshot ? entry.path : "") + "\" aria-pressed=\"false\"" + (pathIsLocalSnapshot ? "" : " disabled") + "><span>" + escapeHtml(dateLabel(entry.snapshot_date)) + "</span><small>Reference release</small></button>";
     }).join("");
-    holder.innerHTML = "<div id=\"archive-trends\"><section class=\"content-panel archive-trend-panel\"><p class=\"archive-loading\">Loading saved forecast trends…</p></section></div><section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts are expectations: each forecast race contributes its Democratic and Republican win chances. Senate totals use the same 65 fixed seats for each release. Only the current release has saved seat ranges; ranges assume independent race outcomes and are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
+    holder.innerHTML = "<div id=\"archive-trends\"><section class=\"content-panel archive-trend-panel\"><p class=\"archive-loading\">Loading saved forecast trends…</p></section></div><section class=\"content-panel archive-release-panel\"><div class=\"section-title-row archive-section-heading\"><div><p class=\"eyebrow\">" + (entries.length + 1).toLocaleString() + " SAVED RELEASES</p><h2>Seat outlook by date</h2></div><span class=\"archive-current-tag\">Current: " + escapeHtml(dateLabel(data.snapshot_date)) + "</span></div><p class=\"archive-intro\">Select a release to see its seat estimates and race-by-race changes from the immediately older saved release.</p><div class=\"archive-release-picker\" role=\"group\" aria-label=\"Choose a saved forecast release\"><button class=\"archive-release-choice is-selected\" type=\"button\" data-snapshot-id=\"current\" data-snapshot-path=\"current\" aria-pressed=\"true\"><span>" + escapeHtml(dateLabel(data.snapshot_date)) + "</span><small>Current forecast</small></button>" + archivedOptions + "</div><p id=\"archive-release-note\" class=\"archive-release-note\" aria-live=\"polite\">Current published forecast.</p><div id=\"archive-seat-overview\" class=\"archive-seat-overview\" aria-live=\"polite\">" + renderArchiveSeatCards(data, data) + "</div><p class=\"archive-seat-method\">Seat counts add the listed Democratic and Republican win chances. Senate totals include 65 seats already held. Seat ranges are estimates that may miss shared movement across races; they are not party-control probabilities.</p></section><div id=\"archive-race-changes\" aria-live=\"polite\"><section class=\"content-panel archive-change-panel\"><p class=\"archive-loading\">Loading race-by-race changes…</p></section></div>";
     const overview = element("archive-seat-overview");
     const note = element<HTMLParagraphElement>("archive-release-note");
     const changes = element("archive-race-changes");
@@ -1645,6 +1612,7 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       const available = archived.filter((snapshot): snapshot is SavedForecastSnapshot | CurrentData => snapshot !== null);
       trendHolder.innerHTML = archiveTrendMarkup([data, ...available], data);
     };
+    void loadTrends();
     const showRelease = async (button: HTMLButtonElement): Promise<void> => {
       const sequence = ++selectionSequence;
       const path = button.dataset.snapshotPath || "";
@@ -1702,18 +1670,14 @@ async function renderSnapshotArchive(data: CurrentData): Promise<void> {
       if ((target.closest("#archive-change-filter") || target.closest("#archive-office-filter")) && changes) filterArchiveRaceRows(changes);
     });
     const currentButton = choices.find(choice => choice.dataset.snapshotPath === "current");
-    startPublishedArchive = (): Promise<void> => {
-      if (publishedArchivePromise) return publishedArchivePromise;
-      publishedArchivePromise = (async (): Promise<void> => {
-        void loadTrends();
-        if (currentButton) await showRelease(currentButton);
-      })();
-      return publishedArchivePromise;
-    };
-    if (publishedRequested) await startPublishedArchive();
-  } catch (error) {
-    holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved forecast index could not be read.") + "</p></section>";
-  }
+    if (currentButton) await showRelease(currentButton);
+      } catch (error) {
+        holder.innerHTML = "<section class=\"content-panel\"><h2>Archive unavailable</h2><p>" + escapeHtml(error instanceof Error ? error.message : "The saved forecast index could not be read.") + "</p></section>";
+      }
+    })();
+    return publishedArchiveLoad;
+  };
+  selectView(initialView);
 }
 async function renderGallery(): Promise<void> {
   const target = element("gallery-content");

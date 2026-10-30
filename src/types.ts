@@ -270,7 +270,7 @@ export interface SimulatedHistoryPoint {
 export interface SimulatedHistoryRace {
   id: string;
   state: string;
-  margin: number;
+  margin: number | null;
   chance: number;
 }
 

@@ -5177,7 +5177,7 @@
         }
       ],
       "margin_definition": "D/R two-party margin: 100 × (D share − R share) / (D share + R share).",
-      "timing_rule": "Fieldwork ends by Oct. 30; verified later first-public dates are excluded, while unknown first-public timing remains unknown and is retained. The Polling Forecast API snapshot is as of Oct. 28 and was retrieved Oct. 30; Emerson and ActiVote primary pollster releases were verified through Oct. 30.",
+      "timing_rule": "Fieldwork ends by Oct. 30; verified later first-public dates are excluded, while unknown first-public timing remains unknown and is retained. The Polling Forecast API is as of Oct. 29; its 30-day generic-poll records match the Oct. 28 snapshot. Emerson and ActiVote primary pollster releases were verified through Oct. 30.",
       "unknown_first_public_date_polls_used": 33,
       "first_public_timing_verified": false,
       "source_coverage_note": "The latest API run does not supply first-public dates for most records; fieldwork dates are not used as a publication-date substitute."

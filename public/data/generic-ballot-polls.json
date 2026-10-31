@@ -198,5 +198,5 @@
       "source_url": "https://harvardharrispoll.com/assets/uploads/2026/09/HHP_Sep2026_KeyResults.pdf"
     }
   ],
-  "source_note": "Polling Forecast archive as of 2026-10-28, retrieved 2026-10-30, plus verified primary-source generic ballot releases through 2026-10-30."
+  "source_note": "Polling Forecast API as of 2026-10-29, retrieved 2026-10-30; its 30-day generic-poll records matched the 2026-10-28 snapshot. Verified primary-source generic ballot releases were checked through 2026-10-30."
 }

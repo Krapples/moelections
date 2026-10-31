@@ -2,7 +2,7 @@
   "schema_version": 1,
   "snapshot_date": "2026-10-30",
   "office": "U.S. House generic ballot",
-  "method": "Unweighted arithmetic mean of each listed poll's published Democratic percentage minus its Republican percentage. One poll per polling organization; no sample-size weighting.",
+  "method": "The displayed average calculates each eligible poll's Democratic-minus-Republican two-party margin, then weights by the square root of sample size (clipped to 100–5,000) and a 14-day recency half-life. Seven-day and 30-day windows are computed separately. This list shows the latest available poll for each listed polling organization; it is not itself the full average input.",
   "population_note": "Source-reported likely-voter toplines are displayed with different pollster-defined screens. The model uses its dated 7-day and 30-day poll aggregates rather than this descriptive one-row-per-pollster list. First-public timing remains unknown for some Polling Forecast rows and is not inferred from fieldwork dates.",
   "polls": [
     {
@@ -70,20 +70,22 @@
       "source_margin_definition": "Reported named-candidate D minus R; normalized to D+R=100%."
     },
     {
-      "poll_id": "1001135",
+      "poll_id": "emerson-generic-20261024-26-lv",
       "source": "Emerson College",
       "field_start": "2026-10-24",
       "field_end": "2026-10-26",
-      "release_date": null,
-      "first_public_date": null,
-      "first_public_timing": "unknown_in_pollingforecast_api",
+      "release_date": "2026-10-30",
+      "first_public_date": "2026-10-30",
+      "first_public_timing": "verified_from_pollster_release",
       "population": "LV",
-      "dem_pct": 52.4,
-      "rep_pct": 42.4,
-      "sample_note": "n=1000",
-      "source_url": "https://docs.google.com/spreadsheets/d/1LK-sn229somRxouNr_bA4DxoKdq85GAf/export?format=xlsx",
+      "dem_pct": 52,
+      "rep_pct": 42,
+      "sample_note": "Likely-voter n=1,000; reported credibility interval ±3 pp (not an interval for the D-R difference).",
+      "source_url": "https://emersoncollegepolling.com/october-2026-national-poll-democrats-hold-10-point-midterm-advantage/",
       "source_grade": "A",
-      "source_attribution": "PollingForecast API, as of 2026-10-28"
+      "source_attribution": "Primary pollster release",
+      "question": "2026 Midterm Generic Congressional Ballot",
+      "source_margin_definition": "Reported Democratic minus Republican shares; the aggregate normalizes D/R shares to a two-party margin."
     },
     {
       "poll_id": "replay-cbs-yougov-generic-us-20261025",
@@ -102,18 +104,22 @@
       "source_margin_definition": "reported Democratic minus Republican share, normalized to D+R=100% for the model margin"
     },
     {
-      "poll_id": "activote-us-generic-20261021",
+      "poll_id": "activote-us-generic-20261030-lv",
       "source": "ActiVote",
-      "field_start": "2026-10-15",
-      "field_end": "2026-10-21",
-      "release_date": "2026-10-21",
-      "first_public_date": "2026-10-21",
-      "archive_ingestion_date": "2026-10-24",
-      "population": "Likely voters",
-      "dem_pct": 53.7,
-      "rep_pct": 46.3,
-      "sample_note": "n=1,000 likely voters",
-      "source_url": "https://www.activote.net/polls/generic-ballot/"
+      "field_start": "2026-10-22",
+      "field_end": "2026-10-30",
+      "release_date": "2026-10-30",
+      "first_public_date": "2026-10-30",
+      "first_public_timing": "verified_from_pollster_release",
+      "population": "Likely midterm voters",
+      "dem_pct": 53.5,
+      "rep_pct": 46.5,
+      "sample_note": "n=2,000; reported average expected error ±2.2 pp (pollwide, not an interval for the D-R difference).",
+      "source_url": "https://www.activote.net/polls/generic-ballot/2026-10-30/",
+      "source_grade": "A",
+      "source_attribution": "Primary pollster release",
+      "question": "Generic congressional ballot",
+      "source_margin_definition": "Published Democratic minus Republican shares."
     },
     {
       "poll_id": "replay-20261027-marist-us-generic-lv",
@@ -192,5 +198,5 @@
       "source_url": "https://harvardharrispoll.com/assets/uploads/2026/09/HHP_Sep2026_KeyResults.pdf"
     }
   ],
-  "source_note": "Polling Forecast archive through 2026-10-28, retrieved 2026-10-30, plus primary-source generic ballot releases through 2026-10-29."
+  "source_note": "Polling Forecast archive as of 2026-10-28, retrieved 2026-10-30, plus verified primary-source generic ballot releases through 2026-10-30."
 }

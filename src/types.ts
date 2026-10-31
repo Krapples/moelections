@@ -83,6 +83,7 @@ export interface ForecastSummary {
     timing_rule?: string;
     unknown_first_public_date_polls_used?: number;
     first_public_timing_verified?: boolean;
+    latest_polls?: GenericBallotPoll[];
   };
   generic_ballot_forecast: {
     margin_pp: number;
@@ -109,6 +110,21 @@ export interface ForecastSummary {
     pmf_file?: string;
   };
   seat_range_note?: string;
+}
+
+export interface GenericBallotPoll {
+  poll_id: string;
+  source: string;
+  field_start: string | null;
+  field_end: string | null;
+  release_date?: string | null;
+  first_public_date?: string | null;
+  first_public_timing?: string;
+  population: string;
+  dem_pct: number;
+  rep_pct: number;
+  sample_note: string;
+  source_url: string;
 }
 
 export interface HistoricalMetric {

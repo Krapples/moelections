@@ -1,7 +1,7 @@
 import "./styles.css";
 import { renderSimulatedHistory } from "./simulatedHistory";
 import { assetUrl, dateLabel, escapeHtml, loadCurrent, loadRaceRetrospectives, marginLabel, OFFICE_ORDER, pct, raceName, raceRetrospective, raceUrl, rating, ratingBandDescription, signedCount, STATE_NAMES, STATE_TILES } from "./data";
-import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, SavedForecastSnapshot, SimulatedHistory, SnapshotIndex } from "./types";
+import type { ArtworkManifest, CandidateDataset, CurrentData, ForecastRace, GenericBallotHistory, GenericBallotHistoryRow, GenericBallotPoll, HistoricalMetric, Office, RaceRetrospectives, RatingAccuracy, SavedForecastSnapshot, SimulatedHistory, SnapshotIndex } from "./types";
 
 const page = document.body.dataset.page || "home";
 let current: CurrentData | null = null;
@@ -449,13 +449,41 @@ function renderGenericBallot(data: CurrentData): void {
       <small>${gapDescription}</small>
     </article>
     <details class="generic-poll-details">
-      <summary><span>About these polling numbers</span><span class="generic-poll-count">${pollCount.toLocaleString()} poll records</span></summary>
+      <summary><span>About these numbers</span><span class="generic-poll-count">${pollCount.toLocaleString()} 30-day poll records</span></summary>
       <div class="generic-poll-details-body">
         <p class="generic-context">
-          Polls with fieldwork ending by ${escapeHtml(snapshotDate)} are included. ${escapeHtml(timingNote)} Margins show Democratic minus Republican two-party support. These values come from the saved snapshot.
+          The average uses eligible polls with fieldwork ending by ${escapeHtml(snapshotDate)}, weighted by sample size and recency in separate 7-day and 30-day windows. ${escapeHtml(timingNote)} The list shows the four latest poll releases with reported Democratic and Republican shares; screens and samples differ.
         </p>
+        <div class="generic-poll-sources" aria-label="Four latest generic-ballot polls"></div>
       </div>
     </details>`;
+  const pollList = holder.querySelector<HTMLElement>(".generic-poll-sources");
+  if (!pollList) return;
+  const dateKey = (value: string | null | undefined): string => value || "";
+  const newest = (generic.latest_polls || []).slice().sort((a: GenericBallotPoll, b: GenericBallotPoll) =>
+      dateKey(b.first_public_date || b.release_date || b.field_end).localeCompare(dateKey(a.first_public_date || a.release_date || a.field_end))
+      || dateKey(b.field_end).localeCompare(dateKey(a.field_end))
+      || a.source.localeCompare(b.source)
+    ).slice(0, 4);
+  if (newest.length < 4) {
+    pollList.innerHTML = "<p class=\"generic-loading generic-loading-error\" role=\"status\">Fewer than four recent poll releases are available.</p>";
+    return;
+  }
+  pollList.innerHTML = newest.map(poll => {
+    const reportedDate = poll.first_public_date || poll.release_date || poll.field_end || undefined;
+    const fieldDates = poll.field_start && poll.field_end
+      ? poll.field_start === poll.field_end
+        ? "Fielded " + dateLabel(poll.field_end || undefined)
+        : "Fielded " + dateLabel(poll.field_start || undefined) + "–" + dateLabel(poll.field_end || undefined)
+      : "Field dates unavailable";
+    const dem = Number(poll.dem_pct);
+    const rep = Number(poll.rep_pct);
+    const share = (value: number): string => Number.isInteger(value) ? String(value) : value.toFixed(1);
+    const link = /^https:\/\//i.test(poll.source_url)
+      ? "<a class=\"poll-source-name\" href=\"" + escapeHtml(poll.source_url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHtml(poll.source) + "</a>"
+      : "<span class=\"poll-source-name\">" + escapeHtml(poll.source) + "</span>";
+    return "<article class=\"poll-source-card\"><div class=\"poll-source-head\">" + link + "<strong>" + escapeHtml(marginLabel(dem - rep)) + "</strong></div><span class=\"poll-source-result\">D " + share(dem) + "% · R " + share(rep) + "%</span><small>" + escapeHtml(poll.population) + " · " + escapeHtml(fieldDates) + " · Released " + escapeHtml(dateLabel(reportedDate)) + "</small><small>" + escapeHtml(poll.sample_note) + "</small></article>";
+  }).join("");
 }
 
 function renderRatingBar(data: CurrentData): void {

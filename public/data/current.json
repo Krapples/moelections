@@ -5095,7 +5095,7 @@
   ],
   "summary": {
     "generic_ballot": {
-      "margin_pp": 9.298778572437513,
+      "margin_pp": 9.181791036049026,
       "input_snapshot_date": "2026-10-30",
       "source_label": "Polling Forecast-compatible merged poll feed plus verified primary-source additions",
       "source_url": "https://www.pollingforecast.com/api/us/polls",
@@ -5109,22 +5109,76 @@
         "status": "public context only; not included in the district forecast"
       },
       "short_window": {
-        "margin_pp": 11.249987963429575,
-        "poll_count": 6,
+        "margin_pp": 10.392429416174831,
+        "poll_count": 7,
         "window_days": 7,
         "window_lower_inclusive": "2026-10-24",
         "window_upper_inclusive": "2026-10-30"
       },
       "long_window": {
-        "margin_pp": 9.298778572437513,
-        "poll_count": 40,
+        "margin_pp": 9.181791036049026,
+        "poll_count": 41,
         "window_days": 30,
         "window_lower_inclusive": "2026-10-01",
         "window_upper_inclusive": "2026-10-30"
       },
+      "latest_polls": [
+        {
+          "poll_id": "activote-us-generic-20261030-lv",
+          "source": "ActiVote",
+          "field_start": "2026-10-22",
+          "field_end": "2026-10-30",
+          "release_date": "2026-10-30",
+          "first_public_date": "2026-10-30",
+          "population": "Likely midterm voters",
+          "dem_pct": 53.5,
+          "rep_pct": 46.5,
+          "sample_note": "n=2,000; reported average expected error ±2.2 pp (pollwide, not an interval for the D-R difference).",
+          "source_url": "https://www.activote.net/polls/generic-ballot/2026-10-30/"
+        },
+        {
+          "poll_id": "emerson-generic-20261024-26-lv",
+          "source": "Emerson College",
+          "field_start": "2026-10-24",
+          "field_end": "2026-10-26",
+          "release_date": "2026-10-30",
+          "first_public_date": "2026-10-30",
+          "population": "LV",
+          "dem_pct": 52,
+          "rep_pct": 42,
+          "sample_note": "Likely-voter n=1,000; reported credibility interval ±3 pp (not an interval for the D-R difference).",
+          "source_url": "https://emersoncollegepolling.com/october-2026-national-poll-democrats-hold-10-point-midterm-advantage/"
+        },
+        {
+          "poll_id": "primary-honest-poll-generic-20261028-29-lv",
+          "source": "The Honest Poll",
+          "field_start": "2026-10-28",
+          "field_end": "2026-10-29",
+          "release_date": "2026-10-29",
+          "first_public_date": "2026-10-29",
+          "population": "LV",
+          "dem_pct": 54,
+          "rep_pct": 41,
+          "sample_note": "Likely-voter n=1,158, from total registered-voter sample n=1,310.",
+          "source_url": "https://www.thehonestpoll.com/polls/democrats-lead-by-13-points-among-likely-voters-as-harris-voters-report-far-more-enthusiasm-than-trump-voters"
+        },
+        {
+          "poll_id": "primary-onpoint-generic-20261028-lv",
+          "source": "On Point Polling",
+          "field_start": "2026-10-28",
+          "field_end": "2026-10-28",
+          "release_date": "2026-10-29",
+          "first_public_date": "2026-10-29",
+          "population": "LV (pollster-defined likely-voter screen)",
+          "dem_pct": 55,
+          "rep_pct": 41.9,
+          "sample_note": "Overall registered-voter n=1,170; likely-voter subgroup sample size not stated.",
+          "source_url": "https://onpointpolitics.substack.com/p/national-poll-democrats-lead-by-13"
+        }
+      ],
       "margin_definition": "D/R two-party margin: 100 × (D share − R share) / (D share + R share).",
-      "timing_rule": "Fieldwork ends by Oct. 30; verified later first-public dates are excluded, while unknown first-public timing remains unknown and is retained. The Polling Forecast API snapshot is as of Oct. 28 and was retrieved Oct. 30; the three primary-source generic polls were released Oct. 29.",
-      "unknown_first_public_date_polls_used": 34,
+      "timing_rule": "Fieldwork ends by Oct. 30; verified later first-public dates are excluded, while unknown first-public timing remains unknown and is retained. The Polling Forecast API snapshot is as of Oct. 28 and was retrieved Oct. 30; Emerson and ActiVote primary pollster releases were verified through Oct. 30.",
+      "unknown_first_public_date_polls_used": 33,
       "first_public_timing_verified": false,
       "source_coverage_note": "The latest API run does not supply first-public dates for most records; fieldwork dates are not used as a publication-date substitute."
     },

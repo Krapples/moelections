@@ -269,6 +269,18 @@ if (!Array.isArray(genericPolls.polls) || genericPolls.polls.length < 2 || new S
 if (!genericPolls.polls.every(poll => Number.isFinite(poll.dem_pct) && Number.isFinite(poll.rep_pct) && /^https:\/\//.test(poll.source_url))) {
   throw new Error("The built generic-ballot polling data contains an invalid topline or source URL.");
 }
+const latestGenericPolls = current.summary?.generic_ballot?.latest_polls;
+const sortPollDate = poll => String(poll.first_public_date || poll.release_date || poll.field_end || "");
+const expectedLatestGenericPolls = [...genericPolls.polls].sort((a, b) =>
+  sortPollDate(b).localeCompare(sortPollDate(a))
+  || String(b.field_end || "").localeCompare(String(a.field_end || ""))
+  || a.source.localeCompare(b.source)
+).slice(0, 4);
+if (!Array.isArray(latestGenericPolls) || latestGenericPolls.length !== 4
+    || latestGenericPolls.some((poll, index) => poll.poll_id !== expectedLatestGenericPolls[index]?.poll_id)
+    || latestGenericPolls.some(poll => !Number.isFinite(poll.dem_pct) || !Number.isFinite(poll.rep_pct) || !/^https:\/\//.test(poll.source_url))) {
+  throw new Error("The cached generic-ballot average must include the four latest poll releases from its source list.");
+}
 const genericHistory = JSON.parse(fs.readFileSync(path.join(output, "data/generic-ballot-history.json"), "utf8"));
 const expectedGenericCycles = [2018, 2020, 2022, 2024];
 if (genericHistory.schema_version !== 1 || !genericHistory.target?.includes("U.S. House popular vote") || !/^https:\/\//.test(genericHistory.poll_average_source_url) || !genericHistory.poll_average_method?.includes("seven days") || !genericHistory.timing_note?.includes("do not verify") || !Array.isArray(genericHistory.rows) || genericHistory.rows.length !== expectedGenericCycles.length || genericHistory.rows.some((row, index) => row.cycle !== expectedGenericCycles[index])) {

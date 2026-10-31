@@ -356,7 +356,7 @@ tbody th[scope="row"] { font-weight: 600; }
 .history-cycle-card { padding: .72rem .82rem; background: #fffefa; border: 1px solid #e8e3d9; border-radius: .6rem; }
 .history-cycle-heading { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .55rem; }
 .history-cycle-heading h3 { margin: 0; color: #34445b; font: 650 .76rem "DM Mono", monospace; }
-.history-cycle-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; }
+.history-cycle-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; }
 .history-cycle-stats > div { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .12rem; }
 .history-cycle-stats > div > span:first-child { color: #778092; font-size: .62rem; line-height: 1.25; }
 .history-cycle-stats .history-margin { font: 650 .76rem "DM Mono", monospace; white-space: nowrap; }

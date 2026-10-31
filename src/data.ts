@@ -185,6 +185,10 @@ export function raceRetrospective(race: ForecastRace, retrospective: RaceRetrosp
     const pollSummary = item.poll_average_margin_pp === null
       ? item.poll_count === 0 ? "<span class=\"muted\">No archive</span>" : "<span class=\"muted\">No eligible poll average</span>"
       : marginValue(item.poll_average_margin_pp);
+    const pollErrorValue = typeof item.poll_average_margin_pp === "number" && typeof item.actual_margin_pp === "number"
+      ? item.poll_average_margin_pp - item.actual_margin_pp
+      : null;
+    const pollError = marginValue(pollErrorValue);
     const pollHint = item.final_30_day_poll_count === 0 && item.poll_count > 0
       ? "<small class=\"cycle-poll-note\">No final-30-day poll average is available</small>"
       : "";
@@ -194,10 +198,10 @@ export function raceRetrospective(race: ForecastRace, retrospective: RaceRetrosp
       ? "<small class=\"history-probability-note\">D win chance " + pct(item.dem_win_probability) + "</small>"
       : "";
     const predicted = marginValue(item.predicted_margin_pp) + probabilityNote;
-    rows.push("<article class=\"history-cycle-card\"><div class=\"history-cycle-heading\"><h3>" + escapeHtml(rowName) + "</h3>" + archived + "</div><div class=\"history-cycle-stats\"><div><span>Actual result</span>" + actual + "</div><div><span>Published forecast</span>" + predicted + "</div><div><span>Poll average</span>" + pollSummary + pollHint + "</div></div></article>");
+    rows.push("<article class=\"history-cycle-card\"><div class=\"history-cycle-heading\"><h3>" + escapeHtml(rowName) + "</h3>" + archived + "</div><div class=\"history-cycle-stats\"><div><span>Actual result</span>" + actual + "</div><div><span>Published forecast</span>" + predicted + "</div><div><span>Poll average</span>" + pollSummary + pollHint + "</div><div><span title=\"Archived poll average minus the actual Democratic-minus-Republican margin\">Poll average error</span>" + pollError + "</div></div></article>");
   }
   const empty = rows.length ? "" : "<p class=\"muted\">No prior race-level validation rows are available for this race label.</p>";
-  const methodology = "<details class=\"history-method-details\"><summary>How to read the history</summary><p>Margins are Democratic minus Republican in percentage points. Historical rows show the recorded result, published forecast, and available poll average.</p><p>Poll archives may not preserve when a result was first made public. Missing values are left blank.</p></details>";
+  const methodology = "<details class=\"history-method-details\"><summary>How to read the history</summary><p>Margins are Democratic minus Republican in percentage points. Historical rows show the recorded result, published forecast, available poll average, and signed polling error (poll average minus actual result). A D+ error means the archived poll average was more Democratic than the result; an R+ error means it was more Republican.</p><p>Poll archives may not preserve when a result was first made public. Missing values are left blank.</p></details>";
   return currentPollMarkup + "<div class=\"history-cycle-list\">" + (rows.join("") || empty) + "</div>" + methodology;
 }
 

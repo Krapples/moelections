@@ -924,8 +924,8 @@
     {
       "date": "2026-11-01",
       "h": 211.399,
-      "s": 47.598,
-      "g": 18.404
+      "s": 47.624,
+      "g": 18.357
     }
   ],
   "races": {
@@ -271668,14 +271668,14 @@
         {
           "id": "governor-az",
           "state": "AZ",
-          "margin": 6.982,
-          "chance": 0.7463
+          "margin": 6.757,
+          "chance": 0.73966
         },
         {
           "id": "governor-ca",
           "state": "CA",
-          "margin": 20.129,
-          "chance": 0.95733
+          "margin": 20.373,
+          "chance": 0.95885
         },
         {
           "id": "governor-co",
@@ -271692,8 +271692,8 @@
         {
           "id": "governor-fl",
           "state": "FL",
-          "margin": -8.716,
-          "chance": 0.20636
+          "margin": -8.244,
+          "chance": 0.21856
         },
         {
           "id": "governor-ga",
@@ -271710,8 +271710,8 @@
         {
           "id": "governor-ia",
           "state": "IA",
-          "margin": 4.674,
-          "chance": 0.67314
+          "margin": 4.204,
+          "chance": 0.65693
         },
         {
           "id": "governor-id",
@@ -271722,14 +271722,14 @@
         {
           "id": "governor-il",
           "state": "IL",
-          "margin": 16.833,
-          "chance": 0.93096
+          "margin": 16.126,
+          "chance": 0.92359
         },
         {
           "id": "governor-ks",
           "state": "KS",
-          "margin": -7.838,
-          "chance": 0.22946
+          "margin": -7.413,
+          "chance": 0.24129
         },
         {
           "id": "governor-ma",
@@ -271746,26 +271746,26 @@
         {
           "id": "governor-me",
           "state": "ME",
-          "margin": 9.84,
-          "chance": 0.82065
+          "margin": 10.502,
+          "chance": 0.83522
         },
         {
           "id": "governor-mi",
           "state": "MI",
-          "margin": 6.708,
-          "chance": 0.73819
+          "margin": 6.715,
+          "chance": 0.7384
         },
         {
           "id": "governor-mn",
           "state": "MN",
-          "margin": 9.867,
-          "chance": 0.82125
+          "margin": 10.097,
+          "chance": 0.82642
         },
         {
           "id": "governor-ne",
           "state": "NE",
-          "margin": -6.308,
-          "chance": 0.27391
+          "margin": -8.864,
+          "chance": 0.20265
         },
         {
           "id": "governor-nh",
@@ -271782,20 +271782,20 @@
         {
           "id": "governor-nv",
           "state": "NV",
-          "margin": -0.367,
-          "chance": 0.48584
+          "margin": -0.182,
+          "chance": 0.49297
         },
         {
           "id": "governor-ny",
           "state": "NY",
-          "margin": 16.02,
-          "chance": 0.92242
+          "margin": 16.031,
+          "chance": 0.92255
         },
         {
           "id": "governor-oh",
           "state": "OH",
-          "margin": -1.87,
-          "chance": 0.42823
+          "margin": -1.671,
+          "chance": 0.43581
         },
         {
           "id": "governor-ok",
@@ -271812,8 +271812,8 @@
         {
           "id": "governor-pa",
           "state": "PA",
-          "margin": 20.645,
-          "chance": 0.96048
+          "margin": 20.679,
+          "chance": 0.96067
         },
         {
           "id": "governor-ri",
@@ -271842,8 +271842,8 @@
         {
           "id": "governor-tx",
           "state": "TX",
-          "margin": -7.713,
-          "chance": 0.23291
+          "margin": -7.914,
+          "chance": 0.2274
         },
         {
           "id": "governor-vt",
@@ -274480,8 +274480,8 @@
         {
           "id": "senate-ak",
           "state": "AK",
-          "margin": -5.385,
-          "chance": 0.27009
+          "margin": -3.63,
+          "chance": 0.33844
         },
         {
           "id": "senate-al",
@@ -274498,8 +274498,8 @@
         {
           "id": "senate-co",
           "state": "CO",
-          "margin": 9.711,
-          "chance": 0.85729
+          "margin": 8.644,
+          "chance": 0.83145
         },
         {
           "id": "senate-de",
@@ -274510,20 +274510,20 @@
         {
           "id": "senate-fl",
           "state": "FL",
-          "margin": -14.927,
-          "chance": 0.05976
+          "margin": -14.845,
+          "chance": 0.06062
         },
         {
           "id": "senate-ga",
           "state": "GA",
-          "margin": 2.585,
-          "chance": 0.6171
+          "margin": 2.696,
+          "chance": 0.62194
         },
         {
           "id": "senate-ia",
           "state": "IA",
-          "margin": -5.889,
-          "chance": 0.25213
+          "margin": -5.762,
+          "chance": 0.25658
         },
         {
           "id": "senate-id",
@@ -274534,14 +274534,14 @@
         {
           "id": "senate-il",
           "state": "IL",
-          "margin": 10.29,
-          "chance": 0.86986
+          "margin": 8.79,
+          "chance": 0.83517
         },
         {
           "id": "senate-ks",
           "state": "KS",
-          "margin": -5.858,
-          "chance": 0.25321
+          "margin": -5.793,
+          "chance": 0.25549
         },
         {
           "id": "senate-ky",
@@ -274552,8 +274552,8 @@
         {
           "id": "senate-la",
           "state": "LA",
-          "margin": -13.616,
-          "chance": 0.07489
+          "margin": -11.904,
+          "chance": 0.09996
         },
         {
           "id": "senate-ma",
@@ -274564,20 +274564,20 @@
         {
           "id": "senate-me",
           "state": "ME",
-          "margin": -3.099,
-          "chance": 0.36076
+          "margin": -2.558,
+          "chance": 0.38407
         },
         {
           "id": "senate-mi",
           "state": "MI",
-          "margin": -2.849,
-          "chance": 0.37145
+          "margin": -2.84,
+          "chance": 0.37184
         },
         {
           "id": "senate-mn",
           "state": "MN",
-          "margin": 0.144,
-          "chance": 0.50666
+          "margin": 0.292,
+          "chance": 0.51347
         },
         {
           "id": "senate-ms",
@@ -274588,26 +274588,26 @@
         {
           "id": "senate-mt",
           "state": "MT",
-          "margin": -26.254,
-          "chance": 0.00779
+          "margin": -26.405,
+          "chance": 0.00758
         },
         {
           "id": "senate-nc",
           "state": "NC",
-          "margin": 4.03,
-          "chance": 0.67787
+          "margin": 3.806,
+          "chance": 0.66878
         },
         {
           "id": "senate-ne",
           "state": "NE",
-          "margin": -4.771,
-          "chance": 0.293
+          "margin": -5.683,
+          "chance": 0.25939
         },
         {
           "id": "senate-nh",
           "state": "NH",
-          "margin": 1.846,
-          "chance": 0.58439
+          "margin": 1.843,
+          "chance": 0.58423
         },
         {
           "id": "senate-nj",
@@ -274624,8 +274624,8 @@
         {
           "id": "senate-oh",
           "state": "OH",
-          "margin": -4.541,
-          "chance": 0.30189
+          "margin": -4.759,
+          "chance": 0.29346
         },
         {
           "id": "senate-ok",
@@ -274648,14 +274648,14 @@
         {
           "id": "senate-sc",
           "state": "SC",
-          "margin": -8.961,
-          "chance": 0.16051
+          "margin": -8.772,
+          "chance": 0.16528
         },
         {
           "id": "senate-sd",
           "state": "SD",
-          "margin": -19.287,
-          "chance": 0.02763
+          "margin": -18.638,
+          "chance": 0.03104
         },
         {
           "id": "senate-tn",
@@ -274666,8 +274666,8 @@
         {
           "id": "senate-tx",
           "state": "TX",
-          "margin": -5.184,
-          "chance": 0.27746
+          "margin": -5.356,
+          "chance": 0.27113
         },
         {
           "id": "senate-va",

@@ -10,13 +10,31 @@
       "path": "data/snapshots/2026-11-01.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01.csv",
       "status": "current",
-      "archive_note": "November 1 selected House forecast with the aligned hard-call target; Senate and Governor forecasts use the October 30 inputs.",
+      "archive_note": "November 1 current release: selected Senate/Governor models and polling panels refreshed through Nov. 1 using the Oct. 31 API snapshot; House forecast remains the earlier Nov. 1 aligned release.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
         "Senate": 35,
         "Governor": 36
       }
+    },
+    {
+      "snapshot_id": "2026-11-01-pre-sg-refresh",
+      "snapshot_date": "2026-11-01",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-11-01-pre-sg-refresh.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01-pre-sg-refresh.csv",
+      "status": "superseded",
+      "archive_note": "November 1 House forecast with aligned hard-call target and October 30 Senate/Governor forecasts; preserved before the November 1 targeted S/G poll refresh.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      },
+      "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01-pre-sg-refresh.csv",
+      "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01-pre-sg-refresh.csv"
     },
     {
       "snapshot_id": "2026-10-30-pre-model-update",

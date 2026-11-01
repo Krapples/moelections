@@ -3,14 +3,46 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-11-01",
+      "snapshot_date": "2026-11-01",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-11-01.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01.csv",
+      "status": "current",
+      "archive_note": "November 1 selected House forecast with the aligned hard-call target; Senate and Governor forecasts use the October 30 inputs.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
+      "snapshot_id": "2026-10-30-pre-model-update",
+      "snapshot_date": "2026-10-30",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-10-30-pre-model-update.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-30-pre-model-update.csv",
+      "status": "superseded",
+      "archive_note": "The October 30 current forecast and polling stream is preserved before the November 1 House model update. Existing October 30 archives remain unchanged.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-10-30",
       "snapshot_date": "2026-10-30",
       "series_id": "moelections-2026-midterm-races-v1",
       "schema_version": 1,
       "path": "data/snapshots/2026-10-30.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-10-30.csv",
-      "status": "current",
-      "archive_note": "October 30 published forecast snapshot.",
+      "status": "superseded",
+      "archive_note": "The October 30 published forecast is retained before the November 1 House model update.",
       "race_count": 506,
       "office_counts": {
         "House": 435,

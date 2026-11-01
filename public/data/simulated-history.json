@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "start_date": "2026-06-01",
-  "cutoff_date_utc": "2026-10-30",
+  "cutoff_date_utc": "2026-11-01",
   "daily": [
     {
       "date": "2026-06-01",
@@ -912,6 +912,18 @@
     {
       "date": "2026-10-30",
       "h": 205.82,
+      "s": 47.598,
+      "g": 18.404
+    },
+    {
+      "date": "2026-10-31",
+      "h": null,
+      "s": null,
+      "g": null
+    },
+    {
+      "date": "2026-11-01",
+      "h": 211.399,
       "s": 47.598,
       "g": 18.404
     }
@@ -271630,6 +271642,3050 @@
           "state": "WY",
           "margin": -39.936,
           "chance": 0.00208
+        }
+      ]
+    },
+    "2026-11-01": {
+      "Governor": [
+        {
+          "id": "governor-ak",
+          "state": "AK",
+          "margin": -7.297,
+          "chance": 0.24458
+        },
+        {
+          "id": "governor-al",
+          "state": "AL",
+          "margin": -18.385,
+          "chance": 0.05514
+        },
+        {
+          "id": "governor-ar",
+          "state": "AR",
+          "margin": -20.174,
+          "chance": 0.04238
+        },
+        {
+          "id": "governor-az",
+          "state": "AZ",
+          "margin": 6.982,
+          "chance": 0.7463
+        },
+        {
+          "id": "governor-ca",
+          "state": "CA",
+          "margin": 20.129,
+          "chance": 0.95733
+        },
+        {
+          "id": "governor-co",
+          "state": "CO",
+          "margin": 18.479,
+          "chance": 0.94561
+        },
+        {
+          "id": "governor-ct",
+          "state": "CT",
+          "margin": 16.225,
+          "chance": 0.92466
+        },
+        {
+          "id": "governor-fl",
+          "state": "FL",
+          "margin": -8.716,
+          "chance": 0.20636
+        },
+        {
+          "id": "governor-ga",
+          "state": "GA",
+          "margin": -2.53,
+          "chance": 0.40346
+        },
+        {
+          "id": "governor-hi",
+          "state": "HI",
+          "margin": 23.354,
+          "chance": 0.97364
+        },
+        {
+          "id": "governor-ia",
+          "state": "IA",
+          "margin": 4.674,
+          "chance": 0.67314
+        },
+        {
+          "id": "governor-id",
+          "state": "ID",
+          "margin": -23.202,
+          "chance": 0.02697
+        },
+        {
+          "id": "governor-il",
+          "state": "IL",
+          "margin": 16.833,
+          "chance": 0.93096
+        },
+        {
+          "id": "governor-ks",
+          "state": "KS",
+          "margin": -7.838,
+          "chance": 0.22946
+        },
+        {
+          "id": "governor-ma",
+          "state": "MA",
+          "margin": 23.61,
+          "chance": 0.97464
+        },
+        {
+          "id": "governor-md",
+          "state": "MD",
+          "margin": 27.748,
+          "chance": 0.98646
+        },
+        {
+          "id": "governor-me",
+          "state": "ME",
+          "margin": 9.84,
+          "chance": 0.82065
+        },
+        {
+          "id": "governor-mi",
+          "state": "MI",
+          "margin": 6.708,
+          "chance": 0.73819
+        },
+        {
+          "id": "governor-mn",
+          "state": "MN",
+          "margin": 9.867,
+          "chance": 0.82125
+        },
+        {
+          "id": "governor-ne",
+          "state": "NE",
+          "margin": -6.308,
+          "chance": 0.27391
+        },
+        {
+          "id": "governor-nh",
+          "state": "NH",
+          "margin": -9.115,
+          "chance": 0.19644
+        },
+        {
+          "id": "governor-nm",
+          "state": "NM",
+          "margin": 5.62,
+          "chance": 0.70445
+        },
+        {
+          "id": "governor-nv",
+          "state": "NV",
+          "margin": -0.367,
+          "chance": 0.48584
+        },
+        {
+          "id": "governor-ny",
+          "state": "NY",
+          "margin": 16.02,
+          "chance": 0.92242
+        },
+        {
+          "id": "governor-oh",
+          "state": "OH",
+          "margin": -1.87,
+          "chance": 0.42823
+        },
+        {
+          "id": "governor-ok",
+          "state": "OK",
+          "margin": -14.372,
+          "chance": 0.09787
+        },
+        {
+          "id": "governor-or",
+          "state": "OR",
+          "margin": -0.476,
+          "chance": 0.48162
+        },
+        {
+          "id": "governor-pa",
+          "state": "PA",
+          "margin": 20.645,
+          "chance": 0.96048
+        },
+        {
+          "id": "governor-ri",
+          "state": "RI",
+          "margin": 31.008,
+          "chance": 0.99177
+        },
+        {
+          "id": "governor-sc",
+          "state": "SC",
+          "margin": -14.386,
+          "chance": 0.09768
+        },
+        {
+          "id": "governor-sd",
+          "state": "SD",
+          "margin": -25.872,
+          "chance": 0.01802
+        },
+        {
+          "id": "governor-tn",
+          "state": "TN",
+          "margin": -21.36,
+          "chance": 0.03553
+        },
+        {
+          "id": "governor-tx",
+          "state": "TX",
+          "margin": -7.713,
+          "chance": 0.23291
+        },
+        {
+          "id": "governor-vt",
+          "state": "VT",
+          "margin": -6.439,
+          "chance": 0.26989
+        },
+        {
+          "id": "governor-wi",
+          "state": "WI",
+          "margin": 0.086,
+          "chance": 0.50331
+        },
+        {
+          "id": "governor-wy",
+          "state": "WY",
+          "margin": -39.936,
+          "chance": 0.00208
+        }
+      ],
+      "House": [
+        {
+          "id": "house-ak-00",
+          "state": "AK",
+          "margin": -16.203,
+          "chance": 0.01229
+        },
+        {
+          "id": "house-al-01",
+          "state": "AL",
+          "margin": -35.534,
+          "chance": 7e-05
+        },
+        {
+          "id": "house-al-02",
+          "state": "AL",
+          "margin": -5.562,
+          "chance": 0.18155
+        },
+        {
+          "id": "house-al-03",
+          "state": "AL",
+          "margin": -46.209,
+          "chance": 0
+        },
+        {
+          "id": "house-al-04",
+          "state": "AL",
+          "margin": -58.433,
+          "chance": 0
+        },
+        {
+          "id": "house-al-05",
+          "state": "AL",
+          "margin": -27.681,
+          "chance": 0.00056
+        },
+        {
+          "id": "house-al-06",
+          "state": "AL",
+          "margin": -34.586,
+          "chance": 9e-05
+        },
+        {
+          "id": "house-al-07",
+          "state": "AL",
+          "margin": 11.414,
+          "chance": 0.95648
+        },
+        {
+          "id": "house-ar-01",
+          "state": "AR",
+          "margin": -46.212,
+          "chance": 0
+        },
+        {
+          "id": "house-ar-02",
+          "state": "AR",
+          "margin": -12.333,
+          "chance": 0.03426
+        },
+        {
+          "id": "house-ar-03",
+          "state": "AR",
+          "margin": -27.337,
+          "chance": 0.00061
+        },
+        {
+          "id": "house-ar-04",
+          "state": "AR",
+          "margin": -41.281,
+          "chance": 1e-05
+        },
+        {
+          "id": "house-az-01",
+          "state": "AZ",
+          "margin": -1.689,
+          "chance": 0.38765
+        },
+        {
+          "id": "house-az-02",
+          "state": "AZ",
+          "margin": -5.794,
+          "chance": 0.17241
+        },
+        {
+          "id": "house-az-03",
+          "state": "AZ",
+          "margin": 37.451,
+          "chance": 0.99996
+        },
+        {
+          "id": "house-az-04",
+          "state": "AZ",
+          "margin": 8.819,
+          "chance": 0.91586
+        },
+        {
+          "id": "house-az-05",
+          "state": "AZ",
+          "margin": -19.853,
+          "chance": 0.00461
+        },
+        {
+          "id": "house-az-06",
+          "state": "AZ",
+          "margin": -0.054,
+          "chance": 0.49638
+        },
+        {
+          "id": "house-az-07",
+          "state": "AZ",
+          "margin": 23.325,
+          "chance": 0.99819
+        },
+        {
+          "id": "house-az-08",
+          "state": "AZ",
+          "margin": -17.977,
+          "chance": 0.00764
+        },
+        {
+          "id": "house-az-09",
+          "state": "AZ",
+          "margin": -29.684,
+          "chance": 0.00032
+        },
+        {
+          "id": "house-ca-01",
+          "state": "CA",
+          "margin": 4.841,
+          "chance": 0.7876
+        },
+        {
+          "id": "house-ca-02",
+          "state": "CA",
+          "margin": 22.295,
+          "chance": 0.99761
+        },
+        {
+          "id": "house-ca-03",
+          "state": "CA",
+          "margin": 9.788,
+          "chance": 0.934
+        },
+        {
+          "id": "house-ca-04",
+          "state": "CA",
+          "margin": 11.893,
+          "chance": 0.96156
+        },
+        {
+          "id": "house-ca-05",
+          "state": "CA",
+          "margin": -16.929,
+          "chance": 0.01012
+        },
+        {
+          "id": "house-ca-06",
+          "state": "CA",
+          "margin": 7.343,
+          "chance": 0.87952
+        },
+        {
+          "id": "house-ca-07",
+          "state": "CA",
+          "margin": 10.218,
+          "chance": 0.94082
+        },
+        {
+          "id": "house-ca-08",
+          "state": "CA",
+          "margin": 30.981,
+          "chance": 0.99977
+        },
+        {
+          "id": "house-ca-09",
+          "state": "CA",
+          "margin": 11.226,
+          "chance": 0.95431
+        },
+        {
+          "id": "house-ca-10",
+          "state": "CA",
+          "margin": 29.777,
+          "chance": 0.99968
+        },
+        {
+          "id": "house-ca-11",
+          "state": "CA",
+          "margin": 63.676,
+          "chance": 1
+        },
+        {
+          "id": "house-ca-12",
+          "state": "CA",
+          "margin": 69.091,
+          "chance": 1
+        },
+        {
+          "id": "house-ca-13",
+          "state": "CA",
+          "margin": 0.6,
+          "chance": 0.54049
+        },
+        {
+          "id": "house-ca-14",
+          "state": "CA",
+          "margin": 33.394,
+          "chance": 0.99988
+        },
+        {
+          "id": "house-ca-15",
+          "state": "CA",
+          "margin": 41.521,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-ca-16",
+          "state": "CA",
+          "margin": 45.466,
+          "chance": 1
+        },
+        {
+          "id": "house-ca-17",
+          "state": "CA",
+          "margin": 36.293,
+          "chance": 0.99995
+        },
+        {
+          "id": "house-ca-18",
+          "state": "CA",
+          "margin": 25.21,
+          "chance": 0.99891
+        },
+        {
+          "id": "house-ca-19",
+          "state": "CA",
+          "margin": 33.724,
+          "chance": 0.99989
+        },
+        {
+          "id": "house-ca-20",
+          "state": "CA",
+          "margin": -30.258,
+          "chance": 0.00028
+        },
+        {
+          "id": "house-ca-21",
+          "state": "CA",
+          "margin": 6.846,
+          "chance": 0.86453
+        },
+        {
+          "id": "house-ca-22",
+          "state": "CA",
+          "margin": -2.226,
+          "chance": 0.35377
+        },
+        {
+          "id": "house-ca-23",
+          "state": "CA",
+          "margin": -18.27,
+          "chance": 0.00706
+        },
+        {
+          "id": "house-ca-24",
+          "state": "CA",
+          "margin": 22.488,
+          "chance": 0.99774
+        },
+        {
+          "id": "house-ca-25",
+          "state": "CA",
+          "margin": 6.74,
+          "chance": 0.86112
+        },
+        {
+          "id": "house-ca-26",
+          "state": "CA",
+          "margin": 13.571,
+          "chance": 0.97525
+        },
+        {
+          "id": "house-ca-27",
+          "state": "CA",
+          "margin": 8.92,
+          "chance": 0.91795
+        },
+        {
+          "id": "house-ca-28",
+          "state": "CA",
+          "margin": 22.709,
+          "chance": 0.99787
+        },
+        {
+          "id": "house-ca-29",
+          "state": "CA",
+          "margin": 32.461,
+          "chance": 0.99985
+        },
+        {
+          "id": "house-ca-30",
+          "state": "CA",
+          "margin": 34.688,
+          "chance": 0.99992
+        },
+        {
+          "id": "house-ca-31",
+          "state": "CA",
+          "margin": 9.87,
+          "chance": 0.93536
+        },
+        {
+          "id": "house-ca-32",
+          "state": "CA",
+          "margin": 22.607,
+          "chance": 0.99781
+        },
+        {
+          "id": "house-ca-33",
+          "state": "CA",
+          "margin": 10.073,
+          "chance": 0.9386
+        },
+        {
+          "id": "house-ca-34",
+          "state": "CA",
+          "margin": 46.821,
+          "chance": 1
+        },
+        {
+          "id": "house-ca-35",
+          "state": "CA",
+          "margin": 8.542,
+          "chance": 0.90992
+        },
+        {
+          "id": "house-ca-36",
+          "state": "CA",
+          "margin": 36.928,
+          "chance": 0.99995
+        },
+        {
+          "id": "house-ca-37",
+          "state": "CA",
+          "margin": 56.602,
+          "chance": 1
+        },
+        {
+          "id": "house-ca-38",
+          "state": "CA",
+          "margin": 11.093,
+          "chance": 0.95271
+        },
+        {
+          "id": "house-ca-39",
+          "state": "CA",
+          "margin": 9.764,
+          "chance": 0.93359
+        },
+        {
+          "id": "house-ca-40",
+          "state": "CA",
+          "margin": -10.442,
+          "chance": 0.05589
+        },
+        {
+          "id": "house-ca-41",
+          "state": "CA",
+          "margin": 12.854,
+          "chance": 0.97011
+        },
+        {
+          "id": "house-ca-42",
+          "state": "CA",
+          "margin": 11.944,
+          "chance": 0.96207
+        },
+        {
+          "id": "house-ca-43",
+          "state": "CA",
+          "margin": 43.254,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-ca-44",
+          "state": "CA",
+          "margin": 32.504,
+          "chance": 0.99985
+        },
+        {
+          "id": "house-ca-45",
+          "state": "CA",
+          "margin": 4.504,
+          "chance": 0.77197
+        },
+        {
+          "id": "house-ca-46",
+          "state": "CA",
+          "margin": 14.127,
+          "chance": 0.97864
+        },
+        {
+          "id": "house-ca-47",
+          "state": "CA",
+          "margin": 9.012,
+          "chance": 0.9198
+        },
+        {
+          "id": "house-ca-48",
+          "state": "CA",
+          "margin": 2.62,
+          "chance": 0.67025
+        },
+        {
+          "id": "house-ca-49",
+          "state": "CA",
+          "margin": 10.373,
+          "chance": 0.94312
+        },
+        {
+          "id": "house-ca-50",
+          "state": "CA",
+          "margin": 15.93,
+          "chance": 0.98678
+        },
+        {
+          "id": "house-ca-51",
+          "state": "CA",
+          "margin": 15.745,
+          "chance": 0.98611
+        },
+        {
+          "id": "house-ca-52",
+          "state": "CA",
+          "margin": 14.638,
+          "chance": 0.98134
+        },
+        {
+          "id": "house-co-01",
+          "state": "CO",
+          "margin": 56.521,
+          "chance": 1
+        },
+        {
+          "id": "house-co-02",
+          "state": "CO",
+          "margin": 41.776,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-co-03",
+          "state": "CO",
+          "margin": -8.419,
+          "chance": 0.09287
+        },
+        {
+          "id": "house-co-04",
+          "state": "CO",
+          "margin": -10.421,
+          "chance": 0.0562
+        },
+        {
+          "id": "house-co-05",
+          "state": "CO",
+          "margin": -3.247,
+          "chance": 0.29338
+        },
+        {
+          "id": "house-co-06",
+          "state": "CO",
+          "margin": 20.817,
+          "chance": 0.99644
+        },
+        {
+          "id": "house-co-07",
+          "state": "CO",
+          "margin": 17.71,
+          "chance": 0.99179
+        },
+        {
+          "id": "house-co-08",
+          "state": "CO",
+          "margin": -1.338,
+          "chance": 0.41043
+        },
+        {
+          "id": "house-ct-01",
+          "state": "CT",
+          "margin": 26.919,
+          "chance": 0.99932
+        },
+        {
+          "id": "house-ct-02",
+          "state": "CT",
+          "margin": 14.874,
+          "chance": 0.98248
+        },
+        {
+          "id": "house-ct-03",
+          "state": "CT",
+          "margin": 17.947,
+          "chance": 0.9923
+        },
+        {
+          "id": "house-ct-04",
+          "state": "CT",
+          "margin": 27.274,
+          "chance": 0.99938
+        },
+        {
+          "id": "house-ct-05",
+          "state": "CT",
+          "margin": 8.113,
+          "chance": 0.89993
+        },
+        {
+          "id": "house-de-00",
+          "state": "DE",
+          "margin": 17.692,
+          "chance": 0.99175
+        },
+        {
+          "id": "house-fl-01",
+          "state": "FL",
+          "margin": -31.398,
+          "chance": 0.0002
+        },
+        {
+          "id": "house-fl-02",
+          "state": "FL",
+          "margin": -18.089,
+          "chance": 0.00741
+        },
+        {
+          "id": "house-fl-03",
+          "state": "FL",
+          "margin": -22.965,
+          "chance": 0.00199
+        },
+        {
+          "id": "house-fl-04",
+          "state": "FL",
+          "margin": -16.878,
+          "chance": 0.01026
+        },
+        {
+          "id": "house-fl-05",
+          "state": "FL",
+          "margin": -21.951,
+          "chance": 0.00262
+        },
+        {
+          "id": "house-fl-06",
+          "state": "FL",
+          "margin": -28.967,
+          "chance": 0.00039
+        },
+        {
+          "id": "house-fl-07",
+          "state": "FL",
+          "margin": -7.46,
+          "chance": 0.11715
+        },
+        {
+          "id": "house-fl-08",
+          "state": "FL",
+          "margin": -17.157,
+          "chance": 0.00952
+        },
+        {
+          "id": "house-fl-09",
+          "state": "FL",
+          "margin": -7.975,
+          "chance": 0.10349
+        },
+        {
+          "id": "house-fl-10",
+          "state": "FL",
+          "margin": 17.475,
+          "chance": 0.99126
+        },
+        {
+          "id": "house-fl-11",
+          "state": "FL",
+          "margin": -17.922,
+          "chance": 0.00775
+        },
+        {
+          "id": "house-fl-12",
+          "state": "FL",
+          "margin": -17.754,
+          "chance": 0.00811
+        },
+        {
+          "id": "house-fl-13",
+          "state": "FL",
+          "margin": -7.806,
+          "chance": 0.10782
+        },
+        {
+          "id": "house-fl-14",
+          "state": "FL",
+          "margin": -2.249,
+          "chance": 0.35231
+        },
+        {
+          "id": "house-fl-15",
+          "state": "FL",
+          "margin": -22.827,
+          "chance": 0.00207
+        },
+        {
+          "id": "house-fl-16",
+          "state": "FL",
+          "margin": -13.096,
+          "chance": 0.02805
+        },
+        {
+          "id": "house-fl-17",
+          "state": "FL",
+          "margin": -23.378,
+          "chance": 0.00178
+        },
+        {
+          "id": "house-fl-18",
+          "state": "FL",
+          "margin": -20.338,
+          "chance": 0.00405
+        },
+        {
+          "id": "house-fl-19",
+          "state": "FL",
+          "margin": -31.473,
+          "chance": 0.0002
+        },
+        {
+          "id": "house-fl-20",
+          "state": "FL",
+          "margin": 30.502,
+          "chance": 0.99974
+        },
+        {
+          "id": "house-fl-21",
+          "state": "FL",
+          "margin": -17.001,
+          "chance": 0.00993
+        },
+        {
+          "id": "house-fl-22",
+          "state": "FL",
+          "margin": -5.814,
+          "chance": 0.17164
+        },
+        {
+          "id": "house-fl-23",
+          "state": "FL",
+          "margin": 8.652,
+          "chance": 0.91233
+        },
+        {
+          "id": "house-fl-24",
+          "state": "FL",
+          "margin": 31.547,
+          "chance": 0.9998
+        },
+        {
+          "id": "house-fl-25",
+          "state": "FL",
+          "margin": -3.232,
+          "chance": 0.29424
+        },
+        {
+          "id": "house-fl-26",
+          "state": "FL",
+          "margin": -20.216,
+          "chance": 0.00418
+        },
+        {
+          "id": "house-fl-27",
+          "state": "FL",
+          "margin": -11.641,
+          "chance": 0.04103
+        },
+        {
+          "id": "house-fl-28",
+          "state": "FL",
+          "margin": -26.218,
+          "chance": 0.00083
+        },
+        {
+          "id": "house-ga-01",
+          "state": "GA",
+          "margin": -18.048,
+          "chance": 0.0075
+        },
+        {
+          "id": "house-ga-02",
+          "state": "GA",
+          "margin": 11.311,
+          "chance": 0.9553
+        },
+        {
+          "id": "house-ga-03",
+          "state": "GA",
+          "margin": -29.267,
+          "chance": 0.00036
+        },
+        {
+          "id": "house-ga-04",
+          "state": "GA",
+          "margin": 46.476,
+          "chance": 1
+        },
+        {
+          "id": "house-ga-05",
+          "state": "GA",
+          "margin": 64.093,
+          "chance": 1
+        },
+        {
+          "id": "house-ga-06",
+          "state": "GA",
+          "margin": 48.337,
+          "chance": 1
+        },
+        {
+          "id": "house-ga-07",
+          "state": "GA",
+          "margin": -18.838,
+          "chance": 0.00606
+        },
+        {
+          "id": "house-ga-08",
+          "state": "GA",
+          "margin": -32.905,
+          "chance": 0.00014
+        },
+        {
+          "id": "house-ga-09",
+          "state": "GA",
+          "margin": -34.477,
+          "chance": 9e-05
+        },
+        {
+          "id": "house-ga-10",
+          "state": "GA",
+          "margin": -22.045,
+          "chance": 0.00255
+        },
+        {
+          "id": "house-ga-11",
+          "state": "GA",
+          "margin": -26.755,
+          "chance": 0.00071
+        },
+        {
+          "id": "house-ga-12",
+          "state": "GA",
+          "margin": -17.57,
+          "chance": 0.00852
+        },
+        {
+          "id": "house-ga-13",
+          "state": "GA",
+          "margin": 40.138,
+          "chance": 0.99998
+        },
+        {
+          "id": "house-ga-14",
+          "state": "GA",
+          "margin": -27.025,
+          "chance": 0.00066
+        },
+        {
+          "id": "house-hi-01",
+          "state": "HI",
+          "margin": 31.85,
+          "chance": 0.99982
+        },
+        {
+          "id": "house-hi-02",
+          "state": "HI",
+          "margin": 27.47,
+          "chance": 0.99941
+        },
+        {
+          "id": "house-ia-01",
+          "state": "IA",
+          "margin": 2.396,
+          "chance": 0.65669
+        },
+        {
+          "id": "house-ia-02",
+          "state": "IA",
+          "margin": -4.69,
+          "chance": 0.21929
+        },
+        {
+          "id": "house-ia-03",
+          "state": "IA",
+          "margin": -0.779,
+          "chance": 0.44747
+        },
+        {
+          "id": "house-ia-04",
+          "state": "IA",
+          "margin": -31.367,
+          "chance": 0.00021
+        },
+        {
+          "id": "house-id-01",
+          "state": "ID",
+          "margin": -45.25,
+          "chance": 0
+        },
+        {
+          "id": "house-id-02",
+          "state": "ID",
+          "margin": -27.763,
+          "chance": 0.00054
+        },
+        {
+          "id": "house-il-01",
+          "state": "IL",
+          "margin": 30.71,
+          "chance": 0.99975
+        },
+        {
+          "id": "house-il-02",
+          "state": "IL",
+          "margin": 35.636,
+          "chance": 0.99994
+        },
+        {
+          "id": "house-il-03",
+          "state": "IL",
+          "margin": 33.451,
+          "chance": 0.99988
+        },
+        {
+          "id": "house-il-04",
+          "state": "IL",
+          "margin": 30.68,
+          "chance": 0.99975
+        },
+        {
+          "id": "house-il-05",
+          "state": "IL",
+          "margin": 36.812,
+          "chance": 0.99995
+        },
+        {
+          "id": "house-il-06",
+          "state": "IL",
+          "margin": 9.97,
+          "chance": 0.93697
+        },
+        {
+          "id": "house-il-07",
+          "state": "IL",
+          "margin": 64.429,
+          "chance": 1
+        },
+        {
+          "id": "house-il-08",
+          "state": "IL",
+          "margin": 10.877,
+          "chance": 0.95001
+        },
+        {
+          "id": "house-il-09",
+          "state": "IL",
+          "margin": 38.782,
+          "chance": 0.99997
+        },
+        {
+          "id": "house-il-10",
+          "state": "IL",
+          "margin": 24.838,
+          "chance": 0.9988
+        },
+        {
+          "id": "house-il-11",
+          "state": "IL",
+          "margin": 14.132,
+          "chance": 0.97867
+        },
+        {
+          "id": "house-il-12",
+          "state": "IL",
+          "margin": -44.587,
+          "chance": 1e-05
+        },
+        {
+          "id": "house-il-13",
+          "state": "IL",
+          "margin": 14.702,
+          "chance": 0.98166
+        },
+        {
+          "id": "house-il-14",
+          "state": "IL",
+          "margin": 10.728,
+          "chance": 0.94805
+        },
+        {
+          "id": "house-il-15",
+          "state": "IL",
+          "margin": -36.74,
+          "chance": 5e-05
+        },
+        {
+          "id": "house-il-16",
+          "state": "IL",
+          "margin": -23.354,
+          "chance": 0.00179
+        },
+        {
+          "id": "house-il-17",
+          "state": "IL",
+          "margin": 9.64,
+          "chance": 0.93148
+        },
+        {
+          "id": "house-in-01",
+          "state": "IN",
+          "margin": 3.597,
+          "chance": 0.72585
+        },
+        {
+          "id": "house-in-02",
+          "state": "IN",
+          "margin": -23.113,
+          "chance": 0.00191
+        },
+        {
+          "id": "house-in-03",
+          "state": "IN",
+          "margin": -26.207,
+          "chance": 0.00083
+        },
+        {
+          "id": "house-in-04",
+          "state": "IN",
+          "margin": -26.173,
+          "chance": 0.00084
+        },
+        {
+          "id": "house-in-05",
+          "state": "IN",
+          "margin": -10.816,
+          "chance": 0.05079
+        },
+        {
+          "id": "house-in-06",
+          "state": "IN",
+          "margin": -28.312,
+          "chance": 0.00047
+        },
+        {
+          "id": "house-in-07",
+          "state": "IN",
+          "margin": 40.269,
+          "chance": 0.99998
+        },
+        {
+          "id": "house-in-08",
+          "state": "IN",
+          "margin": -32.748,
+          "chance": 0.00014
+        },
+        {
+          "id": "house-in-09",
+          "state": "IN",
+          "margin": -27.841,
+          "chance": 0.00053
+        },
+        {
+          "id": "house-ks-01",
+          "state": "KS",
+          "margin": -33.145,
+          "chance": 0.00013
+        },
+        {
+          "id": "house-ks-02",
+          "state": "KS",
+          "margin": -17.44,
+          "chance": 0.00882
+        },
+        {
+          "id": "house-ks-03",
+          "state": "KS",
+          "margin": 9.12,
+          "chance": 0.92193
+        },
+        {
+          "id": "house-ks-04",
+          "state": "KS",
+          "margin": -23.859,
+          "chance": 0.00156
+        },
+        {
+          "id": "house-ky-01",
+          "state": "KY",
+          "margin": -48.118,
+          "chance": 0
+        },
+        {
+          "id": "house-ky-02",
+          "state": "KY",
+          "margin": -42.511,
+          "chance": 1e-05
+        },
+        {
+          "id": "house-ky-03",
+          "state": "KY",
+          "margin": 20.649,
+          "chance": 0.99628
+        },
+        {
+          "id": "house-ky-04",
+          "state": "KY",
+          "margin": -35.898,
+          "chance": 6e-05
+        },
+        {
+          "id": "house-ky-05",
+          "state": "KY",
+          "margin": -58.653,
+          "chance": 0
+        },
+        {
+          "id": "house-ky-06",
+          "state": "KY",
+          "margin": -4.745,
+          "chance": 0.21675
+        },
+        {
+          "id": "house-la-01",
+          "state": "LA",
+          "margin": -34.334,
+          "chance": 9e-05
+        },
+        {
+          "id": "house-la-02",
+          "state": "LA",
+          "margin": 42.1,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-la-03",
+          "state": "LA",
+          "margin": -33.59,
+          "chance": 0.00011
+        },
+        {
+          "id": "house-la-04",
+          "state": "LA",
+          "margin": -27.033,
+          "chance": 0.00066
+        },
+        {
+          "id": "house-la-05",
+          "state": "LA",
+          "margin": -34.033,
+          "chance": 0.0001
+        },
+        {
+          "id": "house-la-06",
+          "state": "LA",
+          "margin": -26.916,
+          "chance": 0.00068
+        },
+        {
+          "id": "house-ma-01",
+          "state": "MA",
+          "margin": 16.43,
+          "chance": 0.98843
+        },
+        {
+          "id": "house-ma-02",
+          "state": "MA",
+          "margin": 27.674,
+          "chance": 0.99944
+        },
+        {
+          "id": "house-ma-03",
+          "state": "MA",
+          "margin": 22.549,
+          "chance": 0.99777
+        },
+        {
+          "id": "house-ma-04",
+          "state": "MA",
+          "margin": 22.467,
+          "chance": 0.99772
+        },
+        {
+          "id": "house-ma-05",
+          "state": "MA",
+          "margin": 48.695,
+          "chance": 1
+        },
+        {
+          "id": "house-ma-06",
+          "state": "MA",
+          "margin": 23.694,
+          "chance": 0.99836
+        },
+        {
+          "id": "house-ma-07",
+          "state": "MA",
+          "margin": 63.906,
+          "chance": 1
+        },
+        {
+          "id": "house-ma-08",
+          "state": "MA",
+          "margin": 32.92,
+          "chance": 0.99987
+        },
+        {
+          "id": "house-ma-09",
+          "state": "MA",
+          "margin": 13.878,
+          "chance": 0.97718
+        },
+        {
+          "id": "house-md-01",
+          "state": "MD",
+          "margin": -16.25,
+          "chance": 0.01214
+        },
+        {
+          "id": "house-md-02",
+          "state": "MD",
+          "margin": 20.947,
+          "chance": 0.99657
+        },
+        {
+          "id": "house-md-03",
+          "state": "MD",
+          "margin": 26.82,
+          "chance": 0.9993
+        },
+        {
+          "id": "house-md-04",
+          "state": "MD",
+          "margin": 70.548,
+          "chance": 1
+        },
+        {
+          "id": "house-md-05",
+          "state": "MD",
+          "margin": 35.755,
+          "chance": 0.99994
+        },
+        {
+          "id": "house-md-06",
+          "state": "MD",
+          "margin": 8.692,
+          "chance": 0.91318
+        },
+        {
+          "id": "house-md-07",
+          "state": "MD",
+          "margin": 55.794,
+          "chance": 1
+        },
+        {
+          "id": "house-md-08",
+          "state": "MD",
+          "margin": 58.022,
+          "chance": 1
+        },
+        {
+          "id": "house-me-01",
+          "state": "ME",
+          "margin": 21.03,
+          "chance": 0.99664
+        },
+        {
+          "id": "house-me-02",
+          "state": "ME",
+          "margin": -1.56,
+          "chance": 0.39596
+        },
+        {
+          "id": "house-mi-01",
+          "state": "MI",
+          "margin": -13.484,
+          "chance": 0.02532
+        },
+        {
+          "id": "house-mi-02",
+          "state": "MI",
+          "margin": -31.992,
+          "chance": 0.00017
+        },
+        {
+          "id": "house-mi-03",
+          "state": "MI",
+          "margin": 8.308,
+          "chance": 0.90457
+        },
+        {
+          "id": "house-mi-04",
+          "state": "MI",
+          "margin": -4.704,
+          "chance": 0.21867
+        },
+        {
+          "id": "house-mi-05",
+          "state": "MI",
+          "margin": -28.599,
+          "chance": 0.00043
+        },
+        {
+          "id": "house-mi-06",
+          "state": "MI",
+          "margin": 27.452,
+          "chance": 0.99941
+        },
+        {
+          "id": "house-mi-07",
+          "state": "MI",
+          "margin": 1.705,
+          "chance": 0.6134
+        },
+        {
+          "id": "house-mi-08",
+          "state": "MI",
+          "margin": 3.222,
+          "chance": 0.70519
+        },
+        {
+          "id": "house-mi-09",
+          "state": "MI",
+          "margin": -34.526,
+          "chance": 9e-05
+        },
+        {
+          "id": "house-mi-10",
+          "state": "MI",
+          "margin": -2.859,
+          "chance": 0.31563
+        },
+        {
+          "id": "house-mi-11",
+          "state": "MI",
+          "margin": 17.794,
+          "chance": 0.99198
+        },
+        {
+          "id": "house-mi-12",
+          "state": "MI",
+          "margin": 42.236,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-mi-13",
+          "state": "MI",
+          "margin": 42.559,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-mn-01",
+          "state": "MN",
+          "margin": -6.147,
+          "chance": 0.15922
+        },
+        {
+          "id": "house-mn-02",
+          "state": "MN",
+          "margin": 9.235,
+          "chance": 0.92414
+        },
+        {
+          "id": "house-mn-03",
+          "state": "MN",
+          "margin": 22.879,
+          "chance": 0.99796
+        },
+        {
+          "id": "house-mn-04",
+          "state": "MN",
+          "margin": 38.378,
+          "chance": 0.99997
+        },
+        {
+          "id": "house-mn-05",
+          "state": "MN",
+          "margin": 57.877,
+          "chance": 1
+        },
+        {
+          "id": "house-mn-06",
+          "state": "MN",
+          "margin": -21.356,
+          "chance": 0.00308
+        },
+        {
+          "id": "house-mn-07",
+          "state": "MN",
+          "margin": -36.367,
+          "chance": 5e-05
+        },
+        {
+          "id": "house-mn-08",
+          "state": "MN",
+          "margin": -15.575,
+          "chance": 0.01453
+        },
+        {
+          "id": "house-mo-01",
+          "state": "MO",
+          "margin": 52.14,
+          "chance": 1
+        },
+        {
+          "id": "house-mo-02",
+          "state": "MO",
+          "margin": -4.588,
+          "chance": 0.2241
+        },
+        {
+          "id": "house-mo-03",
+          "state": "MO",
+          "margin": -21.782,
+          "chance": 0.00274
+        },
+        {
+          "id": "house-mo-04",
+          "state": "MO",
+          "margin": -37.665,
+          "chance": 4e-05
+        },
+        {
+          "id": "house-mo-05",
+          "state": "MO",
+          "margin": 19.044,
+          "chance": 0.99427
+        },
+        {
+          "id": "house-mo-06",
+          "state": "MO",
+          "margin": -36.914,
+          "chance": 5e-05
+        },
+        {
+          "id": "house-mo-07",
+          "state": "MO",
+          "margin": -38.715,
+          "chance": 3e-05
+        },
+        {
+          "id": "house-mo-08",
+          "state": "MO",
+          "margin": -51.287,
+          "chance": 0
+        },
+        {
+          "id": "house-ms-01",
+          "state": "MS",
+          "margin": -32.414,
+          "chance": 0.00015
+        },
+        {
+          "id": "house-ms-02",
+          "state": "MS",
+          "margin": 22.121,
+          "chance": 0.9975
+        },
+        {
+          "id": "house-ms-03",
+          "state": "MS",
+          "margin": -29.574,
+          "chance": 0.00033
+        },
+        {
+          "id": "house-ms-04",
+          "state": "MS",
+          "margin": -43.391,
+          "chance": 1e-05
+        },
+        {
+          "id": "house-mt-01",
+          "state": "MT",
+          "margin": -3.038,
+          "chance": 0.30525
+        },
+        {
+          "id": "house-mt-02",
+          "state": "MT",
+          "margin": -31.888,
+          "chance": 0.00018
+        },
+        {
+          "id": "house-nc-01",
+          "state": "NC",
+          "margin": -1.753,
+          "chance": 0.38355
+        },
+        {
+          "id": "house-nc-02",
+          "state": "NC",
+          "margin": 34.805,
+          "chance": 0.99992
+        },
+        {
+          "id": "house-nc-03",
+          "state": "NC",
+          "margin": -11.944,
+          "chance": 0.03793
+        },
+        {
+          "id": "house-nc-04",
+          "state": "NC",
+          "margin": 43.372,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-nc-05",
+          "state": "NC",
+          "margin": -12.549,
+          "chance": 0.03238
+        },
+        {
+          "id": "house-nc-06",
+          "state": "NC",
+          "margin": -18.91,
+          "chance": 0.00595
+        },
+        {
+          "id": "house-nc-07",
+          "state": "NC",
+          "margin": -12.768,
+          "chance": 0.03057
+        },
+        {
+          "id": "house-nc-08",
+          "state": "NC",
+          "margin": -18.526,
+          "chance": 0.00659
+        },
+        {
+          "id": "house-nc-09",
+          "state": "NC",
+          "margin": -9.815,
+          "chance": 0.06556
+        },
+        {
+          "id": "house-nc-10",
+          "state": "NC",
+          "margin": -19.694,
+          "chance": 0.00481
+        },
+        {
+          "id": "house-nc-11",
+          "state": "NC",
+          "margin": -2.09,
+          "chance": 0.36222
+        },
+        {
+          "id": "house-nc-12",
+          "state": "NC",
+          "margin": 42.313,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-nc-13",
+          "state": "NC",
+          "margin": -11.566,
+          "chance": 0.04184
+        },
+        {
+          "id": "house-nc-14",
+          "state": "NC",
+          "margin": -17.558,
+          "chance": 0.00855
+        },
+        {
+          "id": "house-nd-00",
+          "state": "ND",
+          "margin": -36.848,
+          "chance": 5e-05
+        },
+        {
+          "id": "house-ne-01",
+          "state": "NE",
+          "margin": -11.215,
+          "chance": 0.04582
+        },
+        {
+          "id": "house-ne-02",
+          "state": "NE",
+          "margin": 5.95,
+          "chance": 0.83353
+        },
+        {
+          "id": "house-ne-03",
+          "state": "NE",
+          "margin": -54.212,
+          "chance": 0
+        },
+        {
+          "id": "house-nh-01",
+          "state": "NH",
+          "margin": 3.143,
+          "chance": 0.70074
+        },
+        {
+          "id": "house-nh-02",
+          "state": "NH",
+          "margin": 12.187,
+          "chance": 0.9644
+        },
+        {
+          "id": "house-nj-01",
+          "state": "NJ",
+          "margin": 20.727,
+          "chance": 0.99636
+        },
+        {
+          "id": "house-nj-02",
+          "state": "NJ",
+          "margin": -12.542,
+          "chance": 0.03244
+        },
+        {
+          "id": "house-nj-03",
+          "state": "NJ",
+          "margin": 11.773,
+          "chance": 0.96035
+        },
+        {
+          "id": "house-nj-04",
+          "state": "NJ",
+          "margin": -30.126,
+          "chance": 0.00029
+        },
+        {
+          "id": "house-nj-05",
+          "state": "NJ",
+          "margin": 8.288,
+          "chance": 0.90411
+        },
+        {
+          "id": "house-nj-06",
+          "state": "NJ",
+          "margin": 14.196,
+          "chance": 0.97902
+        },
+        {
+          "id": "house-nj-07",
+          "state": "NJ",
+          "margin": -0.066,
+          "chance": 0.49557
+        },
+        {
+          "id": "house-nj-08",
+          "state": "NJ",
+          "margin": 24.925,
+          "chance": 0.99883
+        },
+        {
+          "id": "house-nj-09",
+          "state": "NJ",
+          "margin": 5.039,
+          "chance": 0.79642
+        },
+        {
+          "id": "house-nj-10",
+          "state": "NJ",
+          "margin": 52.926,
+          "chance": 1
+        },
+        {
+          "id": "house-nj-11",
+          "state": "NJ",
+          "margin": 12.859,
+          "chance": 0.97015
+        },
+        {
+          "id": "house-nj-12",
+          "state": "NJ",
+          "margin": 26.775,
+          "chance": 0.99929
+        },
+        {
+          "id": "house-nm-01",
+          "state": "NM",
+          "margin": 15.398,
+          "chance": 0.98476
+        },
+        {
+          "id": "house-nm-02",
+          "state": "NM",
+          "margin": 1.401,
+          "chance": 0.59372
+        },
+        {
+          "id": "house-nm-03",
+          "state": "NM",
+          "margin": 9.627,
+          "chance": 0.93126
+        },
+        {
+          "id": "house-nv-01",
+          "state": "NV",
+          "margin": 4.62,
+          "chance": 0.77743
+        },
+        {
+          "id": "house-nv-02",
+          "state": "NV",
+          "margin": -9.545,
+          "chance": 0.07017
+        },
+        {
+          "id": "house-nv-03",
+          "state": "NV",
+          "margin": 4.717,
+          "chance": 0.78194
+        },
+        {
+          "id": "house-nv-04",
+          "state": "NV",
+          "margin": 7.343,
+          "chance": 0.87952
+        },
+        {
+          "id": "house-ny-01",
+          "state": "NY",
+          "margin": -10.798,
+          "chance": 0.05101
+        },
+        {
+          "id": "house-ny-02",
+          "state": "NY",
+          "margin": -18.308,
+          "chance": 0.00699
+        },
+        {
+          "id": "house-ny-03",
+          "state": "NY",
+          "margin": 0.889,
+          "chance": 0.55987
+        },
+        {
+          "id": "house-ny-04",
+          "state": "NY",
+          "margin": 4.172,
+          "chance": 0.75576
+        },
+        {
+          "id": "house-ny-05",
+          "state": "NY",
+          "margin": 42.862,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-ny-06",
+          "state": "NY",
+          "margin": 13.041,
+          "chance": 0.97154
+        },
+        {
+          "id": "house-ny-07",
+          "state": "NY",
+          "margin": 47.854,
+          "chance": 1
+        },
+        {
+          "id": "house-ny-08",
+          "state": "NY",
+          "margin": 43.596,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-ny-09",
+          "state": "NY",
+          "margin": 41.463,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-ny-10",
+          "state": "NY",
+          "margin": 61.231,
+          "chance": 1
+        },
+        {
+          "id": "house-ny-11",
+          "state": "NY",
+          "margin": -28.054,
+          "chance": 0.0005
+        },
+        {
+          "id": "house-ny-12",
+          "state": "NY",
+          "margin": 60.458,
+          "chance": 1
+        },
+        {
+          "id": "house-ny-13",
+          "state": "NY",
+          "margin": 60.827,
+          "chance": 1
+        },
+        {
+          "id": "house-ny-14",
+          "state": "NY",
+          "margin": 33.156,
+          "chance": 0.99987
+        },
+        {
+          "id": "house-ny-15",
+          "state": "NY",
+          "margin": 49.674,
+          "chance": 1
+        },
+        {
+          "id": "house-ny-16",
+          "state": "NY",
+          "margin": 33.009,
+          "chance": 0.99987
+        },
+        {
+          "id": "house-ny-17",
+          "state": "NY",
+          "margin": -2.645,
+          "chance": 0.32829
+        },
+        {
+          "id": "house-ny-18",
+          "state": "NY",
+          "margin": 11.783,
+          "chance": 0.96045
+        },
+        {
+          "id": "house-ny-19",
+          "state": "NY",
+          "margin": 4.273,
+          "chance": 0.76074
+        },
+        {
+          "id": "house-ny-20",
+          "state": "NY",
+          "margin": 17.178,
+          "chance": 0.99053
+        },
+        {
+          "id": "house-ny-21",
+          "state": "NY",
+          "margin": -14.152,
+          "chance": 0.02123
+        },
+        {
+          "id": "house-ny-22",
+          "state": "NY",
+          "margin": 8.263,
+          "chance": 0.90352
+        },
+        {
+          "id": "house-ny-23",
+          "state": "NY",
+          "margin": -23.508,
+          "chance": 0.00172
+        },
+        {
+          "id": "house-ny-24",
+          "state": "NY",
+          "margin": -25.003,
+          "chance": 0.00115
+        },
+        {
+          "id": "house-ny-25",
+          "state": "NY",
+          "margin": 18.023,
+          "chance": 0.99245
+        },
+        {
+          "id": "house-ny-26",
+          "state": "NY",
+          "margin": 20.819,
+          "chance": 0.99645
+        },
+        {
+          "id": "house-oh-01",
+          "state": "OH",
+          "margin": 0.054,
+          "chance": 0.50362
+        },
+        {
+          "id": "house-oh-02",
+          "state": "OH",
+          "margin": -36.628,
+          "chance": 5e-05
+        },
+        {
+          "id": "house-oh-03",
+          "state": "OH",
+          "margin": 35.131,
+          "chance": 0.99993
+        },
+        {
+          "id": "house-oh-04",
+          "state": "OH",
+          "margin": -38.794,
+          "chance": 3e-05
+        },
+        {
+          "id": "house-oh-05",
+          "state": "OH",
+          "margin": -24.914,
+          "chance": 0.00118
+        },
+        {
+          "id": "house-oh-06",
+          "state": "OH",
+          "margin": -33.567,
+          "chance": 0.00011
+        },
+        {
+          "id": "house-oh-07",
+          "state": "OH",
+          "margin": -6.635,
+          "chance": 0.14233
+        },
+        {
+          "id": "house-oh-08",
+          "state": "OH",
+          "margin": -18.437,
+          "chance": 0.00675
+        },
+        {
+          "id": "house-oh-09",
+          "state": "OH",
+          "margin": -3.623,
+          "chance": 0.27274
+        },
+        {
+          "id": "house-oh-10",
+          "state": "OH",
+          "margin": -7.761,
+          "chance": 0.10898
+        },
+        {
+          "id": "house-oh-11",
+          "state": "OH",
+          "margin": 47.93,
+          "chance": 1
+        },
+        {
+          "id": "house-oh-12",
+          "state": "OH",
+          "margin": -30.293,
+          "chance": 0.00027
+        },
+        {
+          "id": "house-oh-13",
+          "state": "OH",
+          "margin": 5.376,
+          "chance": 0.81083
+        },
+        {
+          "id": "house-oh-14",
+          "state": "OH",
+          "margin": -22.008,
+          "chance": 0.00258
+        },
+        {
+          "id": "house-oh-15",
+          "state": "OH",
+          "margin": -6.34,
+          "chance": 0.15234
+        },
+        {
+          "id": "house-ok-01",
+          "state": "OK",
+          "margin": -22.773,
+          "chance": 0.0021
+        },
+        {
+          "id": "house-ok-02",
+          "state": "OK",
+          "margin": -52.795,
+          "chance": 0
+        },
+        {
+          "id": "house-ok-03",
+          "state": "OK",
+          "margin": -46.136,
+          "chance": 0
+        },
+        {
+          "id": "house-ok-04",
+          "state": "OK",
+          "margin": -35.689,
+          "chance": 6e-05
+        },
+        {
+          "id": "house-ok-05",
+          "state": "OK",
+          "margin": -18.42,
+          "chance": 0.00678
+        },
+        {
+          "id": "house-or-01",
+          "state": "OR",
+          "margin": 38.247,
+          "chance": 0.99997
+        },
+        {
+          "id": "house-or-02",
+          "state": "OR",
+          "margin": -28.553,
+          "chance": 0.00044
+        },
+        {
+          "id": "house-or-03",
+          "state": "OR",
+          "margin": 48.572,
+          "chance": 1
+        },
+        {
+          "id": "house-or-04",
+          "state": "OR",
+          "margin": 10.591,
+          "chance": 0.94619
+        },
+        {
+          "id": "house-or-05",
+          "state": "OR",
+          "margin": 8.287,
+          "chance": 0.90408
+        },
+        {
+          "id": "house-or-06",
+          "state": "OR",
+          "margin": 14.107,
+          "chance": 0.97852
+        },
+        {
+          "id": "house-pa-01",
+          "state": "PA",
+          "margin": -5.621,
+          "chance": 0.17922
+        },
+        {
+          "id": "house-pa-02",
+          "state": "PA",
+          "margin": 39.187,
+          "chance": 0.99998
+        },
+        {
+          "id": "house-pa-03",
+          "state": "PA",
+          "margin": 71.116,
+          "chance": 1
+        },
+        {
+          "id": "house-pa-04",
+          "state": "PA",
+          "margin": 18.217,
+          "chance": 0.99284
+        },
+        {
+          "id": "house-pa-05",
+          "state": "PA",
+          "margin": 29.938,
+          "chance": 0.9997
+        },
+        {
+          "id": "house-pa-06",
+          "state": "PA",
+          "margin": 13.823,
+          "chance": 0.97685
+        },
+        {
+          "id": "house-pa-07",
+          "state": "PA",
+          "margin": 1.219,
+          "chance": 0.58177
+        },
+        {
+          "id": "house-pa-08",
+          "state": "PA",
+          "margin": -3.957,
+          "chance": 0.25516
+        },
+        {
+          "id": "house-pa-09",
+          "state": "PA",
+          "margin": -33.614,
+          "chance": 0.00011
+        },
+        {
+          "id": "house-pa-10",
+          "state": "PA",
+          "margin": -1.052,
+          "chance": 0.42927
+        },
+        {
+          "id": "house-pa-11",
+          "state": "PA",
+          "margin": -23.241,
+          "chance": 0.00185
+        },
+        {
+          "id": "house-pa-12",
+          "state": "PA",
+          "margin": 18.288,
+          "chance": 0.99297
+        },
+        {
+          "id": "house-pa-13",
+          "state": "PA",
+          "margin": -47.044,
+          "chance": 0
+        },
+        {
+          "id": "house-pa-14",
+          "state": "PA",
+          "margin": -32.506,
+          "chance": 0.00015
+        },
+        {
+          "id": "house-pa-15",
+          "state": "PA",
+          "margin": -39.403,
+          "chance": 2e-05
+        },
+        {
+          "id": "house-pa-16",
+          "state": "PA",
+          "margin": -23.976,
+          "chance": 0.00152
+        },
+        {
+          "id": "house-pa-17",
+          "state": "PA",
+          "margin": 9.057,
+          "chance": 0.92071
+        },
+        {
+          "id": "house-ri-01",
+          "state": "RI",
+          "margin": 26.746,
+          "chance": 0.99928
+        },
+        {
+          "id": "house-ri-02",
+          "state": "RI",
+          "margin": 13.553,
+          "chance": 0.97513
+        },
+        {
+          "id": "house-sc-01",
+          "state": "SC",
+          "margin": -7.846,
+          "chance": 0.10677
+        },
+        {
+          "id": "house-sc-02",
+          "state": "SC",
+          "margin": -15.984,
+          "chance": 0.01303
+        },
+        {
+          "id": "house-sc-03",
+          "state": "SC",
+          "margin": -40.94,
+          "chance": 2e-05
+        },
+        {
+          "id": "house-sc-04",
+          "state": "SC",
+          "margin": -23.638,
+          "chance": 0.00166
+        },
+        {
+          "id": "house-sc-05",
+          "state": "SC",
+          "margin": -24.787,
+          "chance": 0.00122
+        },
+        {
+          "id": "house-sc-06",
+          "state": "SC",
+          "margin": 25.318,
+          "chance": 0.99895
+        },
+        {
+          "id": "house-sc-07",
+          "state": "SC",
+          "margin": -25.244,
+          "chance": 0.00108
+        },
+        {
+          "id": "house-sd-00",
+          "state": "SD",
+          "margin": -33.926,
+          "chance": 0.0001
+        },
+        {
+          "id": "house-tn-01",
+          "state": "TN",
+          "margin": -52.384,
+          "chance": 0
+        },
+        {
+          "id": "house-tn-02",
+          "state": "TN",
+          "margin": -32.35,
+          "chance": 0.00016
+        },
+        {
+          "id": "house-tn-03",
+          "state": "TN",
+          "margin": -35.127,
+          "chance": 7e-05
+        },
+        {
+          "id": "house-tn-04",
+          "state": "TN",
+          "margin": -22.623,
+          "chance": 0.00218
+        },
+        {
+          "id": "house-tn-05",
+          "state": "TN",
+          "margin": -12.54,
+          "chance": 0.03246
+        },
+        {
+          "id": "house-tn-06",
+          "state": "TN",
+          "margin": -25.554,
+          "chance": 0.00099
+        },
+        {
+          "id": "house-tn-07",
+          "state": "TN",
+          "margin": -19.796,
+          "chance": 0.00468
+        },
+        {
+          "id": "house-tn-08",
+          "state": "TN",
+          "margin": -21.914,
+          "chance": 0.00264
+        },
+        {
+          "id": "house-tn-09",
+          "state": "TN",
+          "margin": -9.705,
+          "chance": 0.06741
+        },
+        {
+          "id": "house-tx-01",
+          "state": "TX",
+          "margin": -46.048,
+          "chance": 0
+        },
+        {
+          "id": "house-tx-02",
+          "state": "TX",
+          "margin": -17.026,
+          "chance": 0.00986
+        },
+        {
+          "id": "house-tx-03",
+          "state": "TX",
+          "margin": -25.154,
+          "chance": 0.0011
+        },
+        {
+          "id": "house-tx-04",
+          "state": "TX",
+          "margin": -26.571,
+          "chance": 0.00075
+        },
+        {
+          "id": "house-tx-05",
+          "state": "TX",
+          "margin": -23.743,
+          "chance": 0.00161
+        },
+        {
+          "id": "house-tx-06",
+          "state": "TX",
+          "margin": -25.785,
+          "chance": 0.00093
+        },
+        {
+          "id": "house-tx-07",
+          "state": "TX",
+          "margin": 17.428,
+          "chance": 0.99115
+        },
+        {
+          "id": "house-tx-08",
+          "state": "TX",
+          "margin": -28.211,
+          "chance": 0.00048
+        },
+        {
+          "id": "house-tx-09",
+          "state": "TX",
+          "margin": -14.164,
+          "chance": 0.02115
+        },
+        {
+          "id": "house-tx-10",
+          "state": "TX",
+          "margin": -23.832,
+          "chance": 0.00158
+        },
+        {
+          "id": "house-tx-11",
+          "state": "TX",
+          "margin": -35.393,
+          "chance": 7e-05
+        },
+        {
+          "id": "house-tx-12",
+          "state": "TX",
+          "margin": -25.763,
+          "chance": 0.00093
+        },
+        {
+          "id": "house-tx-13",
+          "state": "TX",
+          "margin": -45.232,
+          "chance": 0
+        },
+        {
+          "id": "house-tx-14",
+          "state": "TX",
+          "margin": -26.281,
+          "chance": 0.00081
+        },
+        {
+          "id": "house-tx-15",
+          "state": "TX",
+          "margin": -4.44,
+          "chance": 0.23111
+        },
+        {
+          "id": "house-tx-16",
+          "state": "TX",
+          "margin": 10.864,
+          "chance": 0.94985
+        },
+        {
+          "id": "house-tx-17",
+          "state": "TX",
+          "margin": -23.468,
+          "chance": 0.00174
+        },
+        {
+          "id": "house-tx-18",
+          "state": "TX",
+          "margin": 46.358,
+          "chance": 1
+        },
+        {
+          "id": "house-tx-19",
+          "state": "TX",
+          "margin": -50.294,
+          "chance": 0
+        },
+        {
+          "id": "house-tx-20",
+          "state": "TX",
+          "margin": 19.602,
+          "chance": 0.99507
+        },
+        {
+          "id": "house-tx-21",
+          "state": "TX",
+          "margin": -22.157,
+          "chance": 0.00248
+        },
+        {
+          "id": "house-tx-22",
+          "state": "TX",
+          "margin": -24.273,
+          "chance": 0.0014
+        },
+        {
+          "id": "house-tx-23",
+          "state": "TX",
+          "margin": -10.098,
+          "chance": 0.06101
+        },
+        {
+          "id": "house-tx-24",
+          "state": "TX",
+          "margin": -18.656,
+          "chance": 0.00637
+        },
+        {
+          "id": "house-tx-25",
+          "state": "TX",
+          "margin": -25.587,
+          "chance": 0.00098
+        },
+        {
+          "id": "house-tx-26",
+          "state": "TX",
+          "margin": -26.339,
+          "chance": 0.0008
+        },
+        {
+          "id": "house-tx-27",
+          "state": "TX",
+          "margin": -22.184,
+          "chance": 0.00246
+        },
+        {
+          "id": "house-tx-28",
+          "state": "TX",
+          "margin": -1.61,
+          "chance": 0.39275
+        },
+        {
+          "id": "house-tx-29",
+          "state": "TX",
+          "margin": 21.697,
+          "chance": 0.9972
+        },
+        {
+          "id": "house-tx-30",
+          "state": "TX",
+          "margin": 39.321,
+          "chance": 0.99998
+        },
+        {
+          "id": "house-tx-31",
+          "state": "TX",
+          "margin": -21.631,
+          "chance": 0.00285
+        },
+        {
+          "id": "house-tx-32",
+          "state": "TX",
+          "margin": -18.733,
+          "chance": 0.00623
+        },
+        {
+          "id": "house-tx-33",
+          "state": "TX",
+          "margin": 26.105,
+          "chance": 0.99915
+        },
+        {
+          "id": "house-tx-34",
+          "state": "TX",
+          "margin": -3.235,
+          "chance": 0.29407
+        },
+        {
+          "id": "house-tx-35",
+          "state": "TX",
+          "margin": -6.072,
+          "chance": 0.16195
+        },
+        {
+          "id": "house-tx-36",
+          "state": "TX",
+          "margin": -26.74,
+          "chance": 0.00072
+        },
+        {
+          "id": "house-tx-37",
+          "state": "TX",
+          "margin": 48.7,
+          "chance": 1
+        },
+        {
+          "id": "house-tx-38",
+          "state": "TX",
+          "margin": -21.661,
+          "chance": 0.00283
+        },
+        {
+          "id": "house-ut-01",
+          "state": "UT",
+          "margin": 23.079,
+          "chance": 0.99807
+        },
+        {
+          "id": "house-ut-02",
+          "state": "UT",
+          "margin": -22.513,
+          "chance": 0.00225
+        },
+        {
+          "id": "house-ut-03",
+          "state": "UT",
+          "margin": -34.506,
+          "chance": 9e-05
+        },
+        {
+          "id": "house-ut-04",
+          "state": "UT",
+          "margin": -29.061,
+          "chance": 0.00038
+        },
+        {
+          "id": "house-va-01",
+          "state": "VA",
+          "margin": -2.501,
+          "chance": 0.33689
+        },
+        {
+          "id": "house-va-02",
+          "state": "VA",
+          "margin": 0.803,
+          "chance": 0.55412
+        },
+        {
+          "id": "house-va-03",
+          "state": "VA",
+          "margin": 35.398,
+          "chance": 0.99993
+        },
+        {
+          "id": "house-va-04",
+          "state": "VA",
+          "margin": 34.81,
+          "chance": 0.99992
+        },
+        {
+          "id": "house-va-05",
+          "state": "VA",
+          "margin": -7.29,
+          "chance": 0.12202
+        },
+        {
+          "id": "house-va-06",
+          "state": "VA",
+          "margin": -19.709,
+          "chance": 0.00479
+        },
+        {
+          "id": "house-va-07",
+          "state": "VA",
+          "margin": 6.114,
+          "chance": 0.83959
+        },
+        {
+          "id": "house-va-08",
+          "state": "VA",
+          "margin": 51.02,
+          "chance": 1
+        },
+        {
+          "id": "house-va-09",
+          "state": "VA",
+          "margin": -43.961,
+          "chance": 1e-05
+        },
+        {
+          "id": "house-va-10",
+          "state": "VA",
+          "margin": 11.776,
+          "chance": 0.96038
+        },
+        {
+          "id": "house-va-11",
+          "state": "VA",
+          "margin": 37.608,
+          "chance": 0.99996
+        },
+        {
+          "id": "house-vt-00",
+          "state": "VT",
+          "margin": 30.964,
+          "chance": 0.99977
+        },
+        {
+          "id": "house-wa-01",
+          "state": "WA",
+          "margin": 29.549,
+          "chance": 0.99966
+        },
+        {
+          "id": "house-wa-02",
+          "state": "WA",
+          "margin": 27.166,
+          "chance": 0.99936
+        },
+        {
+          "id": "house-wa-03",
+          "state": "WA",
+          "margin": -2.467,
+          "chance": 0.33899
+        },
+        {
+          "id": "house-wa-04",
+          "state": "WA",
+          "margin": -21.421,
+          "chance": 0.00302
+        },
+        {
+          "id": "house-wa-05",
+          "state": "WA",
+          "margin": -15.847,
+          "chance": 0.01352
+        },
+        {
+          "id": "house-wa-06",
+          "state": "WA",
+          "margin": 19.888,
+          "chance": 0.99543
+        },
+        {
+          "id": "house-wa-07",
+          "state": "WA",
+          "margin": 73.899,
+          "chance": 1
+        },
+        {
+          "id": "house-wa-08",
+          "state": "WA",
+          "margin": 9.288,
+          "chance": 0.92515
+        },
+        {
+          "id": "house-wa-09",
+          "state": "WA",
+          "margin": 42.296,
+          "chance": 0.99999
+        },
+        {
+          "id": "house-wa-10",
+          "state": "WA",
+          "margin": 20.921,
+          "chance": 0.99654
+        },
+        {
+          "id": "house-wi-01",
+          "state": "WI",
+          "margin": -6.531,
+          "chance": 0.14578
+        },
+        {
+          "id": "house-wi-02",
+          "state": "WI",
+          "margin": 39.557,
+          "chance": 0.99998
+        },
+        {
+          "id": "house-wi-03",
+          "state": "WI",
+          "margin": -9.181,
+          "chance": 0.07688
+        },
+        {
+          "id": "house-wi-04",
+          "state": "WI",
+          "margin": 52.374,
+          "chance": 1
+        },
+        {
+          "id": "house-wi-05",
+          "state": "WI",
+          "margin": -25.001,
+          "chance": 0.00115
+        },
+        {
+          "id": "house-wi-06",
+          "state": "WI",
+          "margin": -18.925,
+          "chance": 0.00592
+        },
+        {
+          "id": "house-wi-07",
+          "state": "WI",
+          "margin": -22.93,
+          "chance": 0.00201
+        },
+        {
+          "id": "house-wi-08",
+          "state": "WI",
+          "margin": -17.855,
+          "chance": 0.00789
+        },
+        {
+          "id": "house-wv-01",
+          "state": "WV",
+          "margin": -45.426,
+          "chance": 0
+        },
+        {
+          "id": "house-wv-02",
+          "state": "WV",
+          "margin": -38.503,
+          "chance": 3e-05
+        },
+        {
+          "id": "house-wy-00",
+          "state": "WY",
+          "margin": -46.642,
+          "chance": 0
+        }
+      ],
+      "Senate": [
+        {
+          "id": "senate-ak",
+          "state": "AK",
+          "margin": -5.385,
+          "chance": 0.27009
+        },
+        {
+          "id": "senate-al",
+          "state": "AL",
+          "margin": -25.631,
+          "chance": 0.00873
+        },
+        {
+          "id": "senate-ar",
+          "state": "AR",
+          "margin": -18.775,
+          "chance": 0.03029
+        },
+        {
+          "id": "senate-co",
+          "state": "CO",
+          "margin": 9.711,
+          "chance": 0.85729
+        },
+        {
+          "id": "senate-de",
+          "state": "DE",
+          "margin": 15.861,
+          "chance": 0.94923
+        },
+        {
+          "id": "senate-fl",
+          "state": "FL",
+          "margin": -14.927,
+          "chance": 0.05976
+        },
+        {
+          "id": "senate-ga",
+          "state": "GA",
+          "margin": 2.585,
+          "chance": 0.6171
+        },
+        {
+          "id": "senate-ia",
+          "state": "IA",
+          "margin": -5.889,
+          "chance": 0.25213
+        },
+        {
+          "id": "senate-id",
+          "state": "ID",
+          "margin": -25.51,
+          "chance": 0.00893
+        },
+        {
+          "id": "senate-il",
+          "state": "IL",
+          "margin": 10.29,
+          "chance": 0.86986
+        },
+        {
+          "id": "senate-ks",
+          "state": "KS",
+          "margin": -5.858,
+          "chance": 0.25321
+        },
+        {
+          "id": "senate-ky",
+          "state": "KY",
+          "margin": -20.361,
+          "chance": 0.02277
+        },
+        {
+          "id": "senate-la",
+          "state": "LA",
+          "margin": -13.616,
+          "chance": 0.07489
+        },
+        {
+          "id": "senate-ma",
+          "state": "MA",
+          "margin": 22.076,
+          "chance": 0.9833
+        },
+        {
+          "id": "senate-me",
+          "state": "ME",
+          "margin": -3.099,
+          "chance": 0.36076
+        },
+        {
+          "id": "senate-mi",
+          "state": "MI",
+          "margin": -2.849,
+          "chance": 0.37145
+        },
+        {
+          "id": "senate-mn",
+          "state": "MN",
+          "margin": 0.144,
+          "chance": 0.50666
+        },
+        {
+          "id": "senate-ms",
+          "state": "MS",
+          "margin": -12.869,
+          "chance": 0.08503
+        },
+        {
+          "id": "senate-mt",
+          "state": "MT",
+          "margin": -26.254,
+          "chance": 0.00779
+        },
+        {
+          "id": "senate-nc",
+          "state": "NC",
+          "margin": 4.03,
+          "chance": 0.67787
+        },
+        {
+          "id": "senate-ne",
+          "state": "NE",
+          "margin": -4.771,
+          "chance": 0.293
+        },
+        {
+          "id": "senate-nh",
+          "state": "NH",
+          "margin": 1.846,
+          "chance": 0.58439
+        },
+        {
+          "id": "senate-nj",
+          "state": "NJ",
+          "margin": 11.989,
+          "chance": 0.90144
+        },
+        {
+          "id": "senate-nm",
+          "state": "NM",
+          "margin": 12.468,
+          "chance": 0.90903
+        },
+        {
+          "id": "senate-oh",
+          "state": "OH",
+          "margin": -4.541,
+          "chance": 0.30189
+        },
+        {
+          "id": "senate-ok",
+          "state": "OK",
+          "margin": -36.043,
+          "chance": 0.00129
+        },
+        {
+          "id": "senate-or",
+          "state": "OR",
+          "margin": 14.298,
+          "chance": 0.93338
+        },
+        {
+          "id": "senate-ri",
+          "state": "RI",
+          "margin": 18.756,
+          "chance": 0.96961
+        },
+        {
+          "id": "senate-sc",
+          "state": "SC",
+          "margin": -8.961,
+          "chance": 0.16051
+        },
+        {
+          "id": "senate-sd",
+          "state": "SD",
+          "margin": -19.287,
+          "chance": 0.02763
+        },
+        {
+          "id": "senate-tn",
+          "state": "TN",
+          "margin": -32.177,
+          "chance": 0.00262
+        },
+        {
+          "id": "senate-tx",
+          "state": "TX",
+          "margin": -5.184,
+          "chance": 0.27746
+        },
+        {
+          "id": "senate-va",
+          "state": "VA",
+          "margin": 18.421,
+          "chance": 0.96773
+        },
+        {
+          "id": "senate-wv",
+          "state": "WV",
+          "margin": -38.504,
+          "chance": 0.00082
+        },
+        {
+          "id": "senate-wy",
+          "state": "WY",
+          "margin": -45.831,
+          "chance": 0.00021
         }
       ]
     }

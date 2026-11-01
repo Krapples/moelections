@@ -1,10 +1,44 @@
 {
   "schema_version": 1,
-  "snapshot_date": "2026-10-30",
+  "snapshot_date": "2026-11-01",
   "office": "U.S. House generic ballot",
   "method": "The displayed average calculates each eligible poll's Democratic-minus-Republican two-party margin, then weights by the square root of sample size (clipped to 100–5,000) and a 14-day recency half-life. Seven-day and 30-day windows are computed separately. This list shows the latest available poll for each listed polling organization; it is not itself the full average input.",
   "population_note": "Source-reported likely-voter toplines are displayed with different pollster-defined screens. The model uses its dated 7-day and 30-day poll aggregates rather than this descriptive one-row-per-pollster list. First-public timing remains unknown for some Polling Forecast rows and is not inferred from fieldwork dates.",
   "polls": [
+    {
+      "poll_id": "1001198",
+      "source": "Big Data Poll",
+      "field_start": "2026-10-27",
+      "field_end": "2026-10-30",
+      "release_date": "2026-10-31",
+      "first_public_date": "2026-10-31",
+      "first_public_timing": "verified_from_pollster_release",
+      "population": "LV",
+      "dem_pct": 52.3,
+      "rep_pct": 40.0,
+      "sample_note": "n=3214",
+      "source_url": "https://www.bigdatapoll.com/blog/democrats-head-into-midterms-with-big-advantage-in-final-poll/",
+      "source_grade": "A",
+      "source_attribution": "PollingForecast API; first-public date verified from BIG DATA POLL release"
+    },
+    {
+      "poll_id": "activote-us-generic-20261030-lv",
+      "source": "ActiVote",
+      "field_start": "2026-10-22",
+      "field_end": "2026-10-30",
+      "release_date": "2026-10-30",
+      "first_public_date": "2026-10-30",
+      "first_public_timing": "verified_from_pollster_release",
+      "population": "Likely midterm voters",
+      "dem_pct": 53.5,
+      "rep_pct": 46.5,
+      "sample_note": "n=2,000; reported average expected error ±2.2 pp (pollwide, not an interval for the D-R difference).",
+      "source_url": "https://www.activote.net/polls/generic-ballot/2026-10-30/",
+      "source_grade": "A",
+      "source_attribution": "Primary pollster release",
+      "question": "Generic congressional ballot",
+      "source_margin_definition": "Published Democratic minus Republican shares."
+    },
     {
       "poll_id": "primary-honest-poll-generic-20261028-29-lv",
       "source": "The Honest Poll",
@@ -104,24 +138,6 @@
       "source_margin_definition": "reported Democratic minus Republican share, normalized to D+R=100% for the model margin"
     },
     {
-      "poll_id": "activote-us-generic-20261030-lv",
-      "source": "ActiVote",
-      "field_start": "2026-10-22",
-      "field_end": "2026-10-30",
-      "release_date": "2026-10-30",
-      "first_public_date": "2026-10-30",
-      "first_public_timing": "verified_from_pollster_release",
-      "population": "Likely midterm voters",
-      "dem_pct": 53.5,
-      "rep_pct": 46.5,
-      "sample_note": "n=2,000; reported average expected error ±2.2 pp (pollwide, not an interval for the D-R difference).",
-      "source_url": "https://www.activote.net/polls/generic-ballot/2026-10-30/",
-      "source_grade": "A",
-      "source_attribution": "Primary pollster release",
-      "question": "Generic congressional ballot",
-      "source_margin_definition": "Published Democratic minus Republican shares."
-    },
-    {
       "poll_id": "replay-20261027-marist-us-generic-lv",
       "source": "NPR/PBS News/Marist",
       "field_start": "2026-10-19",
@@ -198,5 +214,5 @@
       "source_url": "https://harvardharrispoll.com/assets/uploads/2026/09/HHP_Sep2026_KeyResults.pdf"
     }
   ],
-  "source_note": "Polling Forecast API as of 2026-10-29, retrieved 2026-10-30; its 30-day generic-poll records matched the 2026-10-28 snapshot. Verified primary-source generic ballot releases were checked through 2026-10-30."
+  "source_note": "Polling Forecast archive as of 2026-10-31, retrieved 2026-11-01, plus verified primary-source generic-ballot releases through 2026-10-31."
 }

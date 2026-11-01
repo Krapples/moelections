@@ -3,6 +3,25 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-11-01-pre-generic-refresh",
+      "snapshot_date": "2026-11-01",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-11-01-pre-generic-refresh.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01-pre-generic-refresh.csv",
+      "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01-pre-generic-refresh.csv",
+      "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01-pre-generic-refresh.csv",
+      "generic_poll_list_path": "data/snapshots/generic-ballot-polls-2026-11-01-pre-generic-refresh.json",
+      "status": "superseded",
+      "archive_note": "November 1 current release preserved before the generic ballot refresh.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-11-01",
       "snapshot_date": "2026-11-01",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -10,13 +29,16 @@
       "path": "data/snapshots/2026-11-01.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01.csv",
       "status": "current",
-      "archive_note": "November 1 current release: selected Senate/Governor models and polling panels refreshed through Nov. 1 using the Oct. 31 API snapshot; House forecast remains the earlier Nov. 1 aligned release.",
+      "archive_note": "November 1 synchronized current release: generic ballot API through Oct. 31 is propagated through House, Senate, and Governor models.",
       "race_count": 506,
       "office_counts": {
         "House": 435,
         "Senate": 35,
         "Governor": 36
-      }
+      },
+      "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01.csv",
+      "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01.csv",
+      "generic_poll_list_path": "data/generic-ballot-polls.json"
     },
     {
       "snapshot_id": "2026-11-01-pre-sg-refresh",

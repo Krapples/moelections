@@ -3,6 +3,25 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-11-01-expected-seat-alignment-gt35",
+      "snapshot_date": "2026-11-01",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-11-01-expected-seat-alignment-gt35.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01-expected-seat-alignment-gt35.csv",
+      "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01.csv",
+      "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01.csv",
+      "generic_poll_list_path": "data/generic-ballot-polls.json",
+      "status": "current",
+      "archive_note": "November 1 current release with selected >35 percentage-point disagreement and expected-seat alignment; Senate, Governor, and generic forecasts remain from the preceding November 1 refresh.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-11-01-hard-call-alignment-gt35",
       "snapshot_date": "2026-11-01",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -12,8 +31,8 @@
       "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01.csv",
       "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01.csv",
       "generic_poll_list_path": "data/generic-ballot-polls.json",
-      "status": "current",
-      "archive_note": "November 1 current release with selected >35 percentage-point disagreement and hard-call alignment; Senate, Governor, and generic forecasts remain from the preceding November 1 refresh.",
+      "status": "superseded",
+      "archive_note": "November 1 hard-call-aligned House release preserved before the selected >35 percentage-point expected-seat-aligned update. Senate, Governor, and generic forecasts are unchanged.",
       "race_count": 506,
       "office_counts": {
         "House": 435,

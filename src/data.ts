@@ -73,9 +73,9 @@ export function raceName(race: ForecastRace): string {
   return state + " " + district;
 }
 
-// Shared probability bands give the published win chance a plain-language label.
+// Office-specific probability bands give the published win chance a plain-language label.
 const RATING_THRESHOLDS: Record<Office, { tossup: number; leans: number; likely: number }> = {
-  House: { tossup:0.60, leans:0.80, likely:0.95 },
+  House: { tossup:0.65, leans:0.90, likely:0.99 },
   Senate: { tossup:0.60, leans:0.80, likely:0.95 },
   Governor: { tossup:0.60, leans:0.80, likely:0.95 }
 };

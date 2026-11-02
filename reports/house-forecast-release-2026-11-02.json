@@ -1,0 +1,92 @@
+{
+  "release_date": "2026-11-02",
+  "snapshot_id": "2026-11-01-expected-seat-alignment-gt31",
+  "snapshot_data_date": "2026-11-01",
+  "forecast_note": "Prediction inputs remain the November 1 stream; this release changes the House mask-gap selection, expected-seat alignment, and House display bands.",
+  "house_method": {
+    "mask_disagreement_threshold_pp": 31,
+    "alignment_target": "hybrid seat-model expected Democratic seats",
+    "expected_dem_seats": 213.62395375704565,
+    "dem_favorite_calls": 211,
+    "distribution_median_dem_seats": 214,
+    "distribution_50pct_range": [
+      211,
+      216
+    ],
+    "distribution_90pct_range": [
+      207,
+      220
+    ],
+    "display_rating_cutoffs": {
+      "tossup_lean": 0.65,
+      "lean_likely": 0.9,
+      "likely_safe": 0.99
+    }
+  },
+  "house_validation": [
+    {
+      "year": 2018,
+      "races": 393,
+      "dem_favorite_calls": 195,
+      "actual_dem_wins_covered": 197,
+      "signed_seat_error": -2,
+      "winner_accuracy": 0.9694656488549618,
+      "margin_mae_pp": 4.6838768662776005,
+      "brier_score": 0.030237818365866153,
+      "log_loss": 0.10235870234470469
+    },
+    {
+      "year": 2020,
+      "races": 408,
+      "dem_favorite_calls": 222,
+      "actual_dem_wins_covered": 203,
+      "signed_seat_error": 19,
+      "winner_accuracy": 0.9534313725490197,
+      "margin_mae_pp": 4.060396726170593,
+      "brier_score": 0.03439775783586997,
+      "log_loss": 0.10985120726231945
+    },
+    {
+      "year": 2022,
+      "races": 400,
+      "dem_favorite_calls": 207,
+      "actual_dem_wins_covered": 201,
+      "signed_seat_error": 6,
+      "winner_accuracy": 0.955,
+      "margin_mae_pp": 4.562159483090159,
+      "brier_score": 0.033201070422243004,
+      "log_loss": 0.10705056030069957
+    },
+    {
+      "year": 2024,
+      "races": 397,
+      "dem_favorite_calls": 203,
+      "actual_dem_wins_covered": 197,
+      "signed_seat_error": 6,
+      "winner_accuracy": 0.9798488664987406,
+      "margin_mae_pp": 3.236786061457627,
+      "brier_score": 0.018593944912920983,
+      "log_loss": 0.06461731303913858
+    }
+  ],
+  "pooled_house_validation": {
+    "races": 1598,
+    "margin_mae_pp": 4.134714225506533,
+    "brier_score": 0.029148918719741665,
+    "log_loss": 0.09606981225363775,
+    "accuracy": 0.9643304130162703,
+    "predicted_dem_seat_calls": 827,
+    "actual_dem_wins_covered": 798,
+    "signed_seat_error": 29,
+    "expected_dem_seats": 811.3462316143472,
+    "expected_seat_error": 13.346231614347175
+  },
+  "validation_races": 1598,
+  "public_stream_sha256": {
+    "current_threshold_stream": "d70f026f99d57cc142e27242e1fd5e6b9e66d842b6dec52392d6e9343c4c3daa",
+    "historical_threshold_stream": "e5bae457748789172465dd1a569308175eb79419eca08e87a78ae36dc00f05dd",
+    "rating_cutoff_review": "19a29083bb37731020e66d00d4512cbb4a00f2f19882591b079b3707685eb203"
+  },
+  "canonical_site_parent_commit": "ed5dba0959fd4a986d22d310db94c3390bcff981",
+  "canonical_agents_sha256_before_release": "d2906875edd171d993fc708315f892ceebc97204d81b5b1ae175b6be99c13e4c"
+}

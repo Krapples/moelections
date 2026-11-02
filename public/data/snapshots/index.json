@@ -3,6 +3,25 @@
   "series_id": "moelections-2026-midterm-races-v1",
   "snapshots": [
     {
+      "snapshot_id": "2026-11-01-expected-seat-alignment",
+      "snapshot_date": "2026-11-01",
+      "series_id": "moelections-2026-midterm-races-v1",
+      "schema_version": 1,
+      "path": "data/snapshots/2026-11-01-expected-seat-alignment.json",
+      "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01-expected-seat-alignment.csv",
+      "senate_seat_distribution_path": "data/snapshots/senate-seat-distribution-2026-11-01.csv",
+      "governor_seat_distribution_path": "data/snapshots/governor-seat-distribution-2026-11-01.csv",
+      "generic_poll_list_path": "data/generic-ballot-polls.json",
+      "status": "current",
+      "archive_note": "November 1 current forecast with House expected-seat alignment; the previous same-day release is retained as a superseded snapshot. Senate, Governor, and generic forecasts are unchanged.",
+      "race_count": 506,
+      "office_counts": {
+        "House": 435,
+        "Senate": 35,
+        "Governor": 36
+      }
+    },
+    {
       "snapshot_id": "2026-11-01-pre-generic-refresh",
       "snapshot_date": "2026-11-01",
       "series_id": "moelections-2026-midterm-races-v1",
@@ -28,8 +47,8 @@
       "schema_version": 1,
       "path": "data/snapshots/2026-11-01.json",
       "seat_distribution_path": "data/snapshots/house-seat-distribution-2026-11-01.csv",
-      "status": "current",
-      "archive_note": "November 1 synchronized current release: generic ballot API through Oct. 31 is propagated through House, Senate, and Governor models.",
+      "status": "superseded",
+      "archive_note": "November 1 synchronized generic/Senate/Governor release with the House hard-count alignment; preserved before the expected-seat-alignment update.",
       "race_count": 506,
       "office_counts": {
         "House": 435,

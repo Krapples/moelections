@@ -923,7 +923,7 @@
     },
     {
       "date": "2026-11-01",
-      "h": 211.289,
+      "h": 209.611,
       "s": 47.623,
       "g": 18.357
     }
@@ -271650,938 +271650,938 @@
         {
           "id": "house-ak-00",
           "state": "AK",
-          "margin": -16.006,
-          "chance": 0.01296
+          "margin": -16.375,
+          "chance": 0.01174
         },
         {
           "id": "house-al-01",
           "state": "AL",
-          "margin": -35.244,
-          "chance": 7e-05
+          "margin": -35.613,
+          "chance": 6e-05
         },
         {
           "id": "house-al-02",
           "state": "AL",
-          "margin": -5.524,
-          "chance": 0.18309
+          "margin": -5.894,
+          "chance": 0.16861
         },
         {
           "id": "house-al-03",
           "state": "AL",
-          "margin": -45.826,
+          "margin": -46.196,
           "chance": 0.0
         },
         {
           "id": "house-al-04",
           "state": "AL",
-          "margin": -58.672,
+          "margin": -59.042,
           "chance": 0.0
         },
         {
           "id": "house-al-05",
           "state": "AL",
-          "margin": -27.382,
-          "chance": 0.0006
+          "margin": -27.752,
+          "chance": 0.00055
         },
         {
           "id": "house-al-06",
           "state": "AL",
-          "margin": -34.306,
-          "chance": 9e-05
+          "margin": -34.675,
+          "chance": 8e-05
         },
         {
           "id": "house-al-07",
           "state": "AL",
-          "margin": 11.551,
-          "chance": 0.958
+          "margin": 11.182,
+          "chance": 0.95378
         },
         {
           "id": "house-ar-01",
           "state": "AR",
-          "margin": -45.859,
+          "margin": -46.228,
           "chance": 0.0
         },
         {
           "id": "house-ar-02",
           "state": "AR",
-          "margin": -12.222,
-          "chance": 0.03527
+          "margin": -12.591,
+          "chance": 0.03203
         },
         {
           "id": "house-ar-03",
           "state": "AR",
-          "margin": -27.004,
-          "chance": 0.00067
+          "margin": -27.374,
+          "chance": 0.0006
         },
         {
           "id": "house-ar-04",
           "state": "AR",
-          "margin": -40.945,
-          "chance": 2e-05
+          "margin": -41.314,
+          "chance": 1e-05
         },
         {
           "id": "house-az-01",
           "state": "AZ",
-          "margin": -1.664,
-          "chance": 0.38924
+          "margin": -2.034,
+          "chance": 0.36574
         },
         {
           "id": "house-az-02",
           "state": "AZ",
-          "margin": -6.481,
-          "chance": 0.14748
+          "margin": -6.85,
+          "chance": 0.13534
         },
         {
           "id": "house-az-03",
           "state": "AZ",
-          "margin": 37.239,
-          "chance": 0.99996
+          "margin": 36.869,
+          "chance": 0.99995
         },
         {
           "id": "house-az-04",
           "state": "AZ",
-          "margin": 8.584,
-          "chance": 0.91083
+          "margin": 8.215,
+          "chance": 0.90237
         },
         {
           "id": "house-az-05",
           "state": "AZ",
-          "margin": -19.603,
-          "chance": 0.00493
+          "margin": -19.972,
+          "chance": 0.00447
         },
         {
           "id": "house-az-06",
           "state": "AZ",
-          "margin": -0.028,
-          "chance": 0.49807
+          "margin": -0.398,
+          "chance": 0.4731
         },
         {
           "id": "house-az-07",
           "state": "AZ",
-          "margin": 23.108,
-          "chance": 0.99808
+          "margin": 22.738,
+          "chance": 0.99788
         },
         {
           "id": "house-az-08",
           "state": "AZ",
-          "margin": -17.72,
-          "chance": 0.00819
+          "margin": -18.089,
+          "chance": 0.00741
         },
         {
           "id": "house-az-09",
           "state": "AZ",
-          "margin": -29.344,
-          "chance": 0.00035
+          "margin": -29.714,
+          "chance": 0.00032
         },
         {
           "id": "house-ca-01",
           "state": "CA",
-          "margin": 4.606,
-          "chance": 0.77676
+          "margin": 4.236,
+          "chance": 0.75894
         },
         {
           "id": "house-ca-02",
           "state": "CA",
-          "margin": 22.065,
-          "chance": 0.99746
+          "margin": 21.696,
+          "chance": 0.99719
         },
         {
           "id": "house-ca-03",
           "state": "CA",
-          "margin": 9.549,
-          "chance": 0.92989
+          "margin": 9.179,
+          "chance": 0.92308
         },
         {
           "id": "house-ca-04",
           "state": "CA",
-          "margin": 12.059,
-          "chance": 0.9632
+          "margin": 11.69,
+          "chance": 0.95948
         },
         {
           "id": "house-ca-05",
           "state": "CA",
-          "margin": -17.187,
-          "chance": 0.00944
+          "margin": -17.556,
+          "chance": 0.00855
         },
         {
           "id": "house-ca-06",
           "state": "CA",
-          "margin": 7.477,
-          "chance": 0.88332
+          "margin": 7.108,
+          "chance": 0.87261
         },
         {
           "id": "house-ca-07",
           "state": "CA",
-          "margin": 10.366,
-          "chance": 0.94301
+          "margin": 9.996,
+          "chance": 0.93739
         },
         {
           "id": "house-ca-08",
           "state": "CA",
-          "margin": 30.729,
-          "chance": 0.99976
+          "margin": 30.36,
+          "chance": 0.99973
         },
         {
           "id": "house-ca-09",
           "state": "CA",
-          "margin": 10.988,
-          "chance": 0.95141
+          "margin": 10.618,
+          "chance": 0.94658
         },
         {
           "id": "house-ca-10",
           "state": "CA",
-          "margin": 29.516,
-          "chance": 0.99966
+          "margin": 29.147,
+          "chance": 0.99963
         },
         {
           "id": "house-ca-11",
           "state": "CA",
-          "margin": 63.435,
+          "margin": 63.065,
           "chance": 1.0
         },
         {
           "id": "house-ca-12",
           "state": "CA",
-          "margin": 68.834,
+          "margin": 68.464,
           "chance": 1.0
         },
         {
           "id": "house-ca-13",
           "state": "CA",
-          "margin": 0.345,
-          "chance": 0.52336
+          "margin": -0.024,
+          "chance": 0.49837
         },
         {
           "id": "house-ca-14",
           "state": "CA",
-          "margin": 33.157,
-          "chance": 0.99987
+          "margin": 32.787,
+          "chance": 0.99986
         },
         {
           "id": "house-ca-15",
           "state": "CA",
-          "margin": 41.253,
-          "chance": 0.99999
+          "margin": 40.884,
+          "chance": 0.99998
         },
         {
           "id": "house-ca-16",
           "state": "CA",
-          "margin": 45.205,
-          "chance": 1.0
+          "margin": 44.836,
+          "chance": 0.99999
         },
         {
           "id": "house-ca-17",
           "state": "CA",
-          "margin": 36.047,
+          "margin": 35.677,
           "chance": 0.99994
         },
         {
           "id": "house-ca-18",
           "state": "CA",
-          "margin": 24.958,
-          "chance": 0.99884
+          "margin": 24.588,
+          "chance": 0.99872
         },
         {
           "id": "house-ca-19",
           "state": "CA",
-          "margin": 33.47,
-          "chance": 0.99988
+          "margin": 33.101,
+          "chance": 0.99987
         },
         {
           "id": "house-ca-20",
           "state": "CA",
-          "margin": -29.827,
-          "chance": 0.00031
+          "margin": -30.196,
+          "chance": 0.00028
         },
         {
           "id": "house-ca-21",
           "state": "CA",
-          "margin": 6.622,
-          "chance": 0.85724
+          "margin": 6.252,
+          "chance": 0.84457
         },
         {
           "id": "house-ca-22",
           "state": "CA",
-          "margin": -2.413,
-          "chance": 0.34224
+          "margin": -2.783,
+          "chance": 0.3201
         },
         {
           "id": "house-ca-23",
           "state": "CA",
-          "margin": -18.519,
-          "chance": 0.0066
+          "margin": -18.889,
+          "chance": 0.00598
         },
         {
           "id": "house-ca-24",
           "state": "CA",
-          "margin": 22.239,
-          "chance": 0.99758
+          "margin": 21.87,
+          "chance": 0.99732
         },
         {
           "id": "house-ca-25",
           "state": "CA",
-          "margin": 6.595,
-          "chance": 0.85635
+          "margin": 6.225,
+          "chance": 0.8436
         },
         {
           "id": "house-ca-26",
           "state": "CA",
-          "margin": 13.771,
-          "chance": 0.97653
+          "margin": 13.402,
+          "chance": 0.97412
         },
         {
           "id": "house-ca-27",
           "state": "CA",
-          "margin": 8.681,
-          "chance": 0.91294
+          "margin": 8.312,
+          "chance": 0.90466
         },
         {
           "id": "house-ca-28",
           "state": "CA",
-          "margin": 22.471,
-          "chance": 0.99772
+          "margin": 22.102,
+          "chance": 0.99749
         },
         {
           "id": "house-ca-29",
           "state": "CA",
-          "margin": 32.195,
-          "chance": 0.99984
+          "margin": 31.826,
+          "chance": 0.99982
         },
         {
           "id": "house-ca-30",
           "state": "CA",
-          "margin": 34.444,
-          "chance": 0.99991
+          "margin": 34.075,
+          "chance": 0.9999
         },
         {
           "id": "house-ca-31",
           "state": "CA",
-          "margin": 9.636,
-          "chance": 0.93143
+          "margin": 9.267,
+          "chance": 0.92476
         },
         {
           "id": "house-ca-32",
           "state": "CA",
-          "margin": 22.349,
-          "chance": 0.99765
+          "margin": 21.979,
+          "chance": 0.9974
         },
         {
           "id": "house-ca-33",
           "state": "CA",
-          "margin": 9.831,
-          "chance": 0.93471
+          "margin": 9.462,
+          "chance": 0.92834
         },
         {
           "id": "house-ca-34",
           "state": "CA",
-          "margin": 46.563,
+          "margin": 46.193,
           "chance": 1.0
         },
         {
           "id": "house-ca-35",
           "state": "CA",
-          "margin": 8.28,
-          "chance": 0.90393
+          "margin": 7.911,
+          "chance": 0.89489
         },
         {
           "id": "house-ca-36",
           "state": "CA",
-          "margin": 36.692,
+          "margin": 36.323,
           "chance": 0.99995
         },
         {
           "id": "house-ca-37",
           "state": "CA",
-          "margin": 56.357,
+          "margin": 55.988,
           "chance": 1.0
         },
         {
           "id": "house-ca-38",
           "state": "CA",
-          "margin": 10.867,
-          "chance": 0.94987
+          "margin": 10.497,
+          "chance": 0.94489
         },
         {
           "id": "house-ca-39",
           "state": "CA",
-          "margin": 9.523,
-          "chance": 0.92943
+          "margin": 9.153,
+          "chance": 0.92258
         },
         {
           "id": "house-ca-40",
           "state": "CA",
-          "margin": -10.631,
-          "chance": 0.05325
+          "margin": -11.0,
+          "chance": 0.04843
         },
         {
           "id": "house-ca-41",
           "state": "CA",
-          "margin": 13.047,
-          "chance": 0.97159
+          "margin": 12.678,
+          "chance": 0.96869
         },
         {
           "id": "house-ca-42",
           "state": "CA",
-          "margin": 11.914,
-          "chance": 0.96178
+          "margin": 11.545,
+          "chance": 0.95793
         },
         {
           "id": "house-ca-43",
           "state": "CA",
-          "margin": 42.992,
+          "margin": 42.623,
           "chance": 0.99999
         },
         {
           "id": "house-ca-44",
           "state": "CA",
-          "margin": 32.242,
-          "chance": 0.99984
+          "margin": 31.873,
+          "chance": 0.99982
         },
         {
           "id": "house-ca-45",
           "state": "CA",
-          "margin": 4.603,
-          "chance": 0.77662
+          "margin": 4.234,
+          "chance": 0.7588
         },
         {
           "id": "house-ca-46",
           "state": "CA",
-          "margin": 14.043,
-          "chance": 0.97816
+          "margin": 13.674,
+          "chance": 0.97592
         },
         {
           "id": "house-ca-47",
           "state": "CA",
-          "margin": 8.782,
-          "chance": 0.91509
+          "margin": 8.412,
+          "chance": 0.90699
         },
         {
           "id": "house-ca-48",
           "state": "CA",
-          "margin": 2.722,
-          "chance": 0.67631
+          "margin": 2.353,
+          "chance": 0.65405
         },
         {
           "id": "house-ca-49",
           "state": "CA",
-          "margin": 10.14,
-          "chance": 0.93964
+          "margin": 9.771,
+          "chance": 0.93371
         },
         {
           "id": "house-ca-50",
           "state": "CA",
-          "margin": 15.679,
-          "chance": 0.98586
+          "margin": 15.31,
+          "chance": 0.9844
         },
         {
           "id": "house-ca-51",
           "state": "CA",
-          "margin": 15.486,
-          "chance": 0.98512
+          "margin": 15.117,
+          "chance": 0.98358
         },
         {
           "id": "house-ca-52",
           "state": "CA",
-          "margin": 14.415,
-          "chance": 0.98021
+          "margin": 14.046,
+          "chance": 0.97817
         },
         {
           "id": "house-co-01",
           "state": "CO",
-          "margin": 56.271,
+          "margin": 55.902,
           "chance": 1.0
         },
         {
           "id": "house-co-02",
           "state": "CO",
-          "margin": 41.496,
+          "margin": 41.126,
           "chance": 0.99999
         },
         {
           "id": "house-co-03",
           "state": "CO",
-          "margin": -8.63,
-          "chance": 0.08815
+          "margin": -9.0,
+          "chance": 0.08044
         },
         {
           "id": "house-co-04",
           "state": "CO",
-          "margin": -10.101,
-          "chance": 0.06096
+          "margin": -10.47,
+          "chance": 0.05548
         },
         {
           "id": "house-co-05",
           "state": "CO",
-          "margin": -3.514,
-          "chance": 0.27862
+          "margin": -3.883,
+          "chance": 0.25897
         },
         {
           "id": "house-co-06",
           "state": "CO",
-          "margin": 20.548,
-          "chance": 0.99618
+          "margin": 20.179,
+          "chance": 0.99578
         },
         {
           "id": "house-co-07",
           "state": "CO",
-          "margin": 17.631,
-          "chance": 0.99162
+          "margin": 17.262,
+          "chance": 0.99074
         },
         {
           "id": "house-co-08",
           "state": "CO",
-          "margin": -1.442,
-          "chance": 0.40362
+          "margin": -1.812,
+          "chance": 0.3798
         },
         {
           "id": "house-ct-01",
           "state": "CT",
-          "margin": 26.696,
-          "chance": 0.99927
+          "margin": 26.326,
+          "chance": 0.9992
         },
         {
           "id": "house-ct-02",
           "state": "CT",
-          "margin": 14.947,
-          "chance": 0.98282
+          "margin": 14.578,
+          "chance": 0.98105
         },
         {
           "id": "house-ct-03",
           "state": "CT",
-          "margin": 17.701,
-          "chance": 0.99177
+          "margin": 17.332,
+          "chance": 0.99091
         },
         {
           "id": "house-ct-04",
           "state": "CT",
-          "margin": 27.03,
-          "chance": 0.99934
+          "margin": 26.661,
+          "chance": 0.99927
         },
         {
           "id": "house-ct-05",
           "state": "CT",
-          "margin": 8.268,
-          "chance": 0.90364
+          "margin": 7.899,
+          "chance": 0.89457
         },
         {
           "id": "house-de-00",
           "state": "DE",
-          "margin": 17.962,
-          "chance": 0.99233
+          "margin": 17.593,
+          "chance": 0.99153
         },
         {
           "id": "house-fl-01",
           "state": "FL",
-          "margin": -31.15,
-          "chance": 0.00022
+          "margin": -31.52,
+          "chance": 0.0002
         },
         {
           "id": "house-fl-02",
           "state": "FL",
-          "margin": -18.276,
-          "chance": 0.00705
+          "margin": -18.645,
+          "chance": 0.00638
         },
         {
           "id": "house-fl-03",
           "state": "FL",
-          "margin": -23.215,
-          "chance": 0.00186
+          "margin": -23.584,
+          "chance": 0.00168
         },
         {
           "id": "house-fl-04",
           "state": "FL",
-          "margin": -16.99,
-          "chance": 0.00996
+          "margin": -17.359,
+          "chance": 0.00902
         },
         {
           "id": "house-fl-05",
           "state": "FL",
-          "margin": -22.208,
-          "chance": 0.00244
+          "margin": -22.578,
+          "chance": 0.00221
         },
         {
           "id": "house-fl-06",
           "state": "FL",
-          "margin": -29.067,
-          "chance": 0.00038
+          "margin": -29.437,
+          "chance": 0.00035
         },
         {
           "id": "house-fl-07",
           "state": "FL",
-          "margin": -7.41,
-          "chance": 0.11857
+          "margin": -7.78,
+          "chance": 0.10851
         },
         {
           "id": "house-fl-08",
           "state": "FL",
-          "margin": -17.2,
-          "chance": 0.00941
+          "margin": -17.569,
+          "chance": 0.00852
         },
         {
           "id": "house-fl-09",
           "state": "FL",
-          "margin": -7.919,
-          "chance": 0.10491
+          "margin": -8.288,
+          "chance": 0.09589
         },
         {
           "id": "house-fl-10",
           "state": "FL",
-          "margin": 17.249,
-          "chance": 0.99071
+          "margin": 16.88,
+          "chance": 0.98975
         },
         {
           "id": "house-fl-11",
           "state": "FL",
-          "margin": -18.157,
-          "chance": 0.00728
+          "margin": -18.526,
+          "chance": 0.00659
         },
         {
           "id": "house-fl-12",
           "state": "FL",
-          "margin": -17.985,
-          "chance": 0.00762
+          "margin": -18.354,
+          "chance": 0.0069
         },
         {
           "id": "house-fl-13",
           "state": "FL",
-          "margin": -7.746,
-          "chance": 0.10939
+          "margin": -8.115,
+          "chance": 0.10003
         },
         {
           "id": "house-fl-14",
           "state": "FL",
-          "margin": -2.509,
-          "chance": 0.33643
+          "margin": -2.878,
+          "chance": 0.31449
         },
         {
           "id": "house-fl-15",
           "state": "FL",
-          "margin": -23.078,
-          "chance": 0.00193
+          "margin": -23.447,
+          "chance": 0.00175
         },
         {
           "id": "house-fl-16",
           "state": "FL",
-          "margin": -13.335,
-          "chance": 0.02634
+          "margin": -13.704,
+          "chance": 0.02389
         },
         {
           "id": "house-fl-17",
           "state": "FL",
-          "margin": -23.617,
-          "chance": 0.00167
+          "margin": -23.987,
+          "chance": 0.00151
         },
         {
           "id": "house-fl-18",
           "state": "FL",
-          "margin": -20.17,
-          "chance": 0.00423
+          "margin": -20.539,
+          "chance": 0.00383
         },
         {
           "id": "house-fl-19",
           "state": "FL",
-          "margin": -31.714,
-          "chance": 0.00019
+          "margin": -32.083,
+          "chance": 0.00017
         },
         {
           "id": "house-fl-20",
           "state": "FL",
-          "margin": 30.256,
-          "chance": 0.99972
+          "margin": 29.887,
+          "chance": 0.99969
         },
         {
           "id": "house-fl-21",
           "state": "FL",
-          "margin": -16.775,
-          "chance": 0.01055
+          "margin": -17.144,
+          "chance": 0.00955
         },
         {
           "id": "house-fl-22",
           "state": "FL",
-          "margin": -5.767,
-          "chance": 0.17348
+          "margin": -6.136,
+          "chance": 0.1596
         },
         {
           "id": "house-fl-23",
           "state": "FL",
-          "margin": 8.78,
-          "chance": 0.91504
+          "margin": 8.41,
+          "chance": 0.90694
         },
         {
           "id": "house-fl-24",
           "state": "FL",
-          "margin": 31.31,
-          "chance": 0.99979
+          "margin": 30.94,
+          "chance": 0.99977
         },
         {
           "id": "house-fl-25",
           "state": "FL",
-          "margin": -3.172,
-          "chance": 0.2976
+          "margin": -3.541,
+          "chance": 0.27713
         },
         {
           "id": "house-fl-26",
           "state": "FL",
-          "margin": -20.451,
-          "chance": 0.00393
+          "margin": -20.82,
+          "chance": 0.00355
         },
         {
           "id": "house-fl-27",
           "state": "FL",
-          "margin": -11.519,
-          "chance": 0.04235
+          "margin": -11.889,
+          "chance": 0.03848
         },
         {
           "id": "house-fl-28",
           "state": "FL",
-          "margin": -26.469,
-          "chance": 0.00077
+          "margin": -26.838,
+          "chance": 0.0007
         },
         {
           "id": "house-ga-01",
           "state": "GA",
-          "margin": -17.822,
-          "chance": 0.00796
+          "margin": -18.192,
+          "chance": 0.00721
         },
         {
           "id": "house-ga-02",
           "state": "GA",
-          "margin": 11.103,
-          "chance": 0.95283
+          "margin": 10.733,
+          "chance": 0.94813
         },
         {
           "id": "house-ga-03",
           "state": "GA",
-          "margin": -28.924,
-          "chance": 0.0004
+          "margin": -29.293,
+          "chance": 0.00036
         },
         {
           "id": "house-ga-04",
           "state": "GA",
-          "margin": 46.531,
+          "margin": 46.161,
           "chance": 1.0
         },
         {
           "id": "house-ga-05",
           "state": "GA",
-          "margin": 64.23,
+          "margin": 63.861,
           "chance": 1.0
         },
         {
           "id": "house-ga-06",
           "state": "GA",
-          "margin": 48.062,
+          "margin": 47.693,
           "chance": 1.0
         },
         {
           "id": "house-ga-07",
           "state": "GA",
-          "margin": -18.675,
-          "chance": 0.00633
+          "margin": -19.044,
+          "chance": 0.00573
         },
         {
           "id": "house-ga-08",
           "state": "GA",
-          "margin": -32.505,
-          "chance": 0.00015
+          "margin": -32.875,
+          "chance": 0.00014
         },
         {
           "id": "house-ga-09",
           "state": "GA",
-          "margin": -34.196,
-          "chance": 0.0001
+          "margin": -34.566,
+          "chance": 9e-05
         },
         {
           "id": "house-ga-10",
           "state": "GA",
-          "margin": -21.768,
-          "chance": 0.00275
+          "margin": -22.138,
+          "chance": 0.00249
         },
         {
           "id": "house-ga-11",
           "state": "GA",
-          "margin": -26.449,
-          "chance": 0.00078
+          "margin": -26.819,
+          "chance": 0.0007
         },
         {
           "id": "house-ga-12",
           "state": "GA",
-          "margin": -17.35,
-          "chance": 0.00904
+          "margin": -17.719,
+          "chance": 0.00819
         },
         {
           "id": "house-ga-13",
           "state": "GA",
-          "margin": 39.889,
+          "margin": 39.52,
           "chance": 0.99998
         },
         {
           "id": "house-ga-14",
           "state": "GA",
-          "margin": -26.886,
-          "chance": 0.00069
+          "margin": -27.255,
+          "chance": 0.00062
         },
         {
           "id": "house-hi-01",
           "state": "HI",
-          "margin": 32.218,
-          "chance": 0.99984
+          "margin": 31.849,
+          "chance": 0.99982
         },
         {
           "id": "house-hi-02",
           "state": "HI",
-          "margin": 27.219,
-          "chance": 0.99937
+          "margin": 26.85,
+          "chance": 0.9993
         },
         {
           "id": "house-ia-01",
           "state": "IA",
-          "margin": 2.444,
-          "chance": 0.65963
+          "margin": 2.075,
+          "chance": 0.63684
         },
         {
           "id": "house-ia-02",
           "state": "IA",
-          "margin": -4.957,
-          "chance": 0.20717
+          "margin": -5.327,
+          "chance": 0.19123
         },
         {
           "id": "house-ia-03",
           "state": "IA",
-          "margin": -0.744,
-          "chance": 0.44982
+          "margin": -1.113,
+          "chance": 0.42522
         },
         {
           "id": "house-ia-04",
           "state": "IA",
-          "margin": -30.991,
-          "chance": 0.00023
+          "margin": -31.36,
+          "chance": 0.00021
         },
         {
           "id": "house-id-01",
           "state": "ID",
-          "margin": -44.888,
-          "chance": 1e-05
+          "margin": -45.258,
+          "chance": 0.0
         },
         {
           "id": "house-id-02",
           "state": "ID",
-          "margin": -27.438,
-          "chance": 0.00059
+          "margin": -27.807,
+          "chance": 0.00054
         },
         {
           "id": "house-il-01",
           "state": "IL",
-          "margin": 30.442,
-          "chance": 0.99974
+          "margin": 30.072,
+          "chance": 0.99971
         },
         {
           "id": "house-il-02",
           "state": "IL",
-          "margin": 35.386,
-          "chance": 0.99993
+          "margin": 35.017,
+          "chance": 0.99992
         },
         {
           "id": "house-il-03",
           "state": "IL",
-          "margin": 33.224,
-          "chance": 0.99988
+          "margin": 32.855,
+          "chance": 0.99986
         },
         {
           "id": "house-il-04",
           "state": "IL",
-          "margin": 30.439,
-          "chance": 0.99974
+          "margin": 30.069,
+          "chance": 0.99971
         },
         {
           "id": "house-il-05",
           "state": "IL",
-          "margin": 36.725,
+          "margin": 36.356,
           "chance": 0.99995
         },
         {
           "id": "house-il-06",
           "state": "IL",
-          "margin": 9.944,
-          "chance": 0.93655
+          "margin": 9.575,
+          "chance": 0.93035
         },
         {
           "id": "house-il-07",
           "state": "IL",
-          "margin": 64.297,
+          "margin": 63.928,
           "chance": 1.0
         },
         {
           "id": "house-il-08",
           "state": "IL",
-          "margin": 10.917,
-          "chance": 0.95052
+          "margin": 10.547,
+          "chance": 0.9456
         },
         {
           "id": "house-il-09",
           "state": "IL",
-          "margin": 38.533,
+          "margin": 38.164,
           "chance": 0.99997
         },
         {
           "id": "house-il-10",
           "state": "IL",
-          "margin": 24.568,
-          "chance": 0.99871
+          "margin": 24.198,
+          "chance": 0.99857
         },
         {
           "id": "house-il-11",
           "state": "IL",
-          "margin": 13.91,
-          "chance": 0.97737
+          "margin": 13.54,
+          "chance": 0.97505
         },
         {
           "id": "house-il-12",
           "state": "IL",
-          "margin": -44.196,
+          "margin": -44.565,
           "chance": 1e-05
         },
         {
           "id": "house-il-13",
           "state": "IL",
-          "margin": 14.479,
-          "chance": 0.98054
+          "margin": 14.11,
+          "chance": 0.97854
         },
         {
           "id": "house-il-14",
           "state": "IL",
-          "margin": 10.937,
-          "chance": 0.95078
+          "margin": 10.568,
+          "chance": 0.94588
         },
         {
           "id": "house-il-15",
           "state": "IL",
-          "margin": -36.461,
+          "margin": -36.83,
           "chance": 5e-05
         },
         {
           "id": "house-il-16",
           "state": "IL",
-          "margin": -23.069,
-          "chance": 0.00194
+          "margin": -23.438,
+          "chance": 0.00175
         },
         {
           "id": "house-il-17",
           "state": "IL",
-          "margin": 9.831,
-          "chance": 0.93471
+          "margin": 9.461,
+          "chance": 0.92834
         },
         {
           "id": "house-in-01",
           "state": "IN",
-          "margin": 3.674,
-          "chance": 0.72998
+          "margin": 3.304,
+          "chance": 0.70982
         },
         {
           "id": "house-in-02",
           "state": "IN",
-          "margin": -22.871,
-          "chance": 0.00204
+          "margin": -23.24,
+          "chance": 0.00185
         },
         {
           "id": "house-in-03",
@@ -272598,8 +272598,8 @@
         {
           "id": "house-in-05",
           "state": "IN",
-          "margin": -11.096,
-          "chance": 0.04725
+          "margin": -11.465,
+          "chance": 0.04295
         },
         {
           "id": "house-in-06",
@@ -272610,7 +272610,7 @@
         {
           "id": "house-in-07",
           "state": "IN",
-          "margin": 40.015,
+          "margin": 39.645,
           "chance": 0.99998
         },
         {
@@ -272628,1633 +272628,1633 @@
         {
           "id": "house-ks-01",
           "state": "KS",
-          "margin": -32.745,
-          "chance": 0.00014
+          "margin": -33.114,
+          "chance": 0.00013
         },
         {
           "id": "house-ks-02",
           "state": "KS",
-          "margin": -17.236,
-          "chance": 0.00932
+          "margin": -17.605,
+          "chance": 0.00844
         },
         {
           "id": "house-ks-03",
           "state": "KS",
-          "margin": 9.292,
-          "chance": 0.92523
+          "margin": 8.923,
+          "chance": 0.91801
         },
         {
           "id": "house-ks-04",
           "state": "KS",
-          "margin": -23.583,
-          "chance": 0.00169
+          "margin": -23.952,
+          "chance": 0.00152
         },
         {
           "id": "house-ky-01",
           "state": "KY",
-          "margin": -48.222,
+          "margin": -48.592,
           "chance": 0.0
         },
         {
           "id": "house-ky-02",
           "state": "KY",
-          "margin": -42.174,
+          "margin": -42.543,
           "chance": 1e-05
         },
         {
           "id": "house-ky-03",
           "state": "KY",
-          "margin": 20.403,
-          "chance": 0.99602
+          "margin": 20.034,
+          "chance": 0.99561
         },
         {
           "id": "house-ky-04",
           "state": "KY",
-          "margin": -35.611,
-          "chance": 7e-05
+          "margin": -35.98,
+          "chance": 6e-05
         },
         {
           "id": "house-ky-05",
           "state": "KY",
-          "margin": -58.853,
+          "margin": -59.222,
           "chance": 0.0
         },
         {
           "id": "house-ky-06",
           "state": "KY",
-          "margin": -4.658,
-          "chance": 0.22081
+          "margin": -5.027,
+          "chance": 0.20409
         },
         {
           "id": "house-la-01",
           "state": "LA",
-          "margin": -34.091,
-          "chance": 0.0001
+          "margin": -34.46,
+          "chance": 9e-05
         },
         {
           "id": "house-la-02",
           "state": "LA",
-          "margin": 41.819,
+          "margin": 41.45,
           "chance": 0.99999
         },
         {
           "id": "house-la-03",
           "state": "LA",
-          "margin": -33.337,
-          "chance": 0.00012
+          "margin": -33.707,
+          "chance": 0.00011
         },
         {
           "id": "house-la-04",
           "state": "LA",
-          "margin": -26.659,
-          "chance": 0.00073
+          "margin": -27.028,
+          "chance": 0.00066
         },
         {
           "id": "house-la-05",
           "state": "LA",
-          "margin": -33.757,
-          "chance": 0.00011
+          "margin": -34.127,
+          "chance": 0.0001
         },
         {
           "id": "house-la-06",
           "state": "LA",
-          "margin": -26.576,
-          "chance": 0.00075
+          "margin": -26.946,
+          "chance": 0.00068
         },
         {
           "id": "house-ma-01",
           "state": "MA",
-          "margin": 16.68,
-          "chance": 0.98918
+          "margin": 16.311,
+          "chance": 0.98806
         },
         {
           "id": "house-ma-02",
           "state": "MA",
-          "margin": 27.418,
-          "chance": 0.9994
+          "margin": 27.049,
+          "chance": 0.99934
         },
         {
           "id": "house-ma-03",
           "state": "MA",
-          "margin": 22.271,
-          "chance": 0.9976
+          "margin": 21.902,
+          "chance": 0.99735
         },
         {
           "id": "house-ma-04",
           "state": "MA",
-          "margin": 22.195,
-          "chance": 0.99755
+          "margin": 21.826,
+          "chance": 0.99729
         },
         {
           "id": "house-ma-05",
           "state": "MA",
-          "margin": 48.399,
+          "margin": 48.03,
           "chance": 1.0
         },
         {
           "id": "house-ma-06",
           "state": "MA",
-          "margin": 23.428,
-          "chance": 0.99824
+          "margin": 23.058,
+          "chance": 0.99806
         },
         {
           "id": "house-ma-07",
           "state": "MA",
-          "margin": 63.646,
+          "margin": 63.277,
           "chance": 1.0
         },
         {
           "id": "house-ma-08",
           "state": "MA",
-          "margin": 32.651,
-          "chance": 0.99986
+          "margin": 32.282,
+          "chance": 0.99984
         },
         {
           "id": "house-ma-09",
           "state": "MA",
-          "margin": 13.638,
-          "chance": 0.97569
+          "margin": 13.269,
+          "chance": 0.9732
         },
         {
           "id": "house-md-01",
           "state": "MD",
-          "margin": -16.473,
-          "chance": 0.01143
+          "margin": -16.842,
+          "chance": 0.01036
         },
         {
           "id": "house-md-02",
           "state": "MD",
-          "margin": 20.681,
-          "chance": 0.99631
+          "margin": 20.311,
+          "chance": 0.99592
         },
         {
           "id": "house-md-03",
           "state": "MD",
-          "margin": 26.602,
-          "chance": 0.99926
+          "margin": 26.233,
+          "chance": 0.99918
         },
         {
           "id": "house-md-04",
           "state": "MD",
-          "margin": 70.308,
+          "margin": 69.939,
           "chance": 1.0
         },
         {
           "id": "house-md-05",
           "state": "MD",
-          "margin": 35.515,
+          "margin": 35.146,
           "chance": 0.99993
         },
         {
           "id": "house-md-06",
           "state": "MD",
-          "margin": 8.852,
-          "chance": 0.91655
+          "margin": 8.483,
+          "chance": 0.90858
         },
         {
           "id": "house-md-07",
           "state": "MD",
-          "margin": 55.553,
+          "margin": 55.184,
           "chance": 1.0
         },
         {
           "id": "house-md-08",
           "state": "MD",
-          "margin": 57.782,
+          "margin": 57.412,
           "chance": 1.0
         },
         {
           "id": "house-me-01",
           "state": "ME",
-          "margin": 20.809,
-          "chance": 0.99644
+          "margin": 20.44,
+          "chance": 0.99606
         },
         {
           "id": "house-me-02",
           "state": "ME",
-          "margin": -1.495,
-          "chance": 0.40019
+          "margin": -1.864,
+          "chance": 0.37644
         },
         {
           "id": "house-mi-01",
           "state": "MI",
-          "margin": -13.58,
-          "chance": 0.02469
+          "margin": -13.949,
+          "chance": 0.02239
         },
         {
           "id": "house-mi-02",
           "state": "MI",
-          "margin": -31.601,
-          "chance": 0.00019
+          "margin": -31.97,
+          "chance": 0.00017
         },
         {
           "id": "house-mi-03",
           "state": "MI",
-          "margin": 8.091,
-          "chance": 0.89938
+          "margin": 7.722,
+          "chance": 0.88997
         },
         {
           "id": "house-mi-04",
           "state": "MI",
-          "margin": -4.665,
-          "chance": 0.22046
+          "margin": -5.035,
+          "chance": 0.20375
         },
         {
           "id": "house-mi-05",
           "state": "MI",
-          "margin": -28.259,
-          "chance": 0.00048
+          "margin": -28.628,
+          "chance": 0.00043
         },
         {
           "id": "house-mi-06",
           "state": "MI",
-          "margin": 27.239,
-          "chance": 0.99937
+          "margin": 26.869,
+          "chance": 0.99931
         },
         {
           "id": "house-mi-07",
           "state": "MI",
-          "margin": 1.787,
-          "chance": 0.61863
+          "margin": 1.417,
+          "chance": 0.59477
         },
         {
           "id": "house-mi-08",
           "state": "MI",
-          "margin": 3.024,
-          "chance": 0.69393
+          "margin": 2.654,
+          "chance": 0.67229
         },
         {
           "id": "house-mi-09",
           "state": "MI",
-          "margin": -34.109,
-          "chance": 0.0001
+          "margin": -34.478,
+          "chance": 9e-05
         },
         {
           "id": "house-mi-10",
           "state": "MI",
-          "margin": -2.844,
-          "chance": 0.31649
+          "margin": -3.213,
+          "chance": 0.29526
         },
         {
           "id": "house-mi-11",
           "state": "MI",
-          "margin": 18.076,
-          "chance": 0.99256
+          "margin": 17.707,
+          "chance": 0.99179
         },
         {
           "id": "house-mi-12",
           "state": "MI",
-          "margin": 41.989,
+          "margin": 41.619,
           "chance": 0.99999
         },
         {
           "id": "house-mi-13",
           "state": "MI",
-          "margin": 42.315,
+          "margin": 41.946,
           "chance": 0.99999
         },
         {
           "id": "house-mn-01",
           "state": "MN",
-          "margin": -6.413,
-          "chance": 0.14979
+          "margin": -6.783,
+          "chance": 0.1375
         },
         {
           "id": "house-mn-02",
           "state": "MN",
-          "margin": 9.497,
-          "chance": 0.92897
+          "margin": 9.127,
+          "chance": 0.92208
         },
         {
           "id": "house-mn-03",
           "state": "MN",
-          "margin": 22.624,
-          "chance": 0.99782
+          "margin": 22.255,
+          "chance": 0.99759
         },
         {
           "id": "house-mn-04",
           "state": "MN",
-          "margin": 38.118,
-          "chance": 0.99997
+          "margin": 37.748,
+          "chance": 0.99996
         },
         {
           "id": "house-mn-05",
           "state": "MN",
-          "margin": 57.606,
+          "margin": 57.236,
           "chance": 1.0
         },
         {
           "id": "house-mn-06",
           "state": "MN",
-          "margin": -21.272,
-          "chance": 0.00315
+          "margin": -21.641,
+          "chance": 0.00285
         },
         {
           "id": "house-mn-07",
           "state": "MN",
-          "margin": -36.073,
-          "chance": 6e-05
+          "margin": -36.442,
+          "chance": 5e-05
         },
         {
           "id": "house-mn-08",
           "state": "MN",
-          "margin": -15.391,
-          "chance": 0.01527
+          "margin": -15.761,
+          "chance": 0.01383
         },
         {
           "id": "house-mo-01",
           "state": "MO",
-          "margin": 51.876,
+          "margin": 51.506,
           "chance": 1.0
         },
         {
           "id": "house-mo-02",
           "state": "MO",
-          "margin": -4.518,
-          "chance": 0.22738
+          "margin": -4.887,
+          "chance": 0.2103
         },
         {
           "id": "house-mo-03",
           "state": "MO",
-          "margin": -21.563,
-          "chance": 0.00291
+          "margin": -21.933,
+          "chance": 0.00263
         },
         {
           "id": "house-mo-04",
           "state": "MO",
-          "margin": -37.728,
-          "chance": 4e-05
+          "margin": -38.098,
+          "chance": 3e-05
         },
         {
           "id": "house-mo-05",
           "state": "MO",
-          "margin": 18.814,
-          "chance": 0.9939
+          "margin": 18.445,
+          "chance": 0.99326
         },
         {
           "id": "house-mo-06",
           "state": "MO",
-          "margin": -36.176,
-          "chance": 6e-05
+          "margin": -36.545,
+          "chance": 5e-05
         },
         {
           "id": "house-mo-07",
           "state": "MO",
-          "margin": -38.414,
+          "margin": -38.783,
           "chance": 3e-05
         },
         {
           "id": "house-mo-08",
           "state": "MO",
-          "margin": -50.88,
+          "margin": -51.25,
           "chance": 0.0
         },
         {
           "id": "house-ms-01",
           "state": "MS",
-          "margin": -32.69,
-          "chance": 0.00014
+          "margin": -33.059,
+          "chance": 0.00013
         },
         {
           "id": "house-ms-02",
           "state": "MS",
-          "margin": 21.884,
-          "chance": 0.99733
+          "margin": 21.515,
+          "chance": 0.99705
         },
         {
           "id": "house-ms-03",
           "state": "MS",
-          "margin": -29.233,
-          "chance": 0.00037
+          "margin": -29.602,
+          "chance": 0.00033
         },
         {
           "id": "house-ms-04",
           "state": "MS",
-          "margin": -43.022,
+          "margin": -43.391,
           "chance": 1e-05
         },
         {
           "id": "house-mt-01",
           "state": "MT",
-          "margin": -3.036,
-          "chance": 0.30538
+          "margin": -3.405,
+          "chance": 0.28459
         },
         {
           "id": "house-mt-02",
           "state": "MT",
-          "margin": -31.272,
-          "chance": 0.00021
+          "margin": -31.641,
+          "chance": 0.00019
         },
         {
           "id": "house-nc-01",
           "state": "NC",
-          "margin": -1.703,
-          "chance": 0.38675
+          "margin": -2.072,
+          "chance": 0.36331
         },
         {
           "id": "house-nc-02",
           "state": "NC",
-          "margin": 34.542,
-          "chance": 0.99991
+          "margin": 34.172,
+          "chance": 0.9999
         },
         {
           "id": "house-nc-03",
           "state": "NC",
-          "margin": -11.791,
-          "chance": 0.03947
+          "margin": -12.16,
+          "chance": 0.03585
         },
         {
           "id": "house-nc-04",
           "state": "NC",
-          "margin": 43.133,
+          "margin": 42.764,
           "chance": 0.99999
         },
         {
           "id": "house-nc-05",
           "state": "NC",
-          "margin": -12.404,
-          "chance": 0.03363
+          "margin": -12.773,
+          "chance": 0.03053
         },
         {
           "id": "house-nc-06",
           "state": "NC",
-          "margin": -18.671,
-          "chance": 0.00634
+          "margin": -19.04,
+          "chance": 0.00574
         },
         {
           "id": "house-nc-07",
           "state": "NC",
-          "margin": -12.6,
-          "chance": 0.03195
+          "margin": -12.969,
+          "chance": 0.029
         },
         {
           "id": "house-nc-08",
           "state": "NC",
-          "margin": -18.293,
-          "chance": 0.00702
+          "margin": -18.663,
+          "chance": 0.00635
         },
         {
           "id": "house-nc-09",
           "state": "NC",
-          "margin": -9.707,
-          "chance": 0.06737
+          "margin": -10.076,
+          "chance": 0.06136
         },
         {
           "id": "house-nc-10",
           "state": "NC",
-          "margin": -19.45,
-          "chance": 0.00514
+          "margin": -19.819,
+          "chance": 0.00465
         },
         {
           "id": "house-nc-11",
           "state": "NC",
-          "margin": -2.056,
-          "chance": 0.36435
+          "margin": -2.425,
+          "chance": 0.34152
         },
         {
           "id": "house-nc-12",
           "state": "NC",
-          "margin": 42.062,
+          "margin": 41.693,
           "chance": 0.99999
         },
         {
           "id": "house-nc-13",
           "state": "NC",
-          "margin": -11.425,
-          "chance": 0.0434
+          "margin": -11.794,
+          "chance": 0.03943
         },
         {
           "id": "house-nc-14",
           "state": "NC",
-          "margin": -17.338,
-          "chance": 0.00907
+          "margin": -17.708,
+          "chance": 0.00821
         },
         {
           "id": "house-nd-00",
           "state": "ND",
-          "margin": -36.548,
+          "margin": -36.918,
           "chance": 5e-05
         },
         {
           "id": "house-ne-01",
           "state": "NE",
-          "margin": -11.109,
-          "chance": 0.04709
+          "margin": -11.479,
+          "chance": 0.0428
         },
         {
           "id": "house-ne-02",
           "state": "NE",
-          "margin": 6.139,
-          "chance": 0.8405
+          "margin": 5.77,
+          "chance": 0.82663
         },
         {
           "id": "house-ne-03",
           "state": "NE",
-          "margin": -54.439,
+          "margin": -54.808,
           "chance": 0.0
         },
         {
           "id": "house-nh-01",
           "state": "NH",
-          "margin": 3.313,
-          "chance": 0.71031
+          "margin": 2.944,
+          "chance": 0.68931
         },
         {
           "id": "house-nh-02",
           "state": "NH",
-          "margin": 12.45,
-          "chance": 0.96677
+          "margin": 12.081,
+          "chance": 0.9634
         },
         {
           "id": "house-nj-01",
           "state": "NJ",
-          "margin": 20.458,
-          "chance": 0.99608
+          "margin": 20.088,
+          "chance": 0.99567
         },
         {
           "id": "house-nj-02",
           "state": "NJ",
-          "margin": -12.433,
-          "chance": 0.03338
+          "margin": -12.802,
+          "chance": 0.0303
         },
         {
           "id": "house-nj-03",
           "state": "NJ",
-          "margin": 11.519,
-          "chance": 0.95764
+          "margin": 11.149,
+          "chance": 0.9534
         },
         {
           "id": "house-nj-04",
           "state": "NJ",
-          "margin": -30.039,
-          "chance": 0.00029
+          "margin": -30.408,
+          "chance": 0.00027
         },
         {
           "id": "house-nj-05",
           "state": "NJ",
-          "margin": 8.455,
-          "chance": 0.90795
+          "margin": 8.085,
+          "chance": 0.89925
         },
         {
           "id": "house-nj-06",
           "state": "NJ",
-          "margin": 13.963,
-          "chance": 0.97769
+          "margin": 13.594,
+          "chance": 0.9754
         },
         {
           "id": "house-nj-07",
           "state": "NJ",
-          "margin": 0.028,
-          "chance": 0.50193
+          "margin": -0.341,
+          "chance": 0.47695
         },
         {
           "id": "house-nj-08",
           "state": "NJ",
-          "margin": 24.682,
-          "chance": 0.99875
+          "margin": 24.312,
+          "chance": 0.99862
         },
         {
           "id": "house-nj-09",
           "state": "NJ",
-          "margin": 4.8,
-          "chance": 0.78575
+          "margin": 4.431,
+          "chance": 0.76844
         },
         {
           "id": "house-nj-10",
           "state": "NJ",
-          "margin": 52.683,
+          "margin": 52.313,
           "chance": 1.0
         },
         {
           "id": "house-nj-11",
           "state": "NJ",
-          "margin": 12.654,
-          "chance": 0.9685
+          "margin": 12.285,
+          "chance": 0.9653
         },
         {
           "id": "house-nj-12",
           "state": "NJ",
-          "margin": 26.506,
-          "chance": 0.99924
+          "margin": 26.137,
+          "chance": 0.99916
         },
         {
           "id": "house-nm-01",
           "state": "NM",
-          "margin": 16.149,
-          "chance": 0.98753
+          "margin": 15.779,
+          "chance": 0.98623
         },
         {
           "id": "house-nm-02",
           "state": "NM",
-          "margin": 1.169,
-          "chance": 0.57844
+          "margin": 0.799,
+          "chance": 0.55388
         },
         {
           "id": "house-nm-03",
           "state": "NM",
-          "margin": 9.896,
-          "chance": 0.93577
+          "margin": 9.526,
+          "chance": 0.92949
         },
         {
           "id": "house-nv-01",
           "state": "NV",
-          "margin": 4.728,
-          "chance": 0.78245
+          "margin": 4.359,
+          "chance": 0.76495
         },
         {
           "id": "house-nv-02",
           "state": "NV",
-          "margin": -9.819,
-          "chance": 0.06548
+          "margin": -10.189,
+          "chance": 0.05962
         },
         {
           "id": "house-nv-03",
           "state": "NV",
-          "margin": 4.491,
-          "chance": 0.77135
+          "margin": 4.122,
+          "chance": 0.75323
         },
         {
           "id": "house-nv-04",
           "state": "NV",
-          "margin": 7.498,
-          "chance": 0.88389
+          "margin": 7.128,
+          "chance": 0.87323
         },
         {
           "id": "house-ny-01",
           "state": "NY",
-          "margin": -10.663,
-          "chance": 0.05281
+          "margin": -11.032,
+          "chance": 0.04803
         },
         {
           "id": "house-ny-02",
           "state": "NY",
-          "margin": -18.072,
-          "chance": 0.00745
+          "margin": -18.442,
+          "chance": 0.00674
         },
         {
           "id": "house-ny-03",
           "state": "NY",
-          "margin": 0.662,
-          "chance": 0.54466
+          "margin": 0.292,
+          "chance": 0.51977
         },
         {
           "id": "house-ny-04",
           "state": "NY",
-          "margin": 4.282,
-          "chance": 0.76118
+          "margin": 3.912,
+          "chance": 0.74253
         },
         {
           "id": "house-ny-05",
           "state": "NY",
-          "margin": 42.617,
+          "margin": 42.248,
           "chance": 0.99999
         },
         {
           "id": "house-ny-06",
           "state": "NY",
-          "margin": 12.814,
-          "chance": 0.96979
+          "margin": 12.445,
+          "chance": 0.96672
         },
         {
           "id": "house-ny-07",
           "state": "NY",
-          "margin": 47.629,
+          "margin": 47.26,
           "chance": 1.0
         },
         {
           "id": "house-ny-08",
           "state": "NY",
-          "margin": 43.336,
+          "margin": 42.967,
           "chance": 0.99999
         },
         {
           "id": "house-ny-09",
           "state": "NY",
-          "margin": 41.218,
-          "chance": 0.99999
+          "margin": 40.848,
+          "chance": 0.99998
         },
         {
           "id": "house-ny-10",
           "state": "NY",
-          "margin": 60.992,
+          "margin": 60.623,
           "chance": 1.0
         },
         {
           "id": "house-ny-11",
           "state": "NY",
-          "margin": -27.708,
-          "chance": 0.00055
+          "margin": -28.077,
+          "chance": 0.0005
         },
         {
           "id": "house-ny-12",
           "state": "NY",
-          "margin": 60.179,
+          "margin": 59.81,
           "chance": 1.0
         },
         {
           "id": "house-ny-13",
           "state": "NY",
-          "margin": 60.577,
+          "margin": 60.207,
           "chance": 1.0
         },
         {
           "id": "house-ny-14",
           "state": "NY",
-          "margin": 32.924,
-          "chance": 0.99987
+          "margin": 32.554,
+          "chance": 0.99985
         },
         {
           "id": "house-ny-15",
           "state": "NY",
-          "margin": 49.42,
+          "margin": 49.05,
           "chance": 1.0
         },
         {
           "id": "house-ny-16",
           "state": "NY",
-          "margin": 32.757,
-          "chance": 0.99986
+          "margin": 32.388,
+          "chance": 0.99984
         },
         {
           "id": "house-ny-17",
           "state": "NY",
-          "margin": -2.638,
-          "chance": 0.3287
+          "margin": -3.007,
+          "chance": 0.30702
         },
         {
           "id": "house-ny-18",
           "state": "NY",
-          "margin": 12.01,
-          "chance": 0.96272
+          "margin": 11.64,
+          "chance": 0.95896
         },
         {
           "id": "house-ny-19",
           "state": "NY",
-          "margin": 4.386,
-          "chance": 0.76629
+          "margin": 4.017,
+          "chance": 0.7479
         },
         {
           "id": "house-ny-20",
           "state": "NY",
-          "margin": 16.943,
-          "chance": 0.98992
+          "margin": 16.574,
+          "chance": 0.98887
         },
         {
           "id": "house-ny-21",
           "state": "NY",
-          "margin": -14.029,
-          "chance": 0.02193
+          "margin": -14.398,
+          "chance": 0.01988
         },
         {
           "id": "house-ny-22",
           "state": "NY",
-          "margin": 8.029,
-          "chance": 0.89785
+          "margin": 7.659,
+          "chance": 0.8883
         },
         {
           "id": "house-ny-23",
           "state": "NY",
-          "margin": -23.232,
-          "chance": 0.00185
+          "margin": -23.601,
+          "chance": 0.00168
         },
         {
           "id": "house-ny-24",
           "state": "NY",
-          "margin": -24.707,
-          "chance": 0.00124
+          "margin": -25.076,
+          "chance": 0.00113
         },
         {
           "id": "house-ny-25",
           "state": "NY",
-          "margin": 18.131,
-          "chance": 0.99267
+          "margin": 17.762,
+          "chance": 0.99191
         },
         {
           "id": "house-ny-26",
           "state": "NY",
-          "margin": 21.119,
-          "chance": 0.99672
+          "margin": 20.749,
+          "chance": 0.99638
         },
         {
           "id": "house-oh-01",
           "state": "OH",
-          "margin": -0.03,
-          "chance": 0.49798
+          "margin": -0.399,
+          "chance": 0.47301
         },
         {
           "id": "house-oh-02",
           "state": "OH",
-          "margin": -36.709,
-          "chance": 5e-05
+          "margin": -37.079,
+          "chance": 4e-05
         },
         {
           "id": "house-oh-03",
           "state": "OH",
-          "margin": 34.861,
-          "chance": 0.99992
+          "margin": 34.492,
+          "chance": 0.99991
         },
         {
           "id": "house-oh-04",
           "state": "OH",
-          "margin": -38.499,
+          "margin": -38.869,
           "chance": 3e-05
         },
         {
           "id": "house-oh-05",
           "state": "OH",
-          "margin": -24.607,
-          "chance": 0.00128
+          "margin": -24.976,
+          "chance": 0.00116
         },
         {
           "id": "house-oh-06",
           "state": "OH",
-          "margin": -33.304,
-          "chance": 0.00012
+          "margin": -33.674,
+          "chance": 0.00011
         },
         {
           "id": "house-oh-07",
           "state": "OH",
-          "margin": -6.592,
-          "chance": 0.14372
+          "margin": -6.962,
+          "chance": 0.13185
         },
         {
           "id": "house-oh-08",
           "state": "OH",
-          "margin": -18.21,
-          "chance": 0.00718
+          "margin": -18.579,
+          "chance": 0.0065
         },
         {
           "id": "house-oh-09",
           "state": "OH",
-          "margin": -3.62,
-          "chance": 0.27291
+          "margin": -3.989,
+          "chance": 0.25352
         },
         {
           "id": "house-oh-10",
           "state": "OH",
-          "margin": -7.718,
-          "chance": 0.11013
+          "margin": -8.087,
+          "chance": 0.1007
         },
         {
           "id": "house-oh-11",
           "state": "OH",
-          "margin": 47.695,
+          "margin": 47.326,
           "chance": 1.0
         },
         {
           "id": "house-oh-12",
           "state": "OH",
-          "margin": -29.716,
-          "chance": 0.00032
+          "margin": -30.085,
+          "chance": 0.00029
         },
         {
           "id": "house-oh-13",
           "state": "OH",
-          "margin": 5.469,
-          "chance": 0.81465
+          "margin": 5.1,
+          "chance": 0.79908
         },
         {
           "id": "house-oh-14",
           "state": "OH",
-          "margin": -21.734,
-          "chance": 0.00278
+          "margin": -22.103,
+          "chance": 0.00251
         },
         {
           "id": "house-oh-15",
           "state": "OH",
-          "margin": -6.336,
-          "chance": 0.15247
+          "margin": -6.706,
+          "chance": 0.13999
         },
         {
           "id": "house-ok-01",
           "state": "OK",
-          "margin": -22.49,
-          "chance": 0.00226
+          "margin": -22.86,
+          "chance": 0.00205
         },
         {
           "id": "house-ok-02",
           "state": "OK",
-          "margin": -52.322,
+          "margin": -52.692,
           "chance": 0.0
         },
         {
           "id": "house-ok-03",
           "state": "OK",
-          "margin": -45.783,
+          "margin": -46.152,
           "chance": 0.0
         },
         {
           "id": "house-ok-04",
           "state": "OK",
-          "margin": -35.183,
+          "margin": -35.552,
           "chance": 7e-05
         },
         {
           "id": "house-ok-05",
           "state": "OK",
-          "margin": -18.32,
-          "chance": 0.00697
+          "margin": -18.69,
+          "chance": 0.00631
         },
         {
           "id": "house-or-01",
           "state": "OR",
-          "margin": 38.006,
-          "chance": 0.99997
+          "margin": 37.636,
+          "chance": 0.99996
         },
         {
           "id": "house-or-02",
           "state": "OR",
-          "margin": -28.222,
-          "chance": 0.00048
+          "margin": -28.591,
+          "chance": 0.00043
         },
         {
           "id": "house-or-03",
           "state": "OR",
-          "margin": 48.285,
+          "margin": 47.916,
           "chance": 1.0
         },
         {
           "id": "house-or-04",
           "state": "OR",
-          "margin": 10.741,
-          "chance": 0.94824
+          "margin": 10.372,
+          "chance": 0.9431
         },
         {
           "id": "house-or-05",
           "state": "OR",
-          "margin": 8.028,
-          "chance": 0.89784
+          "margin": 7.659,
+          "chance": 0.8883
         },
         {
           "id": "house-or-06",
           "state": "OR",
-          "margin": 13.842,
-          "chance": 0.97696
+          "margin": 13.473,
+          "chance": 0.9746
         },
         {
           "id": "house-pa-01",
           "state": "PA",
-          "margin": -5.504,
-          "chance": 0.18392
+          "margin": -5.873,
+          "chance": 0.16938
         },
         {
           "id": "house-pa-02",
           "state": "PA",
-          "margin": 38.907,
+          "margin": 38.538,
           "chance": 0.99997
         },
         {
           "id": "house-pa-03",
           "state": "PA",
-          "margin": 70.852,
+          "margin": 70.483,
           "chance": 1.0
         },
         {
           "id": "house-pa-04",
           "state": "PA",
-          "margin": 18.513,
-          "chance": 0.99339
+          "margin": 18.143,
+          "chance": 0.99269
         },
         {
           "id": "house-pa-05",
           "state": "PA",
-          "margin": 29.699,
-          "chance": 0.99968
+          "margin": 29.33,
+          "chance": 0.99964
         },
         {
           "id": "house-pa-06",
           "state": "PA",
-          "margin": 13.582,
-          "chance": 0.97533
+          "margin": 13.213,
+          "chance": 0.9728
         },
         {
           "id": "house-pa-07",
           "state": "PA",
-          "margin": 1.311,
-          "chance": 0.58778
+          "margin": 0.941,
+          "chance": 0.56336
         },
         {
           "id": "house-pa-08",
           "state": "PA",
-          "margin": -3.888,
-          "chance": 0.25875
+          "margin": -4.257,
+          "chance": 0.24004
         },
         {
           "id": "house-pa-09",
           "state": "PA",
-          "margin": -33.434,
-          "chance": 0.00012
+          "margin": -33.803,
+          "chance": 0.00011
         },
         {
           "id": "house-pa-10",
           "state": "PA",
-          "margin": -1.039,
-          "chance": 0.43013
+          "margin": -1.409,
+          "chance": 0.40581
         },
         {
           "id": "house-pa-11",
           "state": "PA",
-          "margin": -22.96,
-          "chance": 0.00199
+          "margin": -23.329,
+          "chance": 0.0018
         },
         {
           "id": "house-pa-12",
           "state": "PA",
-          "margin": 18.0,
-          "chance": 0.99241
+          "margin": 17.631,
+          "chance": 0.99162
         },
         {
           "id": "house-pa-13",
           "state": "PA",
-          "margin": -46.603,
+          "margin": -46.973,
           "chance": 0.0
         },
         {
           "id": "house-pa-14",
           "state": "PA",
-          "margin": -32.27,
-          "chance": 0.00016
+          "margin": -32.64,
+          "chance": 0.00015
         },
         {
           "id": "house-pa-15",
           "state": "PA",
-          "margin": -39.092,
-          "chance": 3e-05
+          "margin": -39.462,
+          "chance": 2e-05
         },
         {
           "id": "house-pa-16",
           "state": "PA",
-          "margin": -23.691,
-          "chance": 0.00164
+          "margin": -24.06,
+          "chance": 0.00148
         },
         {
           "id": "house-pa-17",
           "state": "PA",
-          "margin": 9.223,
-          "chance": 0.92391
+          "margin": 8.853,
+          "chance": 0.91658
         },
         {
           "id": "house-ri-01",
           "state": "RI",
-          "margin": 27.279,
-          "chance": 0.99938
+          "margin": 26.91,
+          "chance": 0.99931
         },
         {
           "id": "house-ri-02",
           "state": "RI",
-          "margin": 13.896,
-          "chance": 0.97729
+          "margin": 13.527,
+          "chance": 0.97496
         },
         {
           "id": "house-sc-01",
           "state": "SC",
-          "margin": -8.118,
-          "chance": 0.09996
+          "margin": -8.487,
+          "chance": 0.09132
         },
         {
           "id": "house-sc-02",
           "state": "SC",
-          "margin": -15.779,
-          "chance": 0.01377
+          "margin": -16.148,
+          "chance": 0.01247
         },
         {
           "id": "house-sc-03",
           "state": "SC",
-          "margin": -41.209,
+          "margin": -41.578,
           "chance": 1e-05
         },
         {
           "id": "house-sc-04",
           "state": "SC",
-          "margin": -23.346,
-          "chance": 0.0018
+          "margin": -23.716,
+          "chance": 0.00163
         },
         {
           "id": "house-sc-05",
           "state": "SC",
-          "margin": -24.476,
-          "chance": 0.00132
+          "margin": -24.846,
+          "chance": 0.0012
         },
         {
           "id": "house-sc-06",
           "state": "SC",
-          "margin": 25.097,
-          "chance": 0.99888
+          "margin": 24.728,
+          "chance": 0.99876
         },
         {
           "id": "house-sc-07",
           "state": "SC",
-          "margin": -24.951,
-          "chance": 0.00116
+          "margin": -25.321,
+          "chance": 0.00105
         },
         {
           "id": "house-sd-00",
           "state": "SD",
-          "margin": -34.187,
-          "chance": 0.0001
+          "margin": -34.556,
+          "chance": 9e-05
         },
         {
           "id": "house-tn-01",
           "state": "TN",
-          "margin": -52.393,
+          "margin": -52.762,
           "chance": 0.0
         },
         {
           "id": "house-tn-02",
           "state": "TN",
-          "margin": -32.102,
-          "chance": 0.00017
+          "margin": -32.471,
+          "chance": 0.00015
         },
         {
           "id": "house-tn-03",
           "state": "TN",
-          "margin": -34.843,
-          "chance": 8e-05
+          "margin": -35.213,
+          "chance": 7e-05
         },
         {
           "id": "house-tn-04",
           "state": "TN",
-          "margin": -22.366,
-          "chance": 0.00234
+          "margin": -22.735,
+          "chance": 0.00212
         },
         {
           "id": "house-tn-05",
           "state": "TN",
-          "margin": -12.702,
-          "chance": 0.03111
+          "margin": -13.071,
+          "chance": 0.02823
         },
         {
           "id": "house-tn-06",
           "state": "TN",
-          "margin": -25.244,
-          "chance": 0.00108
+          "margin": -25.613,
+          "chance": 0.00097
         },
         {
           "id": "house-tn-07",
           "state": "TN",
-          "margin": -19.572,
-          "chance": 0.00497
+          "margin": -19.942,
+          "chance": 0.0045
         },
         {
           "id": "house-tn-08",
           "state": "TN",
-          "margin": -22.049,
-          "chance": 0.00255
+          "margin": -22.418,
+          "chance": 0.00231
         },
         {
           "id": "house-tn-09",
           "state": "TN",
-          "margin": -9.631,
-          "chance": 0.06867
+          "margin": -10.0,
+          "chance": 0.06255
         },
         {
           "id": "house-tx-01",
           "state": "TX",
-          "margin": -45.738,
+          "margin": -46.107,
           "chance": 0.0
         },
         {
           "id": "house-tx-02",
           "state": "TX",
-          "margin": -16.821,
-          "chance": 0.01042
+          "margin": -17.19,
+          "chance": 0.00944
         },
         {
           "id": "house-tx-03",
           "state": "TX",
-          "margin": -24.839,
-          "chance": 0.0012
+          "margin": -25.208,
+          "chance": 0.00109
         },
         {
           "id": "house-tx-04",
           "state": "TX",
-          "margin": -26.245,
-          "chance": 0.00082
+          "margin": -26.615,
+          "chance": 0.00074
         },
         {
           "id": "house-tx-05",
           "state": "TX",
-          "margin": -23.473,
-          "chance": 0.00174
+          "margin": -23.842,
+          "chance": 0.00157
         },
         {
           "id": "house-tx-06",
           "state": "TX",
-          "margin": -25.682,
-          "chance": 0.00096
+          "margin": -26.051,
+          "chance": 0.00086
         },
         {
           "id": "house-tx-07",
           "state": "TX",
-          "margin": 17.18,
-          "chance": 0.99054
+          "margin": 16.81,
+          "chance": 0.98955
         },
         {
           "id": "house-tx-08",
           "state": "TX",
-          "margin": -27.873,
-          "chance": 0.00053
+          "margin": -28.242,
+          "chance": 0.00048
         },
         {
           "id": "house-tx-09",
           "state": "TX",
-          "margin": -14.024,
-          "chance": 0.02196
+          "margin": -14.393,
+          "chance": 0.01991
         },
         {
           "id": "house-tx-10",
           "state": "TX",
-          "margin": -24.084,
-          "chance": 0.00147
+          "margin": -24.454,
+          "chance": 0.00133
         },
         {
           "id": "house-tx-11",
           "state": "TX",
-          "margin": -35.081,
-          "chance": 8e-05
+          "margin": -35.451,
+          "chance": 7e-05
         },
         {
           "id": "house-tx-12",
           "state": "TX",
-          "margin": -25.447,
-          "chance": 0.00102
+          "margin": -25.816,
+          "chance": 0.00092
         },
         {
           "id": "house-tx-13",
           "state": "TX",
-          "margin": -44.859,
-          "chance": 1e-05
+          "margin": -45.228,
+          "chance": 0.0
         },
         {
           "id": "house-tx-14",
           "state": "TX",
-          "margin": -25.956,
-          "chance": 0.00089
+          "margin": -26.325,
+          "chance": 0.0008
         },
         {
           "id": "house-tx-15",
           "state": "TX",
-          "margin": -4.376,
-          "chance": 0.2342
+          "margin": -4.746,
+          "chance": 0.21675
         },
         {
           "id": "house-tx-16",
           "state": "TX",
-          "margin": 10.718,
-          "chance": 0.94792
+          "margin": 10.348,
+          "chance": 0.94276
         },
         {
           "id": "house-tx-17",
           "state": "TX",
-          "margin": -23.384,
-          "chance": 0.00178
+          "margin": -23.753,
+          "chance": 0.00161
         },
         {
           "id": "house-tx-18",
           "state": "TX",
-          "margin": 46.108,
+          "margin": 45.739,
           "chance": 1.0
         },
         {
           "id": "house-tx-19",
           "state": "TX",
-          "margin": -49.846,
+          "margin": -50.215,
           "chance": 0.0
         },
         {
           "id": "house-tx-20",
           "state": "TX",
-          "margin": 19.356,
-          "chance": 0.99473
+          "margin": 18.987,
+          "chance": 0.99418
         },
         {
           "id": "house-tx-21",
           "state": "TX",
-          "margin": -22.382,
-          "chance": 0.00233
+          "margin": -22.751,
+          "chance": 0.00211
         },
         {
           "id": "house-tx-22",
           "state": "TX",
-          "margin": -23.981,
-          "chance": 0.00151
+          "margin": -24.351,
+          "chance": 0.00137
         },
         {
           "id": "house-tx-23",
           "state": "TX",
-          "margin": -10.344,
-          "chance": 0.05731
+          "margin": -10.713,
+          "chance": 0.05214
         },
         {
           "id": "house-tx-24",
           "state": "TX",
-          "margin": -18.058,
-          "chance": 0.00748
+          "margin": -18.427,
+          "chance": 0.00677
         },
         {
           "id": "house-tx-25",
           "state": "TX",
-          "margin": -25.28,
-          "chance": 0.00106
+          "margin": -25.65,
+          "chance": 0.00096
         },
         {
           "id": "house-tx-26",
           "state": "TX",
-          "margin": -26.003,
-          "chance": 0.00088
+          "margin": -26.373,
+          "chance": 0.00079
         },
         {
           "id": "house-tx-27",
           "state": "TX",
-          "margin": -22.451,
-          "chance": 0.00229
+          "margin": -22.82,
+          "chance": 0.00207
         },
         {
           "id": "house-tx-28",
           "state": "TX",
-          "margin": -1.537,
-          "chance": 0.39746
+          "margin": -1.906,
+          "chance": 0.37378
         },
         {
           "id": "house-tx-29",
           "state": "TX",
-          "margin": 21.447,
-          "chance": 0.997
+          "margin": 21.077,
+          "chance": 0.99669
         },
         {
           "id": "house-tx-30",
           "state": "TX",
-          "margin": 39.056,
+          "margin": 38.686,
           "chance": 0.99997
         },
         {
           "id": "house-tx-31",
           "state": "TX",
-          "margin": -21.836,
-          "chance": 0.0027
+          "margin": -22.205,
+          "chance": 0.00244
         },
         {
           "id": "house-tx-32",
           "state": "TX",
-          "margin": -18.976,
-          "chance": 0.00584
+          "margin": -19.345,
+          "chance": 0.00529
         },
         {
           "id": "house-tx-33",
           "state": "TX",
-          "margin": 25.816,
-          "chance": 0.99908
+          "margin": 25.447,
+          "chance": 0.99898
         },
         {
           "id": "house-tx-34",
           "state": "TX",
-          "margin": -3.174,
-          "chance": 0.29749
+          "margin": -3.543,
+          "chance": 0.27702
         },
         {
           "id": "house-tx-35",
           "state": "TX",
-          "margin": -6.06,
-          "chance": 0.16238
+          "margin": -6.43,
+          "chance": 0.14923
         },
         {
           "id": "house-tx-36",
           "state": "TX",
-          "margin": -26.412,
-          "chance": 0.00078
+          "margin": -26.782,
+          "chance": 0.00071
         },
         {
           "id": "house-tx-37",
           "state": "TX",
-          "margin": 48.445,
+          "margin": 48.075,
           "chance": 1.0
         },
         {
           "id": "house-tx-38",
           "state": "TX",
-          "margin": -21.915,
-          "chance": 0.00264
+          "margin": -22.285,
+          "chance": 0.00239
         },
         {
           "id": "house-ut-01",
           "state": "UT",
-          "margin": 23.579,
-          "chance": 0.99831
+          "margin": 23.209,
+          "chance": 0.99814
         },
         {
           "id": "house-ut-02",
           "state": "UT",
-          "margin": -22.235,
-          "chance": 0.00242
+          "margin": -22.605,
+          "chance": 0.00219
         },
         {
           "id": "house-ut-03",
           "state": "UT",
-          "margin": -34.571,
-          "chance": 9e-05
+          "margin": -34.94,
+          "chance": 8e-05
         },
         {
           "id": "house-ut-04",
           "state": "UT",
-          "margin": -28.826,
-          "chance": 0.00041
+          "margin": -29.195,
+          "chance": 0.00037
         },
         {
           "id": "house-va-01",
           "state": "VA",
-          "margin": -2.433,
-          "chance": 0.34103
+          "margin": -2.803,
+          "chance": 0.31893
         },
         {
           "id": "house-va-02",
           "state": "VA",
-          "margin": 0.85,
-          "chance": 0.55729
+          "margin": 0.481,
+          "chance": 0.5325
         },
         {
           "id": "house-va-03",
           "state": "VA",
-          "margin": 35.165,
-          "chance": 0.99993
+          "margin": 34.796,
+          "chance": 0.99992
         },
         {
           "id": "house-va-04",
           "state": "VA",
-          "margin": 34.558,
-          "chance": 0.99991
+          "margin": 34.189,
+          "chance": 0.9999
         },
         {
           "id": "house-va-05",
           "state": "VA",
-          "margin": -7.225,
-          "chance": 0.1239
+          "margin": -7.595,
+          "chance": 0.11345
         },
         {
           "id": "house-va-06",
           "state": "VA",
-          "margin": -19.742,
-          "chance": 0.00475
+          "margin": -20.111,
+          "chance": 0.0043
         },
         {
           "id": "house-va-07",
           "state": "VA",
-          "margin": 6.243,
-          "chance": 0.84426
+          "margin": 5.874,
+          "chance": 0.83065
         },
         {
           "id": "house-va-08",
           "state": "VA",
-          "margin": 50.736,
+          "margin": 50.367,
           "chance": 1.0
         },
         {
           "id": "house-va-09",
           "state": "VA",
-          "margin": -43.8,
+          "margin": -44.169,
           "chance": 1e-05
         },
         {
           "id": "house-va-10",
           "state": "VA",
-          "margin": 11.524,
-          "chance": 0.95771
+          "margin": 11.155,
+          "chance": 0.95347
         },
         {
           "id": "house-va-11",
           "state": "VA",
-          "margin": 37.32,
-          "chance": 0.99996
+          "margin": 36.95,
+          "chance": 0.99995
         },
         {
           "id": "house-vt-00",
           "state": "VT",
-          "margin": 30.697,
-          "chance": 0.99975
+          "margin": 30.328,
+          "chance": 0.99973
         },
         {
           "id": "house-wa-01",
           "state": "WA",
-          "margin": 29.28,
-          "chance": 0.99964
+          "margin": 28.911,
+          "chance": 0.9996
         },
         {
           "id": "house-wa-02",
           "state": "WA",
-          "margin": 26.934,
-          "chance": 0.99932
+          "margin": 26.565,
+          "chance": 0.99925
         },
         {
           "id": "house-wa-03",
           "state": "WA",
-          "margin": -2.726,
-          "chance": 0.32347
+          "margin": -3.095,
+          "chance": 0.30199
         },
         {
           "id": "house-wa-04",
           "state": "WA",
-          "margin": -21.28,
-          "chance": 0.00314
+          "margin": -21.65,
+          "chance": 0.00284
         },
         {
           "id": "house-wa-05",
           "state": "WA",
-          "margin": -15.646,
-          "chance": 0.01426
+          "margin": -16.015,
+          "chance": 0.01292
         },
         {
           "id": "house-wa-06",
           "state": "WA",
-          "margin": 19.624,
-          "chance": 0.99509
+          "margin": 19.254,
+          "chance": 0.99458
         },
         {
           "id": "house-wa-07",
           "state": "WA",
-          "margin": 73.627,
+          "margin": 73.258,
           "chance": 1.0
         },
         {
           "id": "house-wa-08",
           "state": "WA",
-          "margin": 9.06,
-          "chance": 0.92076
+          "margin": 8.691,
+          "chance": 0.91315
         },
         {
           "id": "house-wa-09",
           "state": "WA",
-          "margin": 42.035,
+          "margin": 41.666,
           "chance": 0.99999
         },
         {
           "id": "house-wa-10",
           "state": "WA",
-          "margin": 20.645,
-          "chance": 0.99627
+          "margin": 20.275,
+          "chance": 0.99588
         },
         {
           "id": "house-wi-01",
           "state": "WI",
-          "margin": -6.79,
-          "chance": 0.13728
+          "margin": -7.159,
+          "chance": 0.12586
         },
         {
           "id": "house-wi-02",
           "state": "WI",
-          "margin": 39.301,
-          "chance": 0.99998
+          "margin": 38.932,
+          "chance": 0.99997
         },
         {
           "id": "house-wi-03",
           "state": "WI",
-          "margin": -9.024,
-          "chance": 0.07996
+          "margin": -9.393,
+          "chance": 0.07291
         },
         {
           "id": "house-wi-04",
           "state": "WI",
-          "margin": 52.125,
+          "margin": 51.756,
           "chance": 1.0
         },
         {
           "id": "house-wi-05",
           "state": "WI",
-          "margin": -24.702,
-          "chance": 0.00125
+          "margin": -25.071,
+          "chance": 0.00113
         },
         {
           "id": "house-wi-06",
           "state": "WI",
-          "margin": -18.746,
-          "chance": 0.00621
+          "margin": -19.115,
+          "chance": 0.00563
         },
         {
           "id": "house-wi-07",
           "state": "WI",
-          "margin": -22.654,
-          "chance": 0.00217
+          "margin": -23.024,
+          "chance": 0.00196
         },
         {
           "id": "house-wi-08",
           "state": "WI",
-          "margin": -17.596,
-          "chance": 0.00846
+          "margin": -17.966,
+          "chance": 0.00766
         },
         {
           "id": "house-wv-01",
           "state": "WV",
-          "margin": -45.637,
+          "margin": -46.007,
           "chance": 0.0
         },
         {
           "id": "house-wv-02",
           "state": "WV",
-          "margin": -38.185,
+          "margin": -38.554,
           "chance": 3e-05
         },
         {
           "id": "house-wy-00",
           "state": "WY",
-          "margin": -46.902,
+          "margin": -47.271,
           "chance": 0.0
         }
       ],

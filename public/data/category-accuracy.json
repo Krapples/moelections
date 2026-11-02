@@ -9,63 +9,63 @@
   ],
   "call_rule": "Democratic call when Democratic win probability is at least 50%; Republican otherwise.",
   "rating_definition": "Category is based on the favored party's forecast win probability: Toss-up <60%; Leans 60%–<80%; Likely 80%–<95%; Safe ≥95%. The labels do not alter published win probabilities.",
-  "validation_note": "House category rates use the selected expected-seat-aligned MoE's saved forward-validation probabilities and the published Toss-up/Leans/Likely/Safe probability thresholds. All-offices rates combine those refreshed House results with the unchanged Senate and Governor validation rows. Historical rates are descriptive, not guarantees; races within an election are related.",
+  "validation_note": "House category rates use the selected >35 percentage-point disagreement stream and hard-call-aligned forward-validation probabilities. All-office rates combine those House results with the unchanged Senate and Governor validation rows. Historical category rates are descriptive; races within an election are related.",
   "results": {
     "All offices": {
       "overall": {
         "races": 1814,
-        "correct_calls": 1744,
-        "accuracy": 0.9614112458654906
+        "correct_calls": 1724,
+        "accuracy": 0.9503858875413451
       },
       "categories": {
         "Toss-up": {
-          "races": 99,
-          "correct_calls": 63,
-          "accuracy": 0.6363636363636364
+          "races": 92,
+          "correct_calls": 53,
+          "accuracy": 0.5760869565217391
         },
         "Leans": {
-          "races": 172,
-          "correct_calls": 148,
-          "accuracy": 0.8604651162790697
+          "races": 177,
+          "correct_calls": 139,
+          "accuracy": 0.7853107344632768
         },
         "Likely": {
-          "races": 199,
-          "correct_calls": 192,
-          "accuracy": 0.964824120603015
+          "races": 280,
+          "correct_calls": 269,
+          "accuracy": 0.9607142857142857
         },
         "Safe": {
-          "races": 1344,
-          "correct_calls": 1341,
-          "accuracy": 0.9977678571428571
+          "races": 1265,
+          "correct_calls": 1263,
+          "accuracy": 0.9984189723320158
         }
       }
     },
     "House": {
       "overall": {
         "races": 1598,
-        "correct_calls": 1539,
-        "accuracy": 0.9630788485607009
+        "correct_calls": 1519,
+        "accuracy": 0.9505632040050063
       },
       "categories": {
         "Toss-up": {
-          "races": 75,
-          "correct_calls": 47,
-          "accuracy": 0.6266666666666667
+          "races": 68,
+          "correct_calls": 37,
+          "accuracy": 0.5441176470588235
         },
         "Leans": {
-          "races": 114,
-          "correct_calls": 92,
-          "accuracy": 0.8070175438596491
+          "races": 119,
+          "correct_calls": 83,
+          "accuracy": 0.6974789915966386
         },
         "Likely": {
-          "races": 135,
-          "correct_calls": 129,
-          "accuracy": 0.9555555555555556
+          "races": 216,
+          "correct_calls": 206,
+          "accuracy": 0.9537037037037037
         },
         "Safe": {
-          "races": 1274,
-          "correct_calls": 1271,
-          "accuracy": 0.9976452119309263
+          "races": 1195,
+          "correct_calls": 1193,
+          "accuracy": 0.998326359832636
         }
       }
     },
